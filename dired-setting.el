@@ -1,0 +1,106 @@
+;; -*- coding: utf-8 -*-
+;; File: dired-setting.el
+;;
+;; Author: Denny Zhang(markfilebat@126.com)
+;; Created: 2009-08-01
+;; Updated: Time-stamp: <2011-12-02 00:17:31>
+;;
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- §separator§ ------------------------>8--
+;;(load-file (concat CONTRIBUTOR_CONF "/dired+/dired+.el"))
+;;(require 'dired+)
+(defface diredp-my-file-name
+'((t (:foreground "green4")))
+  "*Face used for message display."
+  :group 'Dired-Plus)
+(setq diredp-file-name 'diredp-my-file-name)
+
+(defface diredp-my-dir-heading
+  '((t (:foreground "DarkGoldenrod4" :background "LightCyan1")))
+  "*Face used for directory headings in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(setq diredp-dir-heading 'diredp-my-dir-heading)
+
+(defface diredp-my-dir-priv
+  '((t (:foreground "DarkRed" :background "LightCyan1")))
+  "*Face used for directory privilege indicator (d) in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(defvar diredp-dir-priv 'diredp-my-dir-priv)
+
+(defface diredp-my-exec-priv
+  '((t (:background "LightCyan1")))
+  "*Face used for execute privilege indicator (x) in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(defvar diredp-exec-priv 'diredp-my-exec-priv)
+
+(defface diredp-my-other-priv
+  '((t (:background "LightCyan1")))
+  "*Face used for l,s,S,t,T privilege indicators in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(defvar diredp-other-priv 'diredp-my-other-priv)
+
+(defface diredp-my-write-priv
+  '((t (:background "LightCyan1")))
+  "*Face used for write privilege indicator (w) in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(defvar diredp-write-priv 'diredp-my-write-priv)
+
+(defface diredp-my-read-priv
+  '((t (:background "LightCyan1")))
+  "*Face used for read privilege indicator (w) in dired buffers."
+  :group 'Dired-Plus :group 'font-lock-highlighting-faces)
+(defvar diredp-read-priv 'diredp-my-read-priv)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
+(setq dired-listing-switches "-alhS")
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; Sort files in dired.
+(defun dired-sort-size ()
+  "Dired sort by size."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "S")))
+
+(defun dired-sort-extension ()
+  "Dired sort by extension."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "X")))
+
+(defun dired-sort-name ()
+  "Dired sort by name."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "")))
+
+(defun dired-sort-ctime ()
+  "Dired sort by create time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "ct")))
+
+(defun dired-sort-utime ()
+  "Dired sort by access time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "ut")))
+
+(defun dired-sort-time ()
+  "Dired sort by time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "t")))
+
+(define-key dired-mode-map "\M-e" 'dired-sort-extension)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun dired-get-size ()
+  "Get total size of marked files with `du' command.
+If not marked any files, default is current file or directory."
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+      (message "Size of all marked files: %s"
+               (progn
+                 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
+                 (match-string 1))))))
+(define-key dired-mode-map "\M-c" 'dired-get-size)
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; adds a command('T') to dired-mode for creating and unpacking tar files.
+(load-file (concat CONTRIBUTOR_CONF "/dired-tar/dired-tar.el"))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; File: dired-setting.el ends here
