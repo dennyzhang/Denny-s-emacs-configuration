@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-01 14:49:46>
+;; Updated: Time-stamp: <2012-03-10 18:24:52>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (eval-when-compile (require 'cl))
@@ -51,9 +51,12 @@
 (load-file (concat CONTRIBUTOR_CONF "/dupwords/dupwords.el"))
 (require 'dupwords)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/hfyview/hfyview.el"))
-(global-set-key [(meta p)(p)] 'hfyview-buffer)
-(setq hfy-meta-tags
-      (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
+;; (load-file (concat CONTRIBUTOR_CONF "/hfyview/hfyview.el")) ;; TODO
+;; (global-set-key [(meta p)(p)] 'hfyview-buffer)
+;; (setq hfy-meta-tags
+;;       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(load-file (concat CONTRIBUTOR_CONF "/sl/sl.el"))
+(require 'sl)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: otherpackage-setting.el ends here

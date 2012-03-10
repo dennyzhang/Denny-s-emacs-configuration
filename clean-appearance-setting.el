@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-09 10:52:59>
+;; Updated: Time-stamp: <2012-03-04 13:42:35>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -18,7 +18,7 @@
 (global-set-key [M-f12] 'toggle-mode-line)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (mouse-avoidance-mode 'animate)
-(mouse-wheel-mode);; enable mouse wheel support
+(mouse-wheel-mode 1);; enable mouse wheel support
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; let's have a clean world
 (progn
@@ -31,14 +31,18 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq initial-scratch-message nil) ;; prevent showing initial information in draft buffer
 ;; --8<-------------------------- §separator§ ------------------------>8--
+(global-set-key (kbd "<C-f10>") 'toggle-transparency)
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (defun toggle-transparency ()
   (interactive)
-  (if (/=
-         (cadr (find 'alpha (frame-parameters nil) :key #'car))
-         100)
-      (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(97 97))))
+  (let* ((transparency-list '(0 97))
+         (transparency (cadr (find 'alpha (frame-parameters nil) :key #'car)))
+         (transparency-count (length transparency-list))
+         (pos (position transparency transparency-list :test #'equal))
+         (next-pos (mod (+ pos 1) transparency-count))
+         (transparency-new (nth next-pos transparency-list)))
+    (set-frame-parameter nil 'alpha (cons transparency-new transparency-new))
+    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq initial-buffer-choice (concat DENNY_CONF "emacs_data/filebat.splashscreen"))
 ;; --8<-------------------------- §separator§ ------------------------>8--

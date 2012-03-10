@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-10 19:02:36>
+;; Updated: Time-stamp: <2012-03-03 22:57:45>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -79,6 +79,9 @@
               (replace-match (format "%s: %s%s" "web page" web_title_str (make-string 50 32)) nil nil)
             (goto-char point-orig)
             (reindent-then-newline-and-indent)
+            ;; wash content
+            (setq web_title_str (replace-regexp-in-string "^[ 	\n]*" "" web_title_str))
+            (setq web_title_str (replace-regexp-in-string "[ 	\n]*$" "" web_title_str))
             (insert web_title_str)))
         ))
     ))
@@ -186,8 +189,12 @@
 
         ;; --8<------------------ personal ------------------------>8--
         ("matoushan" . "www.matoushan.co.cc")
-        ("rdaccount" . "file:///home/wei/backup/Dropbox/private_data/backup_large/rd-accounting/code/flex/bin-debug/index.html")
+        ("rdaccount" . "file:///home/denny/backup/essential/Dropbox/private_data/backup_large/rd-accounting/code/flex/bin-debug/index.html")
         ;; --8<------------------ personal ------------------------>8--
+
+        ;; --8<------------------ misc ------------------------>8--
+        ("slideshare" . "www.slideshare.net")
+        ;; --8<------------------ misc ------------------------>8--
         ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key [(meta j)] 'webjump)
@@ -235,5 +242,7 @@
   (if (and keywords (not (string-equal keywords "")))
       (concat (aref expr 2) (webjump-url-encode keywords) (aref expr 3))
       (webjump-builtin expr name)))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq browse-url-generic-program "/usr/bin/firefox")
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: web-browse-setting.el ends here

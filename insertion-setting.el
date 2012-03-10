@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-04 11:33:39>
+;; Updated: Time-stamp: <2012-02-02 13:32:25>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;alt+p i: insert time
@@ -37,7 +37,6 @@
     )
   (org-end-of-line)
   )
-
 (add-hook 'org-mode-hook
           (lambda () (progn
                        (setq truncate-lines t) ;;truncate line in org-mode
@@ -97,9 +96,15 @@
                 (lambda ()
                   (interactive)
                   (move-beginning-of-line nil)
-                  (insert
-                   (format "%s --8<-------------------------- §separator§ ------------------------>8--\n"
-                           (get-separator)))))
+                  (cond
+                   ((and (string= "Org" mode-name) (org-current-level))
+                    (insert (make-string (org-current-level) ?*) " "
+                            (format "%s --8<-------------------------- §separator§ ------------------------>8--\n"
+                                    (get-separator))))
+                   (t
+                    (insert
+                     (format "%s --8<-------------------------- §separator§ ------------------------>8--\n"
+                             (get-separator)))))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun insert-unicode-drawing-box ()
   "Insert a drawing box of unicode chars."
@@ -109,63 +114,5 @@
 ├─┼─┤
 │ │ │
 └─┴─┘"))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(require 'autoinsert)
-(auto-insert-mode t);; Adds hook to find-files-hook
-(setq auto-insert-directory (concat DENNY_CONF "emacs_data/templates/"))
-(setq auto-insert-query nil);; If you don't want to be prompted before insertion
-(setq auto-insert-alist
-      '(
-        ("\\.cpp$" . ["t.cpp" auto-update-c-source-file])
-        ("\\.h$" . ["t.h" auto-update-header-file])
-        ("\\.c$" . ["t.c" auto-update-c-source-file])
-        ("\\.h$" . ["t.h" auto-update-header-file])
-        ("\\.makefile$" . ["t.mak" auto-update-header-file])
-        ("\\.py$" . ["t.py" auto-update-header-file])
-        ("\\.php$" . ["t.php" auto-update-header-file])
-        ))
-(setq auto-insert 'other) ;;insert if possible, but mark as unmodified.
-;; replaces '@@@' by the current file name.
-(defun auto-update-header-file ()
-  (save-excursion
-    (while (search-forward "@@@" nil t)
-      (save-restriction
-        (narrow-to-region (match-beginning 0) (match-end 0))
-        (replace-match (upcase (file-name-nondirectory buffer-file-name)))
-        (subst-char-in-region (point-min) (point-max) ?. ?_)
-        ))
-    )
-  )
-
-;; replaces 'HHH' by the file sans suffix.
-;; replaces 'DDD' by current date.
-(defun auto-update-c-source-file ()
-  (save-excursion
-    ;; Replace HHHH with file name sans suffix
-    (while (search-forward "HHHH" nil t)
-      (save-restriction
-        (narrow-to-region (match-beginning 0) (match-end 0))
-        (replace-match (concat (file-name-sans-extension (file-name-nondirectory buffer-file-name)) ".h") t
-                       )
-        ))
-    )
-  (save-excursion
-    ;; Replace @@@ with file name
-    (while (search-forward "@@@" nil t)
-      (save-restriction
-        (narrow-to-region (match-beginning 0) (match-end 0))
-        (replace-match (file-name-nondirectory buffer-file-name))
-        ))
-    )
-  (save-excursion
-    ;; replace DDDD with today's date
-    (while (search-forward "DDDD" nil t)
-      (save-restriction
-        (narrow-to-region (match-beginning 0) (match-end 0))
-        (replace-match "")
-        (my-insert-time)
-        ))
-    )
-  )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: insertion-setting.el

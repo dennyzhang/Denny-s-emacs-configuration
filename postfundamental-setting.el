@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-06 10:52:20>
+;; Updated: Time-stamp: <2012-03-10 18:24:55>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq initial-frame-alist '((top . 100) (left . 100)))
@@ -63,28 +63,30 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(set-language-environment 'Chinese-GB)
 ;;(set-keyboard-coding-system 'chinese-iso-8bit-unix)
-(load-file (concat CONTRIBUTOR_CONF "/pomodoro/pomodoro.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(pomodoro)
-(setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
-(setq pomodoro-set-number 4) ;; Number of sets until a long break
-(defun pomodoro-message (msg)
-  "Display a message in a buffer and maybe raise emacs frame."
-  (when pomodoro-raise-frame
-    (raise-frame (selected-frame)))
-  (let ((this-window (selected-window)))
-    (with-current-buffer (get-buffer-create pomodoro-buffer-name)
-      (erase-buffer)
-      (insert msg))
-    (pop-to-buffer pomodoro-buffer-name)
-    (ding)
-    (sleep-for 2)
-    (ding)
-    ;; suggest not to change window height, since it will distract users' work environment
-    (fit-window-to-buffer)
-    ;; auto kill the buffer, after some wait
-    (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
-    (select-window this-window))
-  (run-hook-with-args 'pomodoro-message-hook msg))
+;; (load-file (concat CONTRIBUTOR_CONF "/pomodoro/pomodoro.el"))
+;; (pomodoro)
+;; (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
+;; (setq pomodoro-set-number 4) ;; Number of sets until a long break
+;; (defun pomodoro-message (msg)
+;;   "Display a message in a buffer and maybe raise emacs frame."
+;;   (when pomodoro-raise-frame
+;;     (raise-frame (selected-frame)))
+;;   (let ((this-window (selected-window)))
+;;     (with-current-buffer (get-buffer-create pomodoro-buffer-name)
+;;       (erase-buffer)
+;;       (insert msg))
+;;     (pop-to-buffer pomodoro-buffer-name)
+;;     (ding)
+;;     (sleep-for 2)
+;;     (ding)
+;;     ;; suggest not to change window height, since it will distract users' work environment
+;;     (fit-window-to-buffer)
+;;     ;; auto kill the buffer, after some wait
+;;     (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
+;;     (select-window this-window))
+;;   (run-hook-with-args 'pomodoro-message-hook msg))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(set-buffer-file-coding-system 'utf-8)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: postfundamental-setting.el ends here

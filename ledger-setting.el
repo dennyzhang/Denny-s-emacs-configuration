@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-18 21:40:19>
+;; Updated: Time-stamp: <2012-03-02 23:38:33>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
@@ -43,7 +43,7 @@ statement for insertion to sqlite db"
     (unless (string= account-name-prefix "")
       (setq account-name (format "%s:%s" account-name-prefix account-name)))
     ;; insert account account
-    ;;(insert (format "(http-post-simple \"http://127.0.0.1:3000/account/create\" '((username . \"denny\")(password . \"sophia\")(accountname . \"%s\") (accounttype . \"%s\")))\n" account-name account-type))
+    ;;(insert (format "(http-post-simple \"http://127.0.0.1:3000/account/create\" '((username . \"denny\")(password . \"$pwd\")(accountname . \"%s\") (accounttype . \"%s\")))\n" account-name account-type))
     (unless (member account-name '("assets" "incoming" "expenses"))
       (insert (format "sqlite3 ./development_denny.db 'insert into accounts(accountname, accounttype) values (\"%s\", \"%s\")'\n" account-name account-type)))
     ;; check whether it has child accounts
@@ -155,6 +155,7 @@ statement for insertion to sqlite db"
               recorddate (car (xml-node-children (car (xml-get-children entry-node 'recorddate))))
               memo (car (xml-node-children (car (xml-get-children entry-node 'memo)))))
         ;; remove the tailing: change "23.0" to "23"
+        (unless amount (message memo))
         (setq amount (replace-regexp-in-string "\\.0$" "" amount))
         (add-to-list 'transaction-list (vector 'entry fromaccountname toaccountname amount recorddate memo))
         )
@@ -172,7 +173,7 @@ statement for insertion to sqlite db"
         (ledger-buffer (concat DENNY_CONF "/bank/filebat.ledger"))
         http-request-str
         transaction-list
-        (username "STUB") (password "STUB") ;;TODO, more secure
+        (username "denny") (password ledger-rdaccount-pwd)
         toaccountname amount recorddate memo
         (record-format "(http-post-simple \"http://www.matoushan.co.cc/transaction/create\" '((username . \"%s\") (password . \"%s\") (fromaccountname . \"%s\") (toaccountname . \"%s\")(amount . \"%s\")(recorddate . \"%s\")(memo . \"%s\")))\n"))
     ;; handle the optional parameters
@@ -224,7 +225,7 @@ statement for insertion to sqlite db"
         )
     ;; handle the optional parameters
     (unless http-username (setq username "denny"))
-    (unless http-password (setq password "sophia"))
+    (unless http-password (setq password ledger-rdaccount-pwd))
     (if out-buffname (setq output-buffername out-buffname))
     ;; obtain transactions
     (setq rdaccount-transaction-list (rdaccount-transactions username password)

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-11-26 10:47:55>
+;; Updated: Time-stamp: <2012-03-11 01:02:46>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -183,9 +183,6 @@ If arg is given, only open a shell for one direcotry.
         eshell-save-history-on-exit t
         eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; set $PATH
-(setq eshell-path-env (concat eshell-path-env ":/opt/local/bin"))
-;; --8<-------------------------- §separator§ ------------------------>8--
 (defun python-shell()
   "make a python shell"
   (interactive)
@@ -194,5 +191,48 @@ If arg is given, only open a shell for one direcotry.
   "make a perl db shell"
   (interactive)
   (switch-to-buffer (make-comint "perl" "perl" nil "-d -e''")))
+;; setup environments
+(setenv "PAGER" "cat")
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'shell)
+(require 'term)
+(define-key term-raw-map (kbd "C-j") 'term-switch-to-shell-mode)
+(defun term-switch-to-shell-mode ()
+  (interactive)
+  (if (equal major-mode 'term-mode)
+      (progn
+        (shell-mode)
+        (set-process-filter (get-buffer-process (current-buffer)) 'comint-output-filter )
+        (local-set-key (kbd "C-j") 'term-switch-to-shell-mode)
+        (compilation-shell-minor-mode 1)
+        (comint-send-input)
+        )
+    (progn
+      (compilation-shell-minor-mode -1)
+      (font-lock-mode -1)
+      (set-process-filter (get-buffer-process (current-buffer)) 'term-emulate-terminal)
+      (term-mode)
+      (term-char-mode)
+      (term-send-raw-string (kbd "C-l"))
+      )))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(eval-after-load 'esh-opt
+  '(progn
+     (require 'em-prompt)
+     (require 'em-term)
+     (require 'em-cmpl)
+     (set-face-attribute 'eshell-prompt nil :foreground "turquoise1")
+     (add-hook 'eshell-mode-hook ;; for some reason this needs to be a hook
+               '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-bol)))
+     (add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
+     (setq eshell-cmpl-cycle-completions nil)
+     (add-to-list 'eshell-visual-commands "ssh")
+     (add-to-list 'eshell-visual-commands "tail")
+     (add-to-list 'eshell-command-completions-alist
+                  '("gunzip" "gz\\'"))
+     (add-to-list 'eshell-command-completions-alist
+                  '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: shell-setting.el

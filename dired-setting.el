@@ -3,14 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-02 00:17:31>
+;; Updated: Time-stamp: <2012-03-08 10:29:32>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(load-file (concat CONTRIBUTOR_CONF "/dired+/dired+.el"))
 ;;(require 'dired+)
 (defface diredp-my-file-name
-'((t (:foreground "green4")))
+  '((t (:foreground "green4")))
   "*Face used for message display."
   :group 'Dired-Plus)
 (setq diredp-file-name 'diredp-my-file-name)
@@ -52,7 +51,7 @@
 (defvar diredp-read-priv 'diredp-my-read-priv)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
-(setq dired-listing-switches "-alhS")
+(setq dired-listing-switches "-alth")
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Sort files in dired.
 (defun dired-sort-size ()
@@ -88,15 +87,15 @@
 (define-key dired-mode-map "\M-e" 'dired-sort-extension)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun dired-get-size ()
-  "Get total size of marked files with `du' command.
-If not marked any files, default is current file or directory."
+  "Get size of current file/directories at cursor point."
   (interactive)
-  (let ((files (dired-get-marked-files)))
+  (let ((current-file (dired-get-filename t)))
     (with-temp-buffer
-      (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
-      (message "Size of all marked files: %s"
+      (shell-command (format "/usr/bin/du -sch %s" current-file) t)
+      (message "Size of %s: %s" current-file
                (progn
-                 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
+                 (goto-char (point-min))
+                 (re-search-forward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
                  (match-string 1))))))
 (define-key dired-mode-map "\M-c" 'dired-get-size)
 ;; --8<-------------------------- §separator§ ------------------------>8--

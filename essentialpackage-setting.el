@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-17 10:57:32>
+;; Updated: Time-stamp: <2012-03-03 00:47:16>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -15,7 +15,7 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-saved-items 100) ;最近打开文件的最大数量
-(setq recentf-auto-cleanup 300) ;自动清理最近打开文件列表中重复或其他文件的时间间隔 (秒)
+;; (setq recentf-auto-cleanup 300) ;自动清理最近打开文件列表中重复或其他文件的时间间隔 (秒)
 (defun recentf-open-files-compl ()
   (interactive)
   (let* ((all-files recentf-list)
@@ -43,11 +43,11 @@
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/yasnippet-bundle"))
-(require 'yasnippet-bundle)
-(yas/initialize)
-(yas/load-directory (concat DENNY_CONF "emacs_data/snippets"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/yasnippet-bundle"))
+;; (require 'yasnippet-bundle)
+;; (yas/initialize)
+;; (yas/load-directory (concat DENNY_CONF "emacs_data/snippets"))
+;; ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/psvn"))
 (require 'psvn)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -66,6 +66,7 @@
 ;;(add-hook 'find-file-hook 'bm-buffer-restore)
 ;; Saving bookmark data on killing a buffer
 (add-hook 'kill-buffer-hook 'bm-buffer-save)
+(defadvice bm-buffer-save (before if activate) (widen))
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when emacs is killed, so we
 ;; must save all bookmarks first.
@@ -129,6 +130,22 @@
 (load-file (concat CONTRIBUTOR_CONF "/loccur/loccur.el"))
 ;; defines shortcut for loccur of the current word
 (define-key global-map [(control meta o)] 'loccur-current)
+(set-face-background 'isearch "#537182")
+(set-face-foreground 'isearch "AntiqueWhite2")
+(define-key global-map [(control meta u)] 'loccur-skeleton)
+(defun loccur-skeleton ()
+  "Call `loccur' for code skeleton with the same leading whitespace."
+  (interactive)
+  (let ((point-orig (point)) leading-str (whitespace-count 0))
+    (save-excursion
+      (move-beginning-of-line nil)
+      (setq leading-str (buffer-substring-no-properties point-orig (point)))
+      (dolist (ch (string-to-list leading-str))
+        (if (eq ch 32)
+            (setq whitespace-count (+ 1 whitespace-count))
+          )))
+    (unless (eq 0 whitespace-count)
+      (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -146,6 +163,7 @@
      (set-face-foreground 'diff-removed "red3")))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/magit"))
+(require 'magit)
 (eval-after-load 'magit
   '(progn
      (autoload 'mo-git-blame-file "mo-git-blame" nil t)
@@ -196,6 +214,9 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'thumbs)
 (auto-image-file-mode t)
+(setq thumbs-geometry "80x80")
+(setq thumbs-per-line 3)
+(setq thumbs-max-image-number 8)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/company-0.5/"))
 (autoload 'company-mode "company" nil t)
@@ -203,7 +224,7 @@
                          ;;company-ropemacs
                          company-gtags
                          company-dabbrev-code
-                         Company-keywords
+                         company-keywords
                          company-files
                          company-dabbrev))
 (setq company-idle-delay 0.2) ;延迟时间
@@ -322,5 +343,25 @@
 ;;               (org-agenda-list)
 ;;               )))
 ;; (setq midnight-period 28800)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(load-file (concat CONTRIBUTOR_CONF "/gse-number-rect/gse-number-rect.el"))
+(require 'gse-number-rect)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(load-file (concat CONTRIBUTOR_CONF "/fold-dwin/fold-dwin.el"))
+(require 'fold-dwim)
+(global-set-key [f7] 'lucky_try)
+(global-set-key (kbd "<C-f7>")    'fold-dwim-hide-all)
+(global-set-key (kbd "<M-S-f7>")  'fold-dwim-show-all)
+(defun lucky_try ()
+  (interactive)
+  (cond
+   ((string= mode-name "Diff")
+    (dos2unix))
+   ((member mode-name '("Fundamental" "w3m"))
+    (toggle-truncate-lines))
+   ((string= mode-name "Org")
+    (toggle-truncate-lines))
+   (t (fold-dwim-toggle))
+   ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: essentialpackage-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-10 18:26:51>
+;; Updated: Time-stamp: <2012-03-11 00:56:45>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (create-fontset-from-fontset-spec "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -163,44 +163,6 @@
 ;;(require 'ess-site) ;; TODO, it will always popup a *ESS* buffer
 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stata$" . stata-mode))
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; erlang
-;; setup erlang mode
-;; TODO, enhance as a more dedicated way
-;; add the location of the elisp files to the load-path
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/erlang-emacs/"))
-;; set the location of the man page hierarchy
-(setq erlang-root-dir "/usr/lib/erlang")
-;; add the home of the erlang binaries to the exec-path
-(add-to-list 'exec-path "/usr/lib/erlang/bin")
-;; load and eval the erlang-start package to set up everything else
-(require 'erlang-start)
-(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
-(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
-(add-hook 'erlang-mode-hook
-          (lambda ()
-            ;; when starting an Erlang shell in Emacs, default in the node name
-            (setq inferior-erlang-machine-options '("-sname" "emacs"))
-            ;; add Erlang functions to an imenu menu
-            (imenu-add-to-menubar "imenu")))
-
-;; distel: an add-on to the erlang-mode
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/distel/elisp"))
-(require 'distel)
-(distel-setup)
-;; A number of the erlang-extended-mode key bindings are useful in the shell too
-(defconst distel-shell-keys
-  '(("\C-\M-i" erl-complete)
-    ("\M-?" erl-complete)
-    ("\M-." erl-find-source-under-point)
-    ("\M-," erl-find-source-unwind)
-    ("\M-*" erl-find-source-unwind)
-    )
-  "Additional keys to bind when in Erlang shell.")
-(add-hook 'erlang-shell-mode-hook
-          (lambda ()
-            ;; add some Distel bindings to the Erlang shell
-            (dolist (spec distel-shell-keys)
-              (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
+;;(org-defkey org-mode-map [(control meta ,)] 'org-shiftmetaleft)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: linux-setting.el

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-13 14:28:03>
+;; Updated: Time-stamp: <2012-02-19 17:57:42>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq warning-suppress-types nil)
@@ -49,8 +49,9 @@
         (holiday-chinese 7 19 "二姐生日")
         (holiday-chinese 6 21 "Denny生日")
         (holiday-fixed 9 14 "秀秀生日") ;; 1987
+        (holiday-chinese 9 10 "杨明哲生日") ;;2011
         ;; --8<-------------------------- §separator§ ------------------------>8--
-        (holiday-chinese 9 10 "杨明哲生日") ;; 2011
+        (holiday-fixed 6 14 "张伟智生日")
         (holiday-chinese 12 11 "四姨生日")
         (holiday-fixed 11 8 "任全生日")
         (holiday-fixed 3 7 "陈赞生日")
@@ -60,7 +61,6 @@
         (holiday-fixed 11 8 "尹光宗生日")
         (holiday-fixed 11 29 "刘云晕生日")
         (holiday-fixed 7 7 "林宏生生日")
-        (holiday-fixed 6 14 "张伟智生日")
         (holiday-fixed 5 18 "郑平生日")
         (holiday-fixed 10 12 "李建军生日")
         (holiday-fixed 10 15 "麦向东生日")
@@ -74,8 +74,6 @@
         (holiday-fixed 12 18 "陈莹生日")
         (holiday-chinese 8 21 "程恒生日")
         (holiday-fixed 11 26 "刘小溪生日")
-        ;; --8<-------------------------- §separator§ ------------------------>8--
-        (holiday-fixed 8 25 "肖宇生日")
         ;; --8<-------------------------- §separator§ ------------------------>8--
         (holiday-chinese-new-year)
         (holiday-chinese-winter-solstice)
@@ -102,6 +100,7 @@
         (holiday-fixed 10 31 "[节日] -- 万圣节")
         (holiday-float 11 4 4 "[节日] -- 感恩节")
         (holiday-fixed 12 25 "[节日] -- 圣诞节")
+        (holiday-fixed 3 13 "[节日] -- 杭州纪念日")
         ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: calendar-setting.el ends here

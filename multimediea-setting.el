@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-04 21:48:06>
+;; Updated: Time-stamp: <2012-03-05 08:10:23>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;emms
@@ -64,7 +64,7 @@
 (require 'emms-source-playlist)
 (require 'emms-player-simple)
 ;; set directory to look for media files.
-(setq emms-source-file-default-directory "~/backup/essential/Dropbox")
+(setq emms-source-file-default-directory "~/backup/multimediea/music")
 ;; use faster finding facility if you have GNU find
 (setq emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 ;; --8<-------------------------- §separator§ ------------------------>8--

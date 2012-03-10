@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-11 17:26:14>
+;; Updated: Time-stamp: <2012-03-11 00:59:00>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'flymake)
@@ -91,7 +91,7 @@
 
 (add-hook 'php-mode-hook
           '(lambda ()
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-php-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
@@ -103,18 +103,18 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; ;;flymake for html mode
 ;; (defun flymake-html-init ()
-;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                      'flymake-create-temp-inplace))
-;;          (local-file (file-relative-name
-;;                       temp-file
-;;                       (file-name-directory buffer-file-name))))
-;;     (list "tidy" (list local-file))))
+;; (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;; 'flymake-create-temp-inplace))
+;; (local-file (file-relative-name
+;; temp-file
+;; (file-name-directory buffer-file-name))))
+;; (list "tidy" (list local-file))))
 ;; (add-to-list 'flymake-allowed-file-name-masks '("\\.html$\\|\\.ctp" flymake-html-init))
 ;; (add-hook 'html-mode-hook
-;;           (lambda ()
-;;             (unless (eq buffer-file-name nil) (flymake-mode t))
-;;             (make-local-variable 'flymake-err-line-patterns)
-;;             (setq flymake-err-line-patterns '(("line \\([0-9]+\\) column \\([0-9]+\\) - \\(.*\\)" nil 1 2 3)))))
+;; (lambda ()
+;; (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
+;; (make-local-variable 'flymake-err-line-patterns)
+;; (setq flymake-err-line-patterns '(("line \\([0-9]+\\) column \\([0-9]+\\) - \\(.*\\)" nil 1 2 3)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;flymake for shell mode
 (defun flymake-shell-init ()
@@ -132,7 +132,7 @@
 (add-to-list 'flymake-allowed-file-name-masks '("\\.sh$" flymake-shell-init))
 (add-hook 'sh-mode-hook
           '(lambda()
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-shell-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
@@ -165,10 +165,16 @@
          )
         local-file)))))
 
-;; (add-to-list 'flymake-allowed-file-name-masks '("\\.el$" flymake-elisp-init))
-;; (add-hook 'emacs-lisp-mode-hook
-;;           '(lambda ()
-;;              (unless (eq buffer-file-name nil) (flymake-mode t))))
+(add-to-list 'flymake-allowed-file-name-masks '("\\.el$" flymake-elisp-init))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
+             ))
+
+(add-hook 'lisp-mode-hook
+          '(lambda ()
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
+             ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;flymake for css mode
 (defun flymake-css-init ()
@@ -186,7 +192,7 @@
 (add-to-list 'flymake-allowed-file-name-masks '("\\.css$" flymake-css-init))
 (add-hook 'css-mode-hook
           '(lambda ()
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-css-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
@@ -215,7 +221,7 @@
             flymake-allowed-file-name-masks))
 (add-hook 'javascript-mode-hook
           '(lambda ()
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-js-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
@@ -240,7 +246,7 @@
           '(lambda ()
              ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
              (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                 (unless (eq buffer-file-name nil) (flymake-mode t))
+                 (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
                )
              (my-ruby-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
@@ -299,7 +305,7 @@
 (add-hook 'python-mode-hook
           '(lambda ()
              ;; Activate flymake unless buffer is a tmp buffer for the interpreter
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-python-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
@@ -323,12 +329,16 @@
 
 (add-hook 'erlang-mode-hook
           '(lambda ()
-             (unless (eq buffer-file-name nil) (flymake-mode t))
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-erlang-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
                    '(
                      ("\\(.*\\):\\([0-9]+\\): \\(.*\\)" 1 2 nil 3)
                      ))))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; Disable flymake for html and xml files as this is handled by nxml mode.
+(delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+(delete '("\\.xml?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: flymake-setting.el ends here

@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-11 16:51:18>
+;; Updated: Time-stamp: <2012-03-02 23:55:51>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/org-7.7/lisp"))
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/org-7.7/contrib/lisp"))
+(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/org-7.8/lisp"))
+(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/org-7.8/contrib/lisp"))
 (require 'org)
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -17,6 +17,7 @@
                               (concat DENNY_CONF "/org_data/current.org")
                               (concat DENNY_CONF "/org_data/diary.org")
                               (concat DENNY_CONF "/org_data/learn.org")
+                              (concat DENNY_CONF "/org_data/project.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -43,8 +44,6 @@
   (org-agenda-to-appt))
 ;; Rebuild the reminders everytime the agenda is displayed
 (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt)
-;; This is at the end of my .emacs - so appointments are set up when Emacs starts
-(bh/org-agenda-to-appt)
 ;; Activate appointments so we get notifications
 ;;(appt-activate t)
 ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
@@ -58,7 +57,6 @@
           (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":Habit:"))))
         ;; other commands here
         ))
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'org-habit)
 (setq org-habit-graph-column 80)
@@ -95,7 +93,8 @@
 (setq user-mail-address "markfilebat@126.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat DENNY_CONF "/emacs_conf/org-publish.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
@@ -155,8 +154,8 @@
 (setq org-agenda-restore-windows-after-quit t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; change org local key
-(org-defkey org-mode-map [(control meta .)] 'org-shiftmetaright)
-(org-defkey org-mode-map [(control meta ,)] 'org-shiftmetaleft)
+(org-defkey org-mode-map (kbd "C-M-.") 'org-shiftmetaright)
+(org-defkey org-mode-map (kbd "C-M-,") 'org-shiftmetaleft)
 (org-defkey org-mode-map [(control return)] 'switch-to-mode-nex-buffer)
 (org-defkey org-mode-map [(control shift up)] 'enlarge-window)
 (org-defkey org-mode-map [(control shift down)] 'shrink-window)
@@ -178,6 +177,7 @@
   (let (regexp)
     (setq regexp (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
     (occur-1 regexp 0 (list (current-buffer)))))
+
 (defun replace-entry(entry_title)
   ;; filter entries whose title contains entry_title, then quote
   ;; content by #+BEGIN_EXAMPLE and #+END_EXAMPLE
@@ -196,7 +196,77 @@
                 (insert "#+END_EXAMPLE\n")
                 ))
         ))))
+
+(defun remove-entry-quote(entry_title)
+  ;; filter entries whose title contains entry_title, then remove quote
+  ;; of #+BEGIN_EXAMPLE and #+END_EXAMPLE
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp (format "^\\*.*%s" entry_title) nil t)
+      (if (search-forward-regexp "\n" nil t)
+          ;; make sure the code is re-entrant
+          (if (< (+ 2 (point)) (point-max))
+              (when (string= (buffer-substring-no-properties (point) (+ 2 (point))) "#+")
+                (org-narrow-to-subtree)
+                (goto-char (point-min))
+                (flush-lines "^#+")
+                (widen)
+                ))
+        ))))
+(defun url-link-quote()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "^\\( *http://[^ \\\n\"]+\\)\\\\*$" nil t)
+      (replace-match (format "%s\\\\\\\\" (match-string 1)) nil nil))
+    )
+)
+
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat CONTRIBUTOR_CONF "/graphviz-dot-mode/graphviz-dot-mode.el"))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq org-directory (concat DENNY_CONF "/org_data/"))
+(setq org-default-notes-file "current.org")
+(define-key global-map "\C-cr" 'org-capture)
+(setq org-capture-templates
+      '(("t" "Todo" entry
+         (file "current.org")
+         "* TODO %?\n %i\n")
+        ("r" "Remind" entry
+         (file+headline "current.org" "Remind")
+         "** TODO %?\n %i\n")
+        ("p" "Period" entry
+         (file+headline "contacts.org" "秀秀--周期")
+         "** %t\n")
+        ("d" "Diary" entry
+         (file "diary.org")
+         "* %T %?\n# 今日所学\n %i\n# 今日趣闻\n %i\n# 今日杂记\n %i\n"))
+      )
+;; (org-remember-insinuate)
+;; (setq org-directory (concat DENNY_CONF "/org_data/"))
+;; (setq org-default-notes-file "current.org")
+;; (define-key global-map "\C-cr" 'org-remember)
+;; (setq org-remember-templates
+;;       '(("Todo" ?t "* TODO %?\n  %i\n" "current.org" bottom)
+;;         ("Remind" ?r "** TODO %?\n  %i\n" "current.org" "Remind")
+;;         ("Period" ?p "- %t\n" "contacts.org" "秀秀--周期")
+;;         ("Diary" ?d "* %T %?\n# 今日所学\n  %i\n# 今日趣闻\n  %i\n# 今日杂记\n  %i\n" "diary.org" bottom)
+;;       ))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; auto add "TODO " for top task
+(defadvice org-meta-return (after cond activate)
+  (when (= 1 (org-current-level))
+    (insert "TODO "))
+)
+;; (defadvice get-page-title (after insert activate)
+;;   (when (string= "Org" mode-name)
+;;     (let ((link-str "useful link"))
+;;       (unless (string= link-str (org-no-properties (org-get-heading)))
+;;         (move-beginning-of-line nil)
+;;         (insert (make-string (org-current-level) ?*) " " link-str "\n")
+;;         ))))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq org-src-fontify-natively t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: org-setting.el ends here

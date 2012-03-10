@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-11-26 15:09:55>
+;; Updated: Time-stamp: <2012-03-11 00:56:51>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -21,11 +21,6 @@
                'css-mode-hook
                ))
   (add-hook hook 'hexcolour-add-to-font-lock))
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; hide and show code block
-(dolist (hook programming-hook-list)
-  (add-hook hook 'hs-minor-mode))
-;;(global-set-key (kbd "<f9>") 'hs-toggle-hiding)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (define-skeleton skeleton-c-mode-main-func
   "generate int main(int argc, char * argv[]) automatic" nil
@@ -51,14 +46,15 @@
   (local-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
   (local-set-key (kbd "{") 'skeleton-pair-insert-maybe)
   )
-(dolist (hook programming-hook-list)
-  (add-hook hook 'my-auto-pair))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;show current function name
 (defun enable-which-function()
   (which-function-mode t))
-
+;; --8<-------------------------- §separator§ ------------------------>8--
 (dolist (hook programming-hook-list)
+  (add-hook hook 'my-auto-pair)
+  (add-hook hook 'hs-minor-mode)
+  ;; (add-hook hook 'subword-mode) ;; TODO
   (add-hook hook 'enable-which-function))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;switch between .h and .cpp
@@ -215,5 +211,45 @@
     (if (not (null command))
         (let ((command (read-from-minibuffer "Compile command: " command)))
           (compile command)))))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; erlang
+;; setup erlang mode
+;; TODO, enhance as a more dedicated way
+;; add the location of the elisp files to the load-path
+(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/erlang-emacs/"))
+;; set the location of the man page hierarchy
+(setq erlang-root-dir "/usr/lib/erlang")
+;; add the home of the erlang binaries to the exec-path
+(add-to-list 'exec-path "/usr/lib/erlang/bin")
+;; load and eval the erlang-start package to set up everything else
+(require 'erlang-start)
+(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+(add-hook 'erlang-mode-hook
+          (lambda ()
+            ;; when starting an Erlang shell in Emacs, default in the node name
+            (setq inferior-erlang-machine-options '("-sname" "emacs"))
+            ;; add Erlang functions to an imenu menu
+            (imenu-add-to-menubar "imenu")))
+
+;; distel: an add-on to the erlang-mode
+(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/distel/elisp"))
+(require 'distel)
+(distel-setup)
+;; A number of the erlang-extended-mode key bindings are useful in the shell too
+(defconst distel-shell-keys
+  '(("\C-\M-i" erl-complete)
+    ("\M-?" erl-complete)
+    ("\M-." erl-find-source-under-point)
+    ("\M-," erl-find-source-unwind)
+    ("\M-*" erl-find-source-unwind)
+    )
+  "Additional keys to bind when in Erlang shell.")
+(add-hook 'erlang-shell-mode-hook
+          (lambda ()
+            ;; add some Distel bindings to the Erlang shell
+            (dolist (spec distel-shell-keys)
+              (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: programming-setting.el ends here

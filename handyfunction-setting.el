@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-06 11:23:56>
+;; Updated: Time-stamp: <2012-02-25 15:50:00>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -293,17 +293,6 @@ there's a region, all lines that region covers will be duplicated."
                               (goto-char (abs pos))))))
         (setq undos (cdr undos))))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(global-set-key [f7] 'lucky_try)
-(defun lucky_try ()
-  (interactive)
-  (if (string= mode-name "Diff")
-      (dos2unix))
-  (if (string= mode-name "w3m")
-      (toggle-truncate-lines))
-  (if (string= mode-name "Org")
-      (toggle-truncate-lines))
-  )
-;; --8<-------------------------- §separator§ ------------------------>8--
 (defun force-kill-matching-buffers (regexp &optional internal-too)
   "Kill buffers whose name matches the specified REGEXP.
 The optional second argument indicates whether to kill internal buffers too."
@@ -437,17 +426,42 @@ BEG and END (region to sort)."
        ((string-equal mode-name "Org")
         (setq cleanup-replace-rule-list
               '(("\n\n+\\\*" "\n*")
+                ("," ",")
+                (";" ";")
+                ("(" "(")
+                (")" ")")
                 )))
        (t
         (setq cleanup-replace-rule-list
               '(("\n\n+" "\n\n")
                 (" +" " ")
+                ("," ",")
+                (";" ";")
+                ("(" "(")
+                (")" ")")
                 ;; ("\\([^=: !+/-]\\)=" "\\1 =") ;; insert space in the left of equation, if ncessary
                 ;; ("=\\([^=: !+/-]\\)" "= \\1") ;; insert space in the right of equation, if ncessary
                 )))
        )
       (clean-up-buffer-or-region cleanup-replace-rule-list)
       )))
+(defun beautify-web-quotation ()
+  (interactive)
+  (when (string= mode-name "Org")
+    (save-excursion
+      (save-restriction
+        (org-narrow-to-subtree)
+        (goto-char (point-min))
+        (while (re-search-forward "\n" nil t)
+          (replace-match "\n\n" nil nil))
+        (goto-char (point-min))
+        (while (re-search-forward "\n\n" nil t)
+          (fill-paragraph))
+        (goto-char (point-min))
+        (while (re-search-forward "\n\n" nil t)
+          (replace-match "\n" nil nil)))
+      )
+    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun goto-column (number)
   "Untabify, and go to a column NUMBER within the current line (0 is beginning of the line)."
@@ -666,29 +680,29 @@ colour into buffer at point as a Status: header."
   "Insert a numeric sequence at beginning of each line"
   (interactive "P")
   (let ((insert-number
-	 (lambda (start beg end)
-	   "insert a numeric sequence at beginning of each line"
-	   (goto-char beg)
-	   (beginning-of-line)
-	   (insert (number-to-string start))
-	   (setq start (+ start 1))
-	   (while (< (point) end)
-	     (beginning-of-line 2)
-	     (insert (number-to-string start))
-	     (setq start (+ start 1))
-	     ))))
+         (lambda (start beg end)
+           "insert a numeric sequence at beginning of each line"
+           (goto-char beg)
+           (beginning-of-line)
+           (insert (number-to-string start))
+           (setq start (+ start 1))
+           (while (< (point) end)
+             (beginning-of-line 2)
+             (insert (number-to-string start))
+             (setq start (+ start 1))
+             ))))
     (cond
      ((or mark-active transient-mark-mode)
       (if (> (point) (mark))
-	  (exchange-point-and-mark))
+          (exchange-point-and-mark))
       (if arg
-	  (funcall insert-number arg (point) (mark))
-	  (funcall insert-number 0 (point) (mark)))
+          (funcall insert-number arg (point) (mark))
+        (funcall insert-number 0 (point) (mark)))
       )
      (t
       (if arg
-	  (funcall insert-number arg (point-min) (point-max))
-	(funcall insert-number 0 (point-min) (point-max)))
+          (funcall insert-number arg (point-min) (point-max))
+        (funcall insert-number 0 (point-min) (point-max)))
       ))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun boxquote-rectangle (b e)
@@ -699,9 +713,19 @@ comment box."
   (let ((e (copy-marker e t)))
     (goto-char b)
     (end-of-line)
-    (insert-char ?  (- fill-column (current-column)))
+    (insert-char ? (- fill-column (current-column)))
     (comment-box b e 1)
     (goto-char e)
     (set-marker e nil)))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun occur-more ()
+  (interactive)
+  (let ((context-lines list-matching-lines-default-context-lines) occur-find-str)
+    (setq occur-find-str (read-shell-command "List lines matching regexp: "
+                                             nil 'grep-find-history))
+    (setq list-matching-lines-default-context-lines 3)
+    (occur occur-find-str)
+    (setq list-matching-lines-default-context-lines context-lines)
+  ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: handyfunction-setting.el ends here

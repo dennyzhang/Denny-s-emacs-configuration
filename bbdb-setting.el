@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-04 19:32:24>
+;; Updated: Time-stamp: <2012-01-22 22:19:34>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/bbdb/lisp"))
@@ -27,6 +27,7 @@
 (setq bbdb-picture-extension ".jpg")
 (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/bbdb-vcard"))
 (require 'vcard)
+;;(bbdb-vcard-export "~/exported-vcards/" t t)
 (require 'bbdb-vcard)
 (defun update-bbdb-picture-to-vcard(&optional vcard-dir)
   "update bbdb picture as a photo property of vcard files"

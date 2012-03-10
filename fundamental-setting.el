@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-06 10:39:54>
+;; Updated: Time-stamp: <2012-03-11 01:05:21>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -16,7 +16,7 @@
 (show-paren-mode t)
 (setq column-number-mode t) ;;show column number
 (setq line-number-mode t) ;;show line number in mode line
-(set-fill-column 75);;set column width
+(setq-default fill-column 70)
 (transient-mark-mode t)
 (autoload 'thumbs "thumbs" "Preview images in a directory." t)
 (set-default 'case-fold-search t);;Make searches case insensitive
@@ -24,9 +24,9 @@
 (set-default 'text-scale-mode-step 1.1);;Set the zoom rate
 (iswitchb-mode 1);;interactive buffer switching
 (setq undo-limit 1000) ;;Increase number of undo
-(server-start t) ;; emacs-client
+(server-start) ;; emacs-client
 (setq kill-do-not-save-duplicates t)
-(blink-cursor-mode nil) ;; prevent cursor blinking
+(blink-cursor-mode 0) ;; prevent cursor blinking
 (set-fringe-mode (cons 6 0))
 (size-indication-mode t)
 (setq redisplay-dont-pause t)
@@ -55,7 +55,7 @@
 (setq ispell-personal-dictionary (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
-(auto-image-file-mode)
+(auto-image-file-mode t)
 (setq resize-mini-windows t)
 (setq warning-suppress-types nil) ;; TODO, suspicious configuration
 (setq message-log-max 8192) ;; Set the *Message* log to something higher
@@ -144,6 +144,9 @@
 (defun often ()
   (interactive)
   (find-file (concat DENNY_CONF "/org_data/often.org")))
+(defun project ()
+  (interactive)
+  (find-file (concat DENNY_CONF "/org_data/project.org")))
 (defun current ()
   (interactive)
   (find-file (concat DENNY_CONF "/org_data/current.org")))
@@ -156,12 +159,6 @@
 (defun mydiary ()
   (interactive)
   (find-file (concat DENNY_CONF "/org_data/diary.org")))
-(defun top-target ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/top.org")))
-(defun top-command ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/top-command.org")))
 (defun password ()
   (interactive)
   (find-file (concat DENNY_CONF "/org_data/password.org.gpg")))
@@ -179,7 +176,7 @@
   (find-file (concat DENNY_CONF "/org_data/contacts.org")))
 (defun motto ()
   (interactive)
-  (find-file (concat DENNY_CONF "/emacs_conf/signature-motto.el")))
+  (find-file (concat DENNY_CONF "/org_data/org_share/motto.org")))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -215,7 +212,7 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
-  (setq filter-name-list '(".svn" "*~" "#*#" "*.elc" "*.pyc"))
+  (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc"))
   (setq grep-find-command "find .")
   (dolist (filter-file-name filter-name-list)
     (setq grep-find-command (format "%s -name \"%s\" -prune -o" grep-find-command filter-file-name)))
@@ -271,7 +268,7 @@
       query-replace-highlight t) ; ...and replacing
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (dolist (hook programming-hook-list)
-  (unless (member hook '(c++-mode-hook lisp-mode-hook emacs-lisp-mode-hook erlang-mode-hook))
+  (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
 (define-key global-map (kbd "M-p RET") 'view-mode)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -357,11 +354,37 @@ starting on the same line at which another match ended is ignored."
       (setq rstart (point)
             rend (point-max-marker)))
     (goto-char rstart))
+  ;; remove the matching words, and add necessary whitespaces
+  (setq regexp (format "%s%s%s" "[ \\n][^ \\n]*" regexp "[^ \\n]*[ \\n]"))
+  (message regexp)
   (while (re-search-forward regexp nil t)
-    (replace-match "" nil nil))
+    (replace-match (list-to-string
+                    (make-list (length (match-string 0)) " "))
+                   nil nil))
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key [mouse-4] 'scroll-down)
 (global-set-key [mouse-5] 'scroll-up)
+(global-set-key (kbd "C-x C-2") 'pop-global-mark)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun target()
+  (interactive)
+  (animate-sequence '("# 不懂的问题要反复想"
+                      "# 做一个好的开源软件"
+                      "# 定期进行自我反思") 2))
+(define-key global-map [(control meta p)] 'scroll-other-window-down)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 10 1024 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)
+    ; (message "Buffer is set to read-only because it is large.  Undo also disabled.")
+    ))
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(autoload 'goto-last-change
+  "goto-last-change" "Set point to the position of the last change." t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: fundamental-setting.el ends here

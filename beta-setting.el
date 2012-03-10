@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-01 14:38:11>
+;; Updated: Time-stamp: <2012-01-20 19:24:10>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(load-file (concat CONTRIBUTOR_CONF "/auctex-11.85-e22.3-msw/site-lisp/tex-site.el"))
@@ -82,19 +82,6 @@
 ;; (bold "foo")
 ;; (blink "bar"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;;(set-language-environment 'utf-8)
-;; (set-keyboard-coding-system 'chinese-iso-8bit-unix)
-;; (set-default-coding-systems 'chinese-iso-8bit-unix)
-;; (set-buffer-file-coding-system 'chinese-iso-8bit-unix)
-;; (set-terminal-coding-system 'chinese-iso-8bit-unix)
-;; (setq default-process-coding-system '(chinese-iso-8bit-unix . chinese-iso-8bit-unix))
-;; ;; (set-clipboard-coding-system 'gb2312)
-;; (set-selection-coding-system 'gb2312)
-;; (modify-coding-system-alist 'process "*" 'gb2312)
-;; (setq-default pathname-coding-system 'gb2312)
-;; (set-file-name-coding-system 'gb2312)
-;; (setq ansi-color-for-comint-mode t)
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/iedit"))
 ;; (require 'iedit)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -151,8 +138,6 @@
 ;; (require 'versor)
 ;; (require 'languide)
 ;; (versor-setup)
-;; --8<-------------------------- §separator§ ------------------------>8--
-
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; (load-file (concat CONTRIBUTOR_CONF "/tea-time/tea-time.el"))
 ;; (require 'tea-time)
