@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 23:15:56>
+;; Updated: Time-stamp: <2012-03-17 23:24:19>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
-(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
 (require 'org)
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
