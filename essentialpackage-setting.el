@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-03 00:47:16>
+;; Updated: Time-stamp: <2012-03-17 20:25:17>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
-(load-file (concat CONTRIBUTOR_CONF "/color-theme/color-theme.el"))
+(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
 (color-theme-dark-blue)
 ;;(set-face-background 'default "LightCyan3") ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -33,31 +33,33 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;handle with duplicate name of different buffers
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "|")
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/frame"))
-(load-file (concat CONTRIBUTOR_CONF "/frame/frame-fns.el"))
-(load-file (concat CONTRIBUTOR_CONF "/frame/frame-cmds.el"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
+(load-file (concat EMACS_VENDOR "/frame/frame-fns.el"))
+(load-file (concat EMACS_VENDOR "/frame/frame-cmds.el"))
 (global-set-key [(control up)] 'move-frame-up)
 (global-set-key [(control down)] 'move-frame-down)
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/yasnippet-bundle"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
 ;; (require 'yasnippet-bundle)
 ;; (yas/initialize)
 ;; (yas/load-directory (concat DENNY_CONF "emacs_data/snippets"))
 ;; ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/psvn"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
 (require 'psvn)
+(setq svn-status-verbose nil)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/sr-speedbar/sr-speedbar.el"))
+(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
 (setq sr-speedbar-skip-other-window-p t)
 (setq speedbar-show-unknown-files t)
 (global-set-key (kbd "<f3>") 'sr-speedbar-toggle)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/bm/bm-1.34.el"))
-(setq bm-repository-file (concat CONTRIBUTOR_CONF "/data/out_of_svn/filebat.bm"))
+(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
+(setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
 ;; make bookmarks persistent as default
 (setq-default bm-buffer-persistence t)
 ;; Loading the repository from file when on start up.
@@ -83,13 +85,13 @@
 (global-set-key (kbd "<f2>") 'bm-next)
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/highlight-symbol/highlight-symbol.el"))
+(load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<f5>") 'highlight-symbol-next)
 (global-set-key (kbd "<S-f5>") 'highlight-symbol-prev)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; rect-mark
-(load-file (concat CONTRIBUTOR_CONF "/rect-mark/rect-mark.el"))
+(load-file (concat EMACS_VENDOR "/rect-mark/rect-mark.el"))
 ;; Support for marking a rectangle of text with highlighting.
 ;;(define-key ctl-x-map "r\C-M-\ " 'rm-set-mark)
 ;;(define-key ctl-x-map [?r ?\C-\ ] 'rm-set-mark)
@@ -109,25 +111,26 @@
 (autoload 'rm-mouse-drag-region "rect-mark"
   "Drag out a rectangular region with the mouse." t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/whitespace/whitespace.el"))
+(load-file (concat EMACS_VENDOR "/whitespace/whitespace.el"))
 (setq whitespace-display-mappings '((space-mark ?\ [?.]) (newline-mark ?\n [?$ ?\n]) (tab-mark ?\t [?\\ ?\t])))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'tramp)
-(setq tramp-default-method "sshx")
-(setq tramp-debug-buffer t)
+(setq tramp-default-method "ssh"
+      tramp-shell-prompt-pattern "^[^#$>\n]*[#$%>)] *")
+(remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/boxquote/boxquote.el"))
+(load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
 (setq boxquote-top-and-tail "-----------")
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/calendar-localization/cal-china-x.el"))
+(load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-x.el"))
 ;; show lunar calendar
-(load-file (concat CONTRIBUTOR_CONF "/calendar-localization/cal-china-plus.el"))
+(load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-plus.el"))
 (add-hook 'diary-nongregorian-listing-hook 'diary-chinese-list-entries)
 (add-hook 'diary-nongregorian-marking-hook 'diary-chinese-mark-entries)
 ;;highlights all the days that are holidays
 (setq calendar-mark-holidays-flag 't)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/loccur/loccur.el"))
+(load-file (concat EMACS_VENDOR "/loccur/loccur.el"))
 ;; defines shortcut for loccur of the current word
 (define-key global-map [(control meta o)] 'loccur-current)
 (set-face-background 'isearch "#537182")
@@ -162,7 +165,7 @@
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/magit"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
 (require 'magit)
 (eval-after-load 'magit
   '(progn
@@ -178,7 +181,7 @@
      (when (not window-system)
        (set-face-background 'magit-item-highlight "white"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/cursor-change/cursor-chg.el"))
+(load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
 (toggle-cursor-type-when-idle 1) ; On when idle
 (setq curchg-default-cursor-color "green")
@@ -186,12 +189,12 @@
 (setq abbrev-file-name (concat DENNY_CONF "emacs_data/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
 (quietly-read-abbrev-file) ;; reads the abbreviations file on startup
-;;(abbrev-mode 1) ;; always enable abbrev
-(setq default-abbrev-mode 1)
+(setq abbrev-mode 1) ;; always enable abbrev
+;;(setq default-abbrev-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/color-moccur/color-moccur.el"))
+(load-file (concat EMACS_VENDOR "/color-moccur/color-moccur.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/hide-region/hide-region.el"))
+(load-file (concat EMACS_VENDOR "/hide-region/hide-region.el"))
 (defun hide-region-settings ()
   "Settings for `hide-region'."
   (setq hide-region-before-string "[======================该区域已")
@@ -218,7 +221,7 @@
 (setq thumbs-per-line 3)
 (setq thumbs-max-image-number 8)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/company-0.5/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/company-0.5/"))
 (autoload 'company-mode "company" nil t)
 (setq company-backends '(company-elisp
                          ;;company-ropemacs
@@ -233,7 +236,7 @@
 (dolist (hook programming-hook-list)
   (add-hook hook 'company-mode))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/highlight-tail/highlight-tail.el"))
+(load-file (concat EMACS_VENDOR "/highlight-tail/highlight-tail.el"))
 (setq highlight-tail-colors
       '(("#696969" . 0)
         ("white" . 100)))
@@ -242,11 +245,11 @@
 (setq highlight-tail-posterior-type 'const)
 (highlight-tail-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/rainbow-mode/rainbow-mode.el"))
+(load-file (concat EMACS_VENDOR "/rainbow-mode/rainbow-mode.el"))
 (dolist (hook programming-hook-list)
   (add-hook hook '(lambda () (rainbow-mode 1 ))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/openwith/openwith.el"))
+(load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
 (openwith-mode t)
 ;; ask for confirmation before invoke external program
 (setq openwith-confirm-invocation t)
@@ -265,12 +268,12 @@
           )))
  )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/momentary/momentary.el"))
-;;(load-file (concat CONTRIBUTOR_CONF "/proced/proced.el"))
+(load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
+;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
 (require 'proced)
 (setq proced-sort "pmem")
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/keep-buffers/keep-buffers.el"))
+(load-file (concat EMACS_VENDOR "/keep-buffers/keep-buffers.el"))
 ;;(setq keep-buffers-protected-list '("tmp" "*Messages*" "current.org" "pkm.org" "programming.org"))
 ;;(keep-buffers-erase-on-kill nil)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -296,22 +299,22 @@
     )
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/hide-lines/hide-lines.el"))
-(load-file (concat CONTRIBUTOR_CONF "/hide-lines/hidesearch.el"))
+(load-file (concat EMACS_VENDOR "/hide-lines/hide-lines.el"))
+(load-file (concat EMACS_VENDOR "/hide-lines/hidesearch.el"))
 (require 'hide-lines)
 (require 'hidesearch)
 (global-set-key (kbd "C-c C-s") 'hidesearch)
 ;;(global-set-key (kbd "C-c C-a") 'show-all-invisible)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/hide-comnt/hide-comnt.el"))
+(load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/cn-weather/cn-weather.el"))
+(load-file (concat EMACS_VENDOR "/cn-weather/cn-weather.el"))
 (require 'cn-weather)
 (setq cn-weather-city "上海")
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/kill-ring-search/kill-ring-search.el"))
+(load-file (concat EMACS_VENDOR "/kill-ring-search/kill-ring-search.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/elscreen/elscreen-1.4.6/elscreen.el"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/elscreen/elscreen-1.4.6/elscreen.el"))
 (eval-after-load 'elscreen
   '(progn
      ;; Disable tab by default, try M-x elscreen-toggle-display-tab to show tab
@@ -338,20 +341,20 @@
 ;; (require 'midnight)
 ;; (midnight-delay-set 'midnight-delay "0:10am")
 ;; (add-hook 'midnight-hook
-;;           (lambda
-;;             (with-current-buffer "*midnight*"
-;;               (org-agenda-list)
-;;               )))
+;; (lambda
+;; (with-current-buffer "*midnight*"
+;; (org-agenda-list)
+;; )))
 ;; (setq midnight-period 28800)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/gse-number-rect/gse-number-rect.el"))
+(load-file (concat EMACS_VENDOR "/gse-number-rect/gse-number-rect.el"))
 (require 'gse-number-rect)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/fold-dwin/fold-dwin.el"))
+(load-file (concat EMACS_VENDOR "/fold-dwin/fold-dwin.el"))
 (require 'fold-dwim)
 (global-set-key [f7] 'lucky_try)
-(global-set-key (kbd "<C-f7>")    'fold-dwim-hide-all)
-(global-set-key (kbd "<M-S-f7>")  'fold-dwim-show-all)
+(global-set-key (kbd "<C-f7>") 'fold-dwim-hide-all)
+(global-set-key (kbd "<M-S-f7>") 'fold-dwim-show-all)
 (defun lucky_try ()
   (interactive)
   (cond

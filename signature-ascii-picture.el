@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-01-15 20:04:47>
+;; Updated: Time-stamp: <2012-03-11 17:44:51>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq sign-ascii-picture
@@ -22,6 +22,9 @@
 "
          "
 ~\(≧▽≦)/~
+"
+         "
+╭(╯^╰)╮
 "
          "
 ┴┬┴┬／￣＼＿／￣＼
@@ -67,5 +70,4 @@
 　　　　　　　▕▃◣◢▅▅▅◣◢▃▕
 "
          ))
-
 ;; File: signature-ascii-picture.el ends here

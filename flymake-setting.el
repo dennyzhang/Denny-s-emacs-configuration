@@ -3,12 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 00:59:00>
+;; Updated: Time-stamp: <2012-03-11 12:03:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'flymake)
 ;; Display flymake error msg in minibuffer after delay
-(load-file (concat CONTRIBUTOR_CONF "/flymake-cursor/flymake-cursor.el"))
+(load-file (concat EMACS_VENDOR "/flymake-cursor/flymake-cursor.el"))
 ;; Change the default colors
 (set-face-background 'flymake-errline "red4")
 (set-face-background 'flymake-warnline "dark slate blue")
@@ -37,7 +37,7 @@
 (define-key global-map (kbd "C-c n") 'flymake-goto-next-error)
 
 ;; show errors and warnings of flymake with different fringe bitmaps
-(load-file (concat CONTRIBUTOR_CONF "/fringe-helper/fringe-helper.el"))
+(load-file (concat EMACS_VENDOR "/fringe-helper/fringe-helper.el"))
 
 (defvar flymake-fringe-overlays nil)
 (make-variable-buffer-local 'flymake-fringe-overlays)
@@ -207,11 +207,11 @@
                       temp-file
                       (file-name-directory buffer-file-name))))
     (list "rhino" (list (expand-file-name
-                         (concat CONTRIBUTOR_CONF "nonelisp-tool/jslint/jslint.js") local-file)))))
+                         (concat EMACS_VENDOR "nonelisp-tool/jslint/jslint.js") local-file)))))
 
 (defun my-js-hook-function ()
   (set (make-local-variable 'compile-command)
-       (format "rhino %s %s" (concat CONTRIBUTOR_CONF "nonelisp-tool/jslint/jslint.js") (buffer-file-name))))
+       (format "rhino %s %s" (concat EMACS_VENDOR "nonelisp-tool/jslint/jslint.js") (buffer-file-name))))
 
 (setq flymake-allowed-file-name-masks
       (cons '(".+\\.js$"

@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 01:05:21>
+;; Updated: Time-stamp: <2012-03-17 23:22:50>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -53,6 +53,7 @@
 (setq isearch-allow-scroll t) ;; enable scrolling during incremental search
 (setq-default ispell-program-name "aspell")
 (setq ispell-personal-dictionary (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
+;;(setq-default show-trailing-whitespace 't)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
 (auto-image-file-mode t)
@@ -277,7 +278,7 @@
 (setq kept-new-versions 3)
 (setq delete-old-versions t)
 ;; Put backup files (ie foo~) in one place
-(let ((backup-directory-var "~/tmp_dir/"))
+(let ((backup-directory-var "~/auto-save-list/"))
   ;; make backup directory, if it doesn't exist
   (unless (file-exists-p backup-directory-var)
     (make-directory backup-directory-var t))
@@ -299,8 +300,15 @@ backup_dir specify where the backup copy shall go"
       (setq bfilename (concat bfilename "~")))
     (copy-file cfile_full bfilename t)
     (message (concat "Backup saved as: " (file-name-nondirectory bfilename)))
-    )
-  )
+    ))
+
+(global-set-key [(meta p)(b)] 'backup-current-file)
+(defun backup-current-file (&optional backup_dir)
+  (interactive)
+  (let ((bfilename (file-name-nondirectory (buffer-file-name))))
+    (if (null backup_dir) (setq backup_dir "/tmp/"))
+    (write-region (point-min) (point-max) (format "%s/%d-%s" backup_dir (random 10000) bfilename))
+    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun notify-popup (title msg &optional icon sound)
   "Show a popup if we're on X, or echo it otherwise; TITLE is the title
@@ -386,5 +394,7 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (autoload 'goto-last-change
   "goto-last-change" "Set point to the position of the last change." t)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq history-length 100)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: fundamental-setting.el ends here

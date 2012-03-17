@@ -3,12 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-10 18:24:52>
+;; Updated: Time-stamp: <2012-03-11 12:02:57>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (eval-when-compile (require 'cl))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/jd-el/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/"))
 (require 'google-maps)
 (defun show-bbdb-loaction ()
   "put all my contacts stored into BBDB on a Google Maps' map"
@@ -32,7 +32,7 @@
      (bbdb-records))))
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/keywiz/keywiz.el"))
+(load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(appt-activate)
 (setq appt-display-format 'window)
@@ -41,22 +41,22 @@
 (setq appt-display-mode-line t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;Find file recursively
-(load-file (concat CONTRIBUTOR_CONF "/find-recursive/find-recursive.el"))
+(load-file (concat EMACS_VENDOR "/find-recursive/find-recursive.el"))
 (require 'find-recursive)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/log4j-mode/log4j-mode.el"))
+(load-file (concat EMACS_VENDOR "/log4j-mode/log4j-mode.el"))
 (require 'log4j-mode)
 (add-to-list 'auto-mode-alist '("\\.log" . log4j-mode))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/dupwords/dupwords.el"))
+(load-file (concat EMACS_VENDOR "/dupwords/dupwords.el"))
 (require 'dupwords)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (load-file (concat CONTRIBUTOR_CONF "/hfyview/hfyview.el")) ;; TODO
+;; (load-file (concat EMACS_VENDOR "/hfyview/hfyview.el")) ;; TODO
 ;; (global-set-key [(meta p)(p)] 'hfyview-buffer)
 ;; (setq hfy-meta-tags
 ;;       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/sl/sl.el"))
+(load-file (concat EMACS_VENDOR "/sl/sl.el"))
 (require 'sl)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: otherpackage-setting.el ends here

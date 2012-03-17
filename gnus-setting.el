@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-02-24 21:37:33>
+;; Updated: Time-stamp: <2012-03-17 10:55:59>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -18,6 +18,7 @@
       nnmail-message-id-cache-file (concat mail-parent-directory-var "Mail/.nnmail-cache")
       nnml-newsgroups-file (concat mail-parent-directory-var "Mail/")
       message-directory (concat mail-parent-directory-var "Mail")
+      nndraft-directory (concat mail-parent-directory-var "Mail/drafts/")
       message-auto-save-directory (concat mail-parent-directory-var "Mail/drafts/"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; set the default location when saving mail's attachments
@@ -332,7 +333,7 @@
     )
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
+;; (setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
 ;; (setq gnus-demon-timestep 20)
 ;; (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
 ;; (gnus-demon-add-handler 'gnus-demon-scan-news 2 t)
@@ -342,11 +343,11 @@
 ;; "Timeout for Gnus."
 ;; (with-timeout (30 (message "Gnus timed out.")) ad-do-it))
 ;; ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (load-file (concat CONTRIBUTOR_CONF "/gnus-notify/gnus-desktop-notify.el"))
+;; (load-file (concat EMACS_VENDOR "/gnus-notify/gnus-desktop-notify.el"))
 ;; (require 'gnus-desktop-notify)
 ;; (gnus-desktop-notify-mode)
 ;; (gnus-demon-add-scanmail)
-;; (load-file (concat CONTRIBUTOR_CONF "/gnus-notify/gnus-notify+.el"))
+;; (load-file (concat EMACS_VENDOR "/gnus-notify/gnus-notify+.el"))
 ;; (require 'gnus-notify+)
 ;; (add-hook 'gnus-summary-exit-hook 'gnus-notify+)
 ;; (add-hook 'gnus-group-catchup-group-hook 'gnus-notify+)

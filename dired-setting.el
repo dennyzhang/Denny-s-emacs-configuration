@@ -3,10 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-08 10:29:32>
+;; Updated: Time-stamp: <2012-03-11 12:02:59>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;;(load-file (concat CONTRIBUTOR_CONF "/dired+/dired+.el"))
+;;(load-file (concat EMACS_VENDOR "/dired+/dired+.el"))
 ;;(require 'dired+)
 (defface diredp-my-file-name
   '((t (:foreground "green4")))
@@ -100,6 +100,6 @@
 (define-key dired-mode-map "\M-c" 'dired-get-size)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; adds a command('T') to dired-mode for creating and unpacking tar files.
-(load-file (concat CONTRIBUTOR_CONF "/dired-tar/dired-tar.el"))
+(load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: dired-setting.el ends here

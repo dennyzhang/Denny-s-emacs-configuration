@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-11-26 10:49:47>
+;; Updated: Time-stamp: <2012-03-11 12:03:00>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key [f11] 'w32-maximize-frame)
@@ -24,7 +24,7 @@
 (setq ps-lpr-command "d:/Program Files/gs/gs8.64/bin/gswin32c.exe")
 (setq ps-lpr-switches '("-q" "-dNOPAUSE" "-dBATCH" "-sDEVICE=mswinpr2"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/fontset-win/fontset-win.el"))
+(load-file (concat EMACS_VENDOR "/fontset-win/fontset-win.el"))
 (if (string-equal system-type "windows-nt")
     (huangq-fontset-courier 16))
 ;; --8<-------------------------- §separator§ ------------------------>8--

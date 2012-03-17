@@ -3,10 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-01-22 22:19:34>
+;; Updated: Time-stamp: <2012-03-11 12:03:01>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/bbdb/lisp"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
 (global-set-key [(super b)] 'bbdb)
 (require 'bbdb)
 (require 'bbdb-snarf)
@@ -22,10 +22,10 @@
 (setq bbdb-north-american-phone-numbers-p nil)
 (setq bbdb-default-label-list '("Mobile" "Office" "Other"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/bbdb/bbdb-picture.el"))
+(load-file (concat EMACS_VENDOR "/bbdb/bbdb-picture.el"))
 (setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/bbdb-vcard"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
 (require 'vcard)
 ;;(bbdb-vcard-export "~/exported-vcards/" t t)
 (require 'bbdb-vcard)
@@ -175,6 +175,6 @@ We consider {name} string as a variable, which will be replaced by the actual na
 (setq bbdb-use-pop-up nil) ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
 (setq bbdb-check-zip-codes-p nil) ;; don't check legal zip code, when entering an address
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/bbdb-to-outlook/bbdb-to-outlook.el"))
+(load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: bbdb-setting.el ends here

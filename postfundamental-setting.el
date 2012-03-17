@@ -3,18 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-10 18:24:55>
+;; Updated: Time-stamp: <2012-03-17 22:42:13>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
-(setq initial-frame-alist '((top . 100) (left . 100)))
-(setq default-frame-alist
-      (append
-       '((width . 105)
-         (height . 35)
-         (foreground-color . "Wheat")
-         (background-color . "DarkSlateGray")
-         (cursor-color . "Orchid"))
-       default-frame-alist))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
@@ -64,7 +54,7 @@
 ;;(set-language-environment 'Chinese-GB)
 ;;(set-keyboard-coding-system 'chinese-iso-8bit-unix)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (load-file (concat CONTRIBUTOR_CONF "/pomodoro/pomodoro.el"))
+;; (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
 ;; (pomodoro)
 ;; (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
 ;; (setq pomodoro-set-number 4) ;; Number of sets until a long break
@@ -88,5 +78,5 @@
 ;;   (run-hook-with-args 'pomodoro-message-hook msg))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-buffer-file-coding-system 'utf-8)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- §separator§ ------------------------>
 ;; File: postfundamental-setting.el ends here

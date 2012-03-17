@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 00:56:45>
+;; Updated: Time-stamp: <2012-03-11 12:02:56>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (create-fontset-from-fontset-spec "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -25,8 +25,8 @@
 (global-set-key [f11] 'fullscreen-toggle)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;gnuplot
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/gnuplot-mode.0.6.0"))
-(load-file (concat CONTRIBUTOR_CONF "/org-plot/org-plot.el"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
+(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
 (autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
 (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
 (add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
@@ -49,8 +49,8 @@
     )
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/anything/anything.el"))
-(load-file (concat CONTRIBUTOR_CONF "/anything/anything-config.el"))
+(load-file (concat EMACS_VENDOR "/anything/anything.el"))
+(load-file (concat EMACS_VENDOR "/anything/anything-config.el"))
 (require 'anything)
 (require 'anything-config)
 (setq anything-candidate-number-limit 10000) ;候选数量限制
@@ -152,14 +152,14 @@
 ;; (sl/set-x-font)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; show file size and free space left in device
-;;(load-file (concat CONTRIBUTOR_CONF "/df-mode/df-mode.el"))
+;;(load-file (concat EMACS_VENDOR "/df-mode/df-mode.el"))
 ;;(df-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;Usage:M-x ascii-on RET
-(load-file (concat CONTRIBUTOR_CONF "/ascii/ascii.el"))
+(load-file (concat EMACS_VENDOR "/ascii/ascii.el"))
 (require 'ascii)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/ess-5.14/lisp"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/ess-5.14/lisp"))
 ;;(require 'ess-site) ;; TODO, it will always popup a *ESS* buffer
 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stata$" . stata-mode))

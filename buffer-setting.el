@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-04 11:24:58>
+;; Updated: Time-stamp: <2012-03-11 12:02:57>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun next-user-buffer ()
@@ -48,7 +48,7 @@ Emacs buffers are those whose name starts with *."
 (global-set-key (kbd "<C-S-next>") 'next-emacs-buffer) ; Ctrl+Shift+PageDown
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Remember buffer positions per-window, not per buffer
-(load-file (concat CONTRIBUTOR_CONF "/winpoint/winpoint.el"))
+(load-file (concat EMACS_VENDOR "/winpoint/winpoint.el"))
 (winpoint-mode t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;alt+p k: kill all other buffers except current buffer

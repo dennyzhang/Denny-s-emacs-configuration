@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-02-02 13:32:25>
+;; Updated: Time-stamp: <2012-03-14 22:15:09>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;alt+p i: insert time
@@ -12,20 +12,6 @@
   (let* ((insert_str (format-time-string "<%Y-%m-%d %H:%M UTC +8>" (current-time))))
     (insert insert_str)
     ))
-;;insert string:*** useful link
-(defun useful4orgmode()
-  (interactive)
-  (move-beginning-of-line nil)
-  (forward-line)
-  (insert "*** useful link\n")
-  )
-;;insert string:*** basic use
-(defun basicuse-for-orgmode()
-  (interactive)
-  (forward-line)
-  (move-beginning-of-line nil)
-  (insert "*** basic use\n")
-  )
 ;;insert diary entry
 (defun my-insert-diary-entry()
   (interactive)
@@ -41,8 +27,6 @@
           (lambda () (progn
                        (setq truncate-lines t) ;;truncate line in org-mode
                        ;;key combination with certain mode
-                       (local-set-key [(meta p)(b)] 'basicuse-for-orgmode)
-                       (local-set-key [(meta p)(u)] 'useful4orgmode)
                        ;;(local-set-key [(meta p)(i)] 'my-insert-time)
                        (local-set-key [(meta p)(d)] 'my-insert-diary-entry)
                        )

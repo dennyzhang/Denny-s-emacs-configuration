@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-10-29 15:58:04>
+;; Updated: Time-stamp: <2012-03-11 12:03:03>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq thumbs-conversion-program "d:/cygwin/bin/convert.exe")
@@ -14,7 +14,7 @@
   ;; http://bloodgate.com/perl/graph/manual/index.html
   (save-excursion
     (let* (
-           (convert_path (concat CONTRIBUTOR_CONF "/nonelisp-tool/Graph-Easy-0.64/examples/as_ascii"))
+           (convert_path (concat EMACS_VENDOR "/nonelisp-tool/Graph-Easy-0.64/examples/as_ascii"))
            (dot_file "tmp_denny_dot_file_88439.tmp")
            (ascii_file "tmp_denny_ascii_file_88439.tmp")
            (new_buffer_name "*ASCII Diagram From Dot File*")
@@ -50,7 +50,7 @@
          )
        default-frame-alist))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (load-file (concat CONTRIBUTOR_CONF "/maxframe/maxframe.el"))
+;; (load-file (concat EMACS_VENDOR "/maxframe/maxframe.el"))
 ;; ;;(setq mf-max-width 1440) ;; Pixel width of main monitor.
 ;; ;;(setq mf-max-height 900) ;; Pixel width of main monitor.
 ;; (setq mf-offset-y 15)

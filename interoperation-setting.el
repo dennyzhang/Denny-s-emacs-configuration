@@ -3,10 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-10-30 21:35:26>
+;; Updated: Time-stamp: <2012-03-11 12:02:57>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "top-mode/top-mode.el"))
+(load-file (concat EMACS_VENDOR "top-mode/top-mode.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun lock-screen ()
   "Lock screen using (zone) and xtrlock

@@ -3,13 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-03 22:57:45>
+;; Updated: Time-stamp: <2012-03-11 12:03:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
-(load-file (concat CONTRIBUTOR_CONF "/org-w3m/org-w3m.el"))
+(load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/emacs-w3m"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
 (eval-after-load 'w3m
   '(progn
      ;; Never load the crashed sessions automatically

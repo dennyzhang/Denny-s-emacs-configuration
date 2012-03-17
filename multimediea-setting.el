@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-05 08:10:23>
+;; Updated: Time-stamp: <2012-03-11 12:03:01>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;emms
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/emms/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/emms/"))
 (load "emms")
 (require 'emms-setup)
 (require 'emms-cache)

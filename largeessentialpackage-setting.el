@@ -3,18 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-10-30 21:34:17>
+;; Updated: Time-stamp: <2012-03-11 12:03:00>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/common"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/ede"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/semantic"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/srecode"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/cogre"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/eieio"))
-;; (add-to-list 'load-path (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/contrib"))
-;; (load-file (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/common/cedet.el"))
-;; (load-file (concat CONTRIBUTOR_CONF "/cedet-1.0pre7/ede/ede.el"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/common"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/ede"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/semantic"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/srecode"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/cogre"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/eieio"))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/contrib"))
+;; (load-file (concat EMACS_VENDOR "/cedet-1.0pre7/common/cedet.el"))
+;; (load-file (concat EMACS_VENDOR "/cedet-1.0pre7/ede/ede.el"))
 ;; (require 'cedet)
 ;; (require 'ede)
 ;; (require 'srecode)

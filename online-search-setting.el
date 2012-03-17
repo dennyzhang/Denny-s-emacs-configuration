@@ -3,13 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-09-11 14:34:56>
+;; Updated: Time-stamp: <2012-03-11 12:03:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
-(setq browse-url-default-browser "/usr/bin/firefox") ;; firefox in M$ Windows
+(setq browse-url-default-browser "/usr/bin/chromium-browser")
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat CONTRIBUTOR_CONF "/online-search/online-search.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/online-search/online-search.el"))
 (global-set-key [(control c) (s)] 'online-search)
 ;; If current environment is windows, w3m may be probably not available.
 ;; In this case downgrade from w3m mode to plaintext mode.
@@ -17,7 +17,7 @@
     (setq is-plaintext-enable 't))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; search python document
-(setq pylookup-dir (concat CONTRIBUTOR_CONF "/pylookup"))
+(setq pylookup-dir (concat EMACS_VENDOR "/pylookup"))
 (add-to-list 'load-path pylookup-dir)
 ;; load pylookup when compile time
 (eval-when-compile (require 'pylookup))
@@ -33,7 +33,7 @@
   "Run pylookup-update and create the database at `pylookup-db-file'." t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;search c/c++ document
-(setq cclookup-dir (concat CONTRIBUTOR_CONF "/cclookup"))
+(setq cclookup-dir (concat EMACS_VENDOR "/cclookup"))
 (add-to-list 'load-path cclookup-dir)
 ;; load cclookup when compile time
 (eval-when-compile (require 'cclookup))

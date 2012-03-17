@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 00:56:51>
+;; Updated: Time-stamp: <2012-03-11 12:03:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -89,7 +89,7 @@
           return-value))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Get etags file intelligently
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "etags-extend/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
 (require 'etags-select)
 (require 'etags-table)
 (setq etags-table-search-up-depth 10)
@@ -107,22 +107,22 @@
 ;;(global-set-key "\M-." 'etags-select-find-tag)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; vb programming
-(load-file (concat CONTRIBUTOR_CONF "visual-basic/visual-basic-mode.el"))
+(load-file (concat EMACS_VENDOR "visual-basic/visual-basic-mode.el"))
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (add-to-list 'auto-mode-alist '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; C# programming
-(load-file (concat CONTRIBUTOR_CONF "csharp/csharp-mode-0.4.0.el"))
+(load-file (concat EMACS_VENDOR "csharp/csharp-mode-0.4.0.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; php programming
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/php-mode-1.5.0/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/php-mode-1.5.0/"))
 (require 'php-mode)
 ;; debug php
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/geben-0.26"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/geben-0.26"))
 (autoload 'geben "geben" "PHP Debugger on Emacs" t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;ruby programming
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/ruby-mode"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/ruby-mode"))
 (require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
@@ -176,7 +176,7 @@
           'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; http post test
-(load-file (concat CONTRIBUTOR_CONF "http-post-simple/http-post-simple.el"))
+(load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key (kbd "<f8>") 'smart-compile)
 (defun smart-compile()
@@ -217,7 +217,7 @@
 ;; setup erlang mode
 ;; TODO, enhance as a more dedicated way
 ;; add the location of the elisp files to the load-path
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/erlang-emacs/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/erlang-emacs/"))
 ;; set the location of the man page hierarchy
 (setq erlang-root-dir "/usr/lib/erlang")
 ;; add the home of the erlang binaries to the exec-path
@@ -234,7 +234,7 @@
             (imenu-add-to-menubar "imenu")))
 
 ;; distel: an add-on to the erlang-mode
-(add-to-list 'load-path (concat CONTRIBUTOR_CONF "/distel/elisp"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/distel/elisp"))
 (require 'distel)
 (distel-setup)
 ;; A number of the erlang-extended-mode key bindings are useful in the shell too

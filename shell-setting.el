@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 01:02:46>
+;; Updated: Time-stamp: <2012-03-11 12:03:03>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -171,7 +171,7 @@ If arg is given, only open a shell for one direcotry.
 ;;eshell
 (global-set-key (kbd "<C-f9>") 'eshell-toggle)
 ;; quickly switch to eshell, and do buffer toggle things
-(load-file (concat CONTRIBUTOR_CONF "/eshell-toggle/eshell-toggle.el"))
+(load-file (concat EMACS_VENDOR "/eshell-toggle/eshell-toggle.el"))
 (autoload 'eshell-toggle "eshell-toggle"
   "Toggles between the *eshell* buffer and whatever buffer you are editing."
   t)

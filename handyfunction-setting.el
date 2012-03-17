@@ -1,12 +1,13 @@
 ;; -*- coding: utf-8 -*-
-;; File: handyfunction-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
+;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-02-25 15:50:00>
+;; Updated: Time-stamp: <2012-03-17 20:26:32>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
+
 (global-set-key [(meta down)] 'move-line-down)
 (defun move-line (&optional n)
   "Move current line N (1) lines up/down leaving point in place."
@@ -571,16 +572,24 @@ To use this function, you need install scrot."
  "
   (interactive)
   (save-excursion
-    (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
-]*\\) *")))
-      (goto-char (point-min))
-      ;; Verify looking at a file name for this mode.
-      (while (re-search-forward file-name-regexp nil t)
-        (goto-char (match-beginning 2))
-        (delete-region (match-beginning 2) (match-end 2))
-        (insert (file-name-nondirectory (buffer-file-name)))
-        ))
-    ))
+    (save-restriction
+      (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
+]*\\) *"))
+            (max-lines 15)
+            (beg (point-min)) end
+            )
+        (goto-char (point-min))
+        (forward-line max-lines)
+        (setq end (point))
+        (narrow-to-region beg end)
+        (goto-char (point-min))
+        ;; Verify looking at a file name for this mode.
+        (while (re-search-forward file-name-regexp nil t)
+          (goto-char (match-beginning 2))
+          (delete-region (match-beginning 2) (match-end 2))
+          (insert (file-name-nondirectory (buffer-file-name)))
+          ))
+      )))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun what-hexadecimal-value ()
   "Prints the decimal value of a hexadecimal string under cursor.
@@ -643,33 +652,6 @@ These information is probably retrieved from internet. "
   (cn-weather-forecast)
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(defun my-random-colour (&optional arg)
-  "Return a random colour as a (lower-case) string.
-Excludes colours that end in numbers. With optional prefix arg, insert
-colour into buffer at point as a Status: header."
-  (interactive "P")
-  (if arg (barf-if-buffer-read-only))
-  (let* ((cols (defined-colors))
-         ;; 0 (inclusive) - length (exclusive), as required by nth.
-         (ncols (length cols))
-         col)
-    (if cols
-        (while (or (not col) (string-match "[0-9]$" col))
-          (setq col (nth (random ncols) cols)))
-      ;; No colours defined. Else infloop!
-      (setq col "black"))
-    (setq col (downcase col))
-    (if arg
-        (save-excursion
-          (if (progn (goto-char (line-beginning-position))
-                     (looking-at ".*Status: \\(.*\\)$"))
-              ;; Recurse till get a different colour.
-              (if (string-equal col (match-string 1))
-                  (my-random-colour arg)
-                (replace-match col nil nil nil 1))
-            (insert "Status: " col "\n")))
-      (if (interactive-p) (message "%s" col)
-        col))))
 (defun my-random-string (&optional n)
   "Return a string of random characters of length N (default 10)."
   (let ((x ""))
@@ -726,6 +708,11 @@ comment box."
     (setq list-matching-lines-default-context-lines 3)
     (occur occur-find-str)
     (setq list-matching-lines-default-context-lines context-lines)
-  ))
+    ))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun hexl-show ()
+  (interactive)
+  (message "hex (%s) to decimal (%s)." (current-word) (string-to-number (current-word) 16))
+  )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: handyfunction-setting.el ends here
