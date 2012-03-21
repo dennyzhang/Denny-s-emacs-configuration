@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-14 23:36:17>
+;; Updated: Time-stamp: <2012-03-21 14:59:52>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Precondition
@@ -11,7 +11,6 @@
   (setq inhibit-startup-message t)
   (error "Configuration not supported on Emacs < 22."))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(load-file (concat DENNY_CONF "/emacs_conf/passwd.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/fundamental-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/clean-appearance-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/buffer-setting.el"))
@@ -49,5 +48,6 @@
  ((string-equal system-type "cygwin")
   (load-file (concat DENNY_CONF "/emacs_conf/cygwin-setting.el"))))
 (load-file (concat DENNY_CONF "/emacs_conf/postfundamental-setting.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/passwd.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: myemacs.el ends here

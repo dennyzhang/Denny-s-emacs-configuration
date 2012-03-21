@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-21 14:56:36>
+;; Updated: Time-stamp: <2012-03-21 15:00:00>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -19,12 +19,8 @@
       nnml-newsgroups-file (concat mail-parent-directory-var "Mail/")
       message-directory (concat mail-parent-directory-var "Mail")
       nndraft-directory (concat mail-parent-directory-var "Mail/drafts/")
+      mm-default-directory (concat mail-parent-directory-var "Attachment/")
       message-auto-save-directory (concat mail-parent-directory-var "Mail/drafts/"))
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; set the default location when saving mail's attachments
-(setq mm-default-directory (concat mail-parent-directory-var "Attachment/"))
-;; make the directory, if it doesn't exist
-(unless (file-exists-p mm-default-directory) (make-directory mm-default-directory t))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq gnus-save-newsrc-file nil
       gnus-read-newsrc-file nil
@@ -52,29 +48,6 @@
 ;; (nnimap-stream ssl))
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
-;; set pop server
-(setq mail-sources ;; TODO, denny
-      '(
-        (pop :server "pop.126.com" ;; 在这里设置 pop3 服务器
-             :user "markfilebat@126.com"
-             :port 110
-             :password "filetxt") ;; TODO: more secure
-        (pop :server "mail.shopex.cn"
-             :user "zhangwei"
-             :port 110
-             :password "markfilebat1") ;; TODO: more secure
-        ;; ;; ;; (imap :server "imap.gmail.com" ;; 在这里设置 imap 服务器
-        ;; ;; ;; :user "filebat.mark@gmail.com" ;; 用户名
-        ;; ;; ;; :port 993
-        ;; ;; ;; :stream ssl
-        ;; ;; ;; :password mail-gmail-pwd)
-        ;; ;; (pop :server "pop.gmail.com" ;; 在这里设置 pop3 服务器
-        ;; ;; :user "filebat.mark@gmail.com"
-        ;; ;; :port 995
-        ;; ;; :stream ssl
-        ;; ;; :password mail-gmail-pwd)
-        ;; ;;
-        ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
 (setq my-msmtp-config-file (concat "'" DENNY_CONF "emacs_data/filebat.msmtprc" "'"))
