@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 23:22:50>
+;; Updated: Time-stamp: <2012-03-21 00:23:52>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)

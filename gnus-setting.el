@@ -3,18 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 10:55:59>
+;; Updated: Time-stamp: <2012-03-21 14:56:36>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
 (setq gnus-startup-file (concat mail-parent-directory-var ".newsrc")
-      gnus-default-directory (concat mail-parent-directory-var "Mail")
       gnus-home-directory (concat mail-parent-directory-var "Mail")
+      gnus-default-directory (concat mail-parent-directory-var "Mail")
       gnus-article-save-directory (concat mail-parent-directory-var "Mail/save")
       gnus-kill-files-directory (concat mail-parent-directory-var "Mail/trash")
       gnus-agent-directory (concat mail-parent-directory-var "Mail/agent")
       gnus-cache-directory (concat mail-parent-directory-var "Mail/cache")
-      mail-source-directory (concat mail-parent-directory-var "Mail/")
+      mail-source-directory (concat mail-parent-directory-var "Mail/incoming")
       nnmail-message-id-cache-file (concat mail-parent-directory-var "Mail/.nnmail-cache")
       nnml-newsgroups-file (concat mail-parent-directory-var "Mail/")
       message-directory (concat mail-parent-directory-var "Mail")
@@ -109,6 +109,7 @@
 (setq gnus-group-line-format "%M\%S\%p\%P\ %4N/%4t :%B%(%g%)%O\n")
 (setq gnus-summary-gather-subject-limit 'fuzzy) ;聚集题目用模糊算法
 (setq gnus-summary-line-format "%4P %U%R%z%O %{%5k%} %{%14&user-date;%} %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
+(setq gnus-summary-mode-line-format "Gnus: %p [%A / Sc:%4z] %Z")
 (defun gnus-user-format-function-a (header) ;用户的格式函数 `%ua'
   (let ((myself (concat "<" user-mail-address ">"))
         (references (mail-header-references header))
@@ -139,30 +140,37 @@
 (add-hook 'gnus-article-prepare-hook 'gnus-article-date-local) ;将邮件的发出时间转换为本地时间
 (add-hook 'gnus-select-group-hook 'gnus-group-set-timestamp) ;跟踪组的时间轴
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode) ;新闻组分组
-;; 设置邮件报头显示的信息
+;; All headers that do not match this regexp will be hidden
 (setq gnus-visible-headers
       (mapconcat 'regexp-quote
                  '("From:" "Newsgroups:" "Subject:" "Date:"
-                   "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:"
+                   "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:" "Reply-To:"
+                   "Summary:" "Keywords:" "BCc:" "GCc:" "FCc:" "Posted-To:" "Mail-Copies-To:"
+                   "Mail-Followup-To:" "Apparently-To:" "Gnus-Warning:" "Resent-From:"
                    "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:"
-                   "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing"
+                   "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing" "X-Gnus-Delayed:"
                    "X-Attachments" "X-Diagnostic")
                  "\\|"))
+;; Specify the order of the header lines
+(setq gnus-sorted-header-list '("^From:" "^Subject:" "^Summary:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^To:" "^Cc:" "^Date:" "^User-Agent:" "^X-Mailer:" "^X-Newsreader:"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
 ;; on the fly spell checking
 (add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; How to save articles
-(setq gnus-default-article-saver `gnus-summary-save-in-file)
+(setq gnus-default-article-saver 'gnus-summary-save-in-file)
 ;; article configuration
 ;; set mail the default mail sorting rules
-(setq gnus-thread-sort-functions
-      '(gnus-thread-sort-by-author
-        (not gnus-thread-sort-by-date)
-        ))
+(add-hook 'gnus-select-group-hook 'set-dynamic-thread-sort-functions)
+(defun set-dynamic-thread-sort-functions ()
+  (if (string= gnus-newsgroup-name "nnfolder:mail.sent.mail")
+      (setq gnus-thread-sort-functions '((not gnus-thread-sort-by-number)))
+    (setq gnus-thread-sort-functions
+          '(gnus-thread-sort-by-author (not gnus-thread-sort-by-date)))
+    ))
 (setq gnus-use-cache 'passive)
-(setq gnus-asynchronous t) ;;异步操作
+(setq gnus-asynchronous 't) ;;异步操作
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (gnus-delay-initialize) ;; support sending messages with delay mechanism
 (setq gnus-delay-default-delay "1d")
@@ -170,6 +178,8 @@
 ;;(gnus-fetch-group "nndraft:delayed")
 ;; 显示设置
 (setq mm-text-html-renderer 'w3m) ;用W3M显示HTML格式的邮件
+;; Do not use the html part of a message, use the text part if possible!
+(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 (setq mm-inline-large-images t) ;显示内置图片
 (auto-image-file-mode t) ;自动加载图片
 (setq mm-inline-text-html-with-images t)
@@ -211,14 +221,12 @@
   )
 ;;　category pop3 mails
 (setq nnmail-split-methods
-      '(("mail.junk" "From:.editors.Chinese@dowjones.com|Subject:.*糯米网|Subject:.*《华尔街日报》中文网.*|Subject:.*Rent the Runway.*|Subject:.*去哪儿网|Subject:.*世纪佳缘交友网.*")
-        ("mail.junk" "Subject:.*猎聘网.*|From:IWKBTnewsletters@techweb.com|From:newsletter@devexpress.com|From:editors.Chinese@dowjones.com")
-        ("mail.yammer.shopex" "From:yammer@yammer.com")
-        ("mail.ci.success" "Subject:.*Successful.*")
-        ("mail.ci.success" "Subject:.*Fixed.*")
+      '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*")
+        ("mail.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
         ("mail.ci.fail" "Subject:.*Fail.*")
-        ("mail.Daily_Journal" "Subject:.*Emacs Daily Journal.*")
-        ;; ("mail.shopex" "From:.*shopex.*")
+        ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
+        ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
+        ("mail.shopex" "From:.*shopex.*")
         ("mail.misc" "")))
 ;; category mails by bbdb group
 (category-gnus-mail-by-bbdb-alias)
@@ -317,21 +325,10 @@
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; search content of gnus mails
-;; TODO, doesn't work
+;; (cd ~/backup/essential/Dropbox/private_data/gnus_data/Mail && swish-e -i . -f ../index.swish -e -v 2)
 (require 'nnir)
-(setq nnir-search-engine 'namazu)
-(setq nnir-namazu-index-directory (concat mail-parent-directory-var "namazu-mail-index/"))
-(setq nnir-namazu-remove-prefix (concat mail-parent-directory-var "Mail/"))
-(setq nnir-mail-backend gnus-select-method)
-(defun update-mail-index-by-namazu()
-  (interactive)
-  (let ((command-string
-         (format "mknmz --mailnews -O %s %s"
-                 nnir-namazu-index-directory
-                 (concat mail-parent-directory-var "Mail/"))))
-    (shell-command-to-string command-string)
-    )
-  )
+(setq nnir-search-engine 'swish-e)
+(setq nnir-swish-e-index-files (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; (setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
 ;; (setq gnus-demon-timestep 20)
@@ -361,7 +358,7 @@
   (interactive)
   (save-excursion
     (let ((working-mail "@shopex.cn")
-          (confirm-msg "Are you sure sending from markfilebat@126.com for shopex emails! ")
+          (confirm-msg "Are you sure sending from markfilebat@126.com for shopex emails? Press C-g to stop")
           )
       (goto-char (point-min))
       (when (search-forward-regexp (regexp-quote working-mail) nil t)
@@ -372,10 +369,57 @@
         ))
     ))
 (add-hook 'message-send-mail-hook 'check-from-mail)
+(defun confirm-for-delayed-mail ()
+  "Ask for confirmation, before sending delayed mail"
+  (interactive)
+  (save-excursion
+    (if (string= gnus-newsgroup-name "nndraft:delayed")
+        (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop"))
+    ))
+(add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (define-key gnus-summary-mode-map "d" '(lambda()
                                          (interactive)
                                          (gnus-summary-delete-article 1)
                                          (forward-line 1)))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; score down any mails which I don't like
+(setq gnus-use-adaptive-scoring t)
+(setq gnus-score-expiry-days 14)
+(setq gnus-default-adaptive-score-alist
+      '((gnus-unread-mark)
+        (gnus-ticked-mark (from 4))
+        (gnus-dormant-mark (from 5))
+        (gnus-saved-mark (from 20) (subject 5))
+        (gnus-del-mark (from -2) (subject -5))
+        (gnus-read-mark (from 2) (subject 1))
+        (gnus-killed-mark (from 0) (subject -3))))
+(setq gnus-score-decay-constant 1)
+(setq gnus-score-decay-scale 0.03)
+(setq gnus-decay-scores t)
+;; Use a global score file to filter some spam mails
+(setq gnus-global-score-files (list (concat mail-parent-directory-var "all.SCORE")))
+;; all.SCORE contains:
+;;(("xref"
+;; ("gmane.spam.detected" -1000 nil s)))
+(setq gnus-summary-expunge-below -999)
+;; Increase the score for followups to a sent article.
+(add-hook 'message-sent-hook 'gnus-score-followup-article)
+(add-hook 'message-sent-hook 'gnus-score-followup-thread)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq mail-source-delete-incoming 30) ;; Keep a backup of the received mails for 30 days
+(setq mail-source-delete-old-incoming-confirm 't) ;; ask for confirmation before deleting old mails
+(setq nnmail-expiry-wait 35) ;; Expireable articles will be deleted after 35 days.
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq message-generate-headers-first t)
+;; When composing a mail, start the auto-fill-mode.
+(add-hook 'message-mode-hook 'turn-on-auto-fill)
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; Use the gnus registry
+(setq gnus-registry-install 't)
+(require 'gnus-registry)
+(gnus-registry-initialize)
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; (setq message-kill-buffer-on-exit t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: gnus-setting.el ends here

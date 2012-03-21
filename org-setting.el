@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 23:24:19>
+;; Updated: Time-stamp: <2012-03-21 10:06:51>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
 (require 'org)
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -107,16 +107,16 @@
 ;; ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; active Babel languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (perl . t)
-   (python . t)
-   (sh . t)
-   (ditaa . t)
-   (ledger . t)
-   (ruby . t)
-   ))
+;; (org-babel-do-load-languages ;; TODO
+;;  'org-babel-load-languages
+;;  '((emacs-lisp . t)
+;;    (perl . t)
+;;    (python . t)
+;;    (sh . t)
+;;    (ditaa . t)
+;;    (ledger . t)
+;;    (ruby . t)
+;;    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq org-agenda-include-diary t) ;集成日历
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -217,6 +217,7 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 (setq org-default-notes-file "current.org")
+(require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
       '(("p" "Period" entry (file+headline "contacts.org" "秀秀--周期") "** %t\n")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 20:25:17>
+;; Updated: Time-stamp: <2012-03-19 10:39:11>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -115,8 +115,8 @@
 (setq whitespace-display-mappings '((space-mark ?\ [?.]) (newline-mark ?\n [?$ ?\n]) (tab-mark ?\t [?\\ ?\t])))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'tramp)
-(setq tramp-default-method "ssh"
-      tramp-shell-prompt-pattern "^[^#$>\n]*[#$%>)] *")
+(require 'tramp)
+(setq tramp-default-method "sshx")
 (remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
