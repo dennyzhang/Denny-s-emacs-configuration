@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 17:08:59>
+;; Updated: Time-stamp: <2012-03-22 00:09:15>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -35,7 +35,7 @@
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (defun toggle-transparency ()
   (interactive)
-  (let* ((transparency-list '(0 97))
+  (let* ((transparency-list '(10 97))
          (transparency (cadr (find 'alpha (frame-parameters nil) :key #'car)))
          (transparency-count (length transparency-list))
          (pos (position transparency transparency-list :test #'equal))

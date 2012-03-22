@@ -3,34 +3,14 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-14 22:15:09>
+;; Updated: Time-stamp: <2012-03-23 00:38:16>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;;alt+p i: insert time
 (defun my-insert-time()
   (interactive)
   (let* ((insert_str (format-time-string "<%Y-%m-%d %H:%M UTC +8>" (current-time))))
     (insert insert_str)
     ))
-;;insert diary entry
-(defun my-insert-diary-entry()
-  (interactive)
-  (save-excursion
-    (insert (format-time-string "** %Y-%m-%d %a %H:%M: \n" (current-time)))
-    (insert "# 今日所学\n")
-    (insert "# 今日趣闻\n")
-    (insert "# 今日杂记\n")
-    )
-  (org-end-of-line)
-  )
-(add-hook 'org-mode-hook
-          (lambda () (progn
-                       (setq truncate-lines t) ;;truncate line in org-mode
-                       ;;key combination with certain mode
-                       ;;(local-set-key [(meta p)(i)] 'my-insert-time)
-                       (local-set-key [(meta p)(d)] 'my-insert-diary-entry)
-                       )
-            ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun insert-c++-class-header ()
   "Inserts a C++ class header which conforms to Oacis standards."

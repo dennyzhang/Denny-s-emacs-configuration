@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-21 10:06:51>
+;; Updated: Time-stamp: <2012-03-23 00:43:03>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -28,7 +28,12 @@
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-(add-hook 'org-mode-hook 'turn-on-font-lock) ;; activate font-lock-mode
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    'turn-on-font-lock
+	    ;;(setq word-wrap 1)
+	    (setq truncate-lines t)
+            ))
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)
         ("DEFERRED" . shadow)
@@ -108,15 +113,15 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
-;;  'org-babel-load-languages
-;;  '((emacs-lisp . t)
-;;    (perl . t)
-;;    (python . t)
-;;    (sh . t)
-;;    (ditaa . t)
-;;    (ledger . t)
-;;    (ruby . t)
-;;    ))
+;; 'org-babel-load-languages
+;; '((emacs-lisp . t)
+;; (perl . t)
+;; (python . t)
+;; (sh . t)
+;; (ditaa . t)
+;; (ledger . t)
+;; (ruby . t)
+;; ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq org-agenda-include-diary t) ;集成日历
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -277,7 +282,5 @@
  '(org-level-3 ((t (:inherit outline-3 :foreground "SeaGreen3"))))
  '(org-todo ((t (:weight bold))))
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
-;; ;; --8<-------------------------- §separator§ ------------------------>8--
-(add-hook 'org-mode-hook 'visual-line-mode)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: org-setting.el ends here

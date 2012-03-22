@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-19 10:39:11>
+;; Updated: Time-stamp: <2012-03-23 00:27:59>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -147,8 +147,10 @@
         (if (eq ch 32)
             (setq whitespace-count (+ 1 whitespace-count))
           )))
-    (unless (eq 0 whitespace-count)
-      (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count)))))
+    (if (not (eq 0 whitespace-count))
+        (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
+      (loccur (format "^[^ ]" whitespace-count)))
+    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -189,8 +191,8 @@
 (setq abbrev-file-name (concat DENNY_CONF "emacs_data/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
 (quietly-read-abbrev-file) ;; reads the abbreviations file on startup
-(setq abbrev-mode 1) ;; always enable abbrev
-;;(setq default-abbrev-mode 1)
+;;(setq abbrev-mode 1) ;; always enable abbrev
+(setq default-abbrev-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/color-moccur/color-moccur.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-21 15:00:00>
+;; Updated: Time-stamp: <2012-03-21 23:21:22>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -128,8 +128,9 @@
 (setq gnus-sorted-header-list '("^From:" "^Subject:" "^Summary:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^To:" "^Cc:" "^Date:" "^User-Agent:" "^X-Mailer:" "^X-Newsreader:"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
+;; --8<-------------------------- §separator§ ------------------------>8--
 ;; on the fly spell checking
-(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
+;;(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; How to save articles
 (setq gnus-default-article-saver 'gnus-summary-save-in-file)
@@ -149,10 +150,11 @@
 (setq gnus-delay-default-delay "1d")
 ;;when start gnus, open the specific group, before fetching news/mails
 ;;(gnus-fetch-group "nndraft:delayed")
+;; --8<-------------------------- §separator§ ------------------------>8--
 ;; 显示设置
 (setq mm-text-html-renderer 'w3m) ;用W3M显示HTML格式的邮件
 ;; Do not use the html part of a message, use the text part if possible!
-(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+;; (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 (setq mm-inline-large-images t) ;显示内置图片
 (auto-image-file-mode t) ;自动加载图片
 (setq mm-inline-text-html-with-images t)
@@ -160,7 +162,7 @@
 ;; (setq mm-w3m-safe-url-regexp
 ;; (concat "\\(\\`cid:\\|"
 ;; "\\`http://www\\.shopex\\.com\\|"))
-;;(add-to-list 'mm-attachment-override-types "image/*") ;附件显示图片
+(add-to-list 'mm-attachment-override-types "image/*") ;附件显示图片
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; hook bbdb to gnus
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
@@ -199,22 +201,19 @@
         ("mail.ci.fail" "Subject:.*Fail.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
-        ("mail.shopex" "From:.*shopex.*")
+        ;;("mail.shopex" "From:.*shopex.*")
         ("mail.misc" "")))
 ;; category mails by bbdb group
 (category-gnus-mail-by-bbdb-alias)
+;; --8<-------------------------- §separator§ ------------------------>8--
 ;; category imap mails
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (gnus-compile) ;编译一些选项, 加快速度
 (setq gnus-default-charset 'utf-8)
 (setq gnus-article-charset 'utf-8)
-(add-to-list 'gnus-group-charset-alist
-             '("\\(^\\|:\\)cn\\>\\|\\<chinese\\>" utf-8))
+(add-to-list 'gnus-group-charset-alist '("\\(^\\|:\\)cn\\>\\|\\<chinese\\>" utf-8))
 (setq gnus-summary-show-article-charset-alist
-      '((1 . utf-8)
-        (2 . big5)
-        (3 . gbk)
-        (4 . utf-7)))
+      '((1 . utf-8) (2 . big5) (3 . gbk) (4 . utf-7)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
 (setq gnus-message-archive-group
@@ -351,10 +350,8 @@
     ))
 (add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(define-key gnus-summary-mode-map "d" '(lambda()
-                                         (interactive)
-                                         (gnus-summary-delete-article 1)
-                                         (forward-line 1)))
+(define-key gnus-summary-mode-map "d" '(lambda() (interactive)
+                                         (gnus-summary-delete-article 1) (forward-line 1)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; score down any mails which I don't like
 (setq gnus-use-adaptive-scoring t)

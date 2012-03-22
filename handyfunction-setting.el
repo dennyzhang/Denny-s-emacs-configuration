@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 20:26:32>
+;; Updated: Time-stamp: <2012-03-22 10:57:18>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -232,6 +232,7 @@ there's a region, all lines that region covers will be duplicated."
 ;;M-p i: show interesting information for current file or directory
 ;;C-u M-p i: show short file name of current buffer
 (define-key global-map (kbd "M-p i") 'show-magic-info)
+(define-key comint-mode-map (kbd "M-p") 'show-magic-info)
 (defun show-magic-info(show-short-info-p)
   "show interesting information for current file or directory
  - If current position is dired, show lines counts for misc programming lanuages.
@@ -249,6 +250,7 @@ there's a region, all lines that region covers will be duplicated."
      ((string-match "Dired" mode-name)
       (setq output_str (count-code-lines-in-directory default-directory)))
      ((string-equal mode-name "Article") (setq output_str (w3m-print-this-url)))
+     (t (if (null output_str) (setq output_str (buffer-name))))
      )
     (when output_str
       ;; display the result
