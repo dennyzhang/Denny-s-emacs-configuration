@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 22:42:22>
+;; Updated: Time-stamp: <2012-03-25 15:29:28>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/auctex-11.85-e22.3-msw/site-lisp/tex-site.el"))
@@ -143,13 +143,5 @@
 ;; (require 'tea-time)
 ;; ;;(setq tea-time-sound "path-to-sound-file")
 ;; (define-key global-map "\C-ct" 'tea-time)
-;; --8<-------------------------- §separator§ ------------------------>8--
-(require 'desktop)
-(add-to-list 'desktop-globals-to-save 'file-name-history)
-(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'erc-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(setq desktop-files-not-to-save "\\(^/[^/:]*:\\|bbdb\\)")
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: beta-setting.el

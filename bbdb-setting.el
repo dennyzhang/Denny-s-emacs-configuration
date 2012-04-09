@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:01>
+;; Updated: Time-stamp: <2012-03-25 15:28:39>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -176,5 +176,8 @@ We consider {name} string as a variable, which will be replaced by the actual na
 (setq bbdb-check-zip-codes-p nil) ;; don't check legal zip code, when entering an address
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
+(setq bbdb-user-mail-names
+      (regexp-opt '("markfilebat@126.com" "filebat.mark@gmail.com" "zhangwei@shopex.cn")))
+(setq bbdb-complete-name-allow-cycling t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: bbdb-setting.el ends here

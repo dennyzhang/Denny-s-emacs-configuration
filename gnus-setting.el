@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-21 23:21:22>
+;; Updated: Time-stamp: <2012-04-05 22:03:18>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -59,6 +59,9 @@
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; (setq mail-host-address "126.com")
 (setq compose-mail-user-agent-warnings nil)
+(setq mail-user-agent 'gnus-user-agent)
+;; All outgoing messages will be put in this group
+(setq gnus-outgoing-message-group "nnml:mail.sent.archive")
 ;; Use different mail accounts, when sending mails
 (setq gnus-parameters
       ;;Use gmail id for all INBOX mails
@@ -118,14 +121,16 @@
       (mapconcat 'regexp-quote
                  '("From:" "Newsgroups:" "Subject:" "Date:"
                    "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:" "Reply-To:"
-                   "Summary:" "Keywords:" "BCc:" "GCc:" "FCc:" "Posted-To:" "Mail-Copies-To:"
+                   "Summary:" "Keywords:" "BCc:" "FCc:" "Posted-To:" "Mail-Copies-To:"
                    "Mail-Followup-To:" "Apparently-To:" "Gnus-Warning:" "Resent-From:"
-                   "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:"
+                   "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:" "X-Priority" "Disposition-Notification-To"
                    "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing" "X-Gnus-Delayed:"
                    "X-Attachments" "X-Diagnostic")
                  "\\|"))
+;;(setq message-ignored-mail-headers "") ;; TODO
+;; (setq gnus-visible-headers ".*")
 ;; Specify the order of the header lines
-(setq gnus-sorted-header-list '("^From:" "^Subject:" "^Summary:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^To:" "^Cc:" "^Date:" "^User-Agent:" "^X-Mailer:" "^X-Newsreader:"))
+(setq gnus-sorted-header-list '("^From:" "^Subject:" "^Summary:" "^To:" "^Cc:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^Date:" "^User-Agent:" "^X-Mailer:" "^X-Newsreader:" "^Gcc:"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -191,20 +196,22 @@
       (setq mail-alias-group mail-alias)
       (add-to-list 'mail-alias-group net-list t)
       ;; append the rule to nnmail-split-methods
-      (setq nnmail-split-methods (cons mail-alias-group nnmail-split-methods))
+      (add-to-list 'nnmail-split-methods mail-alias-group t)
       ))
   )
 ;;　category pop3 mails
 (setq nnmail-split-methods
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*")
+        ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*") ;; put mail receipt in mail.receipt
         ("mail.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
         ("mail.ci.fail" "Subject:.*Fail.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
         ;;("mail.shopex" "From:.*shopex.*")
-        ("mail.misc" "")))
+        ))
 ;; category mails by bbdb group
 (category-gnus-mail-by-bbdb-alias)
+(add-to-list 'nnmail-split-methods '("mail.misc" "") 't)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; category imap mails
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -349,6 +356,28 @@
         (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop"))
     ))
 (add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
+(defun auto-add-message-important-header ()
+  "Auto set current mail as important, for some regexp rules"
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (when (search-forward-regexp "To: .* \<sophiazhang8709@126.com\>" nil t)
+      (message-important-header))
+    (goto-char (point-min))
+    (when (search-forward-regexp "To: .* \<fangfangkingdom@163.com\>" nil t)
+      (message-important-header))
+    (goto-char (point-min))
+    (when (search-forward-regexp "To: .* \<22306476@qq.com\>" nil t)
+      (message-important-header))
+    (goto-char (point-min))
+    (when (search-forward-regexp "To: .* \<87289855@qq.com\>" nil t)
+      (message-important-header))
+    (goto-char (point-min))
+    (when (search-forward-regexp "To: .* \<527988044@qq.com\>" nil t)
+      (message-important-header))
+    ;;(yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop")
+    ))
+(add-hook 'message-send-mail-hook 'auto-add-message-important-header)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (define-key gnus-summary-mode-map "d" '(lambda() (interactive)
                                          (gnus-summary-delete-article 1) (forward-line 1)))
@@ -391,5 +420,33 @@
 (gnus-registry-initialize)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; (setq message-kill-buffer-on-exit t)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(define-key message-mode-map (kbd "M-p i") 'message-important-header)
+(defun message-important-header(&optional receipt-email)
+  "Request a disposition notification (return receipt) to this message(Disposition-Notification-To).
+And insert header to mark message as unimportant(X-Priority).
+"
+  (interactive)
+  (let (Disposition-Notification-To-Header
+        (Importance-Header "X-Priority: 1\n"))
+    (if (null receipt-email)
+        (setq Disposition-Notification-To-Header "Disposition-Notification-To: markfilebat@126.com\n")
+      (setq Disposition-Notification-To-Header (concat "Disposition-Notification-To: " receipt-email "\n")))
+    (save-excursion
+      (save-restriction
+        (message-narrow-to-headers)
+        (message-remove-header "Disposition-Notification-To")
+        (message-remove-header "X-Priority"))
+      (message-goto-eoh)
+      (insert Disposition-Notification-To-Header)
+      (insert Importance-Header)
+      )))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq nnmail-treat-duplicates 'delete) ;; ask nnmail to delete duplicated mails.
+(setq gnus-summary-display-while-building 50)
+(setq gnus-gcc-mark-as-read t) ;;automatically mark Gcc articles as read
+(setq gnus-gcc-externalize-attachments 'all) ;; 自己附件不做 Archive
+(setq nnml-use-compressed-files t) ;;using compressed message files
+(setq nnmail-crosspost nil) ;; first matched split method appply
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: gnus-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:02:57>
+;; Updated: Time-stamp: <2012-04-05 22:34:45>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (eval-when-compile (require 'cl))
@@ -51,12 +51,26 @@
 (load-file (concat EMACS_VENDOR "/dupwords/dupwords.el"))
 (require 'dupwords)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/hfyview/hfyview.el")) ;; TODO
-;; (global-set-key [(meta p)(p)] 'hfyview-buffer)
-;; (setq hfy-meta-tags
-;;       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
+(load-file (concat EMACS_VENDOR "/hfyview/hfyview.el"))
+(global-set-key [(meta p)(p)] 'hfyview-buffer)
+(setq hfy-meta-tags
+      (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/sl/sl.el"))
 (require 'sl)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'desktop)
+(add-to-list 'desktop-globals-to-save 'file-name-history)
+(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
+(setq desktop-buffers-not-to-save
+      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+	      "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+	      "\\)$"))
+(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+(add-to-list 'desktop-modes-not-to-save 'erc-mode)
+(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+(desktop-save-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: otherpackage-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-17 22:42:13>
+;; Updated: Time-stamp: <2012-03-26 00:05:44>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)

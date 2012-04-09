@@ -3,11 +3,10 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-22 10:57:18>
+;; Updated: Time-stamp: <2012-04-07 01:46:12>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
-
 (global-set-key [(meta down)] 'move-line-down)
 (defun move-line (&optional n)
   "Move current line N (1) lines up/down leaving point in place."
@@ -57,33 +56,45 @@ With argument, do this that many times."
       (delete-region beg end)
       )))
 ;;alt+p d: kill current word
-(global-set-key [(meta p)(d)] 'mydelete-current-word)
-(defun mydelete-current-word ()
+(global-set-key [(meta p)(d)] 'delete-current-word)
+(defun delete-current-word ()
   (interactive)
   (save-excursion
     (let ((end (progn (unless (looking-back "\\>" 1) (forward-word 1)) (point)))
           (beg (progn (forward-word -1) (point))))
       (kill-region beg end)
       )))
+;;alt+p l: copy current line
+(global-set-key [(meta p)(l)] 'copy-line)
+(defun copy-line ()
+  "Save current line into Kill-Ring without mark the line"
+  (interactive)
+  (let ((beg (line-beginning-position))
+        (end (line-end-position)))
+    (copy-region-as-kill beg end)
+    (message "[copy]%s" (substring-no-properties (current-kill 0))))
+  )
 ;;alt+p w: copy current word
-(global-set-key [(meta p)(w)] 'mycopy-current-word)
-(defun mycopy-current-word ()
+(global-set-key [(meta p)(w)] 'copy-current-word)
+(defun copy-current-word ()
+  "Copy words at point"
   (interactive)
   (save-excursion
     (let ((end (progn (unless (looking-back "\\>" 1) (forward-word 1)) (point)))
           (beg (progn (forward-word -1) (point))))
       (copy-region-as-kill beg end)
       (message "[copy]%s" (substring-no-properties (current-kill 0))))))
-;;alt+p l: copy current line
-(global-set-key [(meta p)(l)] 'push-line)
-(defun push-line ()
-  "Select current line, push onto kill ring."
-  (interactive)
+
+;;alt+p w: copy current paragraph
+(global-set-key [(meta p)(w)] 'copy-paragraph)
+(defun copy-paragraph (&optional arg)
+  "Copy paragraphes at point"
+  (interactive "P")
   (save-excursion
-    (copy-region-as-kill (re-search-backward "^") (re-search-forward "$"))
-    (message "[copy]%s" (substring-no-properties (current-kill 0)))
-    )
-  )
+    (let ((beg (progn (backward-paragraph 1) (point)))
+          (end (progn (forward-paragraph arg) (point))))
+      (copy-region-as-kill beg end)
+      (message "[copy] Region"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;alt+p y: duplicate current region
 (global-set-key [(meta p)(y)] 'duplicate-current-line-or-region)
@@ -266,8 +277,8 @@ there's a region, all lines that region covers will be duplicated."
   (let (command-output (output-str "Count code lines."))
     ;; set lanuages to be checked, if not given
     (if (null lanuage-postfix-list)
-        (setq lanuage-postfix-list '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py"
-                                     "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.go"
+        (setq lanuage-postfix-list '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
+                                     "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp"
                                      "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)
@@ -509,8 +520,7 @@ BEG and END (region to sort)."
   (interactive)
   (cond
    ((string-equal system-type "gnu/linux")
-    ;;TODO, GTK doesn't support
-    (shell-command-to-string (concat "nautilus --browser " default-directory)))
+    (shell-command-to-string (concat "nautilus " default-directory)))
    ((string-equal system-type "windows-nt")
     (w32-shell-execute "open" "explorer" (concat "/e,/select,"
                                                  (convert-standard-filename buffer-file-name))))
@@ -716,5 +726,33 @@ comment box."
   (interactive)
   (message "hex (%s) to decimal (%s)." (current-word) (string-to-number (current-word) 16))
   )
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun ascii-table-show ()
+  "Print the ascii table"
+  (interactive)
+  (with-current-buffer (switch-to-buffer "*ASCII table*")
+    (setq buffer-read-only nil)
+    (erase-buffer)
+    (let ((i   0)
+          (tmp 0))
+      (insert (propertize
+               "                                [ASCII table]\n\n"
+               'face font-lock-comment-face))
+      (while (< i 32)
+        (dolist (tmp (list i (+ 32 i) (+ 64 i) (+ 96 i)))
+          (insert (concat
+                   (propertize (format "%3d " tmp)
+                               'face font-lock-function-name-face)
+                   (propertize (format "[%2x]" tmp)
+                               'face font-lock-constant-face)
+                   "    "
+                   (propertize (format "%3s" (single-key-description tmp))
+                               'face font-lock-string-face)
+                   (unless (= tmp (+ 96 i))
+                     (propertize " | " 'face font-lock-variable-name-face)))))
+        (newline)
+        (setq i (+ i 1)))
+      (beginning-of-buffer))
+    (toggle-read-only 1)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: handyfunction-setting.el ends here

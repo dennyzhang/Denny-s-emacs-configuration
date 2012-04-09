@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:01>
+;; Updated: Time-stamp: <2012-04-10 00:18:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;emms
@@ -140,6 +140,7 @@
 ;; score songs
 (require 'emms-score)
 (emms-score 1)
+;; --8<-------------------------- §separator§ ------------------------>8--
 (define-key emms-playlist-mode-map (kbd "S u") 'emms-score-up-file-on-line)
 (define-key emms-playlist-mode-map (kbd "S d") 'emms-score-down-file-on-line)
 (define-key emms-playlist-mode-map (kbd "S o") 'emms-score-show-file-on-line)
@@ -149,6 +150,7 @@
 (define-key emms-playlist-mode-map (kbd "S s") 'emms-score-show-playing)
 (define-key emms-playlist-mode-map (kbd "S U") 'emms-score-up-playing)
 (define-key emms-playlist-mode-map (kbd "S D") 'emms-score-down-playing)
+(define-key emms-playlist-mode-map (kbd ".") 'emms-playlist-mode-center-current)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'emms-i18n)
 (require 'emms-history)
@@ -186,5 +188,7 @@
               (t (emms-track-simple-description track))))))
 
 (setq emms-track-description-function 'my-emms-info-track-description)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq emms-score-enabled-p t) ;; enable emms scoring
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: multimediea-setting.el

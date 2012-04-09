@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:02>
+;; Updated: Time-stamp: <2012-04-06 10:19:50>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -155,6 +155,7 @@
         ;; search engine
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
         ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
+        ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
         ("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])
@@ -165,6 +166,7 @@
         ("book-yinian" . "www.inien.com/w/#/Index")
         ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
         ("book-iask" . [simple-query "ishare.iask.sina.com.cn" "ishare.iask.sina.com.cn/search.php?key=" ""])
+        ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
         ;; --8<------------------ ebook ------------------------>8--
 
         ;; --8<------------------ paper ------------------------>8--

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-02-19 17:57:42>
+;; Updated: Time-stamp: <2012-03-25 15:34:17>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq warning-suppress-types nil)
@@ -12,6 +12,7 @@
 (setq calendar-mark-diary-entries-flag t) ;; mark dates with diary entries
 (setq calendar-view-holidays-initially-flag nil)
 (setq calendar-date-style (quote iso))
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today) ;; mark today when opening calendar
 (setq calendar-chinese-all-holidays-flag t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (display-time-mode 1)

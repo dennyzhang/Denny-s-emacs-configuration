@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-22 00:09:15>
+;; Updated: Time-stamp: <2012-04-10 00:21:32>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -17,6 +17,7 @@
       (set-face-attribute 'mode-line nil :height normal-height))))
 (global-set-key [M-f12] 'toggle-mode-line)
 ;; --8<-------------------------- §separator§ ------------------------>8--
+;; when cursor and mouse is close, automatically move mouse away
 (mouse-avoidance-mode 'animate)
 (mouse-wheel-mode 1);; enable mouse wheel support
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -57,6 +58,7 @@
                               ("\\<\\(todo\\)" 0 font-lock-warning-face t)
                               ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))
     (font-lock-mode 1)))
+
 (add-hook 'find-file-hook 'add-custom-global-font-locking)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

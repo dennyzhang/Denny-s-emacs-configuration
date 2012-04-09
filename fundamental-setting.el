@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-21 00:23:52>
+;; Updated: Time-stamp: <2012-03-25 15:35:56>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -396,5 +396,8 @@ starting on the same line at which another match ended is ignored."
   "goto-last-change" "Set point to the position of the last change." t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq history-length 100)
+(setq require-final-newline t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
+;; also recognize the style of Chinese sentence ending
+(setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 ;; File: fundamental-setting.el ends here
