@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-05 22:03:18>
+;; Updated: Time-stamp: <2012-04-10 00:45:46>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -209,6 +209,7 @@
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
         ;;("mail.shopex" "From:.*shopex.*")
         ))
+
 ;; category mails by bbdb group
 (category-gnus-mail-by-bbdb-alias)
 (add-to-list 'nnmail-split-methods '("mail.misc" "") 't)
@@ -379,8 +380,9 @@
     ))
 (add-hook 'message-send-mail-hook 'auto-add-message-important-header)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(define-key gnus-summary-mode-map "d" '(lambda() (interactive)
-                                         (gnus-summary-delete-article 1) (forward-line 1)))
+(define-key gnus-summary-mode-map "d"
+  '(lambda() (interactive)
+     (gnus-summary-delete-article 1) (forward-line 1)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; score down any mails which I don't like
 (setq gnus-use-adaptive-scoring t)
