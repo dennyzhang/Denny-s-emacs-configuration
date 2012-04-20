@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:02>
+;; Updated: Time-stamp: <2012-04-11 18:30:57>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -212,9 +212,7 @@
         (let ((command (read-from-minibuffer "Compile command: " command)))
           (compile command)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;; erlang
-;; setup erlang mode
 ;; TODO, enhance as a more dedicated way
 ;; add the location of the elisp files to the load-path
 (add-to-list 'load-path (concat EMACS_VENDOR "/erlang-emacs/"))

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-23 00:27:59>
+;; Updated: Time-stamp: <2012-04-11 10:51:10>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -115,9 +115,17 @@
 (setq whitespace-display-mappings '((space-mark ?\ [?.]) (newline-mark ?\n [?$ ?\n]) (tab-mark ?\t [?\\ ?\t])))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'tramp)
-(require 'tramp)
 (setq tramp-default-method "sshx")
 (remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
+(setq tramp-remote-path
+      '(tramp-default-remote-path "/usr/sbin" "/usr/local/bin"
+                                  "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
+                                  "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+(setq tramp-default-method-alist
+      '(("\\`localhost\\'" "\\`root\\'" "su")
+        (nil "%" "smb")
+        ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
+        ("\\`ftp\\." "" "ftp")))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
 (setq boxquote-top-and-tail "-----------")

@@ -3,27 +3,36 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-06 10:19:50>
+;; Updated: Time-stamp: <2012-04-11 07:51:19>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
 (load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
+;; Insinuate with BBDB
+(when (featurep 'bbdb)
+  (provide 'w3)
+  (bbdb-initialize 'w3))
+
 (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
 (eval-after-load 'w3m
   '(progn
-     ;; Never load the crashed sessions automatically
-     (setq w3m-session-load-crashed-sessions nil)
-     (setq w3m-default-display-inline-images t)
-     ;;(setq browse-url-browser-function 'w3m-browse-url)
-     (setq w3m-use-cookies t) ;; enable emacs-w3m to use cookies
-     (setq w3m-home-page "http://www.google.com/ncr")
-     (setq w3m-command-arguments '("-cookie" "-F"))
-     (setq w3m-use-title-buffer-name t)
-     (setq w3m-tab-width 4)
-     (setq w3m-fill-column 100)
-     (setq w3m-view-this-url-new-session-in-background t)
      ))
+(custom-set-variables
+ '(w3m-form-input-map-mode-hook (quote (flyspell-mode)))
+ '(w3m-tab-width 4)
+ '(w3m-fill-column 100)
+ ;; enable emacs-w3m to use cookies
+ '(w3m-use-cookies t)
+ ;; Never load the crashed sessions automatically
+ '(w3m-session-load-crashed-sessions nil)
+ '(w3m-default-display-inline-images t)
+ ;;(browse-url-browser-function 'w3m-browse-url)
+ '(w3m-home-page "http://www.google.com/ncr")
+ '(w3m-command-arguments '("-cookie" "-F"))
+ '(w3m-use-title-buffer-name t)
+ '(w3m-view-this-url-new-session-in-background t)
+ '(w3m-key-binding (quote info)))
 
 (defun ffap-w3m-other-window (url &optional new-session)
   "Browse url in w3m.
@@ -80,8 +89,8 @@
             (goto-char point-orig)
             (reindent-then-newline-and-indent)
             ;; wash content
-            (setq web_title_str (replace-regexp-in-string "^[ 	\n]*" "" web_title_str))
-            (setq web_title_str (replace-regexp-in-string "[ 	\n]*$" "" web_title_str))
+            (setq web_title_str (replace-regexp-in-string "^[ \n]*" "" web_title_str))
+            (setq web_title_str (replace-regexp-in-string "[ \n]*$" "" web_title_str))
             (insert web_title_str)))
         ))
     ))
@@ -243,7 +252,7 @@
   "If keywords are given, no need to ask users' input"
   (if (and keywords (not (string-equal keywords "")))
       (concat (aref expr 2) (webjump-url-encode keywords) (aref expr 3))
-      (webjump-builtin expr name)))
+    (webjump-builtin expr name)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq browse-url-generic-program "/usr/bin/firefox")
 ;; --8<-------------------------- §separator§ ------------------------>8--

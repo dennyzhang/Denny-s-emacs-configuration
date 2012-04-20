@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-23 00:43:03>
+;; Updated: Time-stamp: <2012-04-20 00:25:44>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -83,7 +83,7 @@
          ("theagenda.ps"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; set css for html export in org-mode
-(setq user-full-name "张巍")
+(setq user-full-name "Denny Zhang")
 (setq user-mail-address "markfilebat@126.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- §separator§ ------------------------>8--

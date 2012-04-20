@@ -3,10 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-11-27 14:41:34>
+;; Updated: Time-stamp: <2012-04-11 08:07:08>
 ;;
-(setq user-full-name "张巍")
-(setq user-mail-address "markfilebat@126.com")
 ;; when hover, show author info automatically
 (setq org-export-html-home/up-format
       (concat

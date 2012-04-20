@@ -3,9 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:02:56>
+;; Updated: Time-stamp: <2012-04-17 18:33:57>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
+;; TODO
 (create-fontset-from-fontset-spec "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
 (setq default-frame-alist
       (append
@@ -15,7 +16,7 @@
          (cursor-color . "Orchid")
          )
        default-frame-alist))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun fullscreen-toggle ()
   "Toggle fullscreen status."
   (interactive)

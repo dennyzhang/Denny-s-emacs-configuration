@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-10 00:18:02>
+;; Updated: Time-stamp: <2012-04-20 00:28:10>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;emms
@@ -63,8 +63,9 @@
 (require 'emms-source-file)
 (require 'emms-source-playlist)
 (require 'emms-player-simple)
+(setq emms-directory (concat DENNY_CONF "../emms/"))
 ;; set directory to look for media files.
-(setq emms-source-file-default-directory "~/backup/multimediea/music")
+(setq emms-source-file-default-directory "~/backup/multimediea/music/")
 ;; use faster finding facility if you have GNU find
 (setq emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -165,6 +166,95 @@
   (emms-browser-lookup-wikipedia 'info-artist)
   (emms-browser-lookup-wikipedia 'info-album)
   (emms-browser-lookup-pitchfork 'info-artist))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq emms-last-played-format-alist
+      '(((emms-last-played-seconds-today) . "[%m-%d %H:%M %a]")
+        (604800 . "%a %H:%M") ; this week
+        ((emms-last-played-seconds-month) . "%d")
+        ((emms-last-played-seconds-year) . "%m/%d")
+        (t . "%Y/%m/%d")))
+
+(eval-after-load "emms"
+  '(progn
+     (setq xwl-emms-playlist-last-track nil)
+     (setq xwl-emms-playlist-last-indent "\\")
+
+     (defun xwl-emms-track-description-function (track)
+       "Return a description of the current track."
+       (let* ((name (emms-track-name track))
+              (type (emms-track-type track))
+              (short-name (file-name-nondirectory name))
+              (play-count (or (emms-track-get track 'play-count) 0))
+              (last-played (or (emms-track-get track 'last-played) '(0 0 0)))
+              (empty "..."))
+         (prog1
+             (case (emms-track-type track)
+               ((file url)
+                (let* ((artist (or (emms-track-get track 'info-artist) empty))
+                       (year (emms-track-get track 'info-year))
+                       (playing-time (or (emms-track-get track 'info-playing-time) 0))
+                       (min (/ playing-time 60))
+                       (sec (% playing-time 60))
+                       (album (or (emms-track-get track 'info-album) empty))
+                       (tracknumber (emms-track-get track 'info-tracknumber))
+                       (short-name (file-name-sans-extension
+                                    (file-name-nondirectory name)))
+                       (title (or (emms-track-get track 'info-title) short-name))
+
+                       ;; last track
+                       (ltrack xwl-emms-playlist-last-track)
+                       (lartist (or (and ltrack (emms-track-get ltrack 'info-artist))
+                                    empty))
+                       (lalbum (or (and ltrack (emms-track-get ltrack 'info-album))
+                                   empty))
+
+                       (same-album-p (and (not (string= lalbum empty))
+                                          (string= album lalbum))))
+                  (format "%15s %3d %-16s%-30s%-20s%-10s%s"
+                          (emms-last-played-format-date last-played)
+                          play-count
+                          artist
+
+                          ;; Combine indention, tracknumber, title.
+                          (concat
+                           (if same-album-p ; indention by album
+                               (setq xwl-emms-playlist-last-indent
+                                     (concat " " xwl-emms-playlist-last-indent))
+                             (setq xwl-emms-playlist-last-indent "\\")
+                             "")
+                           (if (and tracknumber ; tracknumber
+                                    (not (zerop (string-to-number tracknumber))))
+                               (format "%02d." (string-to-number tracknumber))
+                             "")
+                           title ; title
+                           )
+
+                          ;; album
+                          (cond ((string= album empty) empty)
+                                ;; (same-album-p " ")
+                                (t (concat "《" album "》")))
+
+                          (or year empty)
+                          (if (or (> min 0) (> sec 0))
+                              (format "%02d:%02d" min sec)
+                            empty))))
+               ((url)
+                (concat (symbol-name type) ":" name))
+               (t
+                (format "%-3d%s"
+                        play-count
+                        (concat (symbol-name type) ":" name))))
+           (setq xwl-emms-playlist-last-track track))))
+
+     (setq emms-track-description-function
+           'xwl-emms-track-description-function)
+     ))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq emms-score-enabled-p t) ;; enable emms scoring
+(setq emms-source-playlist-default-format 'native)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'emms-lyrics)
+(setq emms-lyrics-dir (concat emms-source-file-default-directory "/lyrics"))
 (defun emms-google-for-lyrics ()
   (interactive)
   (browse-url (concat "http://www.google.com/search?q = "
@@ -174,21 +264,19 @@
                                                                 (emms-track-description (emms-playlist-current-selected-track)))
                                                         )))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(defun my-emms-info-track-description (track)
-  "Return a description of the current track."
-  (if (and (emms-track-get track 'info-artist)
-           (emms-track-get track 'info-title))
-      (let ((pmin (emms-track-get track 'info-playing-time-min))
-            (psec (emms-track-get track 'info-playing-time-sec))
-            (ptot (emms-track-get track 'info-playing-time))
-            (art (emms-track-get track 'info-artist))
-            (tit (emms-track-get track 'info-title)))
-        (cond ((and pmin psec) (format "%s - %s [%02d:%02d]" art tit pmin psec))
-              (ptot (format "%s - %s [%02d:%02d]" art tit (/ ptot 60) (% ptot 60)))
-              (t (emms-track-simple-description track))))))
-
-(setq emms-track-description-function 'my-emms-info-track-description)
-;; --8<-------------------------- §separator§ ------------------------>8--
-(setq emms-score-enabled-p t) ;; enable emms scoring
+(require 'emms-mark)
+;; auto enable emms-mark
+(add-hook 'emms-playlist-mode-hook 'emms-mark-mode)
+;; sort emms playlist by decrease play count
+(setq emms-playlist-sort-function '(lambda ()
+                                     (interactive)
+                                     (let ((current-prefix-arg t))
+                                       (emms-playlist-sort-by-play-count))))
+(defadvice emms (after call-interactively activate)
+  (emms-sort))
+;; set default-directory correctly, for checking media files easily in emms playlist buffer
+(add-hook 'emms-playlist-mode-hook
+          '(lambda()
+             (setq default-directory emms-source-file-default-directory)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: multimediea-setting.el

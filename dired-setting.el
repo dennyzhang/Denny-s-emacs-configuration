@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:02:59>
+;; Updated: Time-stamp: <2012-04-11 07:55:56>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/dired+/dired+.el"))
@@ -101,5 +101,10 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; adds a command('T') to dired-mode for creating and unpacking tar files.
 (load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
+(custom-set-variables
+ ;; no confirmation for recursive operations in dired
+ '(dired-recursive-copies (quote always))
+ '(dired-recursive-deletes (quote always))
+ )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: dired-setting.el ends here

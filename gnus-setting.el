@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-10 00:45:46>
+;; Updated: Time-stamp: <2012-04-20 00:01:33>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -63,23 +63,42 @@
 ;; All outgoing messages will be put in this group
 (setq gnus-outgoing-message-group "nnml:mail.sent.archive")
 ;; Use different mail accounts, when sending mails
-(setq gnus-parameters
-      ;;Use gmail id for all INBOX mails
-      '((".*INBOX"
-         (posting-style
-          (address "fileba.mark@gmail.com")
-          (name "filebat.mark")
-          ;;(body "")
-          (eval (setq message-sendmail-extra-arguments '("-a" "gmail")))
-          (user-mail-address "filebat.mark@gmail.com")))
-        ;;use 126 id for all other mails
-        (".*"
-         (posting-style
-          (address "markfilebat@126.com")
-          (name "markfilebat126")
-          ;;(body "")
-          (eval (setq message-sendmail-extra-arguments '("-a" "126")))
-          (user-mail-address "markfilebat@126.com")))))
+(add-hook 'message-send-hook 'set-mail-sender)
+(defun set-mail-sender ()
+  (let (from-mail)
+    (save-excursion
+      (goto-char (point-min))
+      (when (re-search-forward "From: [^<>]+ <\\([^>]+\\)>" nil t)
+        (setq from-mail (buffer-substring-no-properties (match-beginning 1) (match-end 1))))
+      (cond
+       ((string= from-mail "markfilebat@126.com")
+        (setq message-sendmail-extra-arguments '("-a" "126")
+              user-mail-address from-mail))
+       ((string= from-mail "zhangwei@shopex.cn")
+        (setq message-sendmail-extra-arguments '("-a" "shopex")
+              user-mail-address from-mail))
+       (t
+        (setq message-sendmail-extra-arguments '("-a" "126")
+              user-mail-address "markfilebat@126.com")))
+      )))
+;; (setq gnus-parameters
+;; ;;Use gmail id for all INBOX mails
+;; '((".*INBOX"
+;; (posting-style
+;; (address "fileba.mark@gmail.com")
+;; (name "filebat.mark")
+;; ;;(body "")
+;; (eval (setq message-sendmail-extra-arguments '("-a" "gmail")))
+;; (user-mail-address "filebat.mark@gmail.com")))
+;; ;;use 126 id for all other mails
+;; (".*"
+;; (posting-style
+;; (address "markfilebat@126.com")
+;; (name "markfilebat126")
+;; ;;(body "")
+;; (eval (setq message-sendmail-extra-arguments '("-a" "126")))
+;; (user-mail-address "markfilebat@126.com")))))
+
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; group configuration
 (setq gnus-group-line-format "%M\%S\%p\%P\ %4N/%4t :%B%(%g%)%O\n")
@@ -203,11 +222,12 @@
 (setq nnmail-split-methods
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*")
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*") ;; put mail receipt in mail.receipt
-        ("mail.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
-        ("mail.ci.fail" "Subject:.*Fail.*")
+        ("shopex.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
+        ("shopex.ci.fail" "Subject:.*Fail.*")
+        ("shopex.pms" "From:.*pms@shopex.cn.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
+        ;;("shopex.misc" "From:.*shopex.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
-        ;;("mail.shopex" "From:.*shopex.*")
         ))
 
 ;; category mails by bbdb group
@@ -271,10 +291,13 @@
       ;; obtain name list
       (setq name-mail-list
             (mapcar (lambda (x)
-                      (list (let ((name (replace-regexp-in-string "<\.*>" "" x)))
-                              (bbdb-string-trim (replace-regexp-in-string "\"" "" name)))
-                            (let ((net x))
-                              (bbdb-string-trim (replace-regexp-in-string ">" "" (replace-regexp-in-string "\.*<" "" net))))))
+                      (if (string-match "[^ \<].+<[^>]+>" x)
+                          (list (let ((name (replace-regexp-in-string "<\.*>" "" x)))
+                                  (bbdb-string-trim (replace-regexp-in-string "\"" "" name)))
+                                (let ((net x))
+                                  (bbdb-string-trim (replace-regexp-in-string ">" "" (replace-regexp-in-string "\.*<" "" net)))))
+                        (error "Please make sure format for the reciepent(TO field) is 'XXX <XX@XX>'")
+                        ))
                     (split-string string-temp ",")))
       ;; Obtain subject by searching: Subject: XXX
       (goto-char (point-min))
@@ -338,7 +361,7 @@
   (interactive)
   (save-excursion
     (let ((working-mail "@shopex.cn")
-          (confirm-msg "Are you sure sending from markfilebat@126.com for shopex emails? Press C-g to stop")
+          (confirm-msg "Are you sure sending from markfilebat@126.com for shopex emails? Press C-g to stop. ")
           )
       (goto-char (point-min))
       (when (search-forward-regexp (regexp-quote working-mail) nil t)
@@ -408,8 +431,8 @@
 (add-hook 'message-sent-hook 'gnus-score-followup-article)
 (add-hook 'message-sent-hook 'gnus-score-followup-thread)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(setq mail-source-delete-incoming 30) ;; Keep a backup of the received mails for 30 days
-(setq mail-source-delete-old-incoming-confirm 't) ;; ask for confirmation before deleting old mails
+(setq mail-source-delete-incoming 90) ;; Keep a backup of the received mails for some time
+(setq mail-source-delete-old-incoming-confirm nil) ;; don't ask for confirmation before deleting old mails
 (setq nnmail-expiry-wait 35) ;; Expireable articles will be deleted after 35 days.
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq message-generate-headers-first t)
@@ -447,8 +470,9 @@ And insert header to mark message as unimportant(X-Priority).
 (setq nnmail-treat-duplicates 'delete) ;; ask nnmail to delete duplicated mails.
 (setq gnus-summary-display-while-building 50)
 (setq gnus-gcc-mark-as-read t) ;;automatically mark Gcc articles as read
-(setq gnus-gcc-externalize-attachments 'all) ;; 自己附件不做 Archive
+(setq gnus-gcc-externalize-attachments 'all)
 (setq nnml-use-compressed-files t) ;;using compressed message files
 (setq nnmail-crosspost nil) ;; first matched split method appply
+(setq bbdb/gnus-update-records-mode 'searching) ;; don't update bbdb records automatically
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: gnus-setting.el ends here

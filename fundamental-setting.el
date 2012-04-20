@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-25 15:35:56>
+;; Updated: Time-stamp: <2012-04-20 10:19:42>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -19,7 +19,6 @@
 (setq-default fill-column 70)
 (transient-mark-mode t)
 (autoload 'thumbs "thumbs" "Preview images in a directory." t)
-(set-default 'case-fold-search t);;Make searches case insensitive
 (set-default 'split-width-threshold 165) ;;Make sure default splitting is vertical splitting
 (set-default 'text-scale-mode-step 1.1);;Set the zoom rate
 (iswitchb-mode 1);;interactive buffer switching
@@ -114,70 +113,32 @@
                                'erlang-mode-hook
                                ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; TODO: enhance, defining a file list
-(defun tmp ()
+(defun my-open-file (filename)
   (interactive)
-  (find-file "~/tmp"))
-(defun filebat ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/filebat.txt")))
-(defun bank ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/bank/filebat.ledger")))
-(defun wealth ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/wealth.org")))
-(defun cloud ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/org_share/cloud.org")))
-(defun skill ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/org_share/skill.org")))
-(defun career ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/career.org")))
-(defun pkm ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/pkm.org")))
-(defun work ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/work.org")))
-(defun often ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/often.org")))
-(defun project ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/project.org")))
-(defun current ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/current.org")))
-(defun wish ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/wish.org")))
-(defun learn ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/learn.org")))
-(defun mydiary ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/diary.org")))
-(defun password ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/password.org.gpg")))
-(defun programming ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/org_share/programming.org")))
-(defun language ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/org_share/language.org")))
-(defun communication ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/communication.org")))
-(defun contact ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/contacts.org")))
-(defun motto ()
-  (interactive)
-  (find-file (concat DENNY_CONF "/org_data/org_share/motto.org")))
+  (find-file filename))
+(defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
+(defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_CONF "/bank/filebat.ledger"))))
+(defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wealth.org"))))
+(defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/cloud.org"))))
+(defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
+(defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
+(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
+(defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
+(defalias 'pkm (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/pkm.org"))))
+(defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work.org"))))
+(defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
+(defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
+(defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
+(defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
+(defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
+(defalias 'diary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/mydiary.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
+(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
+(defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
+(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contact.org"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -400,4 +361,8 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; also recognize the style of Chinese sentence ending
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+;; don't display welcome message when flyspell started
+(setq flyspell-issue-welcome-flag nil)
+(setq gc-cons-threshold 4000000) ;; control emacs garbage collection
+;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: fundamental-setting.el ends here

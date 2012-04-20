@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-07 01:46:12>
+;; Updated: Time-stamp: <2012-04-20 10:08:21>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -240,35 +240,6 @@ there's a region, all lines that region covers will be duplicated."
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;;M-p i: show interesting information for current file or directory
-;;C-u M-p i: show short file name of current buffer
-(define-key global-map (kbd "M-p i") 'show-magic-info)
-(define-key comint-mode-map (kbd "M-p") 'show-magic-info)
-(defun show-magic-info(show-short-info-p)
-  "show interesting information for current file or directory
- - If current position is dired, show lines counts for misc programming lanuages.
- - If current position is a file, show file name and line counts
- - If current position is in *w3m*, show current web title
- - If current positioin is in Article mail mode, show the url under current cursor
- If show-short-info-p is not null, the default behaviour is showing the short filename with extension removed.
- "
-  (interactive "P")
-  (let ((output_str buffer-file-name))
-    (if (and output_str show-short-info-p)
-        (setq output_str (file-name-sans-extension (file-name-nondirectory output_str))))
-    (cond
-     ((string-equal mode-name "w3m") (setq output_str (w3m-current-title)))
-     ((string-match "Dired" mode-name)
-      (setq output_str (count-code-lines-in-directory default-directory)))
-     ((string-equal mode-name "Article") (setq output_str (w3m-print-this-url)))
-     (t (if (null output_str) (setq output_str (buffer-name))))
-     )
-    (when output_str
-      ;; display the result
-      (message output_str)
-      ;; send the result to kill-string
-      (kill-new output_str))
-    ))
 (defun count-code-lines-in-directory(directory &optional lanuage-postfix-list)
   " Count code lines for various programming lanuages, with the help of below utility:
  find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1
@@ -431,51 +402,6 @@ BEG and END (region to sort)."
   (narrow-to-region (region-beginning) (region-end))
   (delete-trailing-whitespace)
   )
-(global-set-key (kbd "C-c c") 'beautify-region-by-mode)
-(defun beautify-region-by-mode()
-  (interactive)
-  (save-excursion
-    (let (cleanup-replace-rule-list)
-      (cond
-       ((string-equal mode-name "Org")
-        (setq cleanup-replace-rule-list
-              '(("\n\n+\\\*" "\n*")
-                ("," ",")
-                (";" ";")
-                ("(" "(")
-                (")" ")")
-                )))
-       (t
-        (setq cleanup-replace-rule-list
-              '(("\n\n+" "\n\n")
-                (" +" " ")
-                ("," ",")
-                (";" ";")
-                ("(" "(")
-                (")" ")")
-                ;; ("\\([^=: !+/-]\\)=" "\\1 =") ;; insert space in the left of equation, if ncessary
-                ;; ("=\\([^=: !+/-]\\)" "= \\1") ;; insert space in the right of equation, if ncessary
-                )))
-       )
-      (clean-up-buffer-or-region cleanup-replace-rule-list)
-      )))
-(defun beautify-web-quotation ()
-  (interactive)
-  (when (string= mode-name "Org")
-    (save-excursion
-      (save-restriction
-        (org-narrow-to-subtree)
-        (goto-char (point-min))
-        (while (re-search-forward "\n" nil t)
-          (replace-match "\n\n" nil nil))
-        (goto-char (point-min))
-        (while (re-search-forward "\n\n" nil t)
-          (fill-paragraph))
-        (goto-char (point-min))
-        (while (re-search-forward "\n\n" nil t)
-          (replace-match "\n" nil nil)))
-      )
-    ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun goto-column (number)
   "Untabify, and go to a column NUMBER within the current line (0 is beginning of the line)."
@@ -656,14 +582,6 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
       (message "%d numbers totalled %d" count total)
       total)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(defun show-interest ()
-  "Show interesting information for my daily life.
-These information is probably retrieved from internet. "
-  (interactive)
-  (cn-weather-today)
-  (cn-weather-forecast)
-  )
-;; --8<-------------------------- §separator§ ------------------------>8--
 (defun my-random-string (&optional n)
   "Return a string of random characters of length N (default 10)."
   (let ((x ""))
@@ -733,10 +651,10 @@ comment box."
   (with-current-buffer (switch-to-buffer "*ASCII table*")
     (setq buffer-read-only nil)
     (erase-buffer)
-    (let ((i   0)
+    (let ((i 0)
           (tmp 0))
       (insert (propertize
-               "                                [ASCII table]\n\n"
+               " [ASCII table]\n\n"
                'face font-lock-comment-face))
       (while (< i 32)
         (dolist (tmp (list i (+ 32 i) (+ 64 i) (+ 96 i)))
@@ -745,7 +663,7 @@ comment box."
                                'face font-lock-function-name-face)
                    (propertize (format "[%2x]" tmp)
                                'face font-lock-constant-face)
-                   "    "
+                   " "
                    (propertize (format "%3s" (single-key-description tmp))
                                'face font-lock-string-face)
                    (unless (= tmp (+ 96 i))
