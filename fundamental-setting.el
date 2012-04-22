@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 10:19:42>
+;; Updated: Time-stamp: <2012-04-22 14:02:52>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -118,10 +118,12 @@
   (find-file filename))
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
 (defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_CONF "/bank/filebat.ledger"))))
+(defalias 'filebat (lambda() (interactive) (my-open-file (concat DENNY_CONF "/filebat.txt"))))
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wealth.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/cloud.org"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
+(defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
@@ -134,7 +136,7 @@
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
-(defalias 'diary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/mydiary.org"))))
+(defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
 (defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
@@ -336,12 +338,15 @@ starting on the same line at which another match ended is ignored."
 (global-set-key [mouse-5] 'scroll-up)
 (global-set-key (kbd "C-x C-2") 'pop-global-mark)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(defun target()
-  (interactive)
-  (animate-sequence '("# 不懂的问题要反复想"
-                      "# 做一个好的开源软件"
-                      "# 定期进行自我反思") 2))
-(define-key global-map [(control meta p)] 'scroll-other-window-down)
+(setq max-lisp-eval-depth 1000
+      max-specpdl-size 10000
+      kill-ring-max 1024
+      undo-outer-limit 5000000
+      mark-ring-max 1024
+      )
+(setq message-log-max t ;; don't truncate buffer when logging huge messages
+      help-xref-following nil
+      )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
@@ -349,7 +354,7 @@ starting on the same line at which another match ended is ignored."
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)
-    ; (message "Buffer is set to read-only because it is large.  Undo also disabled.")
+                                        ; (message "Buffer is set to read-only because it is large. Undo also disabled.")
     ))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 ;; --8<-------------------------- §separator§ ------------------------>8--

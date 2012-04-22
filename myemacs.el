@@ -1,14 +1,13 @@
 ;; -*- coding: utf-8 -*-
-;; File: myemacs.el --- emacs Configuration entrance
+;; File: myemacs.el --- emacs Configuration entrance point
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 10:07:28>
+;; Updated: Time-stamp: <2012-04-22 14:03:14>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Precondition
 (when (< emacs-major-version 22)
-  (setq inhibit-startup-message t)
   (error "Configuration not supported on Emacs < 22."))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/fundamental-setting.el"))

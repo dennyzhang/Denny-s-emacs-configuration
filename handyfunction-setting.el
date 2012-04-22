@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 10:08:21>
+;; Updated: Time-stamp: <2012-04-22 09:35:20>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -240,30 +240,6 @@ there's a region, all lines that region covers will be duplicated."
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(defun count-code-lines-in-directory(directory &optional lanuage-postfix-list)
-  " Count code lines for various programming lanuages, with the help of below utility:
- find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1
- "
-  (interactive "Ddirectory:")
-  (let (command-output (output-str "Count code lines."))
-    ;; set lanuages to be checked, if not given
-    (if (null lanuage-postfix-list)
-        (setq lanuage-postfix-list '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
-                                     "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp"
-                                     "*.js" "*.sql" "*.mxml" "*.as")))
-    ;; count lines
-    (dolist (lanuage-var lanuage-postfix-list)
-      ;; TODO, remove comments from counting
-      ;; suppress the possible stderr for wc, since some temporary files may not be reachable.
-      (setq command-output (shell-command-to-string
-                            (format "find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1" lanuage-var)))
-      (unless (string= command-output "0\n")
-        (setq output-str (format "%s\n%s: %s " output-str lanuage-var command-output))
-        ))
-    ;; return the result
-    (eval output-str)
-    ))
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;;alt+p SPC:goto last edited location in a file
 (define-key global-map (kbd "M-p SPC") 'goto-last-edit-point)
 (defun goto-last-edit-point()
@@ -308,41 +284,6 @@ This command does the reverse of `fill-region'."
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(defun run-current-file ()
-  "Execute or compile the current file.
-For example, if the current buffer is the file x.pl,
-then it'll call “perl x.pl” in a shell.
-The file can be php, perl, python, ruby, javascript, bash, ocaml, vb, elisp.
-File suffix is used to determine what program to run."
-  (interactive)
-  (let (suffixMap fname suffix progName cmdStr)
-    ;; a keyed list of file suffix to comand-line program path/name
-    (setq suffixMap
-          '(
-            ("php" . "php")
-            ("pl" . "perl")
-            ("py" . "python")
-            ("java" . "java")
-            ("rb" . "ruby")
-            ("js" . "js")
-            ("sh" . "bash")
-            ("ml" . "ocaml")
-            ("vbs" . "cscript")
-            ))
-    (setq fname (buffer-file-name))
-    (setq suffix (file-name-extension fname))
-    (setq progName (cdr (assoc suffix suffixMap)))
-    (setq cmdStr (concat progName " \"" fname "\""))
-    (if (string-equal suffix "el") ; special case for emacs lisp
-        (load-file fname)
-      (if progName
-          (progn
-            (message "Running...")
-            (shell-command cmdStr "*run-current-file output*" ))
-        (message "No recognized program file suffix for this file.")
-        )
-      )))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun ediff-sequent-lines ()
   "Compare two sequent lines in the same buffer, by calling ediff-regions-internal"
@@ -410,23 +351,23 @@ BEG and END (region to sort)."
 (global-set-key (kbd "M-g c") 'goto-column)
 (global-set-key (kbd "M-g g") 'goto-line)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-;; TODO: define short key
-(defun scroll-up-one-line()
-  "Scroll up one line."
-  (interactive)
-  (scroll-up 1))
-(defun scroll-down-one-line()
-  "Scroll down one line."
-  (interactive)
-  (scroll-down 1))
-(defun scroll-other-window-up-line ()
-  "Scroll other window up one line."
-  (interactive)
-  (scroll-other-window 1))
-(defun scroll-other-window-down-line ()
-  "Scroll other window line down."
-  (interactive)
-  (scroll-other-window-down 1))
+;; ;; TODO: define short key
+;; (defun scroll-up-one-line()
+;;   "Scroll up one line."
+;;   (interactive)
+;;   (scroll-up 1))
+;; (defun scroll-down-one-line()
+;;   "Scroll down one line."
+;;   (interactive)
+;;   (scroll-down 1))
+;; (defun scroll-other-window-up-line ()
+;;   "Scroll other window up one line."
+;;   (interactive)
+;;   (scroll-other-window 1))
+;; (defun scroll-other-window-down-line ()
+;;   "Scroll other window line down."
+;;   (interactive)
+;;   (scroll-other-window-down 1))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun show-function-info()
   "Show info of current function: line count and character count"

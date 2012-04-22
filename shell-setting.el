@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:03>
+;; Updated: Time-stamp: <2012-04-22 13:48:14>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -234,5 +234,18 @@ If arg is given, only open a shell for one direcotry.
                   '("gunzip" "gz\\'"))
      (add-to-list 'eshell-command-completions-alist
                   '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'"))))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'tramp)
+(setq tramp-default-method "sshx")
+(remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
+(setq tramp-remote-path
+      '(tramp-default-remote-path "/usr/sbin" "/usr/local/bin"
+                                  "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
+                                  "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+(setq tramp-default-method-alist
+      '(("\\`localhost\\'" "\\`root\\'" "su")
+        (nil "%" "smb")
+        ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
+        ("\\`ftp\\." "" "ftp")))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: shell-setting.el

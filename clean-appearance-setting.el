@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-10 00:21:32>
+;; Updated: Time-stamp: <2012-04-22 14:01:34>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -26,11 +26,14 @@
   (set-scroll-bar-mode 'right) ;;scroll bar
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1)) ;; Hide toolbar
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ;;Hide menubar
-  (setq inhibit-startup-message t)
-  (setq visible-bell t) ;;no bell when error
+  (setq inhibit-startup-message t
+        initial-scratch-message nil ;; prevent showing initial information in draft buffer
+        visible-bell t ;;no bell when error
+        initial-scratch-message
+        (purecopy "\
+;; In sandbox
+"))
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
-(setq initial-scratch-message nil) ;; prevent showing initial information in draft buffer
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key (kbd "<C-f10>") 'toggle-transparency)
 (set-frame-parameter (selected-frame) 'alpha '(97 97))

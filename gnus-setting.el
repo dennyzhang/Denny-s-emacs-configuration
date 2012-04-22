@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 00:01:33>
+;; Updated: Time-stamp: <2012-04-21 11:01:08>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -372,14 +372,16 @@
         ))
     ))
 (add-hook 'message-send-mail-hook 'check-from-mail)
+;; --8<-------------------------- §separator§ ------------------------>8--
 (defun confirm-for-delayed-mail ()
   "Ask for confirmation, before sending delayed mail"
   (interactive)
   (save-excursion
     (if (string= gnus-newsgroup-name "nndraft:delayed")
-        (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop"))
+        (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop. "))
     ))
 (add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
+;; --8<-------------------------- §separator§ ------------------------>8--
 (defun auto-add-message-important-header ()
   "Auto set current mail as important, for some regexp rules"
   (interactive)
