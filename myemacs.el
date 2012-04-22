@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:03:14>
+;; Updated: Time-stamp: <2012-04-22 14:47:15>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Precondition
@@ -16,6 +16,7 @@
 (load-file (concat DENNY_CONF "/emacs_conf/essentialpackage-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/dired-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/handyfunction-setting.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/diff-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/regexp-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/magic-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/programming-setting.el"))

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:14:15>
+;; Updated: Time-stamp: <2012-04-22 14:48:31>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -149,37 +149,6 @@
         (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
       (loccur (format "^[^ ]" whitespace-count)))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; compare vertically in ediff
-(require 'ediff)
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-merge-split-window-function 'split-window-horizontally)
-;; do everything in one frame, instead of multiframe
-(setq ediff-window-setup-function (quote ediff-setup-windows-plain))
-;; when comparing, ignore all white space, and output the unified context
-(setq diff-switches "-u -w")
-(setq diff-default-read-only t)
-;; set face coloring
-(eval-after-load 'diff-mode
-  '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
-(require 'magit)
-(eval-after-load 'magit
-  '(progn
-     (autoload 'mo-git-blame-file "mo-git-blame" nil t)
-     (autoload 'mo-git-blame-current "mo-git-blame" nil t)
-     (setq magit-diff-options "-w") ;; when comparing, ignore all white space
-     ))
-;; set face coloring
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")
-     (when (not window-system)
-       (set-face-background 'magit-item-highlight "white"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode

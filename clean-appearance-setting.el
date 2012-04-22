@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:12:59>
+;; Updated: Time-stamp: <2012-04-22 14:43:43>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -19,6 +19,7 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; when cursor and mouse is close, automatically move mouse away
 (mouse-avoidance-mode 'animate)
+(setq mouse-avoidance-threshold 10)
 ;; enable mouse wheel support
 (mouse-wheel-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -65,5 +66,25 @@
        ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))
     (font-lock-mode 1)))
 (add-hook 'find-file-hook 'add-custom-global-font-locking)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defvar message-filter-regexp-list
+  '("^Starting new Ispell process \\[.+\\] \\.\\.\\.$"
+    "^Ispell process killed$")
+  "filter formatted message string to remove noisy messages")
+
+(defadvice message (around message-filter-by-regexp activate)
+  (if (not (ad-get-arg 0))
+      ad-do-it
+    (let ((formatted-string (apply 'format (ad-get-args 0))))
+      (if (and (stringp formatted-string)
+               (some (lambda (re) (string-match re formatted-string))
+                     message-filter-regexp-list))
+          (save-excursion
+            (set-buffer "*Messages*")
+            (goto-char (point-max))
+            (insert formatted-string "\n"))
+        (progn
+          (ad-set-args 0 `("%s" ,formatted-string))
+          ad-do-it)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

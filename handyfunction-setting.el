@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:15:44>
+;; Updated: Time-stamp: <2012-04-22 14:47:23>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -284,20 +284,6 @@ This command does the reverse of `fill-region'."
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(defun ediff-sequent-lines ()
-  "Compare two sequent lines in the same buffer, by calling ediff-regions-internal"
-  (interactive)
-  (let ((fc (current-frame-configuration)))
-    (eval
-     `(defun rfc ()
-        (set-frame-configuration ',fc)
-        (remove-hook 'ediff-after-quit-hook-internal 'rfc)))
-    (add-hook 'ediff-after-quit-hook-internal 'rfc)
-    (ediff-regions-internal
-     (current-buffer) (line-beginning-position) (line-end-position)
-     (current-buffer) (line-beginning-position 2) (line-end-position 2)
-     nil 'ediff-windows-wordwise 'word-mode nil)))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun uniq-lines (beg end)
   "Unique lines in region.

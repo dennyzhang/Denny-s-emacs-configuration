@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:11:42>
+;; Updated: Time-stamp: <2012-04-22 14:41:29>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -13,12 +13,21 @@
 (setq tab-width 4);;tab take 4 space
 ;;force Emacs to indent with spaces, never with TABs
 (setq-default indent-tabs-mode nil)
-(setq scroll-margin 3 scroll-conservatively 10000)
 (global-font-lock-mode t) ;;highlight synatx
 (show-paren-mode t)
-(setq column-number-mode t) ;;show column number
-(setq line-number-mode t) ;;show line number in mode line
+(setq scroll-margin 3
+      scroll-conservatively 10000)
 (setq-default fill-column 70)
+(setq default-major-mode 'text-mode
+      column-number-mode t ;;show column number
+      line-number-mode t ;;show line number in mode line
+      save-abbrevs nil
+      line-spacing   0.2
+      )
+;; tell more about how to recognize words
+(modify-syntax-entry ?_ "w")
+(modify-syntax-entry ?[ "w")
+(modify-syntax-entry ?] "w")
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'generic-x)
 (transient-mark-mode t)
