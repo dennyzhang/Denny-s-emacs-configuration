@@ -3,16 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-25 15:34:17>
+;; Updated: Time-stamp: <2012-04-22 14:26:09>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq warning-suppress-types nil)
 (setq calendar-remove-frame-by-deleting t)
 (setq calendar-week-start-day 1)
-(setq calendar-mark-diary-entries-flag t) ;; mark dates with diary entries
+;; mark dates with diary entries
+(setq calendar-mark-diary-entries-flag t)
 (setq calendar-view-holidays-initially-flag nil)
 (setq calendar-date-style (quote iso))
-(add-hook 'calendar-today-visible-hook 'calendar-mark-today) ;; mark today when opening calendar
+;; mark today when opening calendar
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 (setq calendar-chinese-all-holidays-flag t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (display-time-mode 1)

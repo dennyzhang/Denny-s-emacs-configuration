@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 13:48:10>
+;; Updated: Time-stamp: <2012-04-22 14:14:15>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -112,7 +112,10 @@
   "Drag out a rectangular region with the mouse." t)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/whitespace/whitespace.el"))
-(setq whitespace-display-mappings '((space-mark ?\ [?.]) (newline-mark ?\n [?$ ?\n]) (tab-mark ?\t [?\\ ?\t])))
+(setq whitespace-display-mappings
+      '((space-mark ?\ [?.])
+        (newline-mark ?\n [?$ ?\n])
+        (tab-mark ?\t [?\\ ?\t])))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
 (setq boxquote-top-and-tail "-----------")

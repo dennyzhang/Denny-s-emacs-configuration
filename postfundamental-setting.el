@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:02:29>
+;; Updated: Time-stamp: <2012-04-22 14:12:16>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -23,7 +23,8 @@
 (global-set-key "\M-." 'smart-locate)
 (defun smart-locate ()
   "Smart locate files.
- - If current position is org-mode file, call occur-org-title, which only search in titles of org-mode entires.
+ - If current position is org-mode file, call occur-org-title,
+   which only search in titles of org-mode entires.
  - If current position has no words, call my-find-name-dired, which is somewhat find-name-dired.
  - Otherwise, call etags-select-find-tag.
 "
@@ -41,14 +42,16 @@
   (interactive)
   (let (pattern)
     (setq pattern (read-shell-command "Find-name (filename wildcard): " nil nil))
-    (find-dired default-directory (concat find-name-arg " " (shell-quote-argument pattern)))
+    (find-dired default-directory
+                (concat find-name-arg " " (shell-quote-argument pattern)))
     ))
 
 (defun occur-org-title()
   "when regexp search, only search title of org-mode entries"
   (interactive)
   (let (regexp)
-    (setq regexp (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
+    (setq regexp
+          (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
     (occur-1 regexp 0 (list (current-buffer)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(set-language-environment 'Chinese-GB)

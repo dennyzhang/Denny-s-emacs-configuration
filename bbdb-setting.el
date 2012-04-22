@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-11 07:47:08>
+;; Updated: Time-stamp: <2012-04-22 14:24:38>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -33,17 +33,21 @@
   "update bbdb picture as a photo property of vcard files"
   (interactive)
   (let* ((old-buffer (current-buffer)) (vcard-photo-anchor "END:VCARD")
-         (photo-vcard-prefix (format "PHOTO;ENCODING=BASE64;TYPE=%s:" (substring bbdb-picture-extension 1)))
+         (photo-vcard-prefix
+          (format "PHOTO;ENCODING=BASE64;TYPE=%s:" (substring bbdb-picture-extension 1)))
          (photo-vcard-regex (concat photo-vcard-prefix ".*")))
     (if (null vcard-dir) (setq vcard-dir "~/exported-vcards/"))
     ;; for each vcard file, add related photo property
     (dolist (bbdb-record-entry (bbdb-records))
-      (let ((bbdb-image-filename (concat bbdb-picture-path
-                                         (bbdb-record-name bbdb-record-entry) bbdb-picture-extension))
-            (bbdb-vcard-filename (concat vcard-dir
-                                         (bbdb-record-name bbdb-record-entry) ".vcf")))
+      (let ((bbdb-image-filename
+             (concat bbdb-picture-path
+                     (bbdb-record-name bbdb-record-entry) bbdb-picture-extension))
+            (bbdb-vcard-filename
+             (concat vcard-dir
+                     (bbdb-record-name bbdb-record-entry) ".vcf")))
         ;; update vcard, if it exists
-        (when (and (file-exists-p bbdb-image-filename) (file-exists-p bbdb-vcard-filename))
+        (when (and (file-exists-p bbdb-image-filename)
+                   (file-exists-p bbdb-vcard-filename))
           (set-buffer (find-file bbdb-vcard-filename))
           ;; remove old photo property in vcard, if it exists
           (flush-lines photo-vcard-regex)
@@ -51,9 +55,11 @@
           ;; raise error, if the anchor is not found, if the file is in invalid format
           (search-forward-regexp vcard-photo-anchor)
           (backward-char (length vcard-photo-anchor))
-          (insert photo-vcard-prefix
-                  (shell-command-to-string (format "base64 -w 0 %s" bbdb-image-filename))
-                  "\n")
+          (insert
+           photo-vcard-prefix
+           (shell-command-to-string
+            (format "base64 -w 0 %s" bbdb-image-filename))
+           "\n")
           (save-buffer)
           (kill-buffer)
           )))
@@ -87,7 +93,8 @@
     (setq alias-notes (cons 'mail-alias string))
     (setq records
           (append
-           (bbdb-search potential-records nil nil nil alias-notes nil) ;; also search in notes
+           ;; also search in notes
+           (bbdb-search potential-records nil nil nil alias-notes nil)
            (bbdb-search potential-records string string string notes nil)))
     (if records
         (bbdb-display-records records)
@@ -95,15 +102,18 @@
       (message "No records matching '%s'" string))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun send-template-mail()
-  "Parse current buffer as a mail template, then send mails by send-groupmail-by-mailbuffer.
-We consider {name} string as a variable, which will be replaced by the actual name"
+  "Parse current buffer as a mail template, then
+send mails by send-groupmail-by-mailbuffer.
+We consider {name} string as a variable,
+which will be replaced by the actual name"
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (let (start-point end-point string-temp
-                      (to-marker "To: ") (subject-marker "Subject: ")
-                      (from-marker "From: ") (content-marker "--text follows this line--")
-                      marker (name-mail-list '()) subject mail-content from-mail)
+    (let (start-point
+          end-point string-temp
+          (to-marker "To: ") (subject-marker "Subject: ")
+          (from-marker "From: ") (content-marker "--text follows this line--")
+          marker (name-mail-list '()) subject mail-content from-mail)
       ;; set default the marker for name replacement
       (setq marker "{name}")
       ;; obtain name and mail address list of recipients by searching: XXX <>
@@ -115,10 +125,13 @@ We consider {name} string as a variable, which will be replaced by the actual na
       (setq string-temp (buffer-substring-no-properties start-point end-point))
       (setq name-mail-list
             (mapcar (lambda (x)
-                      (list (let ((name x))
-                              (bbdb-string-trim (replace-regexp-in-string "<\.*>" "" name)))
-                            (let ((net x))
-                              (bbdb-string-trim (replace-regexp-in-string ">" "" (replace-regexp-in-string "\.*<" "" net))))))
+                      (list
+                       (let ((name x))
+                         (bbdb-string-trim (replace-regexp-in-string "<\.*>" "" name)))
+                       (let ((net x))
+                         (bbdb-string-trim
+                          (replace-regexp-in-string
+                           ">" "" (replace-regexp-in-string "\.*<" "" net))))))
                     (split-string string-temp ",")))
       ;; Obtain subject by searching: Subject: XXX
       (setq start-point (+ end-point (length subject-marker)))

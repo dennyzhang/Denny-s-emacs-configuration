@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-01-20 19:50:43>
+;; Updated: Time-stamp: <2012-04-22 14:25:21>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/signature-ascii-picture.el"))
@@ -24,7 +24,8 @@
       (fill-paragraph)
       (setq signature-string (buffer-substring-no-properties (point-min) (point-max))))
     (setq org-agenda-files old-agenda-files)
-    (concat common-tail-signature "\n\n" signature-string (random-string sign-ascii-picture))
+    (concat common-tail-signature "\n\n" signature-string
+            (random-string sign-ascii-picture))
     ))
 (defun refresh-signature()
   "auto refresh mail signature"
@@ -49,8 +50,10 @@
       (goto-char (point-min))
       (forward-line 2)
       ;; obtain and wash data
-      (setq retrieve-content (buffer-substring-no-properties (point) (point-max)))
-      (setq retrieve-content (replace-regexp-in-string "^ [^:]+: +" "" retrieve-content))
+      (setq retrieve-content
+            (buffer-substring-no-properties (point) (point-max)))
+      (setq retrieve-content
+            (replace-regexp-in-string "^ [^:]+: +" "" retrieve-content))
       (setq entry-list (split-string retrieve-content "\n"))
       ;; restore cursor location
       (kill-buffer org-agenda-buffer-name)
@@ -60,10 +63,11 @@
       ;; exclude entries of given tag list
       (dolist (filter-tag filter-tag-list)
         (setq entry-list
-              (delq nil (mapcar #'(lambda (x)
-                                    (if (string-match (format ":%s" filter-tag) x)
-                                        nil x))
-                                entry-list))))
+              (delq nil
+                    (mapcar #'(lambda (x)
+                                (if (string-match (format ":%s" filter-tag) x)
+                                    nil x))
+                            entry-list))))
       ;; remove tags from entry
       (setq entry-list
             (mapcar #'(lambda (x) (replace-regexp-in-string " *:[^ ]+$" "" x))

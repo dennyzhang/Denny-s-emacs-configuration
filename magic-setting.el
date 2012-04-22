@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 09:34:44>
+;; Updated: Time-stamp: <2012-04-22 14:16:31>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -23,12 +23,14 @@ These information is probably retrieved from internet. "
  - If current position is a file, show file name and line counts
  - If current position is in *w3m*, show current web title
  - If current positioin is in Article mail mode, show the url under current cursor
- If show-short-info-p is not null, the default behaviour is showing the short filename with extension removed.
+ If show-short-info-p is not null, the default behaviour is showing the short
+ filename with extension removed.
  "
   (interactive "P")
   (let ((output_str buffer-file-name))
     (if (and output_str show-short-info-p)
-        (setq output_str (file-name-sans-extension (file-name-nondirectory output_str))))
+        (setq output_str
+              (file-name-sans-extension (file-name-nondirectory output_str))))
     (cond
      ((string-equal mode-name "w3m") (setq output_str (w3m-current-title)))
      ((string-match "Dired" mode-name)
@@ -51,15 +53,17 @@ These information is probably retrieved from internet. "
   (let (command-output (output-str "Count code lines."))
     ;; set lanuages to be checked, if not given
     (if (null lanuage-postfix-list)
-        (setq lanuage-postfix-list '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
-                                     "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp"
-                                     "*.js" "*.sql" "*.mxml" "*.as")))
+        (setq lanuage-postfix-list
+              '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
+                "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp"
+                "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)
       ;; TODO, remove comments from counting
       ;; suppress the possible stderr for wc, since some temporary files may not be reachable.
-      (setq command-output (shell-command-to-string
-                            (format "find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1" lanuage-var)))
+      (setq command-output
+            (shell-command-to-string
+             (format "find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1" lanuage-var)))
       (unless (string= command-output "0\n")
         (setq output-str (format "%s\n%s: %s " output-str lanuage-var command-output))
         ))

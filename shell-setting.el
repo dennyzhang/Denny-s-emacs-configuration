@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 13:48:14>
+;; Updated: Time-stamp: <2012-04-22 14:13:37>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -65,22 +65,23 @@
         ;; send default input
         (comint-previous-matching-input "." -1))))
   )
-(defvar shell-history-alist '(;; erlang files
-                              (".*erl" . (("make && ./start.sh")
-                                          ("erlc ./%f && erl -noshell -s %s start_link")
-                                          ("sudo rabbitmqctl list_queues")
-                                          ("mnesia:info().")
-                                          ("mnesia:start().")
-                                          ("mnesia:stop().")
-                                          ("erl -mnesia dir '\"data/mnesia/\"' -name crontab_generator_app@ubuntu")
-                                          ("erl -noshell -s mnesia start -s tv start")
-                                          ("sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged")
-                                          ))
-                              ;; ledger files
-                              (".*ledger" . (("bankbal")))
-                              ;; default value for any files
-                              (".*" . ())
-                              )
+(defvar shell-history-alist
+  '(;; erlang files
+    (".*erl" . (("make && ./start.sh")
+                ("erlc ./%f && erl -noshell -s %s start_link")
+                ("sudo rabbitmqctl list_queues")
+                ("mnesia:info().")
+                ("mnesia:start().")
+                ("mnesia:stop().")
+                ("erl -mnesia dir '\"data/mnesia/\"' -name crontab_generator_app@ubuntu")
+                ("erl -noshell -s mnesia start -s tv start")
+                ("sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged")
+                ))
+    ;; ledger files
+    (".*ledger" . (("bankbal")))
+    ;; default value for any files
+    (".*" . ())
+    )
   " For the shell of one file, append user defined commands to the shell history
 Each element looks like (REGEXP . COMMAND-LIST).
 REGEXP is a regexp which filter filename.
@@ -111,7 +112,9 @@ Sample:
             ;; replace the %-construct with the runtime value
             (setq shell-command (replace-regexp-in-string "%f" file-name shell-command))
             (setq shell-command
-                  (replace-regexp-in-string "%s" (file-name-sans-extension file-name) shell-command))
+                  (replace-regexp-in-string "%s"
+                                            (file-name-sans-extension file-name)
+                                            shell-command))
             (ring-insert-at-beginning comint-input-ring shell-command))
           (move-beginning-of-line nil)
           )
@@ -239,9 +242,10 @@ If arg is given, only open a shell for one direcotry.
 (setq tramp-default-method "sshx")
 (remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
 (setq tramp-remote-path
-      '(tramp-default-remote-path "/usr/sbin" "/usr/local/bin"
-                                  "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
-                                  "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+      '(tramp-default-remote-path
+        "/usr/sbin" "/usr/local/bin"
+        "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
+        "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
 (setq tramp-default-method-alist
       '(("\\`localhost\\'" "\\`root\\'" "su")
         (nil "%" "smb")

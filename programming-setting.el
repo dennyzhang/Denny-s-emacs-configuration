@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-11 18:30:57>
+;; Updated: Time-stamp: <2012-04-22 14:22:23>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -109,7 +109,8 @@
 ;; vb programming
 (load-file (concat EMACS_VENDOR "visual-basic/visual-basic-mode.el"))
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
-(add-to-list 'auto-mode-alist '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
+(add-to-list 'auto-mode-alist
+             '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; C# programming
 (load-file (concat EMACS_VENDOR "csharp/csharp-mode-0.4.0.el"))

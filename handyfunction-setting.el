@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 09:35:20>
+;; Updated: Time-stamp: <2012-04-22 14:15:44>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -353,21 +353,21 @@ BEG and END (region to sort)."
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; ;; TODO: define short key
 ;; (defun scroll-up-one-line()
-;;   "Scroll up one line."
-;;   (interactive)
-;;   (scroll-up 1))
+;; "Scroll up one line."
+;; (interactive)
+;; (scroll-up 1))
 ;; (defun scroll-down-one-line()
-;;   "Scroll down one line."
-;;   (interactive)
-;;   (scroll-down 1))
+;; "Scroll down one line."
+;; (interactive)
+;; (scroll-down 1))
 ;; (defun scroll-other-window-up-line ()
-;;   "Scroll other window up one line."
-;;   (interactive)
-;;   (scroll-other-window 1))
+;; "Scroll other window up one line."
+;; (interactive)
+;; (scroll-other-window 1))
 ;; (defun scroll-other-window-down-line ()
-;;   "Scroll other window line down."
-;;   (interactive)
-;;   (scroll-other-window-down 1))
+;; "Scroll other window line down."
+;; (interactive)
+;; (scroll-other-window-down 1))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun show-function-info()
   "Show info of current function: line count and character count"
@@ -378,7 +378,8 @@ BEG and END (region to sort)."
       (setq min (point))
       (end-of-defun)
       (setq max (point))
-      (message "Function(%s) has %d lines, %d characters" (which-function) (count-lines min max) (- max min)))
+      (message "Function(%s) has %d lines, %d characters"
+               (which-function) (count-lines min max) (- max min)))
     )
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -389,8 +390,9 @@ BEG and END (region to sort)."
    ((string-equal system-type "gnu/linux")
     (shell-command-to-string (concat "nautilus " default-directory)))
    ((string-equal system-type "windows-nt")
-    (w32-shell-execute "open" "explorer" (concat "/e,/select,"
-                                                 (convert-standard-filename buffer-file-name))))
+    (w32-shell-execute "open" "explorer"
+                       (concat "/e,/select,"
+                               (convert-standard-filename buffer-file-name))))
    )
   )
 (global-set-key [(control x)(control d)] 'open-folder-in-explorer)
@@ -400,7 +402,8 @@ BEG and END (region to sort)."
 To use this function, you need install scrot."
   (interactive "sPicture Name: ")
   (let* ((my-screenshots-storage-directory "~/")
-         (shell-command-var (format "scrot %s%s.png" my-screenshots-storage-directory name)))
+         (shell-command-var
+          (format "scrot %s%s.png" my-screenshots-storage-directory name)))
     (shell-command shell-command-var)
     (message "Run command: %s" shell-command-var)
     )
@@ -425,7 +428,8 @@ To use this function, you need install scrot."
     (dolist (buffer-var buffer-choose-list)
       (set-buffer buffer-var)
       (if (string= old-buffer-mode (if (listp mode-name) (car mode-name) mode-name))
-          ;; If buffer is in the same mode with current buffer, check whether we need further filter
+          ;; If buffer is in the same mode with current buffer,
+          ;; check whether we need further filter
           (dolist (buffer-prohibit-regexp buffer-prohibit-regexp-list)
             (if (string-match buffer-prohibit-regexp (buffer-name buffer-var))
                 (add-to-list 'buffer-prohibit-list buffer-var)
@@ -583,7 +587,8 @@ comment box."
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun hexl-show ()
   (interactive)
-  (message "hex (%s) to decimal (%s)." (current-word) (string-to-number (current-word) 16))
+  (message "hex (%s) to decimal (%s)." (current-word)
+           (string-to-number (current-word) 16))
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun ascii-table-show ()

@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: regexp-setting.el
 ;; Created: 2012-04-18
-;; Updated: Time-stamp: <2012-04-20 10:06:13>
+;; Updated: Time-stamp: <2012-04-22 14:20:23>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-default 'case-fold-search t);;Make searches case insensitive
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -50,8 +50,10 @@
                 (";" ";")
                 ("(" "(")
                 (")" ")")
-                ;; ("\\([^=: !+/-]\\)=" "\\1 =") ;; insert space in the left of equation, if ncessary
-                ;; ("=\\([^=: !+/-]\\)" "= \\1") ;; insert space in the right of equation, if ncessary
+                ;; insert space in the left of equation, if ncessary
+                ;; ("\\([^=: !+/-]\\)=" "\\1 =")
+                ;; insert space in the right of equation, if ncessary
+                ;; ("=\\([^=: !+/-]\\)" "= \\1")
                 )))
        )
       (clean-up-buffer-or-region cleanup-replace-rule-list)

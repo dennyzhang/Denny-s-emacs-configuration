@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 00:28:10>
+;; Updated: Time-stamp: <2012-04-22 14:21:29>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;emms
@@ -257,12 +257,16 @@
 (setq emms-lyrics-dir (concat emms-source-file-default-directory "/lyrics"))
 (defun emms-google-for-lyrics ()
   (interactive)
-  (browse-url (concat "http://www.google.com/search?q = "
-                      (replace-regexp-in-string " +" "+"
-                                                (concat "lyrics "
-                                                        (delete ?-
-                                                                (emms-track-description (emms-playlist-current-selected-track)))
-                                                        )))))
+  (browse-url
+   (concat
+    "http://www.google.com/search?q = "
+    (replace-regexp-in-string
+     " +" "+"
+     (concat
+      "lyrics "
+      (delete ?-
+              (emms-track-description (emms-playlist-current-selected-track)))
+      )))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'emms-mark)
 ;; auto enable emms-mark

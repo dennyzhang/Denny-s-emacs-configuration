@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-20 00:25:44>
+;; Updated: Time-stamp: <2012-04-22 14:21:51>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -182,7 +182,8 @@
       (if (search-forward-regexp "\n" nil t)
           ;; make sure the code is re-entrant
           (if (< (+ 2 (point)) (point-max))
-              (unless (string= (buffer-substring-no-properties (point) (+ 2 (point))) "#+")
+              (unless (string= (buffer-substring-no-properties
+                                (point) (+ 2 (point))) "#+")
                 (insert "#+BEGIN_EXAMPLE\n")
                 (if (search-forward-regexp "^\*" nil t)
                     (backward-char 1)
@@ -201,7 +202,8 @@
       (if (search-forward-regexp "\n" nil t)
           ;; make sure the code is re-entrant
           (if (< (+ 2 (point)) (point-max))
-              (when (string= (buffer-substring-no-properties (point) (+ 2 (point))) "#+")
+              (when (string= (buffer-substring-no-properties
+                              (point) (+ 2 (point))) "#+")
                 (org-narrow-to-subtree)
                 (goto-char (point-min))
                 (flush-lines "^#+")

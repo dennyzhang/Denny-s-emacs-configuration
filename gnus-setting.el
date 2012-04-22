@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-21 11:01:08>
+;; Updated: Time-stamp: <2012-04-22 14:19:57>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -69,7 +69,8 @@
     (save-excursion
       (goto-char (point-min))
       (when (re-search-forward "From: [^<>]+ <\\([^>]+\\)>" nil t)
-        (setq from-mail (buffer-substring-no-properties (match-beginning 1) (match-end 1))))
+        (setq from-mail (buffer-substring-no-properties
+                         (match-beginning 1) (match-end 1))))
       (cond
        ((string= from-mail "markfilebat@126.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
@@ -137,21 +138,26 @@
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode) ;新闻组分组
 ;; All headers that do not match this regexp will be hidden
 (setq gnus-visible-headers
-      (mapconcat 'regexp-quote
-                 '("From:" "Newsgroups:" "Subject:" "Date:"
-                   "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:" "Reply-To:"
-                   "Summary:" "Keywords:" "BCc:" "FCc:" "Posted-To:" "Mail-Copies-To:"
-                   "Mail-Followup-To:" "Apparently-To:" "Gnus-Warning:" "Resent-From:"
-                   "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:" "X-Priority" "Disposition-Notification-To"
-                   "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing" "X-Gnus-Delayed:"
-                   "X-Attachments" "X-Diagnostic")
-                 "\\|"))
+      (mapconcat
+       'regexp-quote
+       '("From:" "Newsgroups:" "Subject:" "Date:"
+         "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:" "Reply-To:"
+         "Summary:" "Keywords:" "BCc:" "FCc:" "Posted-To:" "Mail-Copies-To:"
+         "Mail-Followup-To:" "Apparently-To:" "Gnus-Warning:" "Resent-From:"
+         "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:" "X-Priority" "Disposition-Notification-To"
+         "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing" "X-Gnus-Delayed:"
+         "X-Attachments" "X-Diagnostic")
+       "\\|"))
 ;;(setq message-ignored-mail-headers "") ;; TODO
 ;; (setq gnus-visible-headers ".*")
 ;; Specify the order of the header lines
-(setq gnus-sorted-header-list '("^From:" "^Subject:" "^Summary:" "^To:" "^Cc:" "^Keywords:" "^Newsgroups:" "^Followup-To:" "^Date:" "^User-Agent:" "^X-Mailer:" "^X-Newsreader:" "^Gcc:"))
+(setq gnus-sorted-header-list
+      '("^From:" "^Subject:" "^Summary:" "^To:" "^Cc:" "^Keywords:"
+        "^Newsgroups:" "^Followup-To:" "^Date:" "^User-Agent:"
+        "^X-Mailer:" "^X-Newsreader:" "^Gcc:"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(setq gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
+(setq gnus-group-sort-function
+      '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; on the fly spell checking
 ;;(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
@@ -221,7 +227,8 @@
 ;;　category pop3 mails
 (setq nnmail-split-methods
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*")
-        ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*") ;; put mail receipt in mail.receipt
+        ;; put mail receipt in mail.receipt
+        ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("shopex.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
         ("shopex.ci.fail" "Subject:.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
@@ -271,13 +278,15 @@
     (perform-replace marker (nth 0 name-mail-entry) nil nil nil) ; insert name
     (message-send-and-exit)))
 (defun gnus-send-template-mail()
-  "Parse current buffer as a mail template, then send mails by send-groupmail-by-mailbuffer."
+  "Parse current buffer as a mail template,
+then send mails by send-groupmail-by-mailbuffer."
   (interactive)
   (save-excursion
-    (let (start-point end-point string-temp
-                      (to-marker "To: ") (subject-marker "Subject: ")
-                      (from-marker "From: ") (content-marker "--text follows this line--\n")
-                      marker (name-mail-list '()) subject mail-content from-mail)
+    (let (start-point
+          end-point string-temp
+          (to-marker "To: ") (subject-marker "Subject: ")
+          (from-marker "From: ") (content-marker "--text follows this line--\n")
+          marker (name-mail-list '()) subject mail-content from-mail)
       ;; set default the marker for name replacement
       (setq marker "{name}")
       ;; obtain name and mail address list of recipients by searching: XXX <>
@@ -290,15 +299,18 @@
       (setq string-temp (buffer-substring-no-properties start-point end-point))
       ;; obtain name list
       (setq name-mail-list
-            (mapcar (lambda (x)
-                      (if (string-match "[^ \<].+<[^>]+>" x)
-                          (list (let ((name (replace-regexp-in-string "<\.*>" "" x)))
-                                  (bbdb-string-trim (replace-regexp-in-string "\"" "" name)))
-                                (let ((net x))
-                                  (bbdb-string-trim (replace-regexp-in-string ">" "" (replace-regexp-in-string "\.*<" "" net)))))
-                        (error "Please make sure format for the reciepent(TO field) is 'XXX <XX@XX>'")
-                        ))
-                    (split-string string-temp ",")))
+            (mapcar
+             (lambda (x)
+               (if (string-match "[^ \<].+<[^>]+>" x)
+                   (list (let ((name (replace-regexp-in-string "<\.*>" "" x)))
+                           (bbdb-string-trim (replace-regexp-in-string "\"" "" name)))
+                         (let ((net x))
+                           (bbdb-string-trim
+                            (replace-regexp-in-string ">" ""
+                                                      (replace-regexp-in-string "\.*<" "" net)))))
+                 (error "Please make sure format for the reciepent(TO field) is 'XXX <XX@XX>'")
+                 ))
+             (split-string string-temp ",")))
       ;; Obtain subject by searching: Subject: XXX
       (goto-char (point-min))
       (search-forward subject-marker nil nil)
@@ -322,7 +334,8 @@
       (setq end-point (point-max))
       (setq mail-content (buffer-substring-no-properties start-point end-point))
       ;; send mails based on template
-      (gnus-send-groupmail-by-template name-mail-list subject mail-content from-mail marker)
+      (gnus-send-groupmail-by-template
+       name-mail-list subject mail-content from-mail marker)
       )
     )
   )
@@ -331,7 +344,8 @@
 ;; (cd ~/backup/essential/Dropbox/private_data/gnus_data/Mail && swish-e -i . -f ../index.swish -e -v 2)
 (require 'nnir)
 (setq nnir-search-engine 'swish-e)
-(setq nnir-swish-e-index-files (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
+(setq nnir-swish-e-index-files
+      (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; (setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
 ;; (setq gnus-demon-timestep 20)
@@ -424,7 +438,8 @@
 (setq gnus-score-decay-scale 0.03)
 (setq gnus-decay-scores t)
 ;; Use a global score file to filter some spam mails
-(setq gnus-global-score-files (list (concat mail-parent-directory-var "all.SCORE")))
+(setq gnus-global-score-files
+      (list (concat mail-parent-directory-var "all.SCORE")))
 ;; all.SCORE contains:
 ;;(("xref"
 ;; ("gmane.spam.detected" -1000 nil s)))
@@ -433,9 +448,12 @@
 (add-hook 'message-sent-hook 'gnus-score-followup-article)
 (add-hook 'message-sent-hook 'gnus-score-followup-thread)
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(setq mail-source-delete-incoming 90) ;; Keep a backup of the received mails for some time
-(setq mail-source-delete-old-incoming-confirm nil) ;; don't ask for confirmation before deleting old mails
-(setq nnmail-expiry-wait 35) ;; Expireable articles will be deleted after 35 days.
+;; Keep a backup of the received mails for some time
+(setq mail-source-delete-incoming 90)
+;; don't ask for confirmation before deleting old mails
+(setq mail-source-delete-old-incoming-confirm nil)
+;; Expireable articles will be deleted after 35 days.
+(setq nnmail-expiry-wait 35)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq message-generate-headers-first t)
 ;; When composing a mail, start the auto-fill-mode.

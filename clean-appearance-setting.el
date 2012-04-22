@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:01:34>
+;; Updated: Time-stamp: <2012-04-22 14:12:59>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -19,7 +19,8 @@
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; when cursor and mouse is close, automatically move mouse away
 (mouse-avoidance-mode 'animate)
-(mouse-wheel-mode 1);; enable mouse wheel support
+;; enable mouse wheel support
+(mouse-wheel-mode 1)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; let's have a clean world
 (progn
@@ -27,7 +28,8 @@
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1)) ;; Hide toolbar
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ;;Hide menubar
   (setq inhibit-startup-message t
-        initial-scratch-message nil ;; prevent showing initial information in draft buffer
+        ;; prevent showing initial information in draft buffer
+        initial-scratch-message nil
         visible-bell t ;;no bell when error
         initial-scratch-message
         (purecopy "\
@@ -54,14 +56,14 @@
   "Hilight some keywords globally."
   (interactive)
   (unless (member mode-name '("Org"))
-    (font-lock-add-keywords nil
-                            '(("\\<\\(FIXME\\)" 0 font-lock-warning-face t)
-                              ("\\<\\(fixme\\)" 0 font-lock-warning-face t)
-                              ("\\<\\(TODO\\)" 0 font-lock-warning-face t)
-                              ("\\<\\(todo\\)" 0 font-lock-warning-face t)
-                              ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))
+    (font-lock-add-keywords
+     nil
+     '(("\\<\\(FIXME\\)" 0 font-lock-warning-face t)
+       ("\\<\\(fixme\\)" 0 font-lock-warning-face t)
+       ("\\<\\(TODO\\)" 0 font-lock-warning-face t)
+       ("\\<\\(todo\\)" 0 font-lock-warning-face t)
+       ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))
     (font-lock-mode 1)))
-
 (add-hook 'find-file-hook 'add-custom-global-font-locking)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

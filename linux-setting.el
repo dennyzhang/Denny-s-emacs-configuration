@@ -3,11 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-17 18:33:57>
+;; Updated: Time-stamp: <2012-04-22 14:22:07>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; TODO
-(create-fontset-from-fontset-spec "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
+(create-fontset-from-fontset-spec
+ "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
 (setq default-frame-alist
       (append
        '((font . "fontset-startup")
@@ -20,9 +21,10 @@
 (defun fullscreen-toggle ()
   "Toggle fullscreen status."
   (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         ;; if first parameter is '2', can toggle fullscreen status. Otherwise, can't toggle.
-                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   ;; if first parameter is '2', can toggle fullscreen status. Otherwise, can't toggle.
+   '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'fullscreen-toggle)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;gnuplot

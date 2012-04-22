@@ -3,23 +3,29 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:02:52>
+;; Updated: Time-stamp: <2012-04-22 14:11:42>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
-(setq x-select-enable-clipboard t);;support copy/paste among emacs and other programs
+;;support copy/paste among emacs and other programs
+(setq x-select-enable-clipboard t)
 (setq major-mode 'text-mode) ;;Text-mode is default mode
 (setq tab-width 4);;tab take 4 space
-(setq-default indent-tabs-mode nil);;force Emacs to indent with spaces, never with TABs
+;;force Emacs to indent with spaces, never with TABs
+(setq-default indent-tabs-mode nil)
 (setq scroll-margin 3 scroll-conservatively 10000)
 (global-font-lock-mode t) ;;highlight synatx
 (show-paren-mode t)
 (setq column-number-mode t) ;;show column number
 (setq line-number-mode t) ;;show line number in mode line
 (setq-default fill-column 70)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'generic-x)
 (transient-mark-mode t)
+;; --8<-------------------------- §separator§ ------------------------>8--
 (autoload 'thumbs "thumbs" "Preview images in a directory." t)
-(set-default 'split-width-threshold 165) ;;Make sure default splitting is vertical splitting
+;;Make sure default splitting is vertical splitting
+(set-default 'split-width-threshold 165)
 (set-default 'text-scale-mode-step 1.1);;Set the zoom rate
 (iswitchb-mode 1);;interactive buffer switching
 (setq undo-limit 1000) ;;Increase number of undo
@@ -32,8 +38,10 @@
 (setq byte-compile-dynamic t)
 ;;(setq special-display-buffer-names '("*Help*" "*Apropos*"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(delete-selection-mode t) ;; adjust emacs behaviour with normal editor, if selecting region then type
-(put 'delete-char 'delete-selection 'kill);; TODO: doesn't work, 调用C-d删除时， kill-ring的头部总是有一个""
+;; adjust emacs behaviour with normal editor, if selecting region then type
+(delete-selection-mode t)
+;; TODO: doesn't work, 调用C-d删除时， kill-ring的头部总是有一个""
+(put 'delete-char 'delete-selection 'kill)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; enable fancy features of emacs
 (put 'narrow-to-region 'disabled nil);;enable narraow editing
@@ -122,9 +130,7 @@
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wealth.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/cloud.org"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
-(defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
-(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'pkm (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/pkm.org"))))
@@ -139,8 +145,10 @@
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
-(defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contact.org"))))
+(defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
+(defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
+(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -190,7 +198,9 @@
   (let (occur-regexp)
     (if invokeoccur
         (progn
-          (setq occur-regexp (read-regexp "List lines matching regexp in current direcotry" (car regexp-history)))
+          (setq occur-regexp
+                (read-regexp "List lines matching regexp in current direcotry"
+                             (car regexp-history)))
           (setq dmoccur-mask-internal dmoccur-mask)
           (dmoccur default-directory occur-regexp current-prefix-arg))
       (setq occur-regexp (read-regexp "List lines matching regexp" (car regexp-history)))
@@ -205,7 +215,8 @@
  - preventing show the lengthy grep-find-command in minibuffer
  - set the word at cursor as the default search keyword"
   (interactive "P")
-  (let (command-args search-keyword (initial-conent nil) (bounds (bounds-of-thing-at-point 'word)))
+  (let (command-args search-keyword (initial-conent nil)
+                     (bounds (bounds-of-thing-at-point 'word)))
     (if (and obtain-current-word bounds)
         (setq initial-conent (buffer-substring-no-properties (car bounds) (cdr bounds))))
     (setq search-keyword (read-shell-command "Run find in current directory: "
@@ -232,7 +243,8 @@
       query-replace-highlight t) ; ...and replacing
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (dolist (hook programming-hook-list)
-  (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook emacs-lisp-mode-hook erlang-mode-hook))
+  (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook
+                                     emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
 (define-key global-map (kbd "M-p RET") 'view-mode)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -270,7 +282,8 @@ backup_dir specify where the backup copy shall go"
   (interactive)
   (let ((bfilename (file-name-nondirectory (buffer-file-name))))
     (if (null backup_dir) (setq backup_dir "/tmp/"))
-    (write-region (point-min) (point-max) (format "%s/%d-%s" backup_dir (random 10000) bfilename))
+    (write-region (point-min) (point-max)
+                  (format "%s/%d-%s" backup_dir (random 10000) bfilename))
     ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun notify-popup (title msg &optional icon sound)
@@ -354,7 +367,7 @@ starting on the same line at which another match ended is ignored."
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)
-                                        ; (message "Buffer is set to read-only because it is large. Undo also disabled.")
+    ;; (message "Buffer is set to read-only because it is large. Undo also disabled.")
     ))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 ;; --8<-------------------------- §separator§ ------------------------>8--
@@ -368,6 +381,7 @@ starting on the same line at which another match ended is ignored."
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 ;; don't display welcome message when flyspell started
 (setq flyspell-issue-welcome-flag nil)
-(setq gc-cons-threshold 4000000) ;; control emacs garbage collection
+;; control emacs garbage collection
+(setq gc-cons-threshold 4000000)
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: fundamental-setting.el ends here

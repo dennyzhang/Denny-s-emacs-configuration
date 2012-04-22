@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-11 07:51:19>
+;; Updated: Time-stamp: <2012-04-22 14:22:58>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -74,7 +74,8 @@
             (if (re-search-forward "charset= *\\([-0-9a-zA-Z]*\\)" nil t 1)
                 (setq coding_charset (downcase (match-string 1))))
             ;; decode the string of title.
-            (setq web_title_str (decode-coding-string web_title_str (intern coding_charset)))
+            (setq web_title_str
+                  (decode-coding-string web_title_str (intern coding_charset)))
             )
           ;; If previous line contains: "web page:", insert web title there.
           ;; Otherwise, in the line below
@@ -85,7 +86,8 @@
           (setq point-start (point))
           (narrow-to-region point-start point-end)
           (if (re-search-forward "\\(web page:[^:\n]*\\)" nil t)
-              (replace-match (format "%s: %s%s" "web page" web_title_str (make-string 50 32)) nil nil)
+              (replace-match
+               (format "%s: %s%s" "web page" web_title_str (make-string 50 32)) nil nil)
             (goto-char point-orig)
             (reindent-then-newline-and-indent)
             ;; wash content

@@ -3,12 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-23 00:38:16>
+;; Updated: Time-stamp: <2012-04-22 14:26:20>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun my-insert-time()
   (interactive)
-  (let* ((insert_str (format-time-string "<%Y-%m-%d %H:%M UTC +8>" (current-time))))
+  (let* ((insert_str
+          (format-time-string "<%Y-%m-%d %H:%M UTC +8>" (current-time))))
     (insert insert_str)
     ))
 ;; --8<-------------------------- §separator§ ------------------------>8--
