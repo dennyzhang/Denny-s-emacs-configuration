@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:48:31>
+;; Updated: Time-stamp: <2012-04-22 17:17:02>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;color-theme
@@ -335,5 +335,22 @@
     (toggle-truncate-lines))
    (t (fold-dwim-toggle))
    ))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(require 'desktop)
+(add-to-list 'desktop-globals-to-save 'file-name-history)
+(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
+(setq desktop-buffers-not-to-save
+      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+	      "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+	      "\\)$"))
+(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+(add-to-list 'desktop-modes-not-to-save 'erc-mode)
+(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+(desktop-save-mode 1)
+(desktop-release-lock)
+(add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
+(add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: essentialpackage-setting.el ends here

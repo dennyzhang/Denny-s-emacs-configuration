@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: myemacs.el --- emacs Configuration entrance point
+;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:47:15>
+;; Updated: Time-stamp: <2012-04-22 17:50:39>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; Precondition

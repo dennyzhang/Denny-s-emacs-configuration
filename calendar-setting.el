@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: calendar-setting.el
+;; File: calendar-setting.el -- calendar and event reminders
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:26:09>
+;; Updated: Time-stamp: <2012-04-22 17:52:29>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq warning-suppress-types nil)

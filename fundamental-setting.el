@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: fundamental-setting.el
+;; File: fundamental-setting.el -- most important setting, excluding thrid party packagess
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:41:29>
+;; Updated: Time-stamp: <2012-04-22 17:51:35>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)

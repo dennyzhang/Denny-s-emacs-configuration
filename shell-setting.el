@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:13:37>
+;; Updated: Time-stamp: <2012-04-22 17:38:23>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -150,27 +150,6 @@ If arg is given, only open a shell for one direcotry.
     )
   )
 ;; --8<-------------------------- §separator§ ------------------------>8--
-(dolist (mode-hook-var '(shell-mode-hook eshell-mode-hook))
-  (add-hook mode-hook-var
-            '(lambda ()(local-set-key (kbd "C-l") 'clear-shell))))
-(defun clear-shell ()
-  "Remove content of shell/eshell, with the prompt lines reserved"
-  (interactive)
-  (cond
-   ((string-equal mode-name "Shell")
-    ;; In shell buffer, leverage comint
-    (let ((comint-buffer-maximum-size 0))
-      (comint-truncate-buffer)))
-   ((string-equal mode-name "EShell")
-    ;; In eshell buffer, simply delete content of region
-    (let ((inhibit-read-only t))
-      (goto-char (point-min))
-      (forward-line 2)
-      (eval-after-load 'eshell
-        '(eshell-bol))
-      (kill-region (point) (point-max))))
-   ))
-;; --8<-------------------------- §separator§ ------------------------>8--
 ;;eshell
 (global-set-key (kbd "<C-f9>") 'eshell-toggle)
 ;; quickly switch to eshell, and do buffer toggle things
@@ -251,5 +230,69 @@ If arg is given, only open a shell for one direcotry.
         (nil "%" "smb")
         ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
         ("\\`ftp\\." "" "ftp")))
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; In the ls output of *eshell* buffer, enable us to open related files/directories
+(eval-after-load "em-ls"
+  '(progn
+     (defun eshell-ls-find-file-at-point ()
+       (interactive)
+       (let ((fname (buffer-substring-no-properties
+                     (previous-single-property-change (point) 'help-echo)
+                     (next-single-property-change (point) 'help-echo))))
+         ;; Remove any leading whitespace, including newline that might
+         ;; be fetched by buffer-substring-no-properties
+         (setq fname (replace-regexp-in-string "^[ \t\n]*" "" fname))
+         ;; Same for trailing whitespace and newline
+         (setq fname (replace-regexp-in-string "[ \t\n]*$" "" fname))
+         (cond
+          ((equal "" fname)
+           (message "No file name found at point"))
+          (fname
+           (find-file fname)))))
+
+     (defun pat-eshell-ls-find-file-at-mouse-click (event)
+       "Middle click on Eshell's `ls' output to open files.
+From Patrick Anderson via the wiki."
+       (interactive "e")
+       (eshell-ls-find-file-at-point (posn-point (event-end event))))
+
+     (let ((map (make-sparse-keymap)))
+       (define-key map (kbd "RET") 'eshell-ls-find-file-at-point)
+       (define-key map (kbd "<return>") 'eshell-ls-find-file-at-point)
+       (define-key map (kbd "<mouse-2>") 'pat-eshell-ls-find-file-at-mouse-click)
+       (defvar ted-eshell-ls-keymap map))
+
+     (defadvice eshell-ls-decorated-name (after ted-electrify-ls activate)
+       "Eshell's `ls' now lets you click or RET on file names to open them."
+       (add-text-properties 0 (length ad-return-value)
+                            (list 'help-echo "RET, mouse-2: visit this file"
+                                  'mouse-face 'highlight
+                                  'keymap ted-eshell-ls-keymap)
+                            ad-return-value)
+       ad-return-value)))
+;; --8<-------------------------- §separator§ ------------------------>8--
+(setq eshell-scroll-to-bottom-on-output t
+      eshell-scroll-show-maximum-output t)
+;; --8<-------------------------- §separator§ ------------------------>8--
+(defun clear-shell ()
+  "Remove content of shell/eshell, with the prompt lines reserved"
+  (interactive)
+  (cond
+   ((string-equal mode-name "Shell")
+    ;; In shell buffer, leverage comint
+    (let ((comint-buffer-maximum-size 0))
+      (comint-truncate-buffer)))
+   ((string-equal mode-name "EShell")
+    ;; In eshell buffer, simply delete content of region
+    (let ((inhibit-read-only t))
+      (goto-char (point-min))
+      (forward-line 2)
+      (eval-after-load 'eshell
+        '(eshell-bol))
+      (kill-region (point) (point-max))))
+   ))
+(dolist (mode-hook-var '(shell-mode-hook eshell-mode-hook))
+  (add-hook mode-hook-var
+            '(lambda () (local-set-key (kbd "C-l") 'clear-shell))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: shell-setting.el

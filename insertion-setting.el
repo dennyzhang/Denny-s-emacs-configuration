@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: insertion-setting.el
+;; File: insertion-setting.el -- utilites for intelligent insertion
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:26:20>
+;; Updated: Time-stamp: <2012-04-22 17:51:59>
 ;;
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (defun my-insert-time()

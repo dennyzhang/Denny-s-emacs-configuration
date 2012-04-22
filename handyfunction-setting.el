@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
+;; File: handyfunction-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; File: handyfunction-setting.el
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:47:23>
+;; Updated: Time-stamp: <2012-04-22 17:50:16>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)

@@ -71,20 +71,5 @@
   '("^Starting new Ispell process \\[.+\\] \\.\\.\\.$"
     "^Ispell process killed$")
   "filter formatted message string to remove noisy messages")
-
-(defadvice message (around message-filter-by-regexp activate)
-  (if (not (ad-get-arg 0))
-      ad-do-it
-    (let ((formatted-string (apply 'format (ad-get-args 0))))
-      (if (and (stringp formatted-string)
-               (some (lambda (re) (string-match re formatted-string))
-                     message-filter-regexp-list))
-          (save-excursion
-            (set-buffer "*Messages*")
-            (goto-char (point-max))
-            (insert formatted-string "\n"))
-        (progn
-          (ad-set-args 0 `("%s" ,formatted-string))
-          ad-do-it)))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

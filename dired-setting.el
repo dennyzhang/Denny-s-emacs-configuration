@@ -3,8 +3,65 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-11 07:55:56>
+;; Updated: Time-stamp: <2012-04-22 17:33:17>
 ;;
+;; --8<-------------------------- §separator§ ------------------------>8--
+(put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
+(setq dired-listing-switches "-alth")
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; Sort files in dired.
+(defun dired-sort-size ()
+  "Dired sort by size."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "S")))
+
+(defun dired-sort-extension ()
+  "Dired sort by extension."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "X")))
+
+(defun dired-sort-name ()
+  "Dired sort by name."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "")))
+
+(defun dired-sort-ctime ()
+  "Dired sort by create time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "ct")))
+
+(defun dired-sort-utime ()
+  "Dired sort by access time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "ut")))
+
+(defun dired-sort-time ()
+  "Dired sort by time."
+  (interactive)
+  (dired-sort-other (concat dired-listing-switches "t")))
+
+(defun dired-get-size ()
+  "Get size of current file/directories at cursor point."
+  (interactive)
+  (let ((current-file (dired-get-filename t)))
+    (with-temp-buffer
+      (shell-command (format "/usr/bin/du -sch %s" current-file) t)
+      (message "Size of %s: %s" current-file
+               (progn
+                 (goto-char (point-min))
+                 (re-search-forward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
+                 (match-string 1))))))
+
+(define-key dired-mode-map "\M-e" 'dired-sort-extension)
+(define-key dired-mode-map "\M-c" 'dired-get-size)
+;; --8<-------------------------- §separator§ ------------------------>8--
+;; adds a command('T') to dired-mode for creating and unpacking tar files.
+(load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
+(custom-set-variables
+ ;; no confirmation for recursive operations in dired
+ '(dired-recursive-copies (quote always))
+ '(dired-recursive-deletes (quote always))
+ )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/dired+/dired+.el"))
 ;;(require 'dired+)
@@ -49,62 +106,5 @@
   "*Face used for read privilege indicator (w) in dired buffers."
   :group 'Dired-Plus :group 'font-lock-highlighting-faces)
 (defvar diredp-read-priv 'diredp-my-read-priv)
-;; --8<-------------------------- §separator§ ------------------------>8--
-(put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
-(setq dired-listing-switches "-alth")
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; Sort files in dired.
-(defun dired-sort-size ()
-  "Dired sort by size."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "S")))
-
-(defun dired-sort-extension ()
-  "Dired sort by extension."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "X")))
-
-(defun dired-sort-name ()
-  "Dired sort by name."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "")))
-
-(defun dired-sort-ctime ()
-  "Dired sort by create time."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "ct")))
-
-(defun dired-sort-utime ()
-  "Dired sort by access time."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "ut")))
-
-(defun dired-sort-time ()
-  "Dired sort by time."
-  (interactive)
-  (dired-sort-other (concat dired-listing-switches "t")))
-
-(define-key dired-mode-map "\M-e" 'dired-sort-extension)
-;; --8<-------------------------- §separator§ ------------------------>8--
-(defun dired-get-size ()
-  "Get size of current file/directories at cursor point."
-  (interactive)
-  (let ((current-file (dired-get-filename t)))
-    (with-temp-buffer
-      (shell-command (format "/usr/bin/du -sch %s" current-file) t)
-      (message "Size of %s: %s" current-file
-               (progn
-                 (goto-char (point-min))
-                 (re-search-forward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
-                 (match-string 1))))))
-(define-key dired-mode-map "\M-c" 'dired-get-size)
-;; --8<-------------------------- §separator§ ------------------------>8--
-;; adds a command('T') to dired-mode for creating and unpacking tar files.
-(load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
-(custom-set-variables
- ;; no confirmation for recursive operations in dired
- '(dired-recursive-copies (quote always))
- '(dired-recursive-deletes (quote always))
- )
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: dired-setting.el ends here

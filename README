@@ -1,17 +1,13 @@
 -*- mode:org; fill-column:90; coding:utf-8; -*-
 * Denny's emacs configuration: Denny's .emacs init scripts and elisp repository
-** Problem description
-** Feature
-- Perfect matching my personal daily life! (If not, I will definitely train it, or rebuild some pices of wheels.)
+- Perfect matching my personal daily life!
+  (If not, I will definitely train it, or rebuild some pices of wheels.)
+- Configuration is organized in separate modules with minimum dependency.
 - Compatible for both linux, linux console with no windows, windows, cygwin, etc.
-- Configuration is organized in separate modules with low dependency.
-** Design
-** Screenshot
-** More resources
-*** Contact me
+
 Denny Zhang(张巍)
 Tel: 18621908421
 Email: markfilebat@126.com
 Weibo: http://weibo.com/1686664253
-Blog: http://hi.baidu.com/filebat
+Blog: https://github.com/DennyZhang/
 Team: http://blog.ec-ae.com/
