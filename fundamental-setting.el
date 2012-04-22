@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:51:35>
+;; Updated: Time-stamp: <2012-04-22 18:29:15>
 ;; --8<-------------------------- §separator§ ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -44,6 +44,7 @@
 (set-fringe-mode (cons 6 0))
 (size-indication-mode t)
 (setq redisplay-dont-pause t)
+(setq tooltip-use-echo-area t)
 (setq byte-compile-dynamic t)
 ;;(setq special-display-buffer-names '("*Help*" "*Apropos*"))
 ;; --8<-------------------------- §separator§ ------------------------>8--
