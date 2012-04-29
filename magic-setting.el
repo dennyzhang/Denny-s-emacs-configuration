@@ -2,9 +2,9 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:16:31>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:39>
+;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
 These information is probably retrieved from internet. "
@@ -44,7 +44,7 @@ These information is probably retrieved from internet. "
       ;; send the result to kill-string
       (kill-new output_str))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun count-code-lines-in-directory(directory &optional lanuage-postfix-list)
   " Count code lines for various programming lanuages, with the help of below utility:
  find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1
@@ -70,7 +70,7 @@ These information is probably retrieved from internet. "
     ;; return the result
     (eval output-str)
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun run-current-file ()
   "Execute or compile the current file.
 For example, if the current buffer is the file x.pl,
@@ -105,5 +105,5 @@ File suffix is used to determine what program to run."
         (message "No recognized program file suffix for this file.")
         )
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

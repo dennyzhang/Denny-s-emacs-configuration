@@ -2,10 +2,10 @@
 ;; File: ledger-setting.el --- ledger configuration, especially comunication with rdaccount
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-02 23:38:33>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:38>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
   "parse all accounts from ledger file, and generate sql
 statement for insertion to sqlite db"
@@ -50,7 +50,7 @@ statement for insertion to sqlite db"
     (while account-list
       (setq account-list-tmp (pop account-list))
       (generate-http-insert-account-command account-list-tmp account-name account-type))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-transactions (&optional record-date ledger-file-name)
   "Parse transactions from ledger file.
  Return value is a list of vector(fromaccountname, toaccountname, amount, recorddate, memo)
@@ -96,7 +96,7 @@ statement for insertion to sqlite db"
       )
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun rdaccount-transactions (http-username http-password &optional record-date)
   "get rdaccount transactions.
  Return value is a list of vector(fromaccountname, toaccountname, amount, recorddate, memo)
@@ -164,7 +164,7 @@ statement for insertion to sqlite db"
     transaction-list
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 
 (defun ledger-generate-transaction-http-call(&optional out-buffname ledger-file-name)
   "Parse transactions from ledger file, and generate http rest call for rdaccount webserver"
@@ -209,7 +209,7 @@ statement for insertion to sqlite db"
       )
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-sync-ledger-rdaccount(&optional http-username http-password out-buffname)
   "Two way sync between ledger and rdaccount, by Set Union.
 
@@ -264,5 +264,5 @@ statement for insertion to sqlite db"
       (insert "(sleep-for 5)\n"))
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: ledger-setting.el ends here

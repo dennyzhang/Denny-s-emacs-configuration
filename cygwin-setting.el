@@ -2,12 +2,12 @@
 ;; File: cygwin-setting.el --- Settings only valid for cygwin environment
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:03>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:38>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq thumbs-conversion-program "d:/cygwin/bin/convert.exe")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun dot-to-ascii (beg end)
   (interactive "r")
   ;; Perl CLI to convert from dot file to ascii diagram
@@ -39,7 +39,7 @@
       )
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (create-fontset-from-fontset-spec "-bitstream-Bitstream Vera Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-fontset-startup")
 (setq default-frame-alist
       (append
@@ -49,7 +49,7 @@
          (cursor-color . "Orchid")
          )
        default-frame-alist))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/maxframe/maxframe.el"))
 ;; ;;(setq mf-max-width 1440) ;; Pixel width of main monitor.
 ;; ;;(setq mf-max-height 900) ;; Pixel width of main monitor.
@@ -57,5 +57,5 @@
 ;; (global-set-key [f11] 'maximize-frame)
 ;; (global-set-key [C-f11] 'restore-frame)
 ;; (require 'maxframe)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: cygwin-setting.el ends here

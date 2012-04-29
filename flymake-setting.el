@@ -2,10 +2,10 @@
 ;; File: flymake-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:03:02>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:36>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
 ;; Display flymake error msg in minibuffer after delay
 (load-file (concat EMACS_VENDOR "/flymake-cursor/flymake-cursor.el"))
@@ -56,7 +56,7 @@
 (defadvice flymake-delete-own-overlays (after remove-from-fringe activate compile)
   (mapc 'fringe-helper-remove flymake-fringe-overlays)
   (setq flymake-fringe-overlays nil))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for php mode
 ;; a standalone check file, leverage "php -l" and php_codesniffer
 (setq my-php-check-file (concat DENNY_CONF "emacs_data/php_lint.sh"))
@@ -100,7 +100,7 @@
                      ;;This is the error format for: phpcs --standard=PEAR --report=emacs somefile.php
                      ("\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\): +\\(.*?\\)$" 1 2 3 4))
                    )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; ;;flymake for html mode
 ;; (defun flymake-html-init ()
 ;; (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -115,7 +115,7 @@
 ;; (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
 ;; (make-local-variable 'flymake-err-line-patterns)
 ;; (setq flymake-err-line-patterns '(("line \\([0-9]+\\) column \\([0-9]+\\) - \\(.*\\)" nil 1 2 3)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for shell mode
 (defun flymake-shell-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -137,7 +137,7 @@
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
                    '(("^\\(.+\\): line \\([0-9]+\\): \\(.+\\)$" 1 2 nil 3)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for elisp mode
 (defun flymake-elisp-init ()
   (unless (string-match "^ " (buffer-name))
@@ -175,7 +175,7 @@
           '(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for css mode
 (defun flymake-css-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -197,7 +197,7 @@
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
                    '("\\(.*\\) \\[\\([0-9]+\\):\\([0-9]+\\): \\(.*\\)\\]" nil 2 3 1))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for javascript mode
 ;;TODO, problematic
 (defun flymake-jslint-init ()
@@ -226,7 +226,7 @@
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns
                    '("^Lint at line \\([[:digit:]]+\\) character \\([[:digit:]]+\\): \\(.+\\)$" nil 1 2 3))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for ruby
 ;; Invoke ruby with '-c' to get syntax checking
 (defun flymake-ruby-init ()
@@ -251,7 +251,7 @@
              (my-ruby-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
              (setq flymake-err-line-patterns '(("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; C mode.
 (defun flymake-c-init ()
   (flymake-simple-make-init-impl 'flymake-create-temp-inplace t t
@@ -271,7 +271,7 @@
   (list "g++" (list "-Wall" (concat base-dir source))))
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.cpp$" flymake-c++-init))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Java mode.
 (defun flymake-java-init ()
   (flymake-simple-make-init-impl
@@ -285,7 +285,7 @@
   (list "javac" (list "-g" (concat base-dir source))))
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.java$" flymake-java-init))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; python mode
 (setq my-python-check-file (concat DENNY_CONF "emacs_data/python_lint.py"))
 (defun flymake-python-init ()
@@ -312,7 +312,7 @@
                    '(;; This is the error format for: php -f somefile.php -l
                      ("\\(.*\\) at \\(.*\\) line \\(.*\\)." 2 3 nil 1)
                      ))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq my-erlang-check-file (concat DENNY_CONF "emacs_data/erlang_lint.erl"))
 (defun flymake-erlang-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -336,9 +336,9 @@
                    '(
                      ("\\(.*\\):\\([0-9]+\\): \\(.*\\)" 1 2 nil 3)
                      ))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Disable flymake for html and xml files as this is handled by nxml mode.
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.xml?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: flymake-setting.el ends here

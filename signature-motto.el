@@ -2,10 +2,10 @@
 ;; File: signature-motto.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:25:21>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:38>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/signature-ascii-picture.el"))
 (setq common-tail-signature "Denny Zhang(张巍)
 电话: 18621908421
@@ -79,5 +79,5 @@
                                       x nil))
                               entry-list)))
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: signature-motto.el ends here

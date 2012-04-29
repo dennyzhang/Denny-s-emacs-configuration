@@ -2,10 +2,10 @@
 ;; File: signature-ascii-picture.el --- Provide ascii pictures to feed gnus as dynamic signature
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 17:44:51>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:34>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq sign-ascii-picture
       '( "
 .oooO...............

@@ -2,9 +2,9 @@
 ;; File: gnus-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:19:57>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:40>
+;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
 (setq gnus-startup-file (concat mail-parent-directory-var ".newsrc")
@@ -21,13 +21,13 @@
       nndraft-directory (concat mail-parent-directory-var "Mail/drafts/")
       mm-default-directory (concat mail-parent-directory-var "Attachment/")
       message-auto-save-directory (concat mail-parent-directory-var "Mail/drafts/"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-save-newsrc-file nil
       gnus-read-newsrc-file nil
       gnus-use-dribble-file nil
       gnus-save-killed-list nil)
 (setq gnus-interactive-exit nil) ;; No confirmation when exiting Gnus.
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; view mail, and skip nntp newsgroup
 (setq gnus-select-method '(nnml ""))
 ;; TODO: 126 imap没法读取邮件,　单独的python可以通过imap协议来操作,　应该是集成的问题
@@ -48,7 +48,7 @@
 ;; (nnimap-stream ssl))
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
 (setq my-msmtp-config-file (concat "'" DENNY_CONF "emacs_data/filebat.msmtprc" "'"))
 ;; (setq sendmail-program (concat "msmtp -C " my-msmtp-config-file)) ;;TODO, enhance
@@ -100,7 +100,7 @@
 ;; (eval (setq message-sendmail-extra-arguments '("-a" "126")))
 ;; (user-mail-address "markfilebat@126.com")))))
 
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; group configuration
 (setq gnus-group-line-format "%M\%S\%p\%P\ %4N/%4t :%B%(%g%)%O\n")
 (setq gnus-summary-gather-subject-limit 'fuzzy) ;聚集题目用模糊算法
@@ -121,7 +121,7 @@
         ((gnus-seconds-month) . "%d %H:%M") ;当月
         ((gnus-seconds-year) . "%m-%d %H:%M") ;今年
         (t . "%y-%m-%d %H:%M"))) ;其他
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; 线程的可视化外观, `%B'
 (setq gnus-summary-same-subject "")
 (setq gnus-sum-thread-tree-indent " ")
@@ -131,7 +131,7 @@
 (setq gnus-sum-thread-tree-vertical "│")
 (setq gnus-sum-thread-tree-leaf-with-other "├─► ")
 (setq gnus-sum-thread-tree-single-leaf "╰─► ")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; 时间显示
 (add-hook 'gnus-article-prepare-hook 'gnus-article-date-local) ;将邮件的发出时间转换为本地时间
 (add-hook 'gnus-select-group-hook 'gnus-group-set-timestamp) ;跟踪组的时间轴
@@ -155,13 +155,13 @@
       '("^From:" "^Subject:" "^Summary:" "^To:" "^Cc:" "^Keywords:"
         "^Newsgroups:" "^Followup-To:" "^Date:" "^User-Agent:"
         "^X-Mailer:" "^X-Newsreader:" "^Gcc:"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-group-sort-function
       '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; on the fly spell checking
 ;;(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; How to save articles
 (setq gnus-default-article-saver 'gnus-summary-save-in-file)
 ;; article configuration
@@ -175,12 +175,12 @@
     ))
 (setq gnus-use-cache 'passive)
 (setq gnus-asynchronous 't) ;;异步操作
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (gnus-delay-initialize) ;; support sending messages with delay mechanism
 (setq gnus-delay-default-delay "1d")
 ;;when start gnus, open the specific group, before fetching news/mails
 ;;(gnus-fetch-group "nndraft:delayed")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; 显示设置
 (setq mm-text-html-renderer 'w3m) ;用W3M显示HTML格式的邮件
 ;; Do not use the html part of a message, use the text part if possible!
@@ -193,12 +193,12 @@
 ;; (concat "\\(\\`cid:\\|"
 ;; "\\`http://www\\.shopex\\.com\\|"))
 (add-to-list 'mm-attachment-override-types "image/*") ;附件显示图片
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; hook bbdb to gnus
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-message)
 (add-hook 'message-setup-hook 'bbdb-define-all-aliases)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; 加载随机签名
 (load-file (concat DENNY_CONF "/emacs_conf/signature-motto.el"))
 (setq gnus-posting-styles
@@ -208,7 +208,7 @@
          (signature get-motto))
         ((header "from" "sophiazhang8709@126.com\\|bz-zhangchengfeng@163.com\\|06300260051@fudan.edu.cn\\|sophiazhang8709@gmail.com")
          (signature get-motto))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; category mails by bbdb group, which is defined by bbdb alias
 (defun category-gnus-mail-by-bbdb-alias()
   (let (mail-alias-group net-list)
@@ -240,25 +240,25 @@
 ;; category mails by bbdb group
 (category-gnus-mail-by-bbdb-alias)
 (add-to-list 'nnmail-split-methods '("mail.misc" "") 't)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; category imap mails
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (gnus-compile) ;编译一些选项, 加快速度
 (setq gnus-default-charset 'utf-8)
 (setq gnus-article-charset 'utf-8)
 (add-to-list 'gnus-group-charset-alist '("\\(^\\|:\\)cn\\>\\|\\<chinese\\>" utf-8))
 (setq gnus-summary-show-article-charset-alist
       '((1 . utf-8) (2 . big5) (3 . gbk) (4 . utf-7)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
 (setq gnus-message-archive-group
       '((if (message-news-p)
             "nnfolder:mail.sent.news"
           "nnfolder:mail.sent.mail")))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;set expiration time for mails to be deleted
 (setq nnmail-expiry-wait 3)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun gnus-send-groupmail-by-template (name-mail-list subject mail-content from-mail marker)
   "send group mails based on template.
  We send mails to each recipient a mail with subject and
@@ -339,14 +339,14 @@ then send mails by send-groupmail-by-mailbuffer."
       )
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; search content of gnus mails
 ;; (cd ~/backup/essential/Dropbox/private_data/gnus_data/Mail && swish-e -i . -f ../index.swish -e -v 2)
 (require 'nnir)
 (setq nnir-search-engine 'swish-e)
 (setq nnir-swish-e-index-files
       (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
 ;; (setq gnus-demon-timestep 20)
 ;; (gnus-demon-add-handler 'gnus-group-get-new-news 2 t)
@@ -356,7 +356,7 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; (defadvice gnus-demon-scan-news (around gnus-demon-timeout activate)
 ;; "Timeout for Gnus."
 ;; (with-timeout (30 (message "Gnus timed out.")) ad-do-it))
-;; ;; --8<-------------------------- §separator§ ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/gnus-notify/gnus-desktop-notify.el"))
 ;; (require 'gnus-desktop-notify)
 ;; (gnus-desktop-notify-mode)
@@ -367,9 +367,9 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; (add-hook 'gnus-group-catchup-group-hook 'gnus-notify+)
 ;; (add-hook 'mail-notify-pre-hook 'gnus-notify+)
 ;; (setq gnus-notify+-timeout 40)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-novice-user nil) ;; no confirmation is required
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun check-from-mail ()
   "Check whether I am sending from company's email adress, when coping with work stuff"
   (interactive)
@@ -386,7 +386,7 @@ then send mails by send-groupmail-by-mailbuffer."
         ))
     ))
 (add-hook 'message-send-mail-hook 'check-from-mail)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun confirm-for-delayed-mail ()
   "Ask for confirmation, before sending delayed mail"
   (interactive)
@@ -395,7 +395,7 @@ then send mails by send-groupmail-by-mailbuffer."
         (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop. "))
     ))
 (add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun auto-add-message-important-header ()
   "Auto set current mail as important, for some regexp rules"
   (interactive)
@@ -418,11 +418,11 @@ then send mails by send-groupmail-by-mailbuffer."
     ;;(yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop")
     ))
 (add-hook 'message-send-mail-hook 'auto-add-message-important-header)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (define-key gnus-summary-mode-map "d"
   '(lambda() (interactive)
      (gnus-summary-delete-article 1) (forward-line 1)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; score down any mails which I don't like
 (setq gnus-use-adaptive-scoring t)
 (setq gnus-score-expiry-days 14)
@@ -447,25 +447,25 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; Increase the score for followups to a sent article.
 (add-hook 'message-sent-hook 'gnus-score-followup-article)
 (add-hook 'message-sent-hook 'gnus-score-followup-thread)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Keep a backup of the received mails for some time
 (setq mail-source-delete-incoming 90)
 ;; don't ask for confirmation before deleting old mails
 (setq mail-source-delete-old-incoming-confirm nil)
 ;; Expireable articles will be deleted after 35 days.
 (setq nnmail-expiry-wait 35)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq message-generate-headers-first t)
 ;; When composing a mail, start the auto-fill-mode.
 (add-hook 'message-mode-hook 'turn-on-auto-fill)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Use the gnus registry
 (setq gnus-registry-install 't)
 (require 'gnus-registry)
 (gnus-registry-initialize)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (setq message-kill-buffer-on-exit t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (define-key message-mode-map (kbd "M-p i") 'message-important-header)
 (defun message-important-header(&optional receipt-email)
   "Request a disposition notification (return receipt) to this message(Disposition-Notification-To).
@@ -486,7 +486,7 @@ And insert header to mark message as unimportant(X-Priority).
       (insert Disposition-Notification-To-Header)
       (insert Importance-Header)
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq nnmail-treat-duplicates 'delete) ;; ask nnmail to delete duplicated mails.
 (setq gnus-summary-display-while-building 50)
 (setq gnus-gcc-mark-as-read t) ;;automatically mark Gcc articles as read
@@ -494,5 +494,5 @@ And insert header to mark message as unimportant(X-Priority).
 (setq nnml-use-compressed-files t) ;;using compressed message files
 (setq nnmail-crosspost nil) ;; first matched split method appply
 (setq bbdb/gnus-update-records-mode 'searching) ;; don't update bbdb records automatically
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

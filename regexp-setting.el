@@ -3,10 +3,10 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: regexp-setting.el
 ;; Created: 2012-04-18
-;; Updated: Time-stamp: <2012-04-22 14:20:23>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Updated: Time-stamp: <2012-04-27 11:51:34>
+;; --8<-------------------------- separator ------------------------>8--
 (set-default 'case-fold-search t);;Make searches case insensitive
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun add-isearch-regexp-prefix (search-prefix)
   "Add regexp prefix for regexp searching."
   (progn
@@ -27,7 +27,7 @@
     ))
 (global-set-key (kbd "C-c C-f") 'search-function)
 ;;(define-key python-mode-map (kbd "C-c C-f") 'search-function)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "C-c c") 'beautify-region-by-mode)
 (defun beautify-region-by-mode()
   (interactive)
@@ -75,5 +75,5 @@
           (replace-match "\n" nil nil)))
       )
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: regexp-setting.el ends here

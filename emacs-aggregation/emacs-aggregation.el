@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-04-21 11:11:45>
+;; Copyright © 2010-2011 Time-stamp: <2012-04-27 11:51:36>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -46,7 +46,7 @@
 ;;
 ;; TODO:
 ;;
-;; § -------------------------- separator --------------------------
+;;  -------------------------- separator --------------------------
 
 ;;; FLY TRY =====================================================
 ;; TODO:
@@ -119,13 +119,13 @@ Typical data includes:
     (shell-command send-mail-command)
     ))
 
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun retrieve-org-todo-list ()
   (let (retrieve-content)
     (setq retrieve-content "")
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun retrieve-org-tags (tag-name &optional include-all-p)
   (let (retrieve-content)
     (save-excursion
@@ -143,7 +143,7 @@ Typical data includes:
         (setq retrieve-content (replace-regexp-in-string "\n+" "\n" retrieve-content))
         (setq retrieve-content (replace-regexp-in-string "\n$" "" retrieve-content))
         ))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun retrieve-html-content (url start-anchor-str end-anchor-str)
   (let (retrieve-content)
     (with-temp-buffer
@@ -186,7 +186,7 @@ Typical data includes:
     (delete-region (point-min) (+ (match-beginning 0) (length start-anchor-str))))
   (when (re-search-forward end-anchor-str nil t)
     (delete-region (- (point) (length end-anchor-str))(point-max))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'calendar)
 (defun retrieve-diary-remind(prefetch-days)
   (let (retrieve-content (old-buffer (current-buffer)))
@@ -205,7 +205,7 @@ Typical data includes:
       (setq retrieve-content (replace-regexp-in-string "^=+$" "" retrieve-content))
       (setq retrieve-content (replace-regexp-in-string "\n+" "\n" retrieve-content))
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun retrieve-signature()
   (let (retrieve-content)
     (setq retrieve-content

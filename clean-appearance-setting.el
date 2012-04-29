@@ -2,10 +2,10 @@
 ;; File: clean-appearance-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:43:43>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:41>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
 (set-face-attribute 'mode-line nil :height 100)
 (defun toggle-mode-line ()
@@ -16,13 +16,13 @@
         (set-face-attribute 'mode-line nil :height minimum-height)
       (set-face-attribute 'mode-line nil :height normal-height))))
 (global-set-key [M-f12] 'toggle-mode-line)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; when cursor and mouse is close, automatically move mouse away
 (mouse-avoidance-mode 'animate)
 (setq mouse-avoidance-threshold 10)
 ;; enable mouse wheel support
 (mouse-wheel-mode 1)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; let's have a clean world
 (progn
   (set-scroll-bar-mode 'right) ;;scroll bar
@@ -37,7 +37,7 @@
 ;; In sandbox
 "))
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "<C-f10>") 'toggle-transparency)
 (set-frame-parameter (selected-frame) 'alpha '(97 97))
 (defun toggle-transparency ()
@@ -50,9 +50,9 @@
          (transparency-new (nth next-pos transparency-list)))
     (set-frame-parameter nil 'alpha (cons transparency-new transparency-new))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq initial-buffer-choice (concat DENNY_CONF "emacs_data/filebat.splashscreen"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun add-custom-global-font-locking ()
   "Hilight some keywords globally."
   (interactive)
@@ -66,10 +66,10 @@
        ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))
     (font-lock-mode 1)))
 (add-hook 'find-file-hook 'add-custom-global-font-locking)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defvar message-filter-regexp-list
   '("^Starting new Ispell process \\[.+\\] \\.\\.\\.$"
     "^Ispell process killed$")
   "filter formatted message string to remove noisy messages")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

@@ -2,17 +2,17 @@
 ;; File: insertion-setting.el -- utilites for intelligent insertion
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:51:59>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:35>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun my-insert-time()
   (interactive)
   (let* ((insert_str
           (format-time-string "<%Y-%m-%d %H:%M UTC +8>" (current-time))))
     (insert insert_str)
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun insert-c++-class-header ()
   "Inserts a C++ class header which conforms to Oacis standards."
   (interactive)
@@ -47,8 +47,8 @@
    "\n")
   (message "Inserted C++ class")
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
-;;insert string: ;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+;;insert string: ;; --8<-------------------------- separator ------------------------>8--
 (defun get-separator ()
   "Get separator for different modes"
   (cond
@@ -64,13 +64,13 @@
                   (cond
                    ((and (string= "Org" mode-name) (org-current-level))
                     (insert (make-string (org-current-level) ?*) " "
-                            (format "%s --8<-------------------------- §separator§ ------------------------>8--\n"
+                            (format "%s --8<-------------------------- separator ------------------------>8--\n"
                                     (get-separator))))
                    (t
                     (insert
-                     (format "%s --8<-------------------------- §separator§ ------------------------>8--\n"
+                     (format "%s --8<-------------------------- separator ------------------------>8--\n"
                              (get-separator)))))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun insert-unicode-drawing-box ()
   "Insert a drawing box of unicode chars."
   (interactive)
@@ -79,5 +79,5 @@
 ├─┼─┤
 │ │ │
 └─┴─┘"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: insertion-setting.el

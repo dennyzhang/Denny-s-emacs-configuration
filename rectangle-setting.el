@@ -2,10 +2,10 @@
 ;; File: rectangle-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:25:47>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:39>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (define-key ctl-x-map "r\C-x" 'rm-kill-clean-region)
 (define-key ctl-x-map "r\C-y" 'yank-rectangle-in-place)
 (define-key ctl-x-map "r\C-m" 'mark-rectangle)
@@ -74,5 +74,19 @@ taken in place with no new characters created."
     (forward-char rectangle-width)
     (setq kill-start (point))
     (delete-rectangle kill-start kill-end)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(defun boxquote-rectangle (b e)
+  "Draw a box comment around the region but arrange for the region
+to extend to at least the fill column. Place the point after the
+comment box."
+  (interactive "r")
+  (let ((e (copy-marker e t)))
+    (if (null comment-start) (setq comment-start "#"))
+    (goto-char b)
+    (end-of-line)
+    (insert-char ? (- fill-column (current-column)))
+    (comment-box b e 1)
+    (goto-char e)
+    (set-marker e nil)))
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: rectangle-setting.el ends here

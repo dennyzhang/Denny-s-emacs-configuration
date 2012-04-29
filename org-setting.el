@@ -2,10 +2,10 @@
 ;; File: org-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:21:51>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:41>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
 (require 'org)
@@ -20,7 +20,7 @@
                               (concat DENNY_CONF "/org_data/project.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; log the time of the things I have done
 (setq-default org-log-done t)
 ;; write diary in org-mode
@@ -64,15 +64,15 @@
           (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":Habit:"))))
         ;; other commands here
         ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'org-habit)
 (setq org-habit-graph-column 80)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)
         ("DEFERRED" . shadow)
         ("CANCELED" . (:foreground "CornflowerBlue" :weight bold))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-agenda-custom-commands
       '(("X" agenda ""
          ((ps-number-of-columns 2)
@@ -81,15 +81,15 @@
           (org-agenda-with-colors nil)
           (org-agenda-remove-tags t))
          ("theagenda.ps"))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; set css for html export in org-mode
 (setq user-full-name "Denny Zhang")
 (setq user-mail-address "markfilebat@126.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
 (setq org-mobile-directory (concat DENNY_CONF "../MobileOrg"))
@@ -97,7 +97,7 @@
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 ;; pulling from MobileOrg
 (setq org-mobile-inbox-for-pull (concat DENNY_CONF "../emacs_stuff/org_data/frommobile.org"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/org-contacts/org-contacts.el"))
 ;; (require 'org-contacts)
 ;; (setq contact-file (concat DENNY_CONF "/org_data/contacts_tmp.org"))
@@ -110,7 +110,7 @@
 ;; :EMAIL: %(org-contacts-template-email)
 ;; :END:")
 ;; ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
 ;; 'org-babel-load-languages
@@ -122,9 +122,9 @@
 ;; (ledger . t)
 ;; (ruby . t)
 ;; ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-agenda-include-diary t) ;集成日历
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun jump-to-org-agenda ()
   (interactive)
   (unless (featurep 'org-agenda)
@@ -146,7 +146,7 @@
 ;;(run-with-idle-timer 3600 t 'jump-to-org-agenda) ;; TODO, enhance the usage
 (setq org-agenda-repeating-timestamp-show-all nil)
 (setq org-agenda-restore-windows-after-quit t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; change org local key
 (org-defkey org-mode-map (kbd "C-M-.") 'org-shiftmetaright)
 (org-defkey org-mode-map (kbd "C-M-,") 'org-shiftmetaleft)
@@ -219,9 +219,9 @@
     )
   )
 
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/graphviz-dot-mode/graphviz-dot-mode.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 (setq org-default-notes-file "current.org")
 (require 'org-capture)
@@ -240,7 +240,7 @@
 ;; ("Period" ?p "- %t\n" "contacts.org" "秀秀--周期")
 ;; ("Diary" ?d "* %T %?\n# 今日所学\n %i\n# 今日趣闻\n %i\n# 今日杂记\n %i\n" "diary.org" bottom)
 ;; ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; auto add "TODO " for top task
 (defadvice org-meta-return (after cond activate)
   (when (= 1 (org-current-level))
@@ -253,9 +253,9 @@
 ;; (move-beginning-of-line nil)
 ;; (insert (make-string (org-current-level) ?*) " " link-str "\n")
 ;; ))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-src-fontify-natively t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (setq org-drawers (quote ("PROPERTIES" "CLOCK" "LOGBOOK" "NOTES" "COMMENTS" "LINKS")))
 
 ;; (setq org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
@@ -269,9 +269,9 @@
 ;; ("SOMEDAY" :foreground "magenta" :weight bold)
 ;; ("CANCELLED" :foreground "forest green" :weight bold)
 ;; ("PROJECT" :foreground "red" :weight bold))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq org-completion-use-ido t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -284,5 +284,5 @@
  '(org-level-3 ((t (:inherit outline-3 :foreground "SeaGreen3"))))
  '(org-todo ((t (:weight bold))))
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

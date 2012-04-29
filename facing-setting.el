@@ -2,10 +2,10 @@
 ;; File: facing-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-10-03 16:49:58>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:38>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; define customized face
 (defface font-lock-denny-face
   '((((class color) (min-colors 88) (background light)) (:foreground "magenta"))
@@ -35,5 +35,5 @@
                           ("\\(sophia.*\\)" 1 font-lock-denny-face)
                           )
                         t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: facing-setting.el ends here

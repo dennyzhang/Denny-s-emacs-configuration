@@ -3,8 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2012-04-22
-;; Updated: Time-stamp: <2012-04-22 17:49:42>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Updated: Time-stamp: <2012-04-27 11:51:43>
+;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
 (setq ediff-split-window-function 'split-window-horizontally)
@@ -19,7 +19,7 @@
   '(progn
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
 (require 'magit)
 (eval-after-load 'magit
@@ -51,7 +51,7 @@
 
 ;; when diff-mode, set buffers readonly
 (add-hook 'diff-mode-hook (lambda () (view-mode)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun ediff-sequent-lines ()
   "Compare two sequent lines in the same buffer, by calling ediff-regions-internal"
   (interactive)
@@ -65,5 +65,5 @@
      (current-buffer) (line-beginning-position) (line-end-position)
      (current-buffer) (line-beginning-position 2) (line-end-position 2)
      nil 'ediff-windows-wordwise 'word-mode nil)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: diff-setting.el ends here

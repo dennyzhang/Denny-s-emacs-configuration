@@ -2,13 +2,13 @@
 ;; File: dired-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:33:17>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:36>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
 (setq dired-listing-switches "-alth")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Sort files in dired.
 (defun dired-sort-size ()
   "Dired sort by size."
@@ -54,7 +54,7 @@
 
 (define-key dired-mode-map "\M-e" 'dired-sort-extension)
 (define-key dired-mode-map "\M-c" 'dired-get-size)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; adds a command('T') to dired-mode for creating and unpacking tar files.
 (load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
 (custom-set-variables
@@ -62,7 +62,7 @@
  '(dired-recursive-copies (quote always))
  '(dired-recursive-deletes (quote always))
  )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/dired+/dired+.el"))
 ;;(require 'dired+)
 (defface diredp-my-file-name
@@ -106,5 +106,5 @@
   "*Face used for read privilege indicator (w) in dired buffers."
   :group 'Dired-Plus :group 'font-lock-highlighting-faces)
 (defvar diredp-read-priv 'diredp-my-read-priv)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: dired-setting.el ends here

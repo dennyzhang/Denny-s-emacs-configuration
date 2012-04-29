@@ -2,10 +2,10 @@
 ;; File: shell-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:38:23>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:39>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun open-shell-of-current-file ()
   "If current file doesn't open a shell, generate one.
  Otherwise, switch to related shell.
@@ -134,7 +134,7 @@ If arg is given, only open a shell for one direcotry.
     (open-shell-of-current-file)
     ))
 
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
 ;;(add-hook 'kill-buffer-hook 'kill-shell-buffer)
 (defun kill-shell-buffer()
@@ -149,7 +149,7 @@ If arg is given, only open a shell for one direcotry.
         (kill-buffer shell-buffer-name))
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;eshell
 (global-set-key (kbd "<C-f9>") 'eshell-toggle)
 ;; quickly switch to eshell, and do buffer toggle things
@@ -159,12 +159,12 @@ If arg is given, only open a shell for one direcotry.
   t)
 (autoload 'eshell-toggle-cd "eshell-toggle"
   "Pops up a eshell-buffer and insert a \"cd <file-dir>\" command." t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (eval-after-load 'eshell
   (setq eshell-cmpl-cycle-completions nil
         eshell-save-history-on-exit t
         eshell-cmpl-dir-ignore "\\`\\(\\.\\.?\\|CVS\\|\\.svn\\|\\.git\\)/\\'"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun python-shell()
   "make a python shell"
   (interactive)
@@ -175,7 +175,7 @@ If arg is given, only open a shell for one direcotry.
   (switch-to-buffer (make-comint "perl" "perl" nil "-d -e''")))
 ;; setup environments
 (setenv "PAGER" "cat")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'shell)
 (require 'term)
 (define-key term-raw-map (kbd "C-j") 'term-switch-to-shell-mode)
@@ -197,9 +197,9 @@ If arg is given, only open a shell for one direcotry.
       (term-char-mode)
       (term-send-raw-string (kbd "C-l"))
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (eval-after-load 'esh-opt
   '(progn
      (require 'em-prompt)
@@ -216,7 +216,7 @@ If arg is given, only open a shell for one direcotry.
                   '("gunzip" "gz\\'"))
      (add-to-list 'eshell-command-completions-alist
                   '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'"))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'tramp)
 (setq tramp-default-method "sshx")
 (remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
@@ -230,7 +230,28 @@ If arg is given, only open a shell for one direcotry.
         (nil "%" "smb")
         ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
         ("\\`ftp\\." "" "ftp")))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(defun clear-shell ()
+  "Remove content of shell/eshell, with the prompt lines reserved"
+  (interactive)
+  (cond
+   ((string-equal mode-name "Shell")
+    ;; In shell buffer, leverage comint
+    (let ((comint-buffer-maximum-size 0))
+      (comint-truncate-buffer)))
+   ((string-equal mode-name "EShell")
+    ;; In eshell buffer, simply delete content of region
+    (let ((inhibit-read-only t))
+      (goto-char (point-min))
+      (forward-line 2)
+      (eval-after-load 'eshell
+        '(eshell-bol))
+      (kill-region (point) (point-max))))
+   ))
+(dolist (mode-hook-var '(shell-mode-hook eshell-mode-hook))
+  (add-hook mode-hook-var
+            '(lambda () (local-set-key (kbd "C-l") 'clear-shell))))
+;; --8<-------------------------- separator ------------------------>8--
 ;; In the ls output of *eshell* buffer, enable us to open related files/directories
 (eval-after-load "em-ls"
   '(progn
@@ -270,29 +291,8 @@ From Patrick Anderson via the wiki."
                                   'keymap ted-eshell-ls-keymap)
                             ad-return-value)
        ad-return-value)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq eshell-scroll-to-bottom-on-output t
       eshell-scroll-show-maximum-output t)
-;; --8<-------------------------- §separator§ ------------------------>8--
-(defun clear-shell ()
-  "Remove content of shell/eshell, with the prompt lines reserved"
-  (interactive)
-  (cond
-   ((string-equal mode-name "Shell")
-    ;; In shell buffer, leverage comint
-    (let ((comint-buffer-maximum-size 0))
-      (comint-truncate-buffer)))
-   ((string-equal mode-name "EShell")
-    ;; In eshell buffer, simply delete content of region
-    (let ((inhibit-read-only t))
-      (goto-char (point-min))
-      (forward-line 2)
-      (eval-after-load 'eshell
-        '(eshell-bol))
-      (kill-region (point) (point-max))))
-   ))
-(dolist (mode-hook-var '(shell-mode-hook eshell-mode-hook))
-  (add-hook mode-hook-var
-            '(lambda () (local-set-key (kbd "C-l") 'clear-shell))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: shell-setting.el

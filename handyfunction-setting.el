@@ -2,9 +2,9 @@
 ;; File: handyfunction-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:50:16>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:39>
+;; --8<-------------------------- separator ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
 (global-set-key [(meta down)] 'move-line-down)
@@ -27,7 +27,7 @@
   "Moves current line N (1) lines down leaving point in place."
   (interactive "p")
   (move-line (if (null n) 1 n)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p tab: tab selected region
 (define-key global-map (kbd "M-p TAB") 'my-tab-all)
 ;;(global-set-key [?\M-p \t] 'my-tab-all)
@@ -43,7 +43,7 @@
       (yas/expand)
       (forward-line 1)
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p e: delete current word, without copy to clipboard
 (global-set-key [(meta p)(e)] 'onlydelete-word)
 (defun onlydelete-word (arg)
@@ -95,7 +95,7 @@ With argument, do this that many times."
           (end (progn (forward-paragraph arg) (point))))
       (copy-region-as-kill beg end)
       (message "[copy] Region"))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p y: duplicate current region
 (global-set-key [(meta p)(y)] 'duplicate-current-line-or-region)
 (defun duplicate-current-line-or-region (arg)
@@ -117,7 +117,7 @@ there's a region, all lines that region covers will be duplicated."
         (insert region)
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p j: delete line without copy
 (defun delete-line (&optional arg)
   (interactive "P")
@@ -146,7 +146,7 @@ there's a region, all lines that region covers will be duplicated."
                          (goto-char end))))
                    (point))))
 (global-set-key [(meta p)(j)] 'delete-line)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;query before flush lines
 (defalias 'qfl 'query-flush-lines)
 (defun query-flush-lines (regexp &optional rstart rend interactive)
@@ -178,7 +178,7 @@ there's a region, all lines that region covers will be duplicated."
                              (progn (forward-line 1) (point))))))))
   (set-marker rend nil)
   nil)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun dos2unix ()
   "Convert a DOS formatted text buffer to UNIX format"
   (interactive)
@@ -187,7 +187,7 @@ there's a region, all lines that region covers will be duplicated."
   "Convert a UNIX formatted text buffer to DOS format"
   (interactive)
   (set-buffer-file-coding-system 'undecided-dos nil))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
@@ -204,7 +204,7 @@ there's a region, all lines that region covers will be duplicated."
            (set-window-start w1 s2)
            (set-window-start w2 s1)))))
 (defalias 'sw 'swap-windows);;regexp query and replace
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;escape current buffer
 (global-set-key [C-f4] 'exit-current-buffer)
 (defun exit-current-buffer ()
@@ -212,7 +212,7 @@ there's a region, all lines that region covers will be duplicated."
   (kill-buffer nil)
   (other-window 1)
   (delete-other-windows))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; split windows should display different buffers question
 (global-set-key [(control x) \2] 'split-window-switch-buffer)
 (defun split-window-switch-buffer () (interactive)
@@ -224,7 +224,7 @@ there's a region, all lines that region covers will be duplicated."
   "Split current window horizontally and display the two last buffers used."
   (split-window-horizontally)
   (switch-to-buffer (other-buffer (current-buffer))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; hippie-expand
 (global-set-key [(meta ?/)] 'hippie-expand)
 (setq hippie-expand-try-functions-list
@@ -239,7 +239,7 @@ there's a region, all lines that region covers will be duplicated."
         try-expand-line
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p SPC:goto last edited location in a file
 (define-key global-map (kbd "M-p SPC") 'goto-last-edit-point)
 (defun goto-last-edit-point()
@@ -253,7 +253,7 @@ there's a region, all lines that region covers will be duplicated."
                     (not (and (integerp pos)
                               (goto-char (abs pos))))))
         (setq undos (cdr undos))))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun force-kill-matching-buffers (regexp &optional internal-too)
   "Kill buffers whose name matches the specified REGEXP.
 The optional second argument indicates whether to kill internal buffers too."
@@ -264,14 +264,14 @@ The optional second argument indicates whether to kill internal buffers too."
                  (or internal-too (/= (aref name 0) ?\s))
                  (string-match regexp name))
         (kill-buffer buffer)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun unfill-region (start end)
   "Replace newline chars in region by single spaces.
 This command does the reverse of `fill-region'."
   (interactive "r")
   (let ((fill-column 90002000))
     (fill-region start end)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun delete-current-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
@@ -284,7 +284,7 @@ This command does the reverse of `fill-region'."
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun uniq-lines (beg end)
   "Unique lines in region.
 Called from a program, there are two arguments:
@@ -303,13 +303,13 @@ BEG and END (region to sort)."
                (format "^%s" (regexp-quote (car kill-ring))) nil t)
             (replace-match "" nil nil))
           (goto-char next-line))))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun occur-context (regexp &optional nlines)
   (interactive (occur-read-primary-args))
   (let ((list-matching-lines-default-context-lines 1))
     (occur-1 regexp nlines (list (current-buffer))))
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun clean-up-buffer-or-region (cleanup-replace-rule-list)
   "Clean up buffer or region by following:
  Untabifies, indents and deletes trailing whitespace from buffer or region,
@@ -329,14 +329,14 @@ BEG and END (region to sort)."
   (narrow-to-region (region-beginning) (region-end))
   (delete-trailing-whitespace)
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun goto-column (number)
   "Untabify, and go to a column NUMBER within the current line (0 is beginning of the line)."
   (interactive "nColumn number: ")
   (move-to-column number t))
 (global-set-key (kbd "M-g c") 'goto-column)
 (global-set-key (kbd "M-g g") 'goto-line)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; ;; TODO: define short key
 ;; (defun scroll-up-one-line()
 ;; "Scroll up one line."
@@ -354,7 +354,7 @@ BEG and END (region to sort)."
 ;; "Scroll other window line down."
 ;; (interactive)
 ;; (scroll-other-window-down 1))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun show-function-info()
   "Show info of current function: line count and character count"
   (interactive)
@@ -368,7 +368,7 @@ BEG and END (region to sort)."
                (which-function) (count-lines min max) (- max min)))
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun open-folder-in-explorer ()
   "Call when editing a file in a buffer. Open windows explorer in the current directory"
   (interactive)
@@ -382,7 +382,7 @@ BEG and END (region to sort)."
    )
   )
 (global-set-key [(control x)(control d)] 'open-folder-in-explorer)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun save-screenshots (name)
   "Save shot full-screen.
 To use this function, you need install scrot."
@@ -394,7 +394,7 @@ To use this function, you need install scrot."
     (message "Run command: %s" shell-command-var)
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; TODO: there are some bugs for this function
 (global-set-key (kbd "<C-return>") 'switch-to-mode-nex-buffer)
 (defun switch-to-mode-nex-buffer()
@@ -431,7 +431,7 @@ To use this function, you need install scrot."
     (switch-to-buffer (car buffer-choose-list))
     )
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'write-file-hooks 'auto-update-file-fields)
 (defun auto-update-file-fields ()
   "Update fields in file, such as filename, time-stamp, etc
@@ -459,7 +459,7 @@ To use this function, you need install scrot."
           (insert (file-name-nondirectory (buffer-file-name)))
           ))
       )))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun what-hexadecimal-value ()
   "Prints the decimal value of a hexadecimal string under cursor.
 Samples of valid input:
@@ -495,7 +495,7 @@ Test cases
 
     (message "Hex %s is %d" tempStr (string-to-number tempStr 16 ) )
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun total-numbers-region (begin end pattern sub-index)
   "Count all the matches for numbers between BEGIN and END, that
 are in the sub-pattern of PATTERN given by SUB-INDEX."
@@ -512,13 +512,13 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
               count (1+ count)))
       (message "%d numbers totalled %d" count total)
       total)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun my-random-string (&optional n)
   "Return a string of random characters of length N (default 10)."
   (let ((x ""))
     (dotimes (i (or n 10) x)
       (setq x (format "%s%c" x (+ 33 (random 94)))))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun insert-line-number(&optional arg)
   "Insert a numeric sequence at beginning of each line"
   (interactive "P")
@@ -547,20 +547,7 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
           (funcall insert-number arg (point-min) (point-max))
         (funcall insert-number 0 (point-min) (point-max)))
       ))))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(defun boxquote-rectangle (b e)
-  "Draw a box comment around the region but arrange for the region
-to extend to at least the fill column. Place the point after the
-comment box."
-  (interactive "r")
-  (let ((e (copy-marker e t)))
-    (goto-char b)
-    (end-of-line)
-    (insert-char ? (- fill-column (current-column)))
-    (comment-box b e 1)
-    (goto-char e)
-    (set-marker e nil)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun occur-more ()
   (interactive)
   (let ((context-lines list-matching-lines-default-context-lines) occur-find-str)
@@ -570,13 +557,13 @@ comment box."
     (occur occur-find-str)
     (setq list-matching-lines-default-context-lines context-lines)
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun hexl-show ()
   (interactive)
   (message "hex (%s) to decimal (%s)." (current-word)
            (string-to-number (current-word) 16))
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun ascii-table-show ()
   "Print the ascii table"
   (interactive)
@@ -604,5 +591,5 @@ comment box."
         (setq i (+ i 1)))
       (beginning-of-buffer))
     (toggle-read-only 1)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

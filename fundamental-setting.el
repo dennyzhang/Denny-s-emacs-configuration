@@ -2,9 +2,9 @@
 ;; File: fundamental-setting.el -- most important setting, excluding thrid party packagess
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 18:29:15>
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-29 18:47:45>
+;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
 ;;support copy/paste among emacs and other programs
@@ -24,14 +24,10 @@
       save-abbrevs nil
       line-spacing   0.2
       )
-;; tell more about how to recognize words
-(modify-syntax-entry ?_ "w")
-(modify-syntax-entry ?[ "w")
-(modify-syntax-entry ?] "w")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'generic-x)
 (transient-mark-mode t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (autoload 'thumbs "thumbs" "Preview images in a directory." t)
 ;;Make sure default splitting is vertical splitting
 (set-default 'split-width-threshold 165)
@@ -47,21 +43,21 @@
 (setq tooltip-use-echo-area t)
 (setq byte-compile-dynamic t)
 ;;(setq special-display-buffer-names '("*Help*" "*Apropos*"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; adjust emacs behaviour with normal editor, if selecting region then type
 (delete-selection-mode t)
 ;; TODO: doesn't work, 调用C-d删除时， kill-ring的头部总是有一个""
 (put 'delete-char 'delete-selection 'kill)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; enable fancy features of emacs
 (put 'narrow-to-region 'disabled nil);;enable narraow editing
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'eval-expression 'disabled nil)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (put 'tetris 'disabled t) ;; disable the game of tetris, to prevent wasting time
 (defalias 'tetris nil) ;; Don't waste time to play this game
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (set-default-coding-systems 'utf-8-unix) ;;specify coding system when creating a new file
 (set-face-attribute 'mode-line nil :height 0.9) ;;Make the mode-line a little lower
 (setq display-time-interval 60) ;;update of time in the mode line
@@ -71,7 +67,7 @@
 (setq-default ispell-program-name "aspell")
 (setq ispell-personal-dictionary (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
 ;;(setq-default show-trailing-whitespace 't)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
 (auto-image-file-mode t)
 (setq resize-mini-windows t)
@@ -80,14 +76,14 @@
 (when (fboundp 'winner-mode) (winner-mode 1)) ;;Restore old window configurations
 (setq delete-by-moving-to-trash t) ;; When deletion in emacs, uses system’s trash
 (setq trash-directory "~/trash")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defalias 'qrr 'query-replace-regexp);;regexp query and replace
 (defalias 'rr 'replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; prevent to press backspace, which is pretty far
 (global-set-key [(control x) (control k)] 'backward-kill-word)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;never quit by mistake...
 (global-set-key [(control x) (control c)]
                 (function
@@ -100,13 +96,13 @@
                  (lambda () (interactive)
                    (cond ((y-or-n-p "Hide editor? ")
                           (iconify-or-deiconify-frame))))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [f1] 'describe-function) ;;elisp help
 (global-set-key [f6] 'calc);;calc
 (global-set-key [C-f12] 'comment-or-uncomment-region);comment region
 (global-set-key [f12] 'c-indent-line-or-region)
 (setq outline-minor-mode-prefix (kbd "C-o"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defvar programming-mode-list (list
                                'c-mode 'c++-mode
                                'emacs-lisp-mode 'lisp-mode
@@ -130,7 +126,7 @@
                                'php-mode-hook
                                'erlang-mode-hook
                                ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun my-open-file (filename)
   (interactive)
   (find-file filename))
@@ -155,15 +151,15 @@
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
-(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contact.org"))))
+(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contacts.org"))))
 (defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
   (font-lock-add-keywords hook '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; set time-stamp-format, when auto saving
 (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
 ;; Hook emacs behaviour, before saving
@@ -178,20 +174,20 @@
              (unless (member (file-name-extension (buffer-name)) '("org"))
                (time-stamp))
              ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "C-SPC") 'nil);;set control+space to nill
 (global-set-key (kbd "C-M-SPC") 'set-mark-command);;set Ctrl+Alt+space to set-mark
 (global-set-key [(meta p)(c)] 'count-lines-region)
 (global-set-key [(meta p)(o)] 'split-line)
 (global-set-key [(control = )] 'text-scale-increase);;zoom out/in font
 (global-set-key [(control -)] 'text-scale-decrease)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq eshell-aliases-file (concat DENNY_CONF "emacs_data/filebat.alias")) ;; set alias for eshell
 (setq bookmark-default-file (concat DENNY_CONF "emacs_data/filebat.bmk"));; customize for bookmark file
 (setq bookmark-save-flag 1) ;;save bookmark whether we change it
 (setq-default line-spacing 0.15);; set line spacing
 (setq frame-title-format "%* - %p - Keep your mind running, Denny! - %b - %f")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
   (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc"))
@@ -248,16 +244,16 @@
      (- (count-lines (point-min) (point-max)) 6))
     ))
 (ad-activate 'grep-find)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq search-highlight t ; highlight when searching...
       query-replace-highlight t) ; ...and replacing
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (dolist (hook programming-hook-list)
   (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook
                                      emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
 (define-key global-map (kbd "M-p RET") 'view-mode)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq auto-save-default nil) ;; disable auto save
 (setq kept-old-versions 2)
 (setq kept-new-versions 3)
@@ -295,7 +291,7 @@ backup_dir specify where the backup copy shall go"
     (write-region (point-min) (point-max)
                   (format "%s/%d-%s" backup_dir (random 10000) bfilename))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun notify-popup (title msg &optional icon sound)
   "Show a popup if we're on X, or echo it otherwise; TITLE is the title
 of the message, MSG is the context. Optionally, you can provide an ICON and
@@ -309,10 +305,10 @@ a sound to be played"
                              " '" title "' '" msg "'"))
     ;; text only version
     (message (concat title ": " msg))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Visually indicate buffer boundaries and scrolling.
 (setq-default indicate-buffer-boundaries 'left)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun flush-words (regexp &optional rstart rend interactive)
   "Delete words containing matches for REGEXP.
 
@@ -356,11 +352,11 @@ starting on the same line at which another match ended is ignored."
                     (make-list (length (match-string 0)) " "))
                    nil nil))
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [mouse-4] 'scroll-down)
 (global-set-key [mouse-5] 'scroll-up)
 (global-set-key (kbd "C-x C-2") 'pop-global-mark)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq max-lisp-eval-depth 1000
       max-specpdl-size 10000
       kill-ring-max 1024
@@ -370,7 +366,7 @@ starting on the same line at which another match ended is ignored."
 (setq message-log-max t ;; don't truncate buffer when logging huge messages
       help-xref-following nil
       )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
   (when (> (buffer-size) (* 10 1024 1024))
@@ -380,18 +376,20 @@ starting on the same line at which another match ended is ignored."
     ;; (message "Buffer is set to read-only because it is large. Undo also disabled.")
     ))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (autoload 'goto-last-change
   "goto-last-change" "Set point to the position of the last change." t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq history-length 100)
 (setq require-final-newline t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; also recognize the style of Chinese sentence ending
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 ;; don't display welcome message when flyspell started
 (setq flyspell-issue-welcome-flag nil)
 ;; control emacs garbage collection
 (setq gc-cons-threshold 4000000)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(set-frame-parameter nil 'scroll-bar-width 10)
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

@@ -2,10 +2,10 @@
 ;; File: bbdb-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:24:38>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:40>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
 (global-set-key [(super b)] 'bbdb)
 (require 'bbdb)
@@ -21,7 +21,7 @@
 ;; Don't check phone numbers with the syntax of North America
 (setq bbdb-north-american-phone-numbers-p nil)
 (setq bbdb-default-label-list '("Mobile" "Office" "Other"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb/bbdb-picture.el"))
 (setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
@@ -65,7 +65,7 @@
           )))
     (set-buffer old-buffer) ;; restore buffer
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; override built-in bbdb function to support search in the field of mail-alias
 (defun bbdb-combo (string elidep)
   "combo search in *BBDB* buffer"
@@ -100,7 +100,7 @@
         (bbdb-display-records records)
       ;; we could use error here, but it's not really an error.
       (message "No records matching '%s'" string))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun send-template-mail()
   "Parse current buffer as a mail template, then
 send mails by send-groupmail-by-mailbuffer.
@@ -176,7 +176,7 @@ which will be replaced by the actual name"
     ;; insert name
     (perform-replace marker (nth 0 name-mail-entry) nil nil nil)
     (message-send-and-exit)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (bbdb-get-mail-aliases): Return a list of mail aliases used in the BBDB.
 (defun get-net-list-by-mail-alias(mail-alias)
   "Get email address list by mail alias"
@@ -184,13 +184,37 @@ which will be replaced by the actual name"
     (setq records (bbdb-search (bbdb-records) nil nil nil target))
     (mapcar '(lambda (record) (car (bbdb-record-net record)))
             records)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq bbdb-use-pop-up nil) ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
 (setq bbdb-check-zip-codes-p nil) ;; don't check legal zip code, when entering an address
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names
       (regexp-opt '("markfilebat@126.com" "filebat.mark@gmail.com" "zhangwei@shopex.cn")))
 (setq bbdb-complete-name-allow-cycling t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/"))
+(require 'google-maps)
+(defun show-bbdb-loaction ()
+  "put all my contacts stored into BBDB on a Google Maps' map"
+  (interactive)
+  (google-maps-static-show
+   :markers
+   (mapcar
+    (lambda (address-entry)
+      `((,(concat
+           (mapconcat
+            'identity
+            (elt address-entry 1) ", ") ", "
+            (elt address-entry 2) ", "
+            (elt address-entry 3) ", "
+            (elt address-entry 4) ", "
+            (elt address-entry 5)))))
+    (mapcan
+     (lambda (record)
+       ;; We need to copy the returned list, because mapcan will modify it later
+       (copy-list (bbdb-record-addresses record)))
+     (bbdb-records))))
+  )
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: bbdb-setting.el ends here

@@ -2,15 +2,15 @@
 ;; File: postfundamental-setting.el --- fundamental setting as the last step, for all emacs configurations
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:12:16>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:40>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;diary
 (global-set-key [f4] 'calendar)
 (setq diary-file (concat DENNY_CONF "emacs_data/filebat.diary"))
@@ -19,7 +19,7 @@
 (add-hook 'diary-hook 'appt-make-list)
 ;;Generate the diary window for 2 days starting with the current date.
 (diary)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-." 'smart-locate)
 (defun smart-locate ()
   "Smart locate files.
@@ -53,10 +53,10 @@
     (setq regexp
           (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
     (occur-1 regexp 0 (list (current-buffer)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;(set-language-environment 'Chinese-GB)
 ;;(set-keyboard-coding-system 'chinese-iso-8bit-unix)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
 ;; (pomodoro)
 ;; (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
@@ -79,13 +79,13 @@
 ;; (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
 ;; (select-window this-window))
 ;; (run-hook-with-args 'pomodoro-message-hook msg))
-;; --8<-------------------------- §separator§ ------------------------>8--
-(set-buffer-file-coding-system 'utf-8)
-(setq safe-local-variable-values
-      '(
-        (encoding . utf-8)
-        (encoding . utf-8-unix)
-        (encoding . utf-8-emacs-unix)
-        ))
-;; --8<-------------------------- §separator§ ------------------------>
+;; --8<-------------------------- separator ------------------------>8--
+;; (set-buffer-file-coding-system 'utf-8)
+;; (setq safe-local-variable-values
+;;       '(
+;;         (encoding . utf-8)
+;;         (encoding . utf-8-unix)
+;;         (encoding . utf-8-emacs-unix)
+;;         ))
+;; --8<-------------------------- separator ------------------------>
 ;; File: postfundamental-setting.el ends here

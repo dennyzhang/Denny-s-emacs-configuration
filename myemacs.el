@@ -2,14 +2,14 @@
 ;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:50:39>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:37>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Precondition
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/fundamental-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/clean-appearance-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/buffer-setting.el"))
@@ -51,5 +51,5 @@
   (load-file (concat DENNY_CONF "/emacs_conf/cygwin-setting.el"))))
 (load-file (concat DENNY_CONF "/emacs_conf/postfundamental-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/passwd.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: myemacs.el ends here

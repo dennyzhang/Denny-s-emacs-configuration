@@ -2,10 +2,10 @@
 ;; File: calendar-setting.el -- calendar and event reminders
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 17:52:29>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:30>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
 (setq calendar-remove-frame-by-deleting t)
 (setq calendar-week-start-day 1)
@@ -16,12 +16,12 @@
 ;; mark today when opening calendar
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 (setq calendar-chinese-all-holidays-flag t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (display-time-mode 1)
 (setq display-time-24hr-format t
       display-time-day-and-date t
       display-time-format " %Y-%m-%d %H:%M %A")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;set the latitude/longitude
 (setq calendar-latitude +31.11)
 (setq calendar-longitude +121.29)
@@ -33,18 +33,18 @@
          (set-face-foreground 'diary-face "skyblue")
          (set-face-background 'holiday-face "slate blue")
          (set-face-foreground 'holiday-face "white")))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; set lunar calendar stuff
 (setq calendar-chinese-celestial-stem
       ["甲" "乙" "丙" "丁" "戊" "己" "庚" "辛" "壬" "癸"])
 (setq calendar-chinese-terrestrial-branch
       ["子" "丑" "寅" "卯" "辰" "巳" "戊" "未" "申" "酉" "戌" "亥"])
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; remove unrelated holidays
 (setq holiday-hebrew-holidays nil)
 (setq holiday-islamic-holidays nil)
 (setq holiday-solar-holidays nil)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq calendar-holidays
       '((holiday-chinese 12 9 "爸爸生日") ;; 1954
         (holiday-chinese 2 26 "妈妈生日") ;; 1956
@@ -53,12 +53,12 @@
         (holiday-chinese 6 21 "Denny生日")
         (holiday-fixed 9 14 "秀秀生日") ;; 1987
         (holiday-chinese 9 10 "杨明哲生日") ;;2011
-        ;; --8<-------------------------- §separator§ ------------------------>8--
+        ;; --8<-------------------------- separator ------------------------>8--
         (holiday-fixed 6 14 "张伟智生日")
         (holiday-chinese 12 11 "四姨生日")
         (holiday-fixed 11 8 "任全生日")
         (holiday-fixed 3 7 "陈赞生日")
-        ;; --8<-------------------------- §separator§ ------------------------>8--
+        ;; --8<-------------------------- separator ------------------------>8--
         (holiday-fixed 4 1 "赵曜生日")
         (holiday-fixed 8 10 "吉嘉生日")
         (holiday-fixed 11 8 "尹光宗生日")
@@ -77,7 +77,7 @@
         (holiday-fixed 12 18 "陈莹生日")
         (holiday-chinese 8 21 "程恒生日")
         (holiday-fixed 11 26 "刘小溪生日")
-        ;; --8<-------------------------- §separator§ ------------------------>8--
+        ;; --8<-------------------------- separator ------------------------>8--
         (holiday-chinese-new-year)
         (holiday-chinese-winter-solstice)
         (holiday-fixed 1 1 "[节日] -- 元旦节")
@@ -105,5 +105,5 @@
         (holiday-fixed 12 25 "[节日] -- 圣诞节")
         (holiday-fixed 3 13 "[节日] -- 杭州纪念日")
         ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- seperator ------------------------>8--
 ;; File: calendar-setting.el ends here

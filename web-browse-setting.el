@@ -2,13 +2,13 @@
 ;; File: web-browse-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:22:58>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:38>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
 (load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Insinuate with BBDB
 (when (featurep 'bbdb)
   (provide 'w3)
@@ -44,7 +44,7 @@
     (if (one-window-p) (split-window))
     (other-window 1)
     (w3m-browse-url url new-session)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p t: get title of web page, whose url can be found in the current line.
 (global-set-key [(meta p)(t)] 'get-page-title)
 (defun get-page-title()
@@ -96,7 +96,7 @@
             (insert web_title_str)))
         ))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [(meta p)(h)] 'get-page-html-source)
 (defun get-page-html-source()
   "Get html source of web page, whose url can be found in the current line"
@@ -117,7 +117,7 @@
     ;; open file and bring to the front
     (find-file html_file)
     (goto-char 0)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;; define a shortky in w3m mode, and auto add a "www" field for certain record of bbdb
 ;; Based on `bbdb-www-grab-homepage'
 (defun sdl-bbdb-www-grab-homepage-w3m (record)
@@ -142,7 +142,7 @@
       (require 'w3m)
       (define-key w3m-mode-map ":" 'sdl-bbdb-www-grab-homepage-w3m)
       ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq w3m-coding-system 'utf-8
       w3m-file-coding-system 'utf-8
       w3m-file-name-coding-system 'utf-8
@@ -158,7 +158,7 @@
       (replace-match " "))
     (set-buffer-multibyte t))
   (set-buffer-modified-p nil))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (require 'webjump)
 (setq webjump-sites
       '(
@@ -167,7 +167,9 @@
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
         ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
         ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
-        ("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
+        ;;("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
+        ("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
+        ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])
         ;; --8<------------------ search engine ------------------------>8--
@@ -209,7 +211,7 @@
         ("slideshare" . "www.slideshare.net")
         ;; --8<------------------ misc ------------------------>8--
         ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [(meta j)] 'webjump)
 ;; C-u super j: browse webjump link in the way of w3m, instead of default web browser
 (defun webjump (use-w3m-p)
@@ -255,7 +257,7 @@
   (if (and keywords (not (string-equal keywords "")))
       (concat (aref expr 2) (webjump-url-encode keywords) (aref expr 3))
     (webjump-builtin expr name)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (setq browse-url-generic-program "/usr/bin/firefox")
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: web-browse-setting.el ends here

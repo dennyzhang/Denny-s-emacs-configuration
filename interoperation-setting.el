@@ -2,12 +2,12 @@
 ;; File: interoperation-setting.el --- Interoperation with emacs and various tools/utilities
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-11 12:02:57>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:44>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "top-mode/top-mode.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun lock-screen ()
   "Lock screen using (zone) and xtrlock
 calls M-x zone on all frames and runs xtrlock.
@@ -22,5 +22,5 @@ To use this extension, you need install xtrlock in your system."
      '(lambda (process event)
         (zone-leave-me-alone)))
     (zone)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: interoperation-setting.el ends here

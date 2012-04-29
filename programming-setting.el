@@ -2,10 +2,10 @@
 ;; File: programming-setting.el --- utilities for developers
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-04-22 14:22:23>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:42>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
 (defvar hexcolour-keywords
   '(("#[abcdef[:digit:]]\\{6\\}"
@@ -21,7 +21,7 @@
                'css-mode-hook
                ))
   (add-hook hook 'hexcolour-add-to-font-lock))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (define-skeleton skeleton-c-mode-main-func
   "generate int main(int argc, char * argv[]) automatic" nil
   "int main (int argc, char * argv[]) \n{\n"
@@ -29,7 +29,7 @@
   "\n}")
 (define-abbrev-table 'c-mode-abbrev-table '(("main" "" skeleton-c-mode-main-func 1)))
 (define-abbrev-table 'c++-mode-abbrev-table '(("main" "" skeleton-c-mode-main-func 1)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun my-auto-pair ()
   (interactive)
   (make-local-variable 'skeleton-pair-alist)
@@ -46,17 +46,17 @@
   (local-set-key (kbd "\'") 'skeleton-pair-insert-maybe)
   (local-set-key (kbd "{") 'skeleton-pair-insert-maybe)
   )
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;show current function name
 (defun enable-which-function()
   (which-function-mode t))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (dolist (hook programming-hook-list)
   (add-hook hook 'my-auto-pair)
   (add-hook hook 'hs-minor-mode)
   ;; (add-hook hook 'subword-mode) ;; TODO
   (add-hook hook 'enable-which-function))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;switch between .h and .cpp
 (defun switch-head2source-file ()
   "if current file is a header file, then open the
@@ -87,13 +87,13 @@
                       return-value t))
                (t (setq s (cdr s))))))
           return-value))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; Get etags file intelligently
 (add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
 (require 'etags-select)
 (require 'etags-table)
 (setq etags-table-search-up-depth 10)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (defun create-tags (directory)
   "Create tags file."
   (interactive "DDirectory: ")
@@ -105,23 +105,23 @@
                              directory code-file)))
     ))
 ;;(global-set-key "\M-." 'etags-select-find-tag)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; vb programming
 (load-file (concat EMACS_VENDOR "visual-basic/visual-basic-mode.el"))
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (add-to-list 'auto-mode-alist
              '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; C# programming
 (load-file (concat EMACS_VENDOR "csharp/csharp-mode-0.4.0.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; php programming
 (add-to-list 'load-path (concat EMACS_VENDOR "/php-mode-1.5.0/"))
 (require 'php-mode)
 ;; debug php
 (add-to-list 'load-path (concat EMACS_VENDOR "/geben-0.26"))
 (autoload 'geben "geben" "PHP Debugger on Emacs" t)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;ruby programming
 (add-to-list 'load-path (concat EMACS_VENDOR "/ruby-mode"))
 (require 'ruby-mode)
@@ -158,7 +158,7 @@
 ;; (add-hook 'ruby-mode-hook
 ;; '(lambda ()
 ;; (inf-ruby-keys)))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; elisp programming
 (require 'eldoc) ;; helper of elisp
 (setq eldoc-idle-delay 0) ;显示延迟
@@ -171,14 +171,14 @@
                'erc-mode-hook
                ))
   (add-hook hook 'turn-on-eldoc-mode))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;;Make script files executable automatically
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; http post test
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "<f8>") 'smart-compile)
 (defun smart-compile()
   "If makefile exists, compile with it. Otherwise build compile instructions"
@@ -212,7 +212,7 @@
     (if (not (null command))
         (let ((command (read-from-minibuffer "Compile command: " command)))
           (compile command)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; erlang
 ;; TODO, enhance as a more dedicated way
 ;; add the location of the elisp files to the load-path
@@ -250,5 +250,30 @@
             ;; add some Distel bindings to the Erlang shell
             (dolist (spec distel-shell-keys)
               (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(setq gdb-many-windows t)
+;; --8<-------------------------- separator ------------------------>8--
+(require 'gdb-ui)
+(defun gdb-or-gud-go ()
+  "If gdb isn't running; run gdb, else call gud-go."
+  (interactive)
+  (if (and gud-comint-buffer
+           (buffer-name gud-comint-buffer)
+           (get-buffer-process gud-comint-buffer)
+           (with-current-buffer gud-comint-buffer (eq gud-minor-mode 'gdba)))
+      (gud-call (if gdb-active-process "continue" "run") "")
+    (gdb (gud-query-cmdline 'gdb))))
+(defun gud-break-remove ()
+  "Set/clear breakpoin."
+  (interactive)
+  (save-excursion
+    (if (eq (car (fringe-bitmaps-at-pos (point))) 'breakpoint)
+        (gud-remove nil)
+      (gud-break nil))))
+(defun gud-kill ()
+  "Kill gdb process."
+  (interactive)
+  (with-current-buffer gud-comint-buffer (comint-skip-input))
+  (kill-process (get-buffer-process gud-comint-buffer)))
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

@@ -2,10 +2,10 @@
 ;; File: voice-setting.el --- screen reader, voice commander
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2012-03-14 22:44:26>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:37>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/festival/festival.el"))
 (require 'festival)
 (defun festival-read()
@@ -18,5 +18,5 @@
        (festival-say word)
        (message "Read: %s" word)))
     ))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: voice-setting.el ends here

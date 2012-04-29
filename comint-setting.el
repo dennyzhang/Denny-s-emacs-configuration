@@ -2,8 +2,8 @@
 ;; File: comint-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
-;; Created: 2009-08-01
-;; Updated: Time-stamp: <2011-12-04 11:24:26>
+;; Created: 2008-10-01
+;; Updated: Time-stamp: <2012-04-27 11:51:42>
 ;;
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: comint-setting.el ends here
