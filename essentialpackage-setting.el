@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:44>
+;; Updated: Time-stamp: <2012-05-01 01:36:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -43,11 +43,6 @@
 (global-set-key [(control down)] 'move-frame-down)
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
-;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
-;; (require 'yasnippet-bundle)
-;; (yas/initialize)
-;; (yas/load-directory (concat DENNY_CONF "emacs_data/snippets"))
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
 (require 'psvn)

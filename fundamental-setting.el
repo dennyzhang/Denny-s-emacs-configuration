@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-29 18:47:45>
+;; Updated: Time-stamp: <2012-05-01 11:21:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -389,7 +389,5 @@ starting on the same line at which another match ended is ignored."
 (setq flyspell-issue-welcome-flag nil)
 ;; control emacs garbage collection
 (setq gc-cons-threshold 4000000)
-;; --8<-------------------------- separator ------------------------>8--
-(set-frame-parameter nil 'scroll-bar-width 10)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

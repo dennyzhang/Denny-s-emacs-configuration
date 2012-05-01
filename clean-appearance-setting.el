@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:41>
+;; Updated: Time-stamp: <2012-05-01 11:22:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -23,8 +23,9 @@
 ;; enable mouse wheel support
 (mouse-wheel-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
-;; let's have a clean world
-(progn
+(defun emacs-clean ()
+  ;; let's have a clean world
+  (interactive)
   (set-scroll-bar-mode 'right) ;;scroll bar
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1)) ;; Hide toolbar
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ;;Hide menubar
@@ -36,7 +37,9 @@
         (purecopy "\
 ;; In sandbox
 "))
+  (set-frame-parameter nil 'scroll-bar-width 10)
   )
+(emacs-clean)
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "<C-f10>") 'toggle-transparency)
 (set-frame-parameter (selected-frame) 'alpha '(97 97))

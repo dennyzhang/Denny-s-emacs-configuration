@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:42>
+;; Updated: Time-stamp: <2012-05-01 11:56:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -150,6 +150,7 @@
               ((= indent prev-indent)
                (indent-line-to arg-indent)))
         (when (> offset 0) (forward-char offset))))))
+;; --8<-------------------------- separator ------------------------>8--
 ;; ;;inf-ruby
 ;; (autoload 'run-ruby "inf-ruby"
 ;; "Run an inferior Ruby process")
@@ -275,5 +276,24 @@
   (interactive)
   (with-current-buffer gud-comint-buffer (comint-skip-input))
   (kill-process (get-buffer-process gud-comint-buffer)))
+;; --8<-------------------------- separator ------------------------>8--
+ (defmacro rgb-insert-if-double (otherwise)
+   "Insert OTHERWISE when the key mapped to this fcn is pressed twice.
+  For example typing && can result in &amp; appearing in place of &&.
+  Use C-u <count> <key> to insert <key> more than once without replace."
+   `(lambda (cnt raw)
+      (interactive "p\nP")
+      (if (and (equal (preceding-char) last-command-char)
+               (not raw))
+          (progn
+              (backward-delete-char 1)
+              (insert ,otherwise))
+          (self-insert-command cnt))))
+(add-hook 'html-mode-hook
+ (lambda ()
+   (define-key html-mode-map [(<)]  (rgb-insert-if-double "&lt;"))
+   (define-key html-mode-map [(>)]  (rgb-insert-if-double "&gt;"))
+   (define-key html-mode-map [(&)]  (rgb-insert-if-double "&amp;"))
+   (define-key html-mode-map [(\")] (rgb-insert-if-double "&quot;"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

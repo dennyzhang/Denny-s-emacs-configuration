@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:41>
+;; Updated: Time-stamp: <2012-05-01 11:16:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'cl))
@@ -116,5 +116,7 @@
         anything-c-source-minibuffer-history
         ;; System:
         anything-c-source-emacs-process))
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here

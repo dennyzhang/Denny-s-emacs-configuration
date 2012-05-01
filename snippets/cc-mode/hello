@@ -1,0 +1,17 @@
+//-------------------------------------------------------------------
+// @copyright 2011 ShopEx Network Technology Co,.Ltd
+// File : hello
+// Author : filebat <markfilebat@126.com>
+// Description :
+// --
+// Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
+// Updated: Time-stamp: <2011-12-20 14:10:01>
+//-------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[]) {
+     $0
+     return 0;
+}
+// File : hello ends

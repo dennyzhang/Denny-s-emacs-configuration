@@ -1,0 +1,15 @@
+%%%-------------------------------------------------------------------
+%%% @copyright 2011 ShopEx Network Technology Co,.Ltd
+%%% File : hello
+%%% Author : filebat <markfilebat@126.com>
+%%% Description :
+%%% --
+%%% Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
+%%% Updated: Time-stamp: <2011-12-20 14:08:21>
+%%%-------------------------------------------------------------------
+-module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
+
+-compile(export_all).
+
+%%% File : hello ends
+$0

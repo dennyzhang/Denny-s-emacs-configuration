@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:38>
+;; Updated: Time-stamp: <2012-04-29 23:22:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -167,8 +167,8 @@
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
         ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
         ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
-        ;;("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
-        ("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
+        ("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
+        ;;("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
         ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:37>
+;; Updated: Time-stamp: <2012-05-01 02:10:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Precondition
@@ -51,5 +51,6 @@
   (load-file (concat DENNY_CONF "/emacs_conf/cygwin-setting.el"))))
 (load-file (concat DENNY_CONF "/emacs_conf/postfundamental-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/passwd.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/tmp.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: myemacs.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2012-04-22
-;; Updated: Time-stamp: <2012-04-27 11:51:43>
+;; Updated: Time-stamp: <2012-05-01 02:35:53>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -48,6 +48,9 @@
      (set-face-foreground 'magit-diff-del "red3")
      (when (not window-system)
        (set-face-background 'magit-item-highlight "white"))))
+
+(defun git-commit-changes ()
+  (start-process "*git commit*" nil "git" "commit" "-a" "-m" "changes"))
 
 ;; when diff-mode, set buffers readonly
 (add-hook 'diff-mode-hook (lambda () (view-mode)))
