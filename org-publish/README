@@ -1,0 +1,85 @@
+-*- mode:org; fill-column:90; coding:utf-8; -*-
+* org-mode to wordpress
+** Problem description
+export org-mode to html files: for each top entries of org-mode file generate one separate html
+** Feature
+- Each org-mode file may be huge, thus we want to generate a separate html file for each top org-mode entries.
+- We need to generate a index html for each org-mode, which serves as a sitemap for related html files.
+** Design
+*** leverage org-publish by one customized publishing-function
+**** Step1: manage your org-mode: tag entries as :BLOG:, if you want to exported them
+**** Step2: customize org-publish
+- put below elisp codes to your .emacs configuration
+- Customize org-publish-project-alist variable to change :base-directory and :publishing-directory
+**** [Optional] Step3: Don't export entries of "TODO", "CANCELED", etc
+Put into your org-mode, please make sure your org-version is later than 7.5:
+,-----------
+| #+OPTIONS: tasks:("DONE") todo:nil
+`-----------
+*** publish html to wordpress by wordpress-post.el:update-wordpress-blog function
+**** Step1: Beautify html content with the help of wash-html-for-wordpress
+#+begin_src elisp
+(defun wash-html-for-wordpress (html-dir)
+  "Wash html files for a better appearance in wordpress:
+ - remove section, which includes head section and css styles, etc
+ - replace <div id = \"content\"> to <div>
+"
+  (interactive)
+  (let ((html-files (directory-files html-dir t ".html$")))
+    (dolist (html-file html-files)
+      (wash-html-for-wordpress-internal html-file)
+      )
+    )
+  )
+
+(defun wash-html-for-wordpress-internal (html-file &optional insert-prefix-str)
+  (interactive)
+  (let (start-pos end-pos)
+    ;; open the specific file
+    (find-file html-file)
+    ;; remove useless sections
+    (goto-char (point-min))
+    (when (search-forward-regexp "<\\?xml" nil t)
+      (setq start-pos (- (point) (length "<?xml")))
+      (when (search-forward-regexp "</head>" nil t)
+        (setq end-pos (point))
+        (delete-region start-pos end-pos)
+        )
+      )
+    (insert (format "<style type=\"text/css\"> %s %s %s </style> "
+                    "table .left, table .right { float:none; } "
+                    "pre {overflow-x:auto; width: 600px} "
+                    "h3 {padding-top: 0.5em; font-size:1.2em; line-height:150%;} "))
+    (goto-char (point-min))
+    (while (search-forward-regexp "<div id=\"content\">" nil t)
+      (replace-match "<div>"))
+    (goto-char (point-min))
+    (while (search-forward-regexp "</html>" nil t)
+      (replace-match ""))
+
+    ;; insert description for wordpress
+    (unless insert-prefix-str
+      (setq insert-prefix-str "个人知识库<!--more-->")
+      (goto-char (point-min))
+      (unless (search-forward-regexp insert-prefix-str nil t)
+        (insert insert-prefix-str)))
+    (write-file html-file nil)
+    (kill-buffer)
+    )
+  )
+#+end_src
+**** Step2: Post html content to wordpress, in the method of html
+#+begin_example
+When posting, please remember to set the articles' tag and category properly.
+
+I used to tag articles exported from org-mode as KnowledgeBase.
+#+end_example
+** Screenshot
+** More resources
+*** Contact me
+Denny Zhang(张巍)
+Tel: 18621908421
+Email: markfilebat@126.com
+Weibo: http://weibo.com/1686664253
+Blog: http://hi.baidu.com/filebat
+Team: http://blog.ec-ae.com/
