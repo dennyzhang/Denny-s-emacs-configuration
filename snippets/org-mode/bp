@@ -1,4 +1,4 @@
-** basic practice
+`(make-string (org-current-level) ?*)` basic practice
 #+begin_example
 $0
 #+end_example

@@ -3,13 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:42>
+;; Updated: Time-stamp: <2012-05-07 23:19:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
 (require 'org-publish)
 (setq org-export-html-validation-link "")
-(add-to-list 'org-export-language-setup '("cn" "作者" "时间" "目录" "注脚"))
+(add-to-list 'org-export-language-setup '("cn" "Author" "Time" "目录" "Footnote"))
 (setq org-export-default-language "cn")
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/wordpress"))
@@ -281,7 +281,8 @@ See `org-publish-org-to' to the list of arguments."
          (current-exported-filename
           (format "%s-%s.html" short-filename current-md5))
          current-md5-id-title
-         (old-list-md5-id-title list-md5-id-title))
+         (old-list-md5-id-title list-md5-id-title)
+         url-string)
     (org-export-as-html 3)
     (rename-file (format "%s.html" short-filename) current-exported-filename)
     (wash-html-for-wordpress-internal current-exported-filename)
@@ -290,7 +291,12 @@ See `org-publish-org-to' to the list of arguments."
         (progn
           (setq list-md5-id-title (list current-md5-id-title))
           (update-wordpress-blog current-exported-dir)
-          (setq list-md5-id-title old-list-md5-id-title))
+          (setq list-md5-id-title old-list-md5-id-title)
+          (setq url-string (format "http://blog.ec-ae.com/?p=%d"
+                                   (cadr current-md5-id-title)))
+          (kill-new url-string)
+          (message url-string)
+          )
       (message "No related blog entry for %s" current-top-entry-title))
     ))
 ;; --8<-------------------------- separator ------------------------>8--

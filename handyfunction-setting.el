@@ -3,7 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:39>
+;; Updated: Time-stamp: <2012-05-01 22:05:21>
+;; --8<-------------------------- separator ------------------------>8--
+(defun scratch ()
+  (interactive)
+  (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
+  (lisp-interaction-mode)
+  ;;(text-mode)
+  (goto-char (point-min))
+  (when (looking-at ";")
+    (forward-line 4)
+    (delete-region (point-min) (point)))
+  (goto-char (point-max)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;move the current line up or down
 (global-set-key [(meta up)] 'move-line-up)
@@ -591,5 +602,31 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
         (setq i (+ i 1)))
       (beginning-of-buffer))
     (toggle-read-only 1)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun view-clipboard ()
+  (interactive)
+  (delete-other-windows)
+  (switch-to-buffer "*Clipboard*")
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (clipboard-yank)
+    (goto-char (point-min))
+    (html-mode)
+    (view-mode)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun duplicate-line ()
+  "Duplicate the line containing point."
+  (interactive)
+  (save-excursion
+    (let (line-text)
+      (goto-char (line-beginning-position))
+      (let ((beg (point)))
+        (goto-char (line-end-position))
+        (setq line-text (buffer-substring beg (point))))
+      (if (eobp)
+          (insert ?\n)
+        (forward-line))
+      (open-line 1)
+      (insert line-text))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

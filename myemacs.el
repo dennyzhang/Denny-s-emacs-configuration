@@ -3,10 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 02:10:11>
+;; Updated: Time-stamp: <2012-05-08 22:50:10>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; Precondition
+(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
+(defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
+(setq emacs-load-start-time (current-time))
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -21,7 +23,7 @@
 (load-file (concat DENNY_CONF "/emacs_conf/magic-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/programming-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/facing-setting.el"))
-;;(load-file (concat DENNY_CONF "/emacs_conf/flymake-setting.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/flymake-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/calendar-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/largeessentialpackage-setting.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/org-setting.el"))
@@ -53,4 +55,9 @@
 (load-file (concat DENNY_CONF "/emacs_conf/passwd.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/tmp.el"))
 ;; --8<-------------------------- separator ------------------------>8--
+(unless (server-running-p) (server-start))
+;; caculate how long it takes for emacs start
+(when (require 'time-date nil t)
+  (message "Emacs startup time: %d seconds." (time-to-seconds (time-since emacs-load-start-time))))
+;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: myemacs.el ends here

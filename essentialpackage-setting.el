@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 01:36:07>
+;; Updated: Time-stamp: <2012-05-04 08:23:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -33,8 +33,10 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;handle with duplicate name of different buffers
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'reverse)
-(setq uniquify-separator "|")
+(setq uniquify-buffer-name-style 'reverse
+      uniquify-separator " • "
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
 (load-file (concat EMACS_VENDOR "/frame/frame-fns.el"))
@@ -169,6 +171,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'ido)
 (ido-mode t)
+(ido-everywhere t)
 (setq ido-create-new-buffer (quote never)
       ido-enable-flex-matching t
       ido-enable-last-directory-history nil
@@ -177,7 +180,11 @@
       ido-max-file-prompt-width 0.3
       ;; ido-use-filename-at-point (quote guess)
       ido-use-url-at-point t
+      ido-auto-merge-work-directories-length 0
       ido-use-virtual-buffers t)
+
+;; Allow the same buffer to be open in different frames
+(setq ido-default-buffer-method 'selected-window)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'thumbs)
 (auto-image-file-mode t)
@@ -332,12 +339,32 @@
    ))
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'desktop)
-(add-to-list 'desktop-globals-to-save 'file-name-history)
+;; save a bunch of variables to the desktop file
+;; for lists specify the len of the maximal saved data also
+(setq desktop-globals-to-save
+      (append '((extended-command-history . 30)
+                (file-name-history . 100)
+                (ido-last-directory-list . 100)
+                (ido-work-directory-list . 100)
+                (ido-work-file-list . 100)
+                (grep-history . 30)
+                (compile-history . 30)
+                (minibuffer-history . 50)
+                (query-replace-history . 60)
+                (read-expression-history . 60)
+                (regexp-history . 60)
+                (regexp-search-ring . 20)
+                (search-ring . 20)
+                (comint-input-ring . 50)
+                (shell-command-history . 50)
+                desktop-missing-file-warning
+                tags-file-name
+                register-alist)))
 (add-to-list 'desktop-globals-to-save 'vc-comment-ring)
 (setq desktop-buffers-not-to-save
       (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-	      "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-	      "\\)$"))
+              "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+              "\\)$"))
 (add-to-list 'desktop-modes-not-to-save 'dired-mode)
 (add-to-list 'desktop-modes-not-to-save 'Info-mode)
 (add-to-list 'desktop-modes-not-to-save 'erc-mode)

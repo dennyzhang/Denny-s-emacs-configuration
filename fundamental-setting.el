@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:21:40>
+;; Updated: Time-stamp: <2012-05-01 22:06:27>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -22,7 +22,8 @@
       column-number-mode t ;;show column number
       line-number-mode t ;;show line number in mode line
       save-abbrevs nil
-      line-spacing   0.2
+      line-spacing 0.2
+      indicate-empty-lines t
       )
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'generic-x)

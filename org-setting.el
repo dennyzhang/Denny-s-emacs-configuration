@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:41>
+;; Updated: Time-stamp: <2012-05-08 22:36:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -154,6 +154,7 @@
 (org-defkey org-mode-map [(control shift up)] 'enlarge-window)
 (org-defkey org-mode-map [(control shift down)] 'shrink-window)
 (org-defkey org-mode-map [(meta .)] 'occur-org-title)
+(org-defkey org-mode-map [(tab)] 'yas/expand)
 ;; (org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
 (defun my-org-meta-return(&optional arg)
   (interactive "P")

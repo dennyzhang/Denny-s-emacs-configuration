@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:55:17>
+;; Updated: Time-stamp: <2012-05-02 00:26:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -33,8 +33,6 @@
 (load-file (concat EMACS_VENDOR "crontab-mode/crontab-mode.el"))
 (add-to-list 'auto-mode-alist '("\\.cron$" .crontab-mode))
 (add-to-list 'auto-mode-alist '("\\.tab$" .crontab-mode))
-;;(add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" . crontab-mode))
-;;(add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\." . crontab-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
 (add-to-list 'load-path (concat EMACS_VENDOR "/ledger"))

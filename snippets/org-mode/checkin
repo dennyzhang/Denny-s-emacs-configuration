@@ -1,4 +1,4 @@
-* Check-in reviewboard: $0                                             :noexport:
+`(make-string (org-current-level) ?*)` Check-in reviewboard: $0                                             :noexport:
 # Description:
 
 # Test: Functional test has passed. Integration test will be performed, after check-in.

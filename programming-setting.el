@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:56:38>
+;; Updated: Time-stamp: <2012-05-01 22:05:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -295,5 +295,33 @@
    (define-key html-mode-map [(>)]  (rgb-insert-if-double "&gt;"))
    (define-key html-mode-map [(&)]  (rgb-insert-if-double "&amp;"))
    (define-key html-mode-map [(\")] (rgb-insert-if-double "&quot;"))))
+;; --8<-------------------------- separator ------------------------>8--
+(defun show-debugger ()
+  (interactive)
+  (let ((gud-buf
+         (catch 'found
+           (dolist (buf (buffer-list))
+             (if (string-match "\\*gud-" (buffer-name buf))
+                 (throw 'found buf))))))
+    (if gud-buf
+        (switch-to-buffer-other-window gud-buf)
+      (call-interactively 'gdb))))
+;; --8<-------------------------- separator ------------------------>8--
+(eval-after-load "gdb-ui"
+  '(defun gdb-display-buffer (buf dedicated &optional frame)
+     (let ((answer (get-buffer-window buf (or frame 0))))
+       (if answer
+           (display-buffer buf t (or frame 0)) ;Deiconify the frame if necessary.
+         (let ((window (get-lru-window)))
+           (if (memq (buffer-local-value 'gud-minor-mode (window-buffer window))
+                     '(gdba gdbmi))
+               (let* ((largest (get-largest-window))
+                      (cur-size (window-height largest)))
+                 (setq answer (split-window largest))
+                 (set-window-buffer answer buf)
+                 (set-window-dedicated-p answer dedicated)
+                 answer)
+             (set-window-buffer window buf)
+             window))))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

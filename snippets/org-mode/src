@@ -1,4 +1,0 @@
-#binding : C-c C-e C-s
-# --
-#+begin_src ledger
-$0#+end_src

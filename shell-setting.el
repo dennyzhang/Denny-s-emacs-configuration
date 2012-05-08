@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 01:30:49>
+;; Updated: Time-stamp: <2012-05-08 10:36:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -26,6 +26,7 @@
       (if (get-buffer shell-buffer-name)
           (pop-to-buffer shell-buffer-name)
         (shell shell-buffer-name)
+        (insert " ")
         ;; insert shell history
         (load-shell-history file-name)
         ;; send default input
@@ -60,6 +61,7 @@
       (if (get-buffer shell-buffer-name)
           (pop-to-buffer shell-buffer-name)
         (shell shell-buffer-name)
+        (insert " ")
         ;; insert shell history
         (load-shell-history file-name)
         ;; send default input

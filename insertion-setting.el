@@ -3,8 +3,31 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:35>
+;; Updated: Time-stamp: <2012-05-04 08:23:13>
 ;;
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
+(require 'yasnippet-bundle)
+(yas/load-directory (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
+(yas/initialize)
+(defun yas/new-snippet (&optional choose-instead-of-guess)
+  (interactive "P")
+  (let ((guessed-directories (yas/guess-snippet-directories)))
+    (switch-to-buffer "*new snippet*")
+    (erase-buffer)
+    (kill-all-local-variables)
+    (snippet-mode)
+    (set (make-local-variable 'yas/guessed-modes)
+         (mapcar #'(lambda (d)
+                     (intern (yas/table-name (car d))))
+                 guessed-directories))
+    (unless (and choose-instead-of-guess
+                 (not (y-or-n-p "Insert a snippet with useful headers? ")))
+      (yas/expand-snippet "\
+# -*- mode: snippet -*-
+# name: $1
+# --
+$0"))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-insert-time()
   (interactive)

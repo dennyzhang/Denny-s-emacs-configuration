@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:45:03>
+;; Updated: Time-stamp: <2012-05-04 15:06:31>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -26,111 +26,6 @@
        (insert "spawn "))))
 
 (add-hook 'eshell-expand-input-functions 'eshell-spawn-external-command)
-;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
-(require 'yasnippet-bundle)
-(yas/initialize)
-;;(yas/load-directory (expand-file-name "snippets/" user-emacs-directory))
-;;(yas/load-directory (concat DENNY_CONF "emacs_conf/snippets/"))
-(yas/load-directory (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
-(defun yas/new-snippet (&optional choose-instead-of-guess)
-  (interactive "P")
-  (let ((guessed-directories (yas/guess-snippet-directories)))
-    (switch-to-buffer "*new snippet*")
-    (erase-buffer)
-    (kill-all-local-variables)
-    (snippet-mode)
-    (set (make-local-variable 'yas/guessed-modes)
-         (mapcar #'(lambda (d)
-                     (intern (yas/table-name (car d))))
-                 guessed-directories))
-    (unless (and choose-instead-of-guess
-                 (not (y-or-n-p "Insert a snippet with useful headers? ")))
-      (yas/expand-snippet "\
-# -*- mode: snippet -*-
-# name: $1
-# --
-$0"))))
-;; --8<-------------------------- separator ------------------------>8--
-(setq indicate-empty-lines t)
-;; --8<-------------------------- separator ------------------------>8--
-(defun keep-mine ()
-  (interactive)
-  (beginning-of-line)
-  (assert (or (looking-at "<<<<<<")
-              (re-search-backward "^<<<<<<" nil t)
-              (re-search-forward "^<<<<<<" nil t)))
-  (goto-char (match-beginning 0))
-  (let ((beg (point))
-        (hashes (re-search-forward "^#######" (+ (point) 10000) t)))
-    (forward-line)
-    (delete-region beg (point))
-    (re-search-forward (if hashes "^>>>>>>>" "^======="))
-    (setq beg (match-beginning 0))
-    (re-search-forward (if hashes "^=======" "^>>>>>>>"))
-    (forward-line)
-    (delete-region beg (point))))
-
-(defun keep-theirs ()
-  (interactive)
-  (beginning-of-line)
-  (assert (or (looking-at "<<<<<<")
-              (re-search-backward "^<<<<<<" nil t)
-              (re-search-forward "^<<<<<<" nil t)))
-  (goto-char (match-beginning 0))
-  (let ((beg (point))
-        (hashes (re-search-forward "^#######" (+ (point) 10000) t)))
-    (re-search-forward (if hashes "^>>>>>>>" "^======="))
-    (forward-line)
-    (delete-region beg (point))
-    (re-search-forward (if hashes "^#######" "^>>>>>>>"))
-    (beginning-of-line)
-    (setq beg (point))
-    (when hashes
-      (re-search-forward "^=======")
-      (beginning-of-line))
-    (forward-line)
-    (delete-region beg (point))))
-
-(defun keep-both ()
-  (interactive)
-  (beginning-of-line)
-  (assert (or (looking-at "<<<<<<")
-              (re-search-backward "^<<<<<<" nil t)
-              (re-search-forward "^<<<<<<" nil t)))
-  (beginning-of-line)
-  (let ((beg (point)))
-    (forward-line)
-    (delete-region beg (point))
-    (re-search-forward "^>>>>>>>")
-    (beginning-of-line)
-    (setq beg (point))
-    (forward-line)
-    (delete-region beg (point))
-    (re-search-forward "^#######")
-    (beginning-of-line)
-    (setq beg (point))
-    (re-search-forward "^=======")
-    (beginning-of-line)
-    (forward-line)
-    (delete-region beg (point))))
-;; --8<-------------------------- separator ------------------------>8--
-(eval-after-load "gdb-ui"
-  '(defun gdb-display-buffer (buf dedicated &optional frame)
-     (let ((answer (get-buffer-window buf (or frame 0))))
-       (if answer
-           (display-buffer buf t (or frame 0)) ;Deiconify the frame if necessary.
-         (let ((window (get-lru-window)))
-           (if (memq (buffer-local-value 'gud-minor-mode (window-buffer window))
-                     '(gdba gdbmi))
-               (let* ((largest (get-largest-window))
-                      (cur-size (window-height largest)))
-                 (setq answer (split-window largest))
-                 (set-window-buffer answer buf)
-                 (set-window-dedicated-p answer dedicated)
-                 answer)
-             (set-window-buffer window buf)
-             window))))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun elint-current-buffer ()
   (interactive)
@@ -178,7 +73,7 @@ $0"))))
           (define-key mode-map [tab] 'my-elisp-indent-or-complete)
           (define-key mode-map [tab] 'yas/expand))
 
-      (turn-on-cldoc-mode)
+      ;;(turn-on-cldoc-mode)
 
       (setq mode-map lisp-mode-map)
 
@@ -200,43 +95,6 @@ $0"))))
 
 (eval-after-load "nxml-mode"
   '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
-;; --8<-------------------------- separator ------------------------>8--
-(defun show-debugger ()
-  (interactive)
-  (let ((gud-buf
-         (catch 'found
-           (dolist (buf (buffer-list))
-             (if (string-match "\\*gud-" (buffer-name buf))
-                 (throw 'found buf))))))
-    (if gud-buf
-        (switch-to-buffer-other-window gud-buf)
-      (call-interactively 'gdb))))
-;; --8<-------------------------- separator ------------------------>8--
-(defun duplicate-line ()
-  "Duplicate the line containing point."
-  (interactive)
-  (save-excursion
-    (let (line-text)
-      (goto-char (line-beginning-position))
-      (let ((beg (point)))
-        (goto-char (line-end-position))
-        (setq line-text (buffer-substring beg (point))))
-      (if (eobp)
-          (insert ?\n)
-        (forward-line))
-      (open-line 1)
-      (insert line-text))))
-;; --8<-------------------------- separator ------------------------>8--
-(defun view-clipboard ()
-  (interactive)
-  (delete-other-windows)
-  (switch-to-buffer "*Clipboard*")
-  (let ((inhibit-read-only t))
-    (erase-buffer)
-    (clipboard-yank)
-    (goto-char (point-min))
-    (html-mode)
-    (view-mode)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ido-smart-select-text ()
   "Select the current completed item.  Do NOT descend into directories."
@@ -303,23 +161,55 @@ $0"))))
 
 ;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
 ;; --8<-------------------------- separator ------------------------>8--
-(defun tidy-xml-buffer ()
-  (interactive)
+;;(add-hook 'mail-citation-hook 'sc-cite-original)
+;; --8<-------------------------- separator ------------------------>8--
+(defun lisp-indent-or-complete (&optional arg)
+  (interactive "p")
+  (if (or (looking-back "^\\s-*") (bolp))
+      (call-interactively 'lisp-indent-line)
+      (call-interactively 'slime-indent-and-complete-symbol)))
+(eval-after-load "lisp-mode"
+  '(progn
+     (define-key lisp-mode-map (kbd "TAB") 'lisp-indent-or-complete)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun sort-lines-random (beg end)
+  "Sort lines in region randomly."
+  (interactive "r")
   (save-excursion
-    (call-process-region (point-min) (point-max) "tidy" t t nil
-                         "-xml" "-i" "-wrap" "0" "-omit" "-q")))
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (let ;; To make `end-of-line' and etc. to ignore fields.
+          ((inhibit-field-text-motion t))
+        (sort-subr nil 'forward-line 'end-of-line nil nil
+                   (lambda (s1 s2) (eq (random 2) 0)))))))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-hook 'mail-citation-hook 'sc-cite-original)
+(add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun scratch ()
+(defun hide-trailing-whitespace (mode-hook)
+  (add-hook mode-hook (lambda ()
+                        (set (make-local-variable 'trailing-whitespace) nil))))
+
+(mapcar 'hide-trailing-whitespace
+        '(comint-mode-hook
+          ibuffer-mode-hook
+          compilation-mode-hook
+          shell-mode-hook
+          eshell-mode-hook
+          dired-mode-hook
+          erc-mode-hook))
+;; --8<-------------------------- separator ------------------------>8--
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
+"
   (interactive)
-  (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
-  ;;(lisp-interaction-mode)
-  (text-mode)
-  (goto-char (point-min))
-  (when (looking-at ";")
-    (forward-line 4)
-    (delete-region (point-min) (point)))
-  (goto-char (point-max)))
+  (let ((path-from-shell (string-rtrim (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+;; --8<-------------------------- separator ------------------------>8--
+;;(add-hook 'sh-set-shell-hook 'flymake-shell-load)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here
