@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-15 23:49:46>
+;; Updated: Time-stamp: <2012-05-16 00:32:21>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -12,10 +12,9 @@
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun my-load-file (emacs-file)
-  (load-file (concat (expand-file-name DENNY_CONF) "/emacs_conf/" emacs-file))
-  )
-(mapc 'my-load-file
+(mapc '(lambda(emacs-file)
+         (load-file
+	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("fundamental-setting.el"
         "clean-appearance-setting.el"
         "buffer-setting.el"
@@ -45,16 +44,20 @@
         "beta-setting.el"
         "otherpackage-setting.el"))
 (cond
- ((string-equal system-type "gnu/linux")
-  (mapc 'my-load-file
+ ((eq system-type 'gnu/linux)
+  (mapc '(lambda(emacs-file)
+         (load-file
+	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '("linux-setting.el" "multimediea-setting.el"
           "shell-setting.el" "voice-setting.el"
           "interoperation-setting.el")))
- ((string-equal system-type "windows-nt")
+ ((eq system-type 'windows-nt)
   (load-file (concat DENNY_CONF "/emacs_conf/windowsonly-setting.el")))
- ((string-equal system-type "cygwin")
+ ((eq system-type 'cygwin)
   (load-file (concat DENNY_CONF "/emacs_conf/cygwin-setting.el"))))
-(mapc 'my-load-file
+(mapc '(lambda(emacs-file)
+         (load-file
+	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el" "passwd.el" "tmp.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (unless (server-running-p) (server-start))
