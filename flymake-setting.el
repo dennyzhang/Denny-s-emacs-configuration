@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-02 11:24:27>
+;; Updated: Time-stamp: <2012-05-10 11:59:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
@@ -118,12 +118,13 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for shell mode
 (defun flymake-shell-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "/bin/bash" (append (list "-n") (list local-file)))))
+  (unless (tramp-file-name-p buffer-file-name)
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "/bin/bash" (append (list "-n") (list local-file))))))
 
 (defun my-shell-hook-function ()
   (set (make-local-variable 'compile-command)
@@ -132,11 +133,12 @@
 (add-to-list 'flymake-allowed-file-name-masks '("\\.sh$" flymake-shell-init))
 (add-hook 'sh-mode-hook
           '(lambda()
-             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
-             (my-shell-hook-function)
-             (make-local-variable 'flymake-err-line-patterns)
-             (setq flymake-err-line-patterns
-                   '(("^\\(.+\\): line \\([0-9]+\\): \\(.+\\)$" 1 2 nil 3)))))
+             (unless (tramp-file-name-p buffer-file-name)
+               (flymake-mode t)
+               (my-shell-hook-function)
+               (make-local-variable 'flymake-err-line-patterns)
+               (setq flymake-err-line-patterns
+                     '(("^\\(.+\\): line \\([0-9]+\\): \\(.+\\)$" 1 2 nil 3))))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for elisp mode
 (defun flymake-elisp-init ()
@@ -313,29 +315,29 @@
                      ("\\(.*\\) at \\(.*\\) line \\(.*\\)." 2 3 nil 1)
                      ))))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (setq my-erlang-check-file (concat DENNY_CONF "emacs_data/erlang_lint.erl"))
-;; (defun flymake-erlang-init ()
-;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                      'flymake-create-temp-inplace))
-;;          (local-file (file-relative-name temp-file
-;;                                          (file-name-directory buffer-file-name))))
-;;     (list my-erlang-check-file (list local-file))))
+(setq my-erlang-check-file (concat DENNY_CONF "emacs_data/erlang_lint.erl"))
+(defun flymake-erlang-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name temp-file
+                                         (file-name-directory buffer-file-name))))
+    (list my-erlang-check-file (list local-file))))
 
-;; (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
+(add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
 
-;; (defun my-erlang-hook-function ()
-;;   (set (make-local-variable 'compile-command)
-;;        (format "%s %s" my-erlang-check-file (buffer-file-name))))
+(defun my-erlang-hook-function ()
+  (set (make-local-variable 'compile-command)
+       (format "%s %s" my-erlang-check-file (buffer-file-name))))
 
-;; (add-hook 'erlang-mode-hook
-;;           '(lambda ()
-;;              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
-;;              (my-erlang-hook-function)
-;;              (make-local-variable 'flymake-err-line-patterns)
-;;              (setq flymake-err-line-patterns
-;;                    '(
-;;                      ("\\(.*\\):\\([0-9]+\\): \\(.*\\)" 1 2 nil 3)
-;;                      ))))
+(add-hook 'erlang-mode-hook
+          '(lambda ()
+             (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
+             (my-erlang-hook-function)
+             (make-local-variable 'flymake-err-line-patterns)
+             (setq flymake-err-line-patterns
+                   '(
+                     ("\\(.*\\):\\([0-9]+\\): \\(.*\\)" 1 2 nil 3)
+                     ))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Disable flymake for html and xml files as this is handled by nxml mode.
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)

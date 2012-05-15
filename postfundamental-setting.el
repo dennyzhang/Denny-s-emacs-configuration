@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:40>
+;; Updated: Time-stamp: <2012-05-15 00:44:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -24,7 +24,7 @@
 (defun smart-locate ()
   "Smart locate files.
  - If current position is org-mode file, call occur-org-title,
-   which only search in titles of org-mode entires.
+ which only search in titles of org-mode entires.
  - If current position has no words, call my-find-name-dired, which is somewhat find-name-dired.
  - Otherwise, call etags-select-find-tag.
 "
@@ -62,30 +62,30 @@
 ;; (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
 ;; (setq pomodoro-set-number 4) ;; Number of sets until a long break
 ;; (defun pomodoro-message (msg)
-;; "Display a message in a buffer and maybe raise emacs frame."
-;; (when pomodoro-raise-frame
-;; (raise-frame (selected-frame)))
-;; (let ((this-window (selected-window)))
-;; (with-current-buffer (get-buffer-create pomodoro-buffer-name)
-;; (erase-buffer)
-;; (insert msg))
-;; (pop-to-buffer pomodoro-buffer-name)
-;; (ding)
-;; (sleep-for 2)
-;; (ding)
-;; ;; suggest not to change window height, since it will distract users' work environment
-;; (fit-window-to-buffer)
-;; ;; auto kill the buffer, after some wait
-;; (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
-;; (select-window this-window))
-;; (run-hook-with-args 'pomodoro-message-hook msg))
+;;   "Display a message in a buffer and maybe raise emacs frame."
+;;   (when pomodoro-raise-frame
+;;     (raise-frame (selected-frame)))
+;;   (let ((this-window (selected-window)))
+;;     (with-current-buffer (get-buffer-create pomodoro-buffer-name)
+;;       (erase-buffer)
+;;       (insert msg))
+;;     (pop-to-buffer pomodoro-buffer-name)
+;;     (ding)
+;;     (sleep-for 2)
+;;     (ding)
+;;     ;; suggest not to change window height, since it will distract users' work environment
+;;     (fit-window-to-buffer)
+;;     ;; auto kill the buffer, after some wait
+;;     (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
+;;     (select-window this-window))
+;;   (run-hook-with-args 'pomodoro-message-hook msg))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-buffer-file-coding-system 'utf-8)
 ;; (setq safe-local-variable-values
-;;       '(
-;;         (encoding . utf-8)
-;;         (encoding . utf-8-unix)
-;;         (encoding . utf-8-emacs-unix)
-;;         ))
+;; '(
+;; (encoding . utf-8)
+;; (encoding . utf-8-unix)
+;; (encoding . utf-8-emacs-unix)
+;; ))
 ;; --8<-------------------------- separator ------------------------>
 ;; File: postfundamental-setting.el ends here

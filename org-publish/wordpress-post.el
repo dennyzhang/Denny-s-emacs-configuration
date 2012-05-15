@@ -3,14 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:41>
+;; Updated: Time-stamp: <2012-05-13 00:56:29>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
         ("012fcbe8b922b317852870d3857b801a" 554 "[Denny] 分布式数据库 -- Distributed Database")
         ("52bf2b526f7c54a89902eadd12b703dc" 233 "[Denny] Emacs misc features")
-        ("791fd82867b54c7353c9393045897010" 338 "[Denny] Emacs — fundanmental features")
         ("59b8aa4d8def0bb7ae8f709c4cf1a135" 234 "[Denny] Erlang")
         ("038aa9a1ba8f92556f439d38229b76de" 434 "[Denny] Python")
         ("ff9b52fda7dca76f367ab565cd70104c" 236 "[Denny] Elisp")
@@ -34,21 +33,25 @@
         ("cb2ecbebc8321ad3716b692ff9ba019b" 881 "[Denny] Facebook thrift — 是一个跨语言的服务部署框架" )
         ("c0838b3c9e848c8134de8acc6a331ef5" 934 "[Denny] 推荐电影 -- 欢迎追加")
         ("8d2382a454827ff0acb3ddb071f8c8b6" 1017 "[Denny] Child education -- 孩子教育")
-        ("c6edf38b312bb72f7b662028b6c6c796" 1019 "[Denny] 自我管理 -- GTD & PKM")
         ("2ce2567cb72d0dc24faec01008bb205d" 243 "[Denny] Daily life -- 日常家务")
-        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 1307 "[Denny] [置顶] Motto -- 人生格言")
         ("05fd3d60e6b3a22a0586d8e2382fa0e6" 1518 "[Denny] 云计算中的资源隔离 -- Resource segregation")
-        ("5ebc33327869e48d20bb9a66de18bc11" 1693 "[Denny] erlang debug skills")
         ("0a70ef1ac75aad6ffcf1d51e6d3915cd" 1659 "[Denny] erlang code tool")
-        ("79a25c6d37d3d7aa37d49be5b766f419" 1697 "[Denny] Useful shell code snippet")
-        ("bed301b5e8a7aa3269c4715b4994d409" 2158 "[Denny] linux常用工具语言")
-        ("8cb2825a5242eec670f5ffa4aab3b288" 2275 "[Denny] linux调试工具集")
-        ("5f10e6118c7487a577f9869315c4622a" 2539 "[Denny] Music -- 音乐")
-        ("9973e899eb8912d2ebd846fa777d5efe" 2542 "[Denny] Openstack")
-        ("29fdcd436940e3f07842fa4ac42258a3" 2751 "[Denny] Work Skill + Software -- 实用软件")
+        ("bed301b5e8a7aa3269c4715b4994d409" 1693 "[Denny] linux常用工具语言")
+        ("5f10e6118c7487a577f9869315c4622a" 338 "[Denny] Music -- 音乐")
+        ("9973e899eb8912d2ebd846fa777d5efe" 1697 "[Denny] Openstack")
+        ("29fdcd436940e3f07842fa4ac42258a3" 1019 "[Denny] Work Skill + Software -- 实用软件")
+        ("f97d5c9d0ef27ab408d4eb2cb37363ad" 1307 "[Denny] linux security")
+        ("2673753f5e99ed3823e2d428123126bd" 2158 "[Denny] linux systemtap")
+        ;; important posts
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
-        ("1c09b431f0156c0cde0e305b920e2e98" 3011 "[Denny] linux security")
-        ("bbb4ceb3bf85a6e6078697c75d640ca7" 3052 "[Denny] linux systemtap")
+        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3011 "[Denny] [置顶] Motto -- 人生格言")
+        ("791fd82867b54c7353c9393045897010" 2542 "[Denny] Emacs — fundanmental features")
+        ("8cb2825a5242eec670f5ffa4aab3b288" 2539 "[Denny] linux调试工具集")
+        ("c6edf38b312bb72f7b662028b6c6c796" 2751 "[Denny] 自我管理 -- GTD & PKM")
+        ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
+        ("eae6968ec9638dc01fe235bc7dddcbb9" 3229 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
+        ("5ebc33327869e48d20bb9a66de18bc11" 3052 "[Denny] erlang debug skills")
+        ("79a25c6d37d3d7aa37d49be5b766f419" 3129 "[Denny] Useful shell code snippet")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

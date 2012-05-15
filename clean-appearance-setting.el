@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:22:08>
+;; Updated: Time-stamp: <2012-05-13 17:46:34>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -54,7 +54,7 @@
     (set-frame-parameter nil 'alpha (cons transparency-new transparency-new))
     ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq initial-buffer-choice (concat DENNY_CONF "emacs_data/filebat.splashscreen"))
+(setq initial-buffer-choice (concat DENNY_CONF "/org_data/org_share/connection.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun add-custom-global-font-locking ()
   "Hilight some keywords globally."
@@ -74,5 +74,10 @@
   '("^Starting new Ispell process \\[.+\\] \\.\\.\\.$"
     "^Ispell process killed$")
   "filter formatted message string to remove noisy messages")
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el"))
+;; (require 'newcomment nil t)
+;; (require 'hide-comnt)
+(global-set-key [(meta p)(t)] 'hide/show-comments-toggle)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

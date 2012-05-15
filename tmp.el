@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-04 15:06:31>
+;; Updated: Time-stamp: <2012-05-13 18:13:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -17,13 +17,13 @@
 (size-indication-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun eshell-spawn-external-command (beg end)
-   "Parse and expand any history references in current input."
-   (save-excursion
-     (goto-char end)
-     (when (looking-back "&!" beg)
-       (delete-region (match-beginning 0) (match-end 0))
-       (goto-char beg)
-       (insert "spawn "))))
+  "Parse and expand any history references in current input."
+  (save-excursion
+    (goto-char end)
+    (when (looking-back "&!" beg)
+      (delete-region (match-beginning 0) (match-end 0))
+      (goto-char beg)
+      (insert "spawn "))))
 
 (add-hook 'eshell-expand-input-functions 'eshell-spawn-external-command)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -97,7 +97,7 @@
   '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ido-smart-select-text ()
-  "Select the current completed item.  Do NOT descend into directories."
+  "Select the current completed item. Do NOT descend into directories."
   (interactive)
   (when (and (or (not ido-require-match)
                  (if (memq ido-require-match
@@ -128,36 +128,36 @@
               'ido-smart-select-text)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (eval-after-load "magit"
-;;   '(progn
-;;      (require 'magit-topgit)
-;;      (require 'rebase-mode)
+;; '(progn
+;; (require 'magit-topgit)
+;; (require 'rebase-mode)
 
-;;      (defun start-git-monitor ()
-;;        (interactive)
-;;        (start-process "git-monitor" (current-buffer) "~/bin/git-monitor"))
+;; (defun start-git-monitor ()
+;; (interactive)
+;; (start-process "git-monitor" (current-buffer) "~/bin/git-monitor"))
 
-;;      ;;(add-hook 'magit-status-mode-hook 'start-git-monitor)
-;;      ))
+;; ;;(add-hook 'magit-status-mode-hook 'start-git-monitor)
+;; ))
 ;; (require 'inf-ruby)
 ;; (require 'ruby-electric)
 ;; (require 'yari)
 
 ;; (defun my-ruby-smart-return ()
-;;   (interactive)
-;;   (when (memq (char-after) '(?\| ?\" ?\'))
-;;     (forward-char))
-;;   (call-interactively 'newline-and-indent))
+;; (interactive)
+;; (when (memq (char-after) '(?\| ?\" ?\'))
+;; (forward-char))
+;; (call-interactively 'newline-and-indent))
 
 ;; (defun my-ruby-mode-hook ()
-;;   (ruby-electric-mode)
-;;   (inf-ruby-keys)
+;; (ruby-electric-mode)
+;; (inf-ruby-keys)
 
-;;   (define-key ruby-mode-map [return] 'my-ruby-smart-return)
-;;   (define-key ruby-mode-map [(control ?h) (control ?i)] 'yari-anything)
+;; (define-key ruby-mode-map [return] 'my-ruby-smart-return)
+;; (define-key ruby-mode-map [(control ?h) (control ?i)] 'yari-anything)
 
-;;   (set (make-local-variable 'yas/fallback-behavior)
-;;        '(apply ruby-indent-command . nil))
-;;   (define-key ruby-mode-map [tab] 'yas/expand-from-trigger-key))
+;; (set (make-local-variable 'yas/fallback-behavior)
+;; '(apply ruby-indent-command . nil))
+;; (define-key ruby-mode-map [tab] 'yas/expand-from-trigger-key))
 
 ;; (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -167,26 +167,10 @@
   (interactive "p")
   (if (or (looking-back "^\\s-*") (bolp))
       (call-interactively 'lisp-indent-line)
-      (call-interactively 'slime-indent-and-complete-symbol)))
+    (call-interactively 'slime-indent-and-complete-symbol)))
 (eval-after-load "lisp-mode"
   '(progn
      (define-key lisp-mode-map (kbd "TAB") 'lisp-indent-or-complete)))
-;; --8<-------------------------- separator ------------------------>8--
-(defun sort-lines-random (beg end)
-  "Sort lines in region randomly."
-  (interactive "r")
-  (save-excursion
-    (save-restriction
-      (narrow-to-region beg end)
-      (goto-char (point-min))
-      (let ;; To make `end-of-line' and etc. to ignore fields.
-          ((inhibit-field-text-motion t))
-        (sort-subr nil 'forward-line 'end-of-line nil nil
-                   (lambda (s1 s2) (eq (random 2) 0)))))))
-;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun hide-trailing-whitespace (mode-hook)
   (add-hook mode-hook (lambda ()
@@ -211,5 +195,29 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'sh-set-shell-hook 'flymake-shell-load)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+;; --8<-------------------------- separator ------------------------>8--
+(defconst my-mode-line-buffer-identification
+  (list
+   '(:eval
+     (let ((host-name
+            (if (file-remote-p default-directory)
+                (tramp-file-name-host
+                 (tramp-dissect-file-name default-directory))
+              (system-name))))
+       (if (string-match "^[^0-9][^.]*\\(\\..*\\)" host-name)
+           (substring host-name 0 (match-beginning 1))
+         host-name)))
+   ": %12b"))
+
+(setq-default
+ mode-line-buffer-identification
+ my-mode-line-buffer-identification)
+
+(add-hook
+ 'dired-mode-hook
+ '(lambda ()
+    (setq
+     mode-line-buffer-identification
+     my-mode-line-buffer-identification)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

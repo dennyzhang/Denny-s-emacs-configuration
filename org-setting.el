@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-08 22:36:57>
+;; Updated: Time-stamp: <2012-05-13 20:05:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -97,19 +97,6 @@
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 ;; pulling from MobileOrg
 (setq org-mobile-inbox-for-pull (concat DENNY_CONF "../emacs_stuff/org_data/frommobile.org"))
-;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/org-contacts/org-contacts.el"))
-;; (require 'org-contacts)
-;; (setq contact-file (concat DENNY_CONF "/org_data/contacts_tmp.org"))
-;; (add-to-list 'org-contacts-files contact-file)
-;; ;; ledger org-capture to add new contact
-;; (setq org-capture-templates
-;; '(("c" "Contacts" entry (file contact-file)
-;; "* %(org-contacts-template-name)
-;; :PROPERTIES:
-;; :EMAIL: %(org-contacts-template-email)
-;; :END:")
-;; ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
@@ -230,6 +217,12 @@
 (setq org-capture-templates
       '(("p" "Period" entry (file+headline "contacts.org" "秀秀--周期") "** %t\n")
         ("d" "Diary" entry (file "diary.org") "* %T %?\n\n")
+        ;; ledger org-capture to add new contact
+        ("c" "Contacts" entry (file "contacts.org")
+         "* %(org-contacts-template-name)
+:PROPERTIES:
+:EMAIL: %(org-contacts-template-email)
+:END:")
         ))
 ;; (org-remember-insinuate)
 ;; (setq org-directory (concat DENNY_CONF "/org_data/"))
@@ -285,5 +278,8 @@
  '(org-level-3 ((t (:inherit outline-3 :foreground "SeaGreen3"))))
  '(org-todo ((t (:weight bold))))
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
+;; --8<-------------------------- separator ------------------------>8--
+;; (require 'org-contacts)
+;; (add-to-list 'org-contacts-files (concat DENNY_CONF "/org_data/contacts.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

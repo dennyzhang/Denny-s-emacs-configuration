@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-29 23:22:02>
+;; Updated: Time-stamp: <2012-05-10 11:48:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -46,7 +46,7 @@
     (w3m-browse-url url new-session)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p t: get title of web page, whose url can be found in the current line.
-(global-set-key [(meta p)(t)] 'get-page-title)
+(org-defkey org-mode-map [(meta p)(t)] 'get-page-title)
 (defun get-page-title()
   "Get title of web page, whose url can be found in the current line"
   (interactive)

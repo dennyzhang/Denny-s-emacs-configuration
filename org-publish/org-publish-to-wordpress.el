@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-07 23:19:39>
+;; Updated: Time-stamp: <2012-05-13 22:44:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -61,6 +61,7 @@ See `org-publish-org-to' to the list of arguments."
          (dst-org-file (format "%s.index" (file-name-sans-extension src-org-file)))
          src-shortname export-buffer export-file
          org-tag top-entry-link start-pos end-pos
+         keyword-list
          top-entry-pos (top-entry-pos-list '())
          top-entry-title (top-entry-title-list '()))
     ;; caculate top entries
@@ -90,12 +91,16 @@ See `org-publish-org-to' to the list of arguments."
         ;; mark region
         (transient-mark-mode t)
         (goto-char start-pos)
+        (setq keyword-list (org-entry-get nil "type"))
+        (if (null keyword-list) (setq keyword-list ""))
         (set-mark (point))
         (goto-char end-pos)
         ;; export html
-        (setq export-buffer (format "%s-%s.html"
+        (setq export-buffer (format "%s-%s-%s.html"
                                     (file-name-sans-extension (file-name-nondirectory buffer-file-name))
-                                    (md5 top-entry-title)))
+                                    (md5 top-entry-title)
+                                    keyword-list
+                                    ))
         (save-excursion
           (org-export-as-html
            arg hidden ext-plist export-buffer body-only pub-dir)
@@ -240,6 +245,7 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
         title-md5 md5-id-title
+        keyword-list
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
     (setq html-files (directory-files html-dir t ".html$"))
@@ -248,7 +254,11 @@ See `org-publish-org-to' to the list of arguments."
       (setq short-filename (file-name-sans-extension (file-name-nondirectory html-file)))
       (progn
         (find-file html-file)
-        (setq title-md5 (replace-regexp-in-string "[^-]*-" "" short-filename))
+        (string-match "\\(^[^-]*\\)-\\([^.-]*\\)-\\([^.]*\\)" short-filename)
+        (setq title-md5
+              (match-string 2 short-filename)
+              keyword-list
+              (match-string 3 short-filename))
         (setq md5-id-title (assoc title-md5 list-md5-id-title))
         (if md5-id-title
             ;; If related blog is found, update wordpress
@@ -260,7 +270,11 @@ See `org-publish-org-to' to the list of arguments."
                     (list (cons "title" post-title)
                           (cons "authorName" "zhangwei")
                           (cons "description" (format-time-string "从个人知识库中自动导出. 更新时间 %Y-%m-%d %H:%M.<!--more-->" (current-time)))
-                          (cons "mt_keywords" "KnowledgeBase")
+                          (cons "mt_keywords"
+                                (if
+                                    (string= "" keyword-list)
+                                    "KnowledgeBase"
+                                  (replace-regexp-in-string "_" "," keyword-list)))
                           (cons "categories" "个人知识库")
                           (cons "mt_text_more" (buffer-substring-no-properties (point-min) (point-max)))))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
@@ -279,7 +293,7 @@ See `org-publish-org-to' to the list of arguments."
          (current-exported-dir (file-name-directory (buffer-file-name)))
          (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
          (current-exported-filename
-          (format "%s-%s.html" short-filename current-md5))
+          (format "%s-%s-%s.html" short-filename current-md5 (org-entry-get nil "type")))
          current-md5-id-title
          (old-list-md5-id-title list-md5-id-title)
          url-string)

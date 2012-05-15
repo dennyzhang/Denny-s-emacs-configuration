@@ -3,12 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 11:16:14>
+;; Updated: Time-stamp: <2012-05-14 20:28:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'cl))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
+(load-file (concat EMACS_VENDOR "/regex-tool/regex-tool.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(appt-activate)
 (setq appt-display-format 'window)
@@ -117,6 +118,6 @@
         ;; System:
         anything-c-source-emacs-process))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
+;; (load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here

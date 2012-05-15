@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 22:06:27>
+;; Updated: Time-stamp: <2012-05-13 21:34:55>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -145,8 +145,8 @@
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/diary.org"))))
@@ -156,6 +156,7 @@
 (defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
+(defalias 'connection (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/connection.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -388,7 +389,8 @@ starting on the same line at which another match ended is ignored."
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
 ;; don't display welcome message when flyspell started
 (setq flyspell-issue-welcome-flag nil)
-;; control emacs garbage collection
-(setq gc-cons-threshold 4000000)
+(setq gc-cons-threshold 4000000 ;; control emacs garbage collection
+      password-cache-expiry nil
+      history-length 250)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

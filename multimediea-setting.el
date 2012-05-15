@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-29 18:46:46>
+;; Updated: Time-stamp: <2012-05-13 21:29:05>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -303,7 +303,7 @@
    (kill-buffer old-buffer)
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq emms-org-file "/home/denny/backup/multimediea/music/music.org")
+(setq emms-org-file (concat DENNY_CONF "/org_data/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a") (lambda () (interactive) (update-music-to-org-file emms-org-file)))
 ;; (update-music-to-org-file "/home/denny/backup/multimediea/music/music.org")
 (defun update-music-to-org-file (org-file)
@@ -435,7 +435,7 @@
 (defadvice emms-last-played-update-current (after if activate)
   "Auto update org-file, when emms is playing"
   (let*
-      ((track (get-text-property (point) 'emms-track))
+      ((track (emms-playlist-current-selected-track))
        (name (emms-track-get track 'name))
        (music-name (file-name-nondirectory name))
        )
@@ -447,49 +447,49 @@
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/all.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/all.playlist"))))
 
 (defalias 'play-merry
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/merry.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/merry.playlist"))))
 
 (defalias 'play-top
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/top.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/top.playlist"))))
 
 (defalias 'play-funny
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/funny.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/funny.playlist"))))
 
 (defalias 'play-blue
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/blue.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/blue.playlist"))))
 
 (defalias 'play-active
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/active.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/active.playlist"))))
 
 (defalias 'play-old
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/old.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/old.playlist"))))
 
 (defalias 'play-soft
   (lambda()
     (interactive)
     (emms-play-playlist
-     (concat emms-source-file-default-directory "/soft.playlist"))))
+     (concat emms-source-file-default-directory "/playlist/soft.playlist"))))
 
 (defun refresh-emms-playlist-from-org-file ()
   (interactive)
@@ -497,6 +497,6 @@
     (dolist (tag tag-list)
       (export-orgfile-to-emmsplaylist
        emms-org-file tag
-       (format "%s/%s.playlist" emms-source-file-default-directory tag)))))
+       (format "%s/playlist/%s.playlist" emms-source-file-default-directory tag)))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: multimediea-setting.el

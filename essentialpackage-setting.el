@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-04 08:23:16>
+;; Updated: Time-stamp: <2012-05-10 10:18:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -276,8 +276,6 @@
 (require 'hidesearch)
 (global-set-key (kbd "C-c C-s") 'hidesearch)
 ;;(global-set-key (kbd "C-c C-a") 'show-all-invisible)
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cn-weather/cn-weather.el"))
 (require 'cn-weather)

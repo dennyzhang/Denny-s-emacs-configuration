@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-02 00:26:18>
+;; Updated: Time-stamp: <2012-05-08 23:33:29>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -58,5 +58,9 @@
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: set-file-mode-setting.el

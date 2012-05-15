@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-08 10:36:02>
+;; Updated: Time-stamp: <2012-05-08 23:32:31>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -219,20 +219,6 @@ If arg is given, only open a shell for one direcotry.
      (add-to-list 'eshell-command-completions-alist
                   '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'"))))
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'tramp)
-(setq tramp-default-method "sshx")
-(remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
-(setq tramp-remote-path
-      '(tramp-default-remote-path
-        "/usr/sbin" "/usr/local/bin"
-        "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
-        "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
-(setq tramp-default-method-alist
-      '(("\\`localhost\\'" "\\`root\\'" "su")
-        (nil "%" "smb")
-        ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
-        ("\\`ftp\\." "" "ftp")))
-;; --8<-------------------------- separator ------------------------>8--
 (defun clear-shell ()
   "Remove content of shell/eshell, with the prompt lines reserved"
   (interactive)
@@ -295,6 +281,22 @@ From Patrick Anderson via the wiki."
        ad-return-value)))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq eshell-scroll-to-bottom-on-output t
-      eshell-scroll-show-maximum-output t)
+      eshell-scroll-show-maximum-output t
+      comint-buffer-maximum-size 20000)
+;; --8<-------------------------- separator ------------------------>8--
+(require 'tramp)
+(setq tramp-default-method "sshx")
+(remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
+(setq tramp-remote-path
+      '(tramp-default-remote-path
+        "/usr/sbin" "/usr/local/bin"
+        "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
+        "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+(setq tramp-default-method-alist
+      '(("\\`localhost\\'" "\\`root\\'" "su")
+        (nil "%" "smb")
+        ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
+        ("\\`ftp\\." "" "ftp")))
+(setq tramp-verbose 3)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: shell-setting.el

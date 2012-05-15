@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 22:05:21>
+;; Updated: Time-stamp: <2012-05-08 23:33:41>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -628,5 +628,17 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
         (forward-line))
       (open-line 1)
       (insert line-text))))
+;; --8<-------------------------- separator ------------------------>8--
+(defun sort-lines-random (beg end)
+  "Sort lines in region randomly."
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (let ;; To make `end-of-line' and etc. to ignore fields.
+          ((inhibit-field-text-motion t))
+        (sort-subr nil 'forward-line 'end-of-line nil nil
+                   (lambda (s1 s2) (eq (random 2) 0)))))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here
