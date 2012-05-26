@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:41>
+;; Updated: Time-stamp: <2012-05-16 08:10:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
@@ -13,7 +13,7 @@
 (global-set-key [(control c) (s)] 'online-search)
 ;; If current environment is windows, w3m may be probably not available.
 ;; In this case downgrade from w3m mode to plaintext mode.
-(if (string-equal system-type "windows-nt")
+(if (eq system-type 'windows-nt)
     (setq is-plaintext-enable 't))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; search python document

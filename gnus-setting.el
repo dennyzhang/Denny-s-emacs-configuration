@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-09 10:36:00>
+;; Updated: Time-stamp: <2012-05-22 09:41:33>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -493,7 +493,7 @@ And insert header to mark message as unimportant(X-Priority).
 (setq gnus-gcc-mark-as-read t) ;;automatically mark Gcc articles as read
 (setq gnus-gcc-externalize-attachments 'all)
 (setq nnml-use-compressed-files t) ;;using compressed message files
-(setq nnmail-crosspost nil) ;; first matched split method appply
+(setq nnmail-crosspost t) ;; do crossposting if several split methods match the mail.
 (setq bbdb/gnus-update-records-mode 'searching) ;; don't update bbdb records automatically
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

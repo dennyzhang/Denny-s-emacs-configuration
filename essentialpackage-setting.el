@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-10 10:18:38>
+;; Updated: Time-stamp: <2012-05-19 18:14:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -225,14 +225,14 @@
 ;; ask for confirmation before invoke external program
 (setq openwith-confirm-invocation t)
 (cond
- ((string-equal system-type "gnu/linux")
+ ((eq system-type 'gnu/linux)
   ;; clean up previous open associations, and reconfigure
   (setq openwith-associations
         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
-          ("\\.pdf\\'" "evince" (file))
+          ;;("\\.pdf\\'" "evince" (file))
           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
           )))
- ((string-equal system-type "windows-nt")
+ ((eq system-type 'windows-nt)
   ;;TODO problematic
   (setq openwith-associations
         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-13 18:13:22>
+;; Updated: Time-stamp: <2012-05-21 23:52:18>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -219,5 +219,11 @@
     (setq
      mode-line-buffer-identification
      my-mode-line-buffer-identification)))
+;; --8<-------------------------- separator ------------------------>8--
+;; (load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
+;; (require 'command-frequency)
+;; (command-frequency-table-load)
+;; (command-frequency-mode 1)
+;; (command-frequency-autosave-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

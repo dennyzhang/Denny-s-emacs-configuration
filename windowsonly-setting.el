@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:35>
+;; Updated: Time-stamp: <2012-05-16 08:14:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [f11] 'w32-maximize-frame)
@@ -11,12 +11,12 @@
 (defun w32-restore-frame (&optional arg)
   "Restore a minimized frame"
   (interactive)
- (if (string-equal system-type "windows-nt")
+ (if (eq system-type 'windows-nt)
      (w32-send-sys-command 61728 arg)))
 (defun w32-maximize-frame (&optional arg)
   "Maximize the current frame"
   (interactive)
-  (if (string-equal system-type "windows-nt")
+  (if (eq system-type 'windows-nt)
       (w32-send-sys-command 61488 arg)))
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'printing) ; load printing package
@@ -25,7 +25,7 @@
 (setq ps-lpr-switches '("-q" "-dNOPAUSE" "-dBATCH" "-sDEVICE=mswinpr2"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/fontset-win/fontset-win.el"))
-(if (string-equal system-type "windows-nt")
+(if (eq system-type 'windows-nt)
     (huangq-fontset-courier 16))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-default-coding-systems 'chinese-iso-8bit-unix)

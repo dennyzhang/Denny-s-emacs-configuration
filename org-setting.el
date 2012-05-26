@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-13 20:05:24>
+;; Updated: Time-stamp: <2012-05-24 23:40:09>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -18,6 +18,7 @@
                               (concat DENNY_CONF "/org_data/diary.org")
                               (concat DENNY_CONF "/org_data/learn.org")
                               (concat DENNY_CONF "/org_data/project.org")
+                              (concat DENNY_CONF "/org_data/org_share/connection.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -142,6 +143,7 @@
 (org-defkey org-mode-map [(control shift down)] 'shrink-window)
 (org-defkey org-mode-map [(meta .)] 'occur-org-title)
 (org-defkey org-mode-map [(tab)] 'yas/expand)
+(org-defkey org-mode-map (kbd "M-p i") 'my-insert-time)
 ;; (org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
 (defun my-org-meta-return(&optional arg)
   (interactive "P")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-16 00:32:21>
+;; Updated: Time-stamp: <2012-05-26 23:02:34>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -34,7 +34,7 @@
         "ledger-setting.el"
         "gnus-setting.el"
         "online-search/online-search-setting.el"
-        "web-browse-setting.el"
+        "web-setting.el"
         "insertion-setting.el"
         "set-os-environment-setting.el"
         "set-file-mode-setting.el"

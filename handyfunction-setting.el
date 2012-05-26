@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-08 23:33:41>
+;; Updated: Time-stamp: <2012-05-16 08:13:28>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -384,9 +384,9 @@ BEG and END (region to sort)."
   "Call when editing a file in a buffer. Open windows explorer in the current directory"
   (interactive)
   (cond
-   ((string-equal system-type "gnu/linux")
+   ((eq system-type 'gnu/linux)
     (shell-command-to-string (concat "nautilus " default-directory)))
-   ((string-equal system-type "windows-nt")
+   ((eq system-type 'windows-nt)
     (w32-shell-execute "open" "explorer"
                        (concat "/e,/select,"
                                (convert-standard-filename buffer-file-name))))

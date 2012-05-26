@@ -1,7 +1,7 @@
 ;;; online-search.el --- Online dictionary or intelligent api search engine for developers
 ;; -*- mode: EMACS-LISP; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-04-27 11:51:40>
+;; Copyright © 2010-2011 Time-stamp: <2012-05-16 08:15:36>
 ;;; ================================================================
 
 ;;; online-search.el --- Emacs interface to the Online Search
@@ -104,7 +104,7 @@
                    :start-anchor-str ""
                    :end-anchor-str "")))
         ;; search c/c++ api, in c/c++ mode
-        (if (or (string-equal mode-name "C/l") (string-equal mode-name "C++/l"))
+        (if (member mode-name '("C/l" "C++/l"))
             (setq online-search-configuration
                   (make-online-search-struct
                    :search-engine-url-format "http://www.cplusplus.com/search.do?q="
