@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-13 00:56:29>
+;; Updated: Time-stamp: <2012-05-27 14:50:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -52,6 +52,7 @@
         ("eae6968ec9638dc01fe235bc7dddcbb9" 3229 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
         ("5ebc33327869e48d20bb9a66de18bc11" 3052 "[Denny] erlang debug skills")
         ("79a25c6d37d3d7aa37d49be5b766f419" 3129 "[Denny] Useful shell code snippet")
+        ("485eb7b5b5739fb26ab4188077459520" 3698 "[Denny] Empower mobile phones for emacs org-mode files")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

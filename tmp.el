@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-21 23:52:18>
+;; Updated: Time-stamp: <2012-05-26 23:26:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -225,5 +225,17 @@
 ;; (command-frequency-table-load)
 ;; (command-frequency-mode 1)
 ;; (command-frequency-autosave-mode 1)
+;; --8<-------------------------- separator ------------------------>8--
+(setq erc-default-coding-system '(utf-8 . utf-8))
+(setq erc-nick "DennyZhang"
+      erc-user-full-name "Denny Zhang")
+(erc-autojoin-mode 1)
+(setq erc-autojoin-channels-alist
+      '(("freenode.net" "#emacs" "##linux")))
+(erc-match-mode 1)
+(setq erc-keywords '("emacs" "gnus" "linux"))
+;;(setq erc-pals '("rms"))
+(setq erc-ignore-list nil)
+(setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

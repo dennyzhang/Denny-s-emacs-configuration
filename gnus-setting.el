@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-22 09:41:33>
+;; Updated: Time-stamp: <2012-05-27 09:00:23>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -234,6 +234,7 @@
         ("shopex.ci.fail" "Subject:.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
+        ("SNS" "Subject:.*LinkedIn.*")
         ;;("shopex.misc" "From:.*shopex.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
         ))

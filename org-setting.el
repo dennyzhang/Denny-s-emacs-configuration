@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-24 23:40:09>
+;; Updated: Time-stamp: <2012-05-28 00:16:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -283,5 +283,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'org-contacts)
 ;; (add-to-list 'org-contacts-files (concat DENNY_CONF "/org_data/contacts.org"))
+;; --8<-------------------------- separator ------------------------>8--
+(setq org-export-with-tasks 'done)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here
