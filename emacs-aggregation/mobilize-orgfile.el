@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:38:37>
+;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:50:19>
 ;;; ================================================================
 
 ;;; File: mobilize-orgfile.el --- A plug-in system for information aggregation of daily life
@@ -64,6 +64,9 @@
   )
 
 (defun org-export-file-for-mobile (org-file)
+  "By default, org-export won't export TODO items.
+Here we also care about these items.
+"
   (interactive)
   (let ((org-mobile-level 3)
         (opt-plist '(:tasks ("DONE", "TODO"))))
