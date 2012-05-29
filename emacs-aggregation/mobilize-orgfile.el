@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-29 21:19:48>
+;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:38:37>
 ;;; ================================================================
 
 ;;; File: mobilize-orgfile.el --- A plug-in system for information aggregation of daily life
@@ -54,22 +54,6 @@
 
 (defvar mobile-export-file-list nil
   "")
-
-(setq mobile-export-src-dir "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data")
-(setq mobile-export-publish-dir "/tmp/mobile/")
-(setq mobile-export-file-list '("contacts.org"
-                                ;;"project.org"
-                                "career.org"
-                                "wish.org"
-                                "work.org"
-                                "current.org"
-                                "wealth.org"
-                                "learn.org"
-                                "diary.org"
-                                "top.org"
-                                "often.org"
-                                "org_share/connection.org"
-                                ))
 
 (defun org-export-for-mobile ()
   (interactive)

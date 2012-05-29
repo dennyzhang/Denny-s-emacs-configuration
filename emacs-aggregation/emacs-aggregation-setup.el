@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-04-21 11:18:26>
+;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:40:01>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -70,4 +70,22 @@
   (cons "=============" (retrieve-signature)))
 
 (aggregation-timer)
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat DENNY_CONF "/emacs_conf/emacs-aggregation/mobilize-orgfile.el"))
+(setq org-export-html-style "")
+(setq mobile-export-src-dir "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data")
+(setq mobile-export-publish-dir "~/mobile_export/")
+(setq mobile-export-file-list '("contacts.org"
+                                ;;"project.org"
+                                "career.org"
+                                "wish.org"
+                                "work.org"
+                                "current.org"
+                                "wealth.org"
+                                "learn.org"
+                                "diary.org"
+                                "top.org"
+                                "often.org"
+                                "org_share/connection.org"
+                                ))
 ;; File: emacs-aggregation-setup.el ends
