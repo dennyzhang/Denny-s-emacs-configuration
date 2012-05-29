@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:48:30>
+;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:52:50>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -89,5 +89,5 @@
                                 "org_share/connection.org"
                                 ))
 ;; update daily at 01:00am
-(run-at-time "01:00am" 86400 'org-export-for-mobile)
+;; (run-at-time "01:00am" 86400 'org-export-for-mobile)
 ;; File: emacs-aggregation-setup.el ends
