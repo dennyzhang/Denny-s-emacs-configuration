@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-27 23:18:24>
+;; Updated: Time-stamp: <2012-05-30 11:06:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -101,7 +101,7 @@ See `org-publish-org-to' to the list of arguments."
                                     (md5 top-entry-title)
                                     keyword-list
                                     ))
-        (save-excursiaon
+        (save-excursion
           (org-export-as-html
            arg hidden ext-plist export-buffer body-only pub-dir)
           (setq export-file (format "%s/%s" pub-dir export-buffer))

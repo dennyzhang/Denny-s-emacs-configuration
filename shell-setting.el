@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-08 23:32:31>
+;; Updated: Time-stamp: <2012-06-02 23:59:23>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun open-shell-of-current-file ()
@@ -287,11 +287,9 @@ From Patrick Anderson via the wiki."
 (require 'tramp)
 (setq tramp-default-method "sshx")
 (remove-hook 'find-file-hook 'tramp-set-auto-save) ;; when tramp, don't auto save files
-(setq tramp-remote-path
-      '(tramp-default-remote-path
-        "/usr/sbin" "/usr/local/bin"
-        "/local/bin" "/local/freeware/bin" "/local/gnu/bin"
-        "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+(add-to-list 'tramp-remote-path "/usr/sbin")
+(add-to-list 'tramp-remote-path "/usr/local/sbin")
+(add-to-list 'tramp-remote-path "/sbin")
 (setq tramp-default-method-alist
       '(("\\`localhost\\'" "\\`root\\'" "su")
         (nil "%" "smb")

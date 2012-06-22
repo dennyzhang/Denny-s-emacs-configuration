@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-26 23:26:30>
+;; Updated: Time-stamp: <2012-06-21 10:24:02>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -237,5 +237,11 @@
 ;;(setq erc-pals '("rms"))
 (setq erc-ignore-list nil)
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
+;; --8<-------------------------- separator ------------------------>8--
+(defun rgrau-erc-oops (txt)
+  (when (member txt '("ls" "xb" "cd"))
+      (setq erc-send-this nil)))
+
+(add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

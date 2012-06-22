@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:52:50>
+;; Copyright © 2010-2011 Time-stamp: <2012-06-04 08:14:47>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -16,9 +16,9 @@
 (setq start-time "11:50am")
 (setq repeat-interval 86400)
 (setq aggregate-retrieve-data-fun-list nil)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-target-list)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-holiday-remind)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web-weather-shanghai)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-shopping-list)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-habit-list)
@@ -64,7 +64,8 @@
   (cons " [天气] 滨州 " (retrieve-html-content "http://www.baidu.com/s?wd=滨州+天气" "中国天气网" "中国气象局")))
 
 (defun retrieve-web-stock-zbjd()
-  (cons " [股票] 中兵光电 " (retrieve-html-content "http://stock.stcn.com/sh/600435/" "中兵光电600435" "净流量")))
+  (cons " [股票] 中兵光电 " (retrieve-html-content
+  "http://stock.stcn.com/sh/600435/" "北方导航600435" "净流量")))
 
 (defun retrieve-tailing-message()
   (cons "=============" (retrieve-signature)))
@@ -74,13 +75,15 @@
 (load-file (concat DENNY_CONF "/emacs_conf/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")
 (setq mobile-export-src-dir "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data")
-(setq mobile-export-publish-dir "~/mobile_export/")
+(setq mobile-export-publish-dir "/home/denny/backup/essential/Dropbox/private_data/temp/mobile_export/")
 (setq mobile-export-file-list '("contacts.org"
                                 ;;"project.org"
                                 "career.org"
                                 "wish.org"
                                 "work.org"
                                 "current.org"
+                                "algorithm.org"
+                                "english.org"
                                 "wealth.org"
                                 "learn.org"
                                 "diary.org"

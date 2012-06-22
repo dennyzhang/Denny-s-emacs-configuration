@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-27 14:50:11>
+;; Updated: Time-stamp: <2012-06-20 00:04:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -29,7 +29,6 @@
         ("b3b89c991c5e369c143639fbe13acce2" 252 "[Denny] Reading — 阅读")
         ("cf731efe6bef7d73d67f0004c9740683" 341 "[Denny] 分布式文件系统 -- Amazon S3")
         ("aec6c0f34096e46e4a84c6f93e65bc76" 552 "[Denny] QA & 运维")
-        ("e206a54e97690cce50cc872dd70ee896" 817 "[Denny] linux")
         ("cb2ecbebc8321ad3716b692ff9ba019b" 881 "[Denny] Facebook thrift — 是一个跨语言的服务部署框架" )
         ("c0838b3c9e848c8134de8acc6a331ef5" 934 "[Denny] 推荐电影 -- 欢迎追加")
         ("8d2382a454827ff0acb3ddb071f8c8b6" 1017 "[Denny] Child education -- 孩子教育")
@@ -44,20 +43,24 @@
         ("2673753f5e99ed3823e2d428123126bd" 2158 "[Denny] linux systemtap")
         ;; important posts
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
-        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3011 "[Denny] [置顶] Motto -- 人生格言")
+        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3698 "[Denny] [置顶] Motto -- 人生格言")
         ("791fd82867b54c7353c9393045897010" 2542 "[Denny] Emacs — fundanmental features")
         ("8cb2825a5242eec670f5ffa4aab3b288" 2539 "[Denny] linux调试工具集")
         ("c6edf38b312bb72f7b662028b6c6c796" 2751 "[Denny] 自我管理 -- GTD & PKM")
         ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
-        ("eae6968ec9638dc01fe235bc7dddcbb9" 3229 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
+        ("eae6968ec9638dc01fe235bc7dddcbb9" 3760 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
         ("5ebc33327869e48d20bb9a66de18bc11" 3052 "[Denny] erlang debug skills")
-        ("79a25c6d37d3d7aa37d49be5b766f419" 3129 "[Denny] Useful shell code snippet")
+        ("79a25c6d37d3d7aa37d49be5b766f419" 3792 "[Denny] Useful shell code snippet")
         ("485eb7b5b5739fb26ab4188077459520" 3698 "[Denny] Empower mobile phones for emacs org-mode files")
+        ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
+        ("f579023d3b8347172362e5025d438b3d" 2346 "[Denny] Functional Programming 函数式编程")
+        ("39c2dd4f4f788c4560b9f19d75b066c2" 3129 "[Denny] Locking in programming")
+        ("abd54648a1ca060cc85d686cc85768f9" 3893 "[Denny] Programming life -- 程序人生")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title
 ;; '(
-;; ("4bec3100a0cd3a6aaa076e7d44558c9f" 1693 "[Denny] erlang code analysis")
+;; ("39c2dd4f4f788c4560b9f19d75b066c2" 3792 "[Denny] Locking in programming")
 ;; ))
 
 (setq mywordpress-server-url "http://blog.ec-ae.com/xmlrpc.php"

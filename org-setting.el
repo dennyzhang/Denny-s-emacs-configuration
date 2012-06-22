@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-28 00:16:49>
+;; Updated: Time-stamp: <2012-06-22 18:53:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -17,6 +17,7 @@
                               (concat DENNY_CONF "/org_data/current.org")
                               (concat DENNY_CONF "/org_data/diary.org")
                               (concat DENNY_CONF "/org_data/learn.org")
+                              (concat DENNY_CONF "/org_data/english.org")
                               (concat DENNY_CONF "/org_data/project.org")
                               (concat DENNY_CONF "/org_data/org_share/connection.org")
                               ))
@@ -214,28 +215,6 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 (setq org-default-notes-file "current.org")
-(require 'org-capture)
-(define-key global-map "\C-cr" 'org-capture)
-(setq org-capture-templates
-      '(("p" "Period" entry (file+headline "contacts.org" "秀秀--周期") "** %t\n")
-        ("d" "Diary" entry (file "diary.org") "* %T %?\n\n")
-        ;; ledger org-capture to add new contact
-        ("c" "Contacts" entry (file "contacts.org")
-         "* %(org-contacts-template-name)
-:PROPERTIES:
-:EMAIL: %(org-contacts-template-email)
-:END:")
-        ))
-;; (org-remember-insinuate)
-;; (setq org-directory (concat DENNY_CONF "/org_data/"))
-;; (setq org-default-notes-file "current.org")
-;; (define-key global-map "\C-cr" 'org-remember)
-;; (setq org-remember-templates
-;; '(("Todo" ?t "* TODO %?\n %i\n" "current.org" bottom)
-;; ("Remind" ?r "** TODO %?\n %i\n" "current.org" "Remind")
-;; ("Period" ?p "- %t\n" "contacts.org" "秀秀--周期")
-;; ("Diary" ?d "* %T %?\n# 今日所学\n %i\n# 今日趣闻\n %i\n# 今日杂记\n %i\n" "diary.org" bottom)
-;; ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; auto add "TODO " for top task
 (defadvice org-meta-return (after cond activate)
