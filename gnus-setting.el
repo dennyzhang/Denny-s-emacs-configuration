@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-27 09:00:23>
+;; Updated: Time-stamp: <2012-06-23 00:13:17>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -160,7 +160,7 @@
       '(gnus-group-sort-by-alphabet gnus-group-sort-by-unread))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; on the fly spell checking
-;;(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
+(add-hook 'message-mode-hook (lambda () (flyspell-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; How to save articles
 (setq gnus-default-article-saver 'gnus-summary-save-in-file)

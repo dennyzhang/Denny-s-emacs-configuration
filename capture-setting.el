@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-22 22:36:11>
+;; Updated: Time-stamp: <2012-06-24 11:59:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -12,8 +12,7 @@
       '(("d" "Diary" entry (file "diary.org") "* %T %?\n\n")
         ("m" "Mail" entry (file "current.org") (function capture-gnus-template))
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("p" "Period" entry (file+headline "contacts.org" "秀秀--周期") "** %t\n")
-        ;; ledger org-capture to add new contact
+        ("p" "Period" table-line (file+headline "contacts.org" "秀秀--周期") "| |%<%Y-%m-%d>|\n")
         ("c" "Contacts" entry (file "contacts.org")
          "* %(org-contacts-template-name)
 :PROPERTIES:
@@ -26,7 +25,9 @@
   (let ((content (buffer-string)))
     (setq content (replace-regexp-in-string "\n+$" "\n" content))
     (concat "* TODO mail: %:subject "
-            (make-string 10 32) ":noexport:\n#+begin_example\n" content "\n#+end_example"))
+            (make-string 10 32) ":noexport:\n"
+            "%a\n"
+            "#+begin_example\n" content "\n#+end_example"))
   )
 
 (defun capture-w3m-template ()
