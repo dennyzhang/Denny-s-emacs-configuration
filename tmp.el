@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-21 10:24:02>
+;; Updated: Time-stamp: <2012-06-23 07:02:24>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -243,5 +243,8 @@
       (setq erc-send-this nil)))
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
+(setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here
