@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-01 22:05:37>
+;; Updated: Time-stamp: <2012-06-23 17:35:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -254,28 +254,28 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gdb-many-windows t)
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'gdb-ui)
-(defun gdb-or-gud-go ()
-  "If gdb isn't running; run gdb, else call gud-go."
-  (interactive)
-  (if (and gud-comint-buffer
-           (buffer-name gud-comint-buffer)
-           (get-buffer-process gud-comint-buffer)
-           (with-current-buffer gud-comint-buffer (eq gud-minor-mode 'gdba)))
-      (gud-call (if gdb-active-process "continue" "run") "")
-    (gdb (gud-query-cmdline 'gdb))))
-(defun gud-break-remove ()
-  "Set/clear breakpoin."
-  (interactive)
-  (save-excursion
-    (if (eq (car (fringe-bitmaps-at-pos (point))) 'breakpoint)
-        (gud-remove nil)
-      (gud-break nil))))
-(defun gud-kill ()
-  "Kill gdb process."
-  (interactive)
-  (with-current-buffer gud-comint-buffer (comint-skip-input))
-  (kill-process (get-buffer-process gud-comint-buffer)))
+;; (require 'gdb-ui)
+;; (defun gdb-or-gud-go ()
+;;   "If gdb isn't running; run gdb, else call gud-go."
+;;   (interactive)
+;;   (if (and gud-comint-buffer
+;;            (buffer-name gud-comint-buffer)
+;;            (get-buffer-process gud-comint-buffer)
+;;            (with-current-buffer gud-comint-buffer (eq gud-minor-mode 'gdba)))
+;;       (gud-call (if gdb-active-process "continue" "run") "")
+;;     (gdb (gud-query-cmdline 'gdb))))
+;; (defun gud-break-remove ()
+;;   "Set/clear breakpoin."
+;;   (interactive)
+;;   (save-excursion
+;;     (if (eq (car (fringe-bitmaps-at-pos (point))) 'breakpoint)
+;;         (gud-remove nil)
+;;       (gud-break nil))))
+;; (defun gud-kill ()
+;;   "Kill gdb process."
+;;   (interactive)
+;;   (with-current-buffer gud-comint-buffer (comint-skip-input))
+;;   (kill-process (get-buffer-process gud-comint-buffer)))
 ;; --8<-------------------------- separator ------------------------>8--
  (defmacro rgb-insert-if-double (otherwise)
    "Insert OTHERWISE when the key mapped to this fcn is pressed twice.
