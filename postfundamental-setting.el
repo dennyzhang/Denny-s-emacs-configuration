@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-02 23:55:46>
+;; Updated: Time-stamp: <2012-06-25 11:52:04>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -57,10 +57,11 @@
 ;;(set-language-environment 'Chinese-GB)
 ;;(set-keyboard-coding-system 'chinese-iso-8bit-unix)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
-;; (pomodoro)
-;; (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
-;; (setq pomodoro-set-number 4) ;; Number of sets until a long break
+(add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro"))
+(load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
+(pomodoro)
+(setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
+(setq pomodoro-set-number 4) ;; Number of sets until a long break
 ;; (defun pomodoro-message (msg)
 ;;   "Display a message in a buffer and maybe raise emacs frame."
 ;;   (when pomodoro-raise-frame
