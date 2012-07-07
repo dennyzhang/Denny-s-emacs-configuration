@@ -3,14 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-19 18:14:55>
+;; Updated: Time-stamp: <2012-06-25 22:39:22>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
 (color-theme-dark-blue)
-;;(set-face-background 'default "LightCyan3") ;;
-;; --8<-------------------------- separator ------------------------>8--
 ;;show recent files
 (require 'recentf)
 (recentf-mode 1)

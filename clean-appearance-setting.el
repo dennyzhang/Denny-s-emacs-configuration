@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-13 17:46:34>
+;; Updated: Time-stamp: <2012-06-27 23:55:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -76,8 +76,15 @@
   "filter formatted message string to remove noisy messages")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el"))
-;; (require 'newcomment nil t)
-;; (require 'hide-comnt)
+(require 'newcomment nil t)
+(require 'hide-comnt)
 (global-set-key [(meta p)(t)] 'hide/show-comments-toggle)
+;; --8<-------------------------- separator ------------------------>8--
+(defun toggle-outline()
+  (interactive)
+  (if (null selective-display)
+      (set-selective-display 6)
+    (set-selective-display nil)))
+(global-set-key [(meta p)(o)] 'toggle-outline)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

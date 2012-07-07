@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-23 07:02:24>
+;; Updated: Time-stamp: <2012-07-07 21:58:59>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -172,29 +172,7 @@
   '(progn
      (define-key lisp-mode-map (kbd "TAB") 'lisp-indent-or-complete)))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun hide-trailing-whitespace (mode-hook)
-  (add-hook mode-hook (lambda ()
-                        (set (make-local-variable 'trailing-whitespace) nil))))
-
-(mapcar 'hide-trailing-whitespace
-        '(comint-mode-hook
-          ibuffer-mode-hook
-          compilation-mode-hook
-          shell-mode-hook
-          eshell-mode-hook
-          dired-mode-hook
-          erc-mode-hook))
-;; --8<-------------------------- separator ------------------------>8--
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
-"
-  (interactive)
-  (let ((path-from-shell (string-rtrim (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'sh-set-shell-hook 'flymake-shell-load)
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst my-mode-line-buffer-identification
   (list
@@ -226,25 +204,30 @@
 ;; (command-frequency-mode 1)
 ;; (command-frequency-autosave-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq erc-default-coding-system '(utf-8 . utf-8))
-(setq erc-nick "DennyZhang"
-      erc-user-full-name "Denny Zhang")
-(erc-autojoin-mode 1)
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs" "##linux")))
-(erc-match-mode 1)
-(setq erc-keywords '("emacs" "gnus" "linux"))
-;;(setq erc-pals '("rms"))
-(setq erc-ignore-list nil)
-(setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
-;; --8<-------------------------- separator ------------------------>8--
 (defun rgrau-erc-oops (txt)
   (when (member txt '("ls" "xb" "cd"))
-      (setq erc-send-this nil)))
+    (setq erc-send-this nil)))
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
 (setq screenshot-default-scheme "local")
+;; --8<-------------------------- separator ------------------------>8--
+(defun max-line-length ()
+  "Return the max line length in the current buffer"
+  (let ((max-len 0))
+    (save-excursion
+      (goto-char (point-min))
+      (while (eq (forward-line) 0)
+        (end-of-line)
+        (when (> (current-column) max-len)
+          (setq max-len (current-column))))
+      max-len)))
+;; --8<-------------------------- separator ------------------------>8--
+;; Specifies whether the desktop should be loaded if locked.
+(setq desktop-load-locked-desktop t)
+;; --8<-------------------------- separator ------------------------>8--
+(setq calendar-view-diary-initially-flag t)
+(add-hook 'diary-display-hook 'diary-fancy-display)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

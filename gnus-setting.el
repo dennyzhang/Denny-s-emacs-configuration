@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-23 00:13:17>
+;; Updated: Time-stamp: <2012-07-03 00:05:43>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -451,7 +451,7 @@ then send mails by send-groupmail-by-mailbuffer."
 (add-hook 'message-sent-hook 'gnus-score-followup-thread)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Keep a backup of the received mails for some time
-(setq mail-source-delete-incoming 90)
+(setq mail-source-delete-incoming 30)
 ;; don't ask for confirmation before deleting old mails
 (setq mail-source-delete-old-incoming-confirm nil)
 ;; Expireable articles will be deleted after 35 days.
@@ -496,5 +496,43 @@ And insert header to mark message as unimportant(X-Priority).
 (setq nnml-use-compressed-files t) ;;using compressed message files
 (setq nnmail-crosspost t) ;; do crossposting if several split methods match the mail.
 (setq bbdb/gnus-update-records-mode 'searching) ;; don't update bbdb records automatically
+;; --8<-------------------------- separator ------------------------>8--
+(require 'org-mime)
+(setq org-mime-library 'mml) ;; tell org-mime which Emacs mail agent you use
+(setq org-export-with-special-strings nil)
+;; don't interpret "_" and "^" for export
+(setq org-export-with-sub-superscripts nil)
+(add-hook 'org-mime-html-hook
+          (lambda ()
+            (save-excursion
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "p" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "table" "background:#2f4f4f;color:#6495ed;width:100%")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "li" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "ul" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "a" "background:#2f4f4f;color:#6495ed")
+              )))
+;; sending html mail as default
+;;(add-hook 'message-send-hook '(lambda() (org-mime-htmlize nil)))
+(add-hook 'message-mode-hook
+          (lambda ()
+            (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
+(add-hook 'message-mode-hook
+          (lambda ()
+            (local-set-key "\C-c\C-h" 'message-html-send)))
+(defun message-html-send ()
+  (interactive)
+  (org-mime-htmlize nil)
+  (message-send)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

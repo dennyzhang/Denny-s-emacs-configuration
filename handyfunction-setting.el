@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-16 08:13:28>
+;; Updated: Time-stamp: <2012-07-07 21:55:01>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -640,5 +640,43 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
           ((inhibit-field-text-motion t))
         (sort-subr nil 'forward-line 'end-of-line nil nil
                    (lambda (s1 s2) (eq (random 2) 0)))))))
+;; --8<-------------------------- separator ------------------------>8--
+(defun rsync-dir (src_dir dst_dir)
+  (let ((command (format "rsync -r %s/* %s" src_dir dst_dir)))
+    (shell-command command)))
+(defun ramfs-flush()
+  (interactive)
+  (rsync-dir
+   "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/"
+   "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data.disk")
+  )
+;; --8<-------------------------- separator ------------------------>8--
+(defun my-nsplit-line (n)
+  "Split line into pieces of length N."
+  (interactive "nSplit into pieces of length n: ")
+  (progn
+    (if (< n 1) (error "n must be greater than zero"))
+    (let ((beg) (end) (stp))
+      (end-of-line)
+      (setq end (point))
+      (beginning-of-line)
+      (setq beg (point))
+      (setq stp (point))
+      (while (< beg end)
+        (goto-column n)
+        (insert "\n")
+        (setq beg (+ n beg)) )
+      (goto-char stp) )
+    )
+  )
+(defun my-fill-paragraph (current-line-p)
+  (interactive "P")
+  (if (null current-line-p)
+      (fill-paragraph)
+    (my-nsplit-line 80)
+    )
+  )
+;; When C-u M-q, only fill current line.
+(global-set-key (kbd "M-q") 'my-fill-paragraph)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

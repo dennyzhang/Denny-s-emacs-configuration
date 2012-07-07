@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-08 23:33:29>
+;; Updated: Time-stamp: <2012-07-07 21:58:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -63,4 +63,19 @@
 (add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
 ;; --8<-------------------------- separator ------------------------>8--
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+;; --8<-------------------------- separator ------------------------>8--
+(defun hide-trailing-whitespace (mode-hook)
+  (add-hook mode-hook (lambda ()
+                        (set (make-local-variable 'trailing-whitespace) nil))))
+
+(mapcar 'hide-trailing-whitespace
+        '(comint-mode-hook
+          ibuffer-mode-hook
+          compilation-mode-hook
+          shell-mode-hook
+          eshell-mode-hook
+          dired-mode-hook
+          erc-mode-hook))
 ;; File: set-file-mode-setting.el

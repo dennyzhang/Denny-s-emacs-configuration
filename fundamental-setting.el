@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-20 10:12:21>
+;; Updated: Time-stamp: <2012-07-07 20:52:34>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -137,6 +137,7 @@
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wealth.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/cloud.org"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
+(defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/life.org"))))
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
@@ -157,6 +158,7 @@
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'connection (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/connection.org"))))
+(defalias 'myself (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/myself.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -180,7 +182,6 @@
 (global-set-key (kbd "C-SPC") 'nil);;set control+space to nill
 (global-set-key (kbd "C-M-SPC") 'set-mark-command);;set Ctrl+Alt+space to set-mark
 (global-set-key [(meta p)(c)] 'count-lines-region)
-(global-set-key [(meta p)(o)] 'split-line)
 (global-set-key [(control = )] 'text-scale-increase);;zoom out/in font
 (global-set-key [(control -)] 'text-scale-decrease)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -387,8 +388,11 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- separator ------------------------>8--
 ;; also recognize the style of Chinese sentence ending
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+(setq flyspell-sort-corrections nil)
+(setq flyspell-consider-dash-as-word-delimiter-flag t)
 ;; don't display welcome message when flyspell started
 (setq flyspell-issue-welcome-flag nil)
+;; --8<-------------------------- separator ------------------------>8--
 (setq gc-cons-threshold 4000000 ;; control emacs garbage collection
       password-cache-expiry nil
       history-length 250)

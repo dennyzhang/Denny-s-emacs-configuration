@@ -3,21 +3,29 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:35>
+;; Updated: Time-stamp: <2012-06-27 17:03:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; TODO
-(create-fontset-from-fontset-spec
- "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
+;; (create-fontset-from-fontset-spec
+;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
 (setq default-frame-alist
       (append
-       '((font . "fontset-startup")
+       '(
+         ;;(font . "fontset-startup")
          (foreground-color . "Wheat")
          (background-color . "DarkSlateGray")
          (cursor-color . "Orchid")
          )
        default-frame-alist))
-;; ;; --8<-------------------------- separator ------------------------>8--
+
+ (create-fontset-from-fontset-spec
+    "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
+(setq default-frame-alist
+      (append
+       '(
+         (font . "fontset-startup"))
+                default-frame-alist))
+;; --8<-------------------------- separator ------------------------>8--
 (defun fullscreen-toggle ()
   "Toggle fullscreen status."
   (interactive)
@@ -76,9 +84,9 @@
 ;;(load-file (concat EMACS_VENDOR "/df-mode/df-mode.el"))
 ;;(df-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
-;;Usage:M-x ascii-on RET
-(load-file (concat EMACS_VENDOR "/ascii/ascii.el"))
-(require 'ascii)
+;; ;;Usage:M-x ascii-on RET
+;; (load-file (concat EMACS_VENDOR "/ascii/ascii.el"))
+;; (require 'ascii)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/ess-5.14/lisp"))
 (require 'ess-site) ;; TODO, it will always popup a *ESS* buffer

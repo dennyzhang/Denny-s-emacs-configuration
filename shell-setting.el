@@ -3,8 +3,29 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-02 23:59:23>
+;; Updated: Time-stamp: <2012-07-07 21:51:21>
 ;;
+;; --8<-------------------------- separator ------------------------>8--
+;; When killing a file, also kill related shell buffer
+;;(add-hook 'kill-buffer-hook 'kill-shell-buffer)
+(defun kill-shell-buffer()
+  "When killing a file, also kill related shell buffer."
+  (let* ((file-name (buffer-name)) shell-buffer-name prefix current-hostname)
+    (with-temp-buffer
+      (shell-command "hostname" (current-buffer))
+      (setq current-hostname (replace-regexp-in-string "\n" "" (buffer-string))))
+    (setq prefix (format "*shell*-%s-" current-hostname))
+    (setq shell-buffer-name (concat prefix file-name))
+    (if (get-buffer shell-buffer-name)
+        (kill-buffer shell-buffer-name))
+    )
+  )
+;; --8<-------------------------- separator ------------------------>8--
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<up>") 'previous-line)
+            (local-set-key (kbd "<down>") 'next-line)))
+(setq eshell-banner-message '(format "Denny: %s\n" (get-motto)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun open-shell-of-current-file ()
   "If current file doesn't open a shell, generate one.
@@ -136,21 +157,6 @@ If arg is given, only open a shell for one direcotry.
     (open-shell-of-current-file)
     ))
 
-;; --8<-------------------------- separator ------------------------>8--
-;; When killing a file, also kill related shell buffer
-;;(add-hook 'kill-buffer-hook 'kill-shell-buffer)
-(defun kill-shell-buffer()
-  "When killing a file, also kill related shell buffer."
-  (let* ((file-name (buffer-name)) shell-buffer-name prefix current-hostname)
-    (with-temp-buffer
-      (shell-command "hostname" (current-buffer))
-      (setq current-hostname (replace-regexp-in-string "\n" "" (buffer-string))))
-    (setq prefix (format "*shell*-%s-" current-hostname))
-    (setq shell-buffer-name (concat prefix file-name))
-    (if (get-buffer shell-buffer-name)
-        (kill-buffer shell-buffer-name))
-    )
-  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;eshell
 (global-set-key (kbd "<C-f9>") 'eshell-toggle)
@@ -296,5 +302,6 @@ From Patrick Anderson via the wiki."
         ("" "\\`\\(anonymous\\|ftp\\)\\'" "ftp")
         ("\\`ftp\\." "" "ftp")))
 (setq tramp-verbose 3)
+(setq password-cache-expiry 60)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: shell-setting.el

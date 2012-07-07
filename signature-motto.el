@@ -3,29 +3,33 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:38>
+;; Updated: Time-stamp: <2012-07-07 21:33:52>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/signature-ascii-picture.el"))
 (setq common-tail-signature "Denny Zhang(张巍)
 电话: 18621908421
-邮箱: markfilebat@126.com
+邮箱: markfilebat@126. com
 微博: http://weibo.com/1686664253
 博客: https://github.com/DennyZhang
 团队: http://blog.ec-ae.com/")
-(defun get-motto()
-  (let (signature-string (old-agenda-files org-agenda-files))
-    ;;(make-variable-buffer-local 'org-agenda-files)
-    (setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
-    (setq signature-string (random-string (org-tags-view-list "Motto")))
+(defun get-mail-signature()
+  (let ((signature-string (get-motto)))
     (with-temp-buffer
       (insert signature-string)
       (goto-char (point-min))
       (fill-paragraph)
       (setq signature-string (buffer-substring-no-properties (point-min) (point-max))))
-    (setq org-agenda-files old-agenda-files)
     (concat common-tail-signature "\n\n" signature-string
             (random-string sign-ascii-picture))
+    ))
+(defun get-motto()
+  (let (signature-string (old-agenda-files org-agenda-files))
+    ;;(make-variable-buffer-local 'org-agenda-files)
+    (setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
+    (setq signature-string (random-string (org-tags-view-list "Motto")))
+    (setq org-agenda-files old-agenda-files)
+    (eval signature-string)
     ))
 (defun refresh-signature()
   "auto refresh mail signature"
@@ -35,7 +39,7 @@
     (if (re-search-forward common-tail-signature nil t)
         (delete-region (- (point) (length common-tail-signature)) (point-max))
       (goto-char (point-max)))
-    (insert (get-motto))))
+    (insert (get-mail-signature))))
 (define-key message-mode-map (kbd "<f5>") 'refresh-signature)
 (defun random-string (string-list)
   "get random string from a string-list"

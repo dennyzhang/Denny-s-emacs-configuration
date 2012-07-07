@@ -3,12 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-14 11:17:40>
+;; Updated: Time-stamp: <2012-07-07 21:00:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
 (setq calendar-remove-frame-by-deleting t)
-(setq calendar-week-start-day 1)
+(setq calendar-week-start-day 1) ;; week start with Monday
 ;; mark dates with diary entries
 (setq calendar-mark-diary-entries-flag t)
 (setq calendar-view-holidays-initially-flag nil)
@@ -16,6 +16,11 @@
 ;; mark today when opening calendar
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)
 (setq calendar-chinese-all-holidays-flag t)
+;; mark dates of holidays in the calendar
+(setq mark-holidays-in-calendar t)
+(setq calendar-date-display-form '(year "-" month "-" day))
+(setq calendar-time-display-form '(24-hours ":" minutes
+                                    (if time-zone " (") time-zone (if time-zone ")")))
 ;; --8<-------------------------- separator ------------------------>8--
 (display-time-mode 1)
 (setq display-time-24hr-format t
@@ -44,6 +49,7 @@
 (setq holiday-hebrew-holidays nil)
 (setq holiday-islamic-holidays nil)
 (setq holiday-solar-holidays nil)
+(setq holiday-bahai-holidays nil)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq calendar-holidays
       '((holiday-chinese 12 9 "爸爸生日") ;; 1954
@@ -89,11 +95,12 @@
         (holiday-fixed 4 1 "[节日] -- 愚人节")
         (holiday-fixed 5 1 "[节日] -- 劳动节")
         (holiday-float 5 0 2 "[节日] -- 母亲节")
+        (holiday-float 6 0 3 "[节日] -- 父亲节")
+        (holiday-float 11 4 4 "[节日] -- 感恩节")
         (holiday-fixed 6 1 "[节日] -- 儿童节")
         (holiday-fixed 4 5 "[节日] -- 清明节")
         (holiday-chinese 8 15 "[节日] -- 中秋节")
         (holiday-chinese 9 9 "[节日] -- 重阳节")
-        (holiday-float 6 0 3 "[节日] -- 父亲节")
         (holiday-chinese 1 15 "[节日] -- 元宵节")
         (holiday-fixed 7 1 "[节日] -- 建党节")
         (holiday-fixed 8 1 "[节日] -- 建军节")
@@ -103,7 +110,6 @@
         (holiday-fixed 3 8 "[节日] -- 妇女节")
         (holiday-fixed 5 1 "[节日] -- 青年节")
         (holiday-fixed 10 31 "[节日] -- 万圣节")
-        (holiday-float 11 4 4 "[节日] -- 感恩节")
         (holiday-fixed 12 25 "[节日] -- 圣诞节")
         (holiday-fixed 3 13 "[节日] -- 杭州纪念日")
         ))
