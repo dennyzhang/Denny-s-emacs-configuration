@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-07-02 00:40:56>
+;; Copyright © 2010-2011 Time-stamp: <2012-07-07 23:06:32>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -70,7 +70,7 @@
 (defun retrieve-tailing-message()
   (cons "=============" (retrieve-signature)))
 
-(aggregation-timer)
+;;(aggregation-timer)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")

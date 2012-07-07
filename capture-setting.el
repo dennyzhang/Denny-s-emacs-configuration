@@ -1,9 +1,10 @@
 ;; -*- coding: utf-8 -*-
-;; File: capture-setting.el
+;; File: capture-setting.el -- easily capture and beautify various
+;; information to knowledgebase of emacs org-mode
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-24 11:59:33>
+;; Updated: Time-stamp: <2012-07-07 22:05:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)

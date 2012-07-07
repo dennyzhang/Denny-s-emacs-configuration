@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:58:48>
+;; Updated: Time-stamp: <2012-07-07 22:00:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -78,4 +78,5 @@
           eshell-mode-hook
           dired-mode-hook
           erc-mode-hook))
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: set-file-mode-setting.el

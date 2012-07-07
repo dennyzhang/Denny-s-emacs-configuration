@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:58:59>
+;; Updated: Time-stamp: <2012-07-07 22:55:43>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -225,7 +225,7 @@
       max-len)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Specifies whether the desktop should be loaded if locked.
-(setq desktop-load-locked-desktop t)
+;;(setq desktop-load-locked-desktop t)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq calendar-view-diary-initially-flag t)
 (add-hook 'diary-display-hook 'diary-fancy-display)

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:57:48>
+;; Updated: Time-stamp: <2012-07-07 22:59:53>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")

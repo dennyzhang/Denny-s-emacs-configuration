@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:33:52>
+;; Updated: Time-stamp: <2012-07-07 22:47:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/signature-ascii-picture.el"))
@@ -25,7 +25,6 @@
     ))
 (defun get-motto()
   (let (signature-string (old-agenda-files org-agenda-files))
-    ;;(make-variable-buffer-local 'org-agenda-files)
     (setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
     (setq signature-string (random-string (org-tags-view-list "Motto")))
     (setq org-agenda-files old-agenda-files)
