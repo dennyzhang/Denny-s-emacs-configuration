@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:40>
+;; Updated: Time-stamp: <2012-07-09 00:11:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -216,5 +216,11 @@ which will be replaced by the actual name"
        (copy-list (bbdb-record-addresses record)))
      (bbdb-records))))
   )
+;; --8<-------------------------- separator ------------------------>8--
+;; always use full name when sending mail
+;; (even if User Name has an address of the form <user.name@somedomain>)
+(setq bbdb-dwim-net-address-allow-redundancy t)
+;; no popup on auto-complete
+(setq bbdb-completion-display-record nil)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: bbdb-setting.el ends here

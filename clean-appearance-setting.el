@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-27 23:55:25>
+;; Updated: Time-stamp: <2012-07-09 22:01:05>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -86,5 +86,20 @@
       (set-selective-display 6)
     (set-selective-display nil)))
 (global-set-key [(meta p)(o)] 'toggle-outline)
+;; --8<-------------------------- separator ------------------------>8--
+;; (defun compile-face-settings ()
+;;   "Face settings for `compile'."
+;;   (custom-set-faces '(compilation-info
+;;                       ((((type tty)) :bold t :foreground "green")
+;;                        (t :foreground "green"))))
+;;   (setq compilation-message-face nil)
+;;   (custom-set-faces '(compilation-warning
+;;                       ((((class color)) :foreground "red" :bold nil))))
+;;   (custom-set-faces '(compilation-info
+;;                       ((((type tty pc)) :foreground "magenta") (t (:foreground "magenta")))))
+;;   (setq compilation-enter-directory-face 'beautiful-blue-face)
+;;   (setq compilation-leave-directory-face 'magenta-face))
+
+;; (eval-after-load "compile" `(compile-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: clean-appearance-setting.el ends here

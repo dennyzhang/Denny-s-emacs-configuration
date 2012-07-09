@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-03 00:05:43>
+;; Updated: Time-stamp: <2012-07-09 14:46:14>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -61,7 +61,7 @@
 (setq compose-mail-user-agent-warnings nil)
 (setq mail-user-agent 'gnus-user-agent)
 ;; All outgoing messages will be put in this group
-(setq gnus-outgoing-message-group "nnml:mail.sent.archive")
+;;(setq gnus-outgoing-message-group "nnml:mail.sent.archive")
 ;; Use different mail accounts, when sending mails
 (add-hook 'message-send-hook 'set-mail-sender)
 (defun set-mail-sender ()
@@ -203,11 +203,11 @@
 (load-file (concat DENNY_CONF "/emacs_conf/signature-motto.el"))
 (setq gnus-posting-styles
       '((".*" ; Matches all groups of messages
-         (signature get-motto)) ;; 使用随机签名
+         (signature get-mail-signature)) ;; 使用随机签名
         ("mail.p0"
-         (signature get-motto))
+         (signature get-mail-signature))
         ((header "from" "sophiazhang8709@126.com\\|bz-zhangchengfeng@163.com\\|06300260051@fudan.edu.cn\\|sophiazhang8709@gmail.com")
-         (signature get-motto))))
+         (signature get-mail-signature))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; category mails by bbdb group, which is defined by bbdb alias
 (defun category-gnus-mail-by-bbdb-alias()

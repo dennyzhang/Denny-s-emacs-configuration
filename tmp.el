@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 22:55:43>
+;; Updated: Time-stamp: <2012-07-10 00:24:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -213,21 +213,151 @@
 (load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
 (setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
-(defun max-line-length ()
-  "Return the max line length in the current buffer"
-  (let ((max-len 0))
-    (save-excursion
-      (goto-char (point-min))
-      (while (eq (forward-line) 0)
-        (end-of-line)
-        (when (> (current-column) max-len)
-          (setq max-len (current-column))))
-      max-len)))
-;; --8<-------------------------- separator ------------------------>8--
 ;; Specifies whether the desktop should be loaded if locked.
 ;;(setq desktop-load-locked-desktop t)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq calendar-view-diary-initially-flag t)
 (add-hook 'diary-display-hook 'diary-fancy-display)
+;; --8<-------------------------- separator ------------------------>8--
+(require 'nnir)
+(setq nnir-search-engine 'namazu)
+(setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
+(setq nnir-namazu-remove-prefix (expand-file-name "/home/denny/backup/essential/Dropbox/private_data/gnus_data/Mail"))
+(setq nnir-mail-backend gnus-select-method)
+;; --8<-------------------------- separator ------------------------>8--
+(defun nuke-unmodified-buffers (&optional list)
+  "For each buffer in LIST, kill it if unmodified."
+  (interactive)
+  (if (null list)
+      (setq list (buffer-list)))
+  (dolist (buffer list)
+    (if (and (not (member (buffer-name buffer)
+                          '("" "*Message*" "*buffer-selection*"
+                            "*Shell Command Output*" "*scratch*"
+                            "*nav*" "*imenu-tree*")))
+             (not (buffer-modified-p buffer)))
+        (kill-buffer buffer))))
+;; --8<-------------------------- separator ------------------------>8--
+(defun wcy-shell-mode-kill-buffer-on-exit (process state)
+  (message "%s" state)
+  (if (or
+       (string-match "exited abnormally with code.*" state)
+       (string-match "finished" state))
+      (kill-buffer (current-buffer))))
+
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (set-process-sentinel (get-buffer-process (current-buffer))
+                                  #'wcy-shell-mode-kill-buffer-on-exit)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun sh-mode-face-settings ()
+  "Face settings for `sh-mode'."
+  (custom-set-faces
+   '(sh-heredoc
+     ((((min-colors 88) (class color)
+        (background dark))
+       (:foreground "deeppink"))
+      (((class color)
+        (background dark))
+       (:foreground "deeppink"))
+      (((class color)
+        (background light))
+       (:foreground "tan1" ))
+      (t
+       (:weight bold))))))
+
+(eval-after-load "sh-script"
+  `(sh-mode-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(defun svn-face-settings ()
+  "Face settings for `psvn'."
+  (custom-set-faces
+   '(svn-status-filename-face
+     ((((type tty)) :bold t :foreground "yellow")
+      (t :foreground "yellow")))))
+
+(eval-after-load "psvn" `(svn-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(setq w3m-use-mule-ucs t)
+;; --8<-------------------------- separator ------------------------>8--
+(defun w3m-save-current-buffer ()
+  "Save current w3m buffer."
+  (interactive)
+  (save-excursion
+    (mark-whole-buffer)
+    (call-interactively 'copy-region-as-kill-nomark))
+  (with-temp-buffer
+    (call-interactively 'yank)
+    (call-interactively 'write-file)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun man-face-settings ()
+  "Face settings for `man'."
+  (setq Man-overstrike-face 'yellow-face)
+  (setq Man-underline-face 'underline-green-face)
+  (setq Man-reverse-face 'red-face))
+
+(eval-after-load "man" `(man-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(defun diff-face-settings ()
+  "Face settings for `diff'."
+  (custom-set-faces '(diff-header ((((class color)) :foreground "green"))))
+  (custom-set-faces '(diff-hunk-header ((((type tty pc)) :bold t :foreground "green")
+                                        (t :foreground "OliveDrab1"))))
+  (custom-set-faces '(diff-index ((((class color)) :foreground "cyan"))))
+  (custom-set-faces '(diff-file-header ((((class color)) :foreground "magenta"))))
+  (custom-set-faces '(diff-removed ((((class color)) :foreground "red"))))
+  (custom-set-faces '(diff-indicator-removed ((((type tty pc)) :foreground "yellow" :background "red")
+                                              (t :foreground "yellow" :background "red"))))
+  (custom-set-faces '(diff-added ((((type tty pc)) :foreground "yellow")
+                                  ;; (t :foreground "deep pink"))))
+                                  (t :foreground "aquamarine"))))
+  (custom-set-faces '(diff-indicator-added ((((type tty pc)) :foreground "red" :background "white")
+                                            (t :foreground "red" :background "white"))))
+  (custom-set-faces '(diff-changed ((((type tty pc)) :foreground "red" :background "blue")
+                                    (t :foreground "deep pink"))))
+  (custom-set-faces '(diff-refine-change ((((type tty pc)) :foreground "white" :background "blue")
+                                          (t :foreground "dark orchid"))))
+  (custom-set-faces '(diff-context
+                      ((((class grayscale) (background light)) (:foreground "LightGray" :weight bold))
+                       (((class grayscale) (background dark)) (:foreground "DimGray" :weight bold))
+                       (((class color) (min-colors 88) (background light)) (:foreground "Orchid"))
+                       (((class color) (min-colors 88) (background dark)) (:foreground "cornflower blue"))
+                       (((class color) (min-colors 16) (background light)) (:foreground "Orchid"))
+                       (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue"))
+                       (((class color) (min-colors 8)) (:foreground "blue" :weight bold))
+                       (t (:weight bold))))))
+
+(eval-after-load "diff-mode"
+  `(diff-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(defun ediff-face-settings ()
+  "Face settings for `ediff'."
+  (progn
+    (custom-set-faces
+     '(ediff-current-diff-face-B
+       ((((class color) (background dark)) (:background "yellow")))))
+    (set-face-foreground 'ediff-fine-diff-face-A "white")
+    (set-face-background 'ediff-fine-diff-face-A "#555753")
+    (set-face-foreground 'ediff-current-diff-face-B "red")
+    (set-face-foreground 'ediff-fine-diff-face-B "red")
+    (set-face-background 'ediff-fine-diff-face-B "#555753"))
+  (custom-set-faces '(ediff-current-diff-A
+                      ((((type tty)) :background "yellow" :foreground "blue")
+                       (t :background "DarkSeaGreen3" :foreground "blue violet"))))
+  (custom-set-faces '(ediff-fine-diff-A
+                      ((((type tty)) :background "blue" :foreground "white")
+                       (t :background "gold1" :foreground "red"))))
+  (custom-set-faces '(ediff-current-diff-B
+                      ((((type tty)) :background "yellow" :foreground "black")
+                       (t :background "DodgerBlue1" :foreground "gray11"))))
+  (custom-set-faces '(ediff-fine-diff-B
+                      ((((type tty)) :background "cyan" :foreground "red")
+                       (t :background "chocolate2" :foreground "dark slate blue")))))
+
+(eval-after-load "ediff"
+  `(ediff-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(setq read-buffer-completion-ignore-case t) ;; ignore case when reading a buffer name
+(setq completion-ignore-case t) ;; do not consider case significant in completion
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

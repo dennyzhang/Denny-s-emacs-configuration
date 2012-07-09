@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:55:01>
+;; Updated: Time-stamp: <2012-07-10 00:24:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -678,5 +678,18 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
   )
 ;; When C-u M-q, only fill current line.
 (global-set-key (kbd "M-q") 'my-fill-paragraph)
+;; --8<-------------------------- separator ------------------------>8--
+(defun max-line-length (begin end)
+  "Return the max line length in the current buffer"
+  (interactive "r")
+    (save-excursion
+      (save-restriction
+        (let ((max-len 0))
+          (goto-char (point-min))
+          (while (eq (forward-line) 0)
+            (end-of-line)
+            (when (> (current-column) max-len)
+              (setq max-len (current-column))))
+          max-len))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

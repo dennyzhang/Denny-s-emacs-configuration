@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-01 23:24:07>
+;; Updated: Time-stamp: <2012-07-08 18:23:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -37,6 +37,7 @@
 	    'turn-on-font-lock
 	    ;;(setq word-wrap 1)
 	    (setq truncate-lines t)
+            (iimage-mode 't)
             ))
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)

@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 22:05:59>
+;; Updated: Time-stamp: <2012-07-08 23:28:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -14,6 +14,9 @@
         ("m" "Mail" entry (file "current.org") (function capture-gnus-template))
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("p" "Period" table-line (file+headline "contacts.org" "秀秀--周期") "| |%<%Y-%m-%d>|\n")
+        ("s" "Shopping" entry (file+headline "current.org" "Shopping") "** %?\n")
+        ("b" "Book" entry (file+headline "life.org" "Book -- 阅读") "** TODO %?\n")
+        ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
         ("c" "Contacts" entry (file "contacts.org")
          "* %(org-contacts-template-name)
 :PROPERTIES:
