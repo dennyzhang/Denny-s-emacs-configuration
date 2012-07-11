@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-10 00:24:52>
+;; Updated: Time-stamp: <2012-07-11 20:59:11>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -278,7 +278,7 @@
 
 (eval-after-load "psvn" `(svn-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq w3m-use-mule-ucs t)
+;;(setq w3m-use-mule-ucs t)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun w3m-save-current-buffer ()
   "Save current w3m buffer."
