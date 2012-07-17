@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-09 00:11:59>
+;; Updated: Time-stamp: <2012-07-15 17:59:29>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -18,7 +18,7 @@
         ("6cbca02aa2c90e0e8e34e78eacd9f7d6" 238 "[Denny] 分布式消息队列 — Advanced Message Queuing Protocol")
         ("ea89b68c34ce4a63c0f77e17413c6e30" 239 "[Denny] Shell")
         ("23273917e4844f15f3d83ef5a3839f61" 549 "[Denny] Cloud continous test")
-        ("4e5444ffb76773560df4716b07d78ec9" 561 "[Denny] 分布式服务管理框架 -- Configuration management")
+        ("4c68b5cb04d9c784396e9f6aa02516b2" 561 "[Denny] puppet: 强大的中心化配置管理系统 -- SA的利器")
         ("54e413d5e81f0e2d31163f131b563e45" 557 "[Denny] zookeeper: Yahoo在Apache上推出了Google Chubby一个开源的实现")
         ("8c825c42309004ae5e912a382c8a5ebb" 559 "[Denny] tsung: an open-source multi-protocol distributed load testing tool")
         ("7d2e1f114303ea02918d2d8534b329a0" 1305 "[Denny] Health — 健康")
@@ -41,7 +41,7 @@
         ("29fdcd436940e3f07842fa4ac42258a3" 1019 "[Denny] Work Skill + Software -- 实用软件")
         ("f97d5c9d0ef27ab408d4eb2cb37363ad" 1307 "[Denny] linux security")
         ("2673753f5e99ed3823e2d428123126bd" 2158 "[Denny] linux systemtap")
-        ("fcb8feffc8536a4113836c26626dadff" 4202 "[Denny] linux signal -- 信号")
+        ("fcb8feffc8536a4113836c26626dadff" 3893 "[Denny] linux signal -- 信号")
         ;; important posts
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3698 "[Denny] [置顶] Motto -- 人生格言")
@@ -49,13 +49,16 @@
         ("8cb2825a5242eec670f5ffa4aab3b288" 2539 "[Denny] linux调试工具集")
         ("c6edf38b312bb72f7b662028b6c6c796" 2751 "[Denny] 自我管理 -- GTD & PKM")
         ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
-        ("eae6968ec9638dc01fe235bc7dddcbb9" 3760 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
+        ("eae6968ec9638dc01fe235bc7dddcbb9" 4202 "[Denny] Help me by discussing my questions/puzzles -- 赏金问题")
         ("5ebc33327869e48d20bb9a66de18bc11" 3052 "[Denny] erlang debug skills")
         ("79a25c6d37d3d7aa37d49be5b766f419" 3792 "[Denny] Useful shell code snippet")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
         ("f579023d3b8347172362e5025d438b3d" 2346 "[Denny] Functional Programming 函数式编程")
         ("39c2dd4f4f788c4560b9f19d75b066c2" 3129 "[Denny] Locking in programming")
-        ("abd54648a1ca060cc85d686cc85768f9" 3893 "[Denny] Programming life -- 程序人生")
+        ("abd54648a1ca060cc85d686cc85768f9" 4213 "[Denny] Programming life -- 程序人生")
+        ("2658854e1ba51d656deb4bf7301acf55" 4367 "[Denny] Be happy with your family and friends -- 社交管理")
+        ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
+        ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-11 20:59:11>
+;; Updated: Time-stamp: <2012-07-18 00:34:02>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun save-information ()
   (dolist (func kill-emacs-hook)
@@ -13,8 +13,6 @@
     (server-start)))
 
 (run-with-idle-timer 300 t 'save-information)
-;; --8<-------------------------- separator ------------------------>8--
-(size-indication-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun eshell-spawn-external-command (beg end)
   "Parse and expand any history references in current input."
@@ -198,11 +196,54 @@
      mode-line-buffer-identification
      my-mode-line-buffer-identification)))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
-;; (require 'command-frequency)
-;; (command-frequency-table-load)
-;; (command-frequency-mode 1)
-;; (command-frequency-autosave-mode 1)
+(load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
+(command-frequency-mode 1)
+(defvar cf-frequence-threshrold 1 "*When generating reports, only show commands over given threshrold")
+(defvar cf-stat-self-insert-command nil "*Non-nil means also statistic `self-insert-command'")
+(defvar cf-buffer-name "*command frequence*" "the name of buffer command frequence")
+
+(defvar cf-command-history nil "command frequency history")
+
+(defun cf-add-command ()
+  (when (and last-command
+             (or cf-stat-self-insert-command (not (equal last-command 'self-insert-command))))
+    (let ((cmd (assoc last-command cf-command-history)))
+      (if cmd
+          (setcdr cmd (1+ (cdr cmd)))
+        (add-to-list 'cf-command-history (cons last-command 1))))))
+
+(defun command-frequence ()
+  (interactive)
+  (with-current-buffer (get-buffer-create cf-buffer-name)
+    (linum-mode t)
+    (View-quit)
+    (erase-buffer)
+    (let ((cmds (copy-sequence cf-command-history)) (all 0))
+      (dolist (c cmds)
+        (setq all (+ all (cdr c))))
+      (insert (format "Total count of commands: %d. " all))
+      (unless cf-stat-self-insert-command
+        (insert "(exclude `self-insert-command')"))
+      (insert "\n\n")
+      (insert (format "%-5s %-5s %-30s %s\n" "Count" "Frequency" "Command" "Key"))
+      (dolist (c (sort cmds (lambda (c1 c2) (> (cdr c1) (cdr c2)))))
+        (unless (< (cdr c) cf-frequence-threshrold)
+          (insert (format "%-5d %.3f %-30S %s\n" (cdr c) (/ (cdr c) (float all)) (car c)
+                          (mapconcat 'key-description (where-is-internal (car c)) ", ")))))
+      (goto-char (point-min))
+      (setq major-mode 'emacs-lisp-mode)
+      (setq mode-name "Emacs-Lisp")
+      (use-local-map emacs-lisp-mode-map)
+      (view-mode t)
+      (switch-to-buffer (current-buffer)))))
+
+(defun cf-clear-command-history ()
+  "Clear command history"
+  (interactive)
+  (setq cf-command-history nil))
+
+(add-hook 'post-command-hook 'cf-add-command)
+(add-to-list 'desktop-globals-to-save 'cf-command-history)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun rgrau-erc-oops (txt)
   (when (member txt '("ls" "xb" "cd"))
@@ -215,9 +256,6 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Specifies whether the desktop should be loaded if locked.
 ;;(setq desktop-load-locked-desktop t)
-;; --8<-------------------------- separator ------------------------>8--
-(setq calendar-view-diary-initially-flag t)
-(add-hook 'diary-display-hook 'diary-fancy-display)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'nnir)
 (setq nnir-search-engine 'namazu)
@@ -357,7 +395,43 @@
 (eval-after-load "ediff"
   `(ediff-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq read-buffer-completion-ignore-case t) ;; ignore case when reading a buffer name
-(setq completion-ignore-case t) ;; do not consider case significant in completion
+(add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
+(require 'psvn)
+(setq svn-status-verbose nil)
+(defsubst svn-status-interprete-state-mode-color (stat)
+  "Interpret vc-svn-state symbol to mode line color"
+  (case stat
+    ('up-to-date "GreenYellow")
+    ('edited "tomato")
+    ('unknown "gray")
+    ('added "blue")
+    ('deleted "red")
+    ('unmerged "purple")
+    (t "black")))
+;; --8<-------------------------- separator ------------------------>8--
+(setq mouse-yank-at-point t) ;; mouse yank commands yank at point instead of at click.
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/goto-last-change/goto-last-change.el"))
+(global-set-key "\C-x\C-\\" 'goto-last-change)
+(autoload 'goto-last-change
+  "goto-last-change" "Set point to the position of the last change." t)
+(defadvice goto-last-change-with-auto-marks (before mav-goto-last-change activate)
+  "Split the window beforehand to retain the current view"
+  (unless (eq last-command 'goto-last-change-with-auto-marks)
+    (split-window-vertically)))
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
+(setq sr-speedbar-skip-other-window-p t)
+(setq speedbar-show-unknown-files t)
+(load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
+;;(setq 'outline-view-change-hook nil) ;; TODO
+;; when pressing prefix of C-u, we will use speedbar, instead of minimap
+(defun my-file-toogle (use-speedbar-p)
+  (interactive "P")
+  (if (null use-speedbar-p)
+      (minimap-toggle)
+    (sr-speedbar-toggle))
+  )
+(global-set-key (kbd "<f3>") 'my-file-toogle)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

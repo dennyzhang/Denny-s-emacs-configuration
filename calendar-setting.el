@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:00:38>
+;; Updated: Time-stamp: <2012-07-16 23:19:09>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -21,11 +21,14 @@
 (setq calendar-date-display-form '(year "-" month "-" day))
 (setq calendar-time-display-form '(24-hours ":" minutes
                                     (if time-zone " (") time-zone (if time-zone ")")))
+(setq calendar-view-diary-initially-flag t)
+(add-hook 'diary-display-hook 'diary-fancy-display)
 ;; --8<-------------------------- separator ------------------------>8--
 (display-time-mode 1)
 (setq display-time-24hr-format t
       display-time-day-and-date t
-      display-time-format " %Y-%m-%d %H:%M %A")
+      display-time-interval 60
+      display-time-format " [%m-%d %H:%M]")
 ;; --8<-------------------------- separator ------------------------>8--
 ;;set the latitude/longitude
 (setq calendar-latitude +31.11)
@@ -37,7 +40,9 @@
       '(lambda ()
          (set-face-foreground 'diary-face "skyblue")
          (set-face-background 'holiday-face "slate blue")
-         (set-face-foreground 'holiday-face "white")))
+         (set-face-foreground 'holiday-face "white")
+         (set-face-background 'holiday-solar-term "green")
+         (set-face-background 'holiday-lunar "blue")))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set lunar calendar stuff
 (setq calendar-chinese-celestial-stem

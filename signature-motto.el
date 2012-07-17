@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-10 00:24:11>
+;; Updated: Time-stamp: <2012-07-17 23:00:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -22,7 +22,12 @@
     (if (member (detect-coding-string signature-string) '((undecided-unix) (undecided)))
         (progn
           (setq cowsay-file (get-random-cowsay ".*.cow"))
-          (setq command-string (format "cowthink -f %s \"%s\"" cowsay-file signature-string))
+          (setq command-string (format "cowthink -f %s \"%s\""
+                                       cowsay-file
+                                       (decode-coding-string
+                                        signature-string (intern
+                                                          "utf-8"))
+                                       ))
           (format "%s\n\n%s" common-tail-signature (shell-command-to-string command-string)))
       ;; for Unicode like Chinese, just render cowsay with empty content
       (progn

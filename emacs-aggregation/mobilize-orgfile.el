@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-29 22:50:19>
+;; Copyright © 2010-2011 Time-stamp: <2012-07-14 10:09:08>
 ;;; ================================================================
 
 ;;; File: mobilize-orgfile.el --- A plug-in system for information aggregation of daily life
@@ -69,7 +69,7 @@ Here we also care about these items.
 "
   (interactive)
   (let ((org-mobile-level 3)
-        (opt-plist '(:tasks ("DONE", "TODO"))))
+        (opt-plist '(:tasks ("TODO" "DONE"))))
     (find-file org-file)
     (org-export-as-html org-mobile-level t opt-plist nil nil mobile-export-publish-dir)
     )

@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 20:52:34>
+;; Updated: Time-stamp: <2012-07-17 23:28:59>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t) ;;uncomment when emacs crash on startup
 (set-language-environment 'utf-8)
@@ -75,8 +75,9 @@
 (setq warning-suppress-types nil) ;; TODO, suspicious configuration
 (setq message-log-max 8192) ;; Set the *Message* log to something higher
 (when (fboundp 'winner-mode) (winner-mode 1)) ;;Restore old window configurations
-(setq delete-by-moving-to-trash t) ;; When deletion in emacs, uses system’s trash
-(setq trash-directory "~/trash")
+(setq trash-directory "~/trash"
+      ;; When deletion in emacs, uses system’s trash
+      delete-by-moving-to-trash t)
 ;; --8<-------------------------- separator ------------------------>8--
 (defalias 'qrr 'query-replace-regexp);;regexp query and replace
 (defalias 'rr 'replace-regexp)
@@ -158,7 +159,7 @@
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'connection (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/connection.org"))))
-(defalias 'myself (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/myself.org"))))
+(defalias 'myself (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/myself.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -257,7 +258,7 @@
     (add-hook hook '(lambda () (view-mode 1)))))
 (define-key global-map (kbd "M-p RET") 'view-mode)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq auto-save-default nil) ;; disable auto save
+(setq auto-save-default nil) ;; disable auto save, like files of #XXX#
 (setq kept-old-versions 2)
 (setq kept-new-versions 3)
 (setq delete-old-versions t)
@@ -380,9 +381,6 @@ starting on the same line at which another match ended is ignored."
     ))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 ;; --8<-------------------------- separator ------------------------>8--
-(autoload 'goto-last-change
-  "goto-last-change" "Set point to the position of the last change." t)
-;; --8<-------------------------- separator ------------------------>8--
 (setq history-length 100)
 (setq require-final-newline t)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -396,5 +394,9 @@ starting on the same line at which another match ended is ignored."
 (setq gc-cons-threshold 4000000 ;; control emacs garbage collection
       password-cache-expiry nil
       history-length 250)
+;; --8<-------------------------- separator ------------------------>8--
+(setq read-buffer-completion-ignore-case t) ;; ignore case when reading a buffer name
+(setq completion-ignore-case t) ;; do not consider case significant in completion
+(size-indication-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

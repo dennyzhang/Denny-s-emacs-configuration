@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-30 11:06:33>
+;; Updated: Time-stamp: <2012-07-11 21:25:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -141,7 +141,6 @@ See `org-publish-org-to' to the list of arguments."
     (url-link-quote)
     (replace-entry "basic use")
     (replace-entry "best practice")
-    (replace-entry "mail")
     (replace-entry "console")
     (goto-char (point-min))
     (while (re-search-forward "\n+\\(#\\+begin.*\\)\n+" nil t)

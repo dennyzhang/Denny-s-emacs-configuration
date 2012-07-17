@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-09 21:58:17>
+;; Updated: Time-stamp: <2012-07-16 22:52:54>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -62,7 +62,7 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el"
         "passwd.el"
-        ;;"tmp.el"
+        "tmp.el"
         ))
 ;; --8<-------------------------- separator ------------------------>8--
 (unless (server-running-p) (server-start))

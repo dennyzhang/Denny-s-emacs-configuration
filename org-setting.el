@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-08 18:23:18>
+;; Updated: Time-stamp: <2012-07-15 15:41:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -14,7 +14,7 @@
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list
                               (concat DENNY_CONF "/org_data/wish.org")
-                              (concat DENNY_CONF "/org_data/myself.org")
+                              (concat DENNY_CONF "/org_data/org_share/myself.org")
                               (concat DENNY_CONF "/org_data/org_share/life.org")
                               (concat DENNY_CONF "/org_data/current.org")
                               (concat DENNY_CONF "/org_data/diary.org")

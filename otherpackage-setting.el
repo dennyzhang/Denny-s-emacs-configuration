@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-14 20:28:44>
+;; Updated: Time-stamp: <2012-07-17 23:57:32>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'cl))
@@ -27,11 +27,6 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/dupwords/dupwords.el"))
 (require 'dupwords)
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/hfyview/hfyview.el"))
-(global-set-key [(meta p)(p)] 'hfyview-buffer)
-(setq hfy-meta-tags
-      (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/sl/sl.el"))
 (require 'sl)

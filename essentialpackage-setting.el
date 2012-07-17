@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-25 22:39:22>
+;; Updated: Time-stamp: <2012-07-18 00:44:40>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -44,15 +44,6 @@
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
-(require 'psvn)
-(setq svn-status-verbose nil)
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
-(setq sr-speedbar-skip-other-window-p t)
-(setq speedbar-show-unknown-files t)
-(global-set-key (kbd "<f3>") 'sr-speedbar-toggle)
-;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
 (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
 ;; make bookmarks persistent as default
@@ -227,6 +218,7 @@
   ;; clean up previous open associations, and reconfigure
   (setq openwith-associations
         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
+          ("\\.epub\\'" "calibre" (file))
           ;;("\\.pdf\\'" "evince" (file))
           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
           )))
@@ -273,7 +265,7 @@
 (require 'hide-lines)
 (require 'hidesearch)
 (global-set-key (kbd "C-c C-s") 'hidesearch)
-;;(global-set-key (kbd "C-c C-a") 'show-all-invisible)
+(global-set-key (kbd "C-c C-a") 'show-all-invisible)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cn-weather/cn-weather.el"))
 (require 'cn-weather)

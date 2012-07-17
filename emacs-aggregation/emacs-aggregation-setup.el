@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-07-07 23:06:32>
+;; Copyright © 2010-2011 Time-stamp: <2012-07-15 15:42:02>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -90,7 +90,7 @@
                                 "diary.org"
                                 "top.org"
                                 "often.org"
-                                "myself.org"
+                                "org_share/myself.org"
                                 "org_share/connection.org"
                                 ))
 ;; update daily at 01:00am

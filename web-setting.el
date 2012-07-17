@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: web-browse-setting.el
+;; File: web-setting.el
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-10 11:48:11>
+;; Updated: Time-stamp: <2012-07-18 00:02:03>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -175,11 +175,12 @@
         ;; --8<------------------ search engine ------------------------>8--
 
         ;; --8<------------------ ebook ------------------------>8--
-        ("book-douban" . [simple-query "book.douban.com" "book.douban.com/subject_search?cat=1001&search_text=" ""])
-        ("book-yinian" . "www.inien.com/w/#/Index")
+        ("book-shupeng" . [simple-query "www.shupeng.com" "www.shupeng.com/search/" ""])
+        ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
         ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
         ("book-iask" . [simple-query "ishare.iask.sina.com.cn" "ishare.iask.sina.com.cn/search.php?key=" ""])
-        ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
+        ("book-douban" . [simple-query "book.douban.com" "book.douban.com/subject_search?cat=1001&search_text=" ""])
+        ("book-yinian" . "www.inien.com/w/#/Index")
         ;; --8<------------------ ebook ------------------------>8--
 
         ;; --8<------------------ paper ------------------------>8--
@@ -259,5 +260,45 @@
     (webjump-builtin expr name)))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq browse-url-generic-program "/usr/bin/firefox")
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/hfyview/hfyview.el"))
+(global-set-key [(meta p)(p)] 'my-hfyview-buffer)
+(defun w3m-browse-buffer (&optional buffer)
+  "Use w3m browser buffer BUFFER."
+  (interactive "bBuffer to browse use w3m: ")
+  (unless buffer (setq buffer (current-buffer)))
+  (let* ((file (buffer-file-name buffer))
+         (name (buffer-name buffer)))
+    (if file
+        (w3m-goto-url-new-session file)
+      (with-current-buffer buffer
+        (save-excursion
+          (mark-whole-buffer)
+          (call-interactively 'copy-region-as-kill-nomark)))
+      (let* ((new-name
+              (concat
+               w3m-buffer-name-prefix
+               "-"
+               (if (string= "*" (substring name 0 1))
+                   (substring name 1)
+                 (concat name "*"))))
+             (new-buffer (get-buffer-create new-name)))
+        (switch-to-buffer new-buffer)
+        (call-interactively 'yank)
+        (w3m-buffer)
+        (w3m-mode)
+        (setq w3m-current-title (buffer-name))))))
+
+;; when pressing prefix of C-u, we will use w3m, instead of default web browser
+(defun my-hfyview-buffer (use-w3m-p)
+  (interactive "P")
+  (if (null use-w3m-p)
+      (if (equal mode-name '(sgml-xml-mode "XHTML" "HTML"))
+          (browse-url (buffer-name))
+        (hfyview-buffer))
+    (w3m-browse-buffer)
+    ))
+(setq hfy-meta-tags
+      (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: web-browse-setting.el ends here
