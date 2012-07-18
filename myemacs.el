@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-16 22:52:54>
+;; Updated: Time-stamp: <2012-07-18 22:56:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -44,14 +44,17 @@
         "beta-setting.el"
         "capture-setting.el"
         "sns-setting.el"
-        "otherpackage-setting.el"))
+        "otherpackage-setting.el"
+        ))
 (cond
  ((eq system-type 'gnu/linux)
   (mapc '(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
-        '("linux-setting.el" "multimediea-setting.el"
-          "shell-setting.el" "voice-setting.el"
+        '("linux-setting.el"
+          "multimediea-setting.el"
+          "shell-setting.el"
+          "voice-setting.el"
           "interoperation-setting.el")))
  ((eq system-type 'windows-nt)
   (load-file (concat DENNY_CONF "/emacs_conf/windowsonly-setting.el")))
@@ -62,7 +65,7 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el"
         "passwd.el"
-        "tmp.el"
+        ;;"tmp.el"
         ))
 ;; --8<-------------------------- separator ------------------------>8--
 (unless (server-running-p) (server-start))

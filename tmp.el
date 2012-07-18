@@ -3,16 +3,16 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 00:34:02>
+;; Updated: Time-stamp: <2012-07-18 23:10:18>
 ;; --8<-------------------------- separator ------------------------>8--
-(defun save-information ()
-  (dolist (func kill-emacs-hook)
-    (unless (memq func '(exit-gnus-on-exit server-force-stop))
-      (funcall func)))
-  (unless (eq 'listen (process-status server-process))
-    (server-start)))
+;; (defun save-information ()
+;;   (dolist (func kill-emacs-hook)
+;;     (unless (memq func '(exit-gnus-on-exit server-force-stop))
+;;       (funcall func)))
+;;   (unless (eq 'listen (process-status server-process))
+;;     (server-start)))
 
-(run-with-idle-timer 300 t 'save-information)
+;; (run-with-idle-timer 300 t 'save-information)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun eshell-spawn-external-command (beg end)
   "Parse and expand any history references in current input."
@@ -420,18 +420,38 @@
   (unless (eq last-command 'goto-last-change-with-auto-marks)
     (split-window-vertically)))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
-(setq sr-speedbar-skip-other-window-p t)
-(setq speedbar-show-unknown-files t)
-(load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
-;;(setq 'outline-view-change-hook nil) ;; TODO
-;; when pressing prefix of C-u, we will use speedbar, instead of minimap
-(defun my-file-toogle (use-speedbar-p)
-  (interactive "P")
-  (if (null use-speedbar-p)
-      (minimap-toggle)
-    (sr-speedbar-toggle))
-  )
-(global-set-key (kbd "<f3>") 'my-file-toogle)
+(add-hook 'autoconf-mode-hook 'flyspell-prog-mode)
+(add-hook 'autotest-mode-hook 'flyspell-prog-mode)
+(add-hook 'c++-mode-hook 'flyspell-prog-mode)
+(add-hook 'c-mode-hook 'flyspell-prog-mode)
+(add-hook 'cperl-mode-hook 'flyspell-prog-mode)
+(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
+(add-hook 'makefile-mode-hook 'flyspell-prog-mode)
+(add-hook 'nxml-mode-hook 'flyspell-prog-mode)
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
+(add-hook 'sh-mode-hook 'flyspell-prog-mode)
+;; --8<-------------------------- separator ------------------------>8--
+;; (require 'midnight)
+;; (midnight-delay-set 'midnight-delay "0:10am")
+;; (add-hook 'midnight-hook
+;; (lambda
+;; (with-current-buffer "*midnight*"
+;; (org-agenda-list)
+;; )))
+;; (setq midnight-period 28800)
+;; --8<-------------------------- separator ------------------------>8--
+;; (setq ido-create-new-buffer (quote never)
+;;       ido-enable-flex-matching t
+;;       ido-enable-last-directory-history nil
+;;       ido-enable-regexp nil
+;;       ido-max-directory-size 300000
+;;       ido-max-file-prompt-width 0.3
+;;       ;; ido-use-filename-at-point (quote guess)
+;;       ido-use-url-at-point t
+;;       ido-auto-merge-work-directories-length 0
+;;       ido-use-virtual-buffers t)
+
+;; ;; Allow the same buffer to be open in different frames
+;; (setq ido-default-buffer-method 'selected-window)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

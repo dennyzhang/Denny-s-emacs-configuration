@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 00:44:40>
+;; Updated: Time-stamp: <2012-07-18 23:12:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -23,19 +23,19 @@
          (fname (completing-read (car prompt) (cdr prompt) nil nil)))
     (find-file (cdr (assoc-string fname tocpl)))))
 (global-set-key [(control x)(control r)] 'recentf-open-files-compl)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 ;;remember where you were in a file
-;;(setq save-place-file (concat DENNY_CONF "emacs_data/filebat.saveplace")) ;; keep my ~/ clean
+(setq save-place-file (concat DENNY_CONF "emacs_data/filebat.saveplace")) ;; keep my ~/ clean
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 ;;handle with duplicate name of different buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse
       uniquify-separator " • "
       uniquify-after-kill-buffer-p t
       uniquify-ignore-buffers-re "^\\*")
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
 (load-file (concat EMACS_VENDOR "/frame/frame-fns.el"))
 (load-file (concat EMACS_VENDOR "/frame/frame-cmds.el"))
@@ -43,7 +43,7 @@
 (global-set-key [(control down)] 'move-frame-down)
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
-;; ;; --8<-------------------------- separator ------------------------>8--
+;; ;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
 (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
 ;; make bookmarks persistent as default
@@ -51,7 +51,7 @@
 ;; Loading the repository from file when on start up.
 (add-hook 'after-init-hook 'bm-repository-load)
 ;; Restoring bookmarks when on file find.
-;;(add-hook 'find-file-hook 'bm-buffer-restore)
+(add-hook 'find-file-hook 'bm-buffer-restore)
 ;; Saving bookmark data on killing a buffer
 (add-hook 'kill-buffer-hook 'bm-buffer-save)
 (defadvice bm-buffer-save (before if activate) (widen))
@@ -70,12 +70,12 @@
 (global-set-key (kbd "<C-f2>") 'bm-toggle)
 (global-set-key (kbd "<f2>") 'bm-next)
 (global-set-key (kbd "<S-f2>") 'bm-previous)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<f5>") 'highlight-symbol-next)
 (global-set-key (kbd "<S-f5>") 'highlight-symbol-prev)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 ;; rect-mark
 (load-file (concat EMACS_VENDOR "/rect-mark/rect-mark.el"))
 ;; Support for marking a rectangle of text with highlighting.
@@ -96,16 +96,16 @@
   "Copy a rectangular region to the kill ring." t)
 (autoload 'rm-mouse-drag-region "rect-mark"
   "Drag out a rectangular region with the mouse." t)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/whitespace/whitespace.el"))
 (setq whitespace-display-mappings
       '((space-mark ?\ [?.])
         (newline-mark ?\n [?$ ?\n])
         (tab-mark ?\t [?\\ ?\t])))
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
 (setq boxquote-top-and-tail "-----------")
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-x.el"))
 ;; show lunar calendar
 (load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-plus.el"))
@@ -113,7 +113,7 @@
 (add-hook 'diary-nongregorian-marking-hook 'diary-chinese-mark-entries)
 ;;highlights all the days that are holidays
 (setq calendar-mark-holidays-flag 't)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/loccur/loccur.el"))
 ;; defines shortcut for loccur of the current word
 (define-key global-map [(control meta o)] 'loccur-current)
@@ -135,20 +135,20 @@
         (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
       (loccur (format "^[^ ]" whitespace-count)))
     ))
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
 (toggle-cursor-type-when-idle 1) ; On when idle
 (setq curchg-default-cursor-color "green")
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (setq abbrev-file-name (concat DENNY_CONF "emacs_data/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
 (quietly-read-abbrev-file) ;; reads the abbreviations file on startup
 ;;(setq abbrev-mode 1) ;; always enable abbrev
 (setq default-abbrev-mode 1)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/color-moccur/color-moccur.el"))
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/hide-region/hide-region.el"))
 (defun hide-region-settings ()
   "Settings for `hide-region'."
@@ -157,30 +157,17 @@
 (eval-after-load 'hide-region '(hide-region-settings))
 (global-set-key (kbd "C-x M-r") 'hide-region-hide)
 (global-set-key (kbd "C-x M-R") 'hide-region-unhide)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
-(setq ido-create-new-buffer (quote never)
-      ido-enable-flex-matching t
-      ido-enable-last-directory-history nil
-      ido-enable-regexp nil
-      ido-max-directory-size 300000
-      ido-max-file-prompt-width 0.3
-      ;; ido-use-filename-at-point (quote guess)
-      ido-use-url-at-point t
-      ido-auto-merge-work-directories-length 0
-      ido-use-virtual-buffers t)
-
-;; Allow the same buffer to be open in different frames
-(setq ido-default-buffer-method 'selected-window)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (require 'thumbs)
 (auto-image-file-mode t)
 (setq thumbs-geometry "80x80")
 (setq thumbs-per-line 3)
 (setq thumbs-max-image-number 8)
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/company-0.5/"))
 (autoload 'company-mode "company" nil t)
 (setq company-backends '(company-elisp
@@ -195,7 +182,7 @@
 (setq company-show-numbers nil) ;不显示数字
 (dolist (hook programming-hook-list)
   (add-hook hook 'company-mode))
-;; --8<-------------------------- separator ------------------------>8--
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/highlight-tail/highlight-tail.el"))
 (setq highlight-tail-colors
       '(("#696969" . 0)
@@ -297,15 +284,6 @@
 (defadvice elscreen-toggle (around elscreen-create-automatically activate)
   (elscreen-create-automatically ad-do-it))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (require 'midnight)
-;; (midnight-delay-set 'midnight-delay "0:10am")
-;; (add-hook 'midnight-hook
-;; (lambda
-;; (with-current-buffer "*midnight*"
-;; (org-agenda-list)
-;; )))
-;; (setq midnight-period 28800)
-;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/gse-number-rect/gse-number-rect.el"))
 (require 'gse-number-rect)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -362,5 +340,25 @@
 (desktop-release-lock)
 (add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
 (add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
+(setq sr-speedbar-skip-other-window-p t)
+(setq speedbar-show-unknown-files t)
+(load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
+;;(setq 'outline-view-change-hook nil) ;; TODO
+;; when pressing prefix of C-u, we will use speedbar, instead of minimap
+(defun my-file-toogle (use-speedbar-p)
+  (interactive "P")
+  (if (null use-speedbar-p)
+      (minimap-toggle)
+    (sr-speedbar-toggle))
+  )
+(global-set-key (kbd "<f3>") 'my-file-toogle)
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/recent-jump/recent-jump.el"))
+(setq recent-jump-threshold 8)
+(setq recent-jump-ring-length 20)
+(global-set-key (kbd "C-c <") 'recent-jump-jump-backward)
+(global-set-key (kbd "C-c >") 'recent-jump-jump-forward)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: essentialpackage-setting.el ends here
