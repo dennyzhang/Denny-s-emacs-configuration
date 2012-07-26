@@ -1,16 +1,15 @@
 ;; -*- coding: utf-8 -*-
-;; File: tmp.el
+;; File: tmp.el -- tentatively try new features/configuration with limited impact
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 23:10:18>
+;; Updated: Time-stamp: <2012-07-26 22:00:28>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
-;;   (dolist (func kill-emacs-hook)
-;;     (unless (memq func '(exit-gnus-on-exit server-force-stop))
-;;       (funcall func)))
-;;   (unless (eq 'listen (process-status server-process))
-;;     (server-start)))
+;; (dolist (func kill-emacs-hook)
+;; (unless (memq func '(exit-gnus-on-exit server-force-stop))
+;; (funcall func)))
+;; (unless (eq 'listen (process-status server-process))
 
 ;; (run-with-idle-timer 300 t 'save-information)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -172,78 +171,29 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'sh-set-shell-hook 'flymake-shell-load)
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst my-mode-line-buffer-identification
-  (list
-   '(:eval
-     (let ((host-name
-            (if (file-remote-p default-directory)
-                (tramp-file-name-host
-                 (tramp-dissect-file-name default-directory))
-              (system-name))))
-       (if (string-match "^[^0-9][^.]*\\(\\..*\\)" host-name)
-           (substring host-name 0 (match-beginning 1))
-         host-name)))
-   ": %12b"))
+;; (defconst my-mode-line-buffer-identification
+;; (list
+;; '(:eval
+;; (let ((host-name
+;; (if (file-remote-p default-directory)
+;; (tramp-file-name-host
+;; (tramp-dissect-file-name default-directory))
+;; (system-name))))
+;; (if (string-match "^[^0-9][^.]*\\(\\..*\\)" host-name)
+;; (substring host-name 0 (match-beginning 1))
+;; host-name)))
+;; ": %12b"))
 
-(setq-default
- mode-line-buffer-identification
- my-mode-line-buffer-identification)
+;; (setq-default
+;; mode-line-buffer-identification
+;; my-mode-line-buffer-identification)
 
-(add-hook
- 'dired-mode-hook
- '(lambda ()
-    (setq
-     mode-line-buffer-identification
-     my-mode-line-buffer-identification)))
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
-(command-frequency-mode 1)
-(defvar cf-frequence-threshrold 1 "*When generating reports, only show commands over given threshrold")
-(defvar cf-stat-self-insert-command nil "*Non-nil means also statistic `self-insert-command'")
-(defvar cf-buffer-name "*command frequence*" "the name of buffer command frequence")
-
-(defvar cf-command-history nil "command frequency history")
-
-(defun cf-add-command ()
-  (when (and last-command
-             (or cf-stat-self-insert-command (not (equal last-command 'self-insert-command))))
-    (let ((cmd (assoc last-command cf-command-history)))
-      (if cmd
-          (setcdr cmd (1+ (cdr cmd)))
-        (add-to-list 'cf-command-history (cons last-command 1))))))
-
-(defun command-frequence ()
-  (interactive)
-  (with-current-buffer (get-buffer-create cf-buffer-name)
-    (linum-mode t)
-    (View-quit)
-    (erase-buffer)
-    (let ((cmds (copy-sequence cf-command-history)) (all 0))
-      (dolist (c cmds)
-        (setq all (+ all (cdr c))))
-      (insert (format "Total count of commands: %d. " all))
-      (unless cf-stat-self-insert-command
-        (insert "(exclude `self-insert-command')"))
-      (insert "\n\n")
-      (insert (format "%-5s %-5s %-30s %s\n" "Count" "Frequency" "Command" "Key"))
-      (dolist (c (sort cmds (lambda (c1 c2) (> (cdr c1) (cdr c2)))))
-        (unless (< (cdr c) cf-frequence-threshrold)
-          (insert (format "%-5d %.3f %-30S %s\n" (cdr c) (/ (cdr c) (float all)) (car c)
-                          (mapconcat 'key-description (where-is-internal (car c)) ", ")))))
-      (goto-char (point-min))
-      (setq major-mode 'emacs-lisp-mode)
-      (setq mode-name "Emacs-Lisp")
-      (use-local-map emacs-lisp-mode-map)
-      (view-mode t)
-      (switch-to-buffer (current-buffer)))))
-
-(defun cf-clear-command-history ()
-  "Clear command history"
-  (interactive)
-  (setq cf-command-history nil))
-
-(add-hook 'post-command-hook 'cf-add-command)
-(add-to-list 'desktop-globals-to-save 'cf-command-history)
+;; (add-hook
+;; 'dired-mode-hook
+;; '(lambda ()
+;; (setq
+;; mode-line-buffer-identification
+;; my-mode-line-buffer-identification)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun rgrau-erc-oops (txt)
   (when (member txt '("ls" "xb" "cd"))
@@ -409,17 +359,6 @@
     ('unmerged "purple")
     (t "black")))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq mouse-yank-at-point t) ;; mouse yank commands yank at point instead of at click.
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/goto-last-change/goto-last-change.el"))
-(global-set-key "\C-x\C-\\" 'goto-last-change)
-(autoload 'goto-last-change
-  "goto-last-change" "Set point to the position of the last change." t)
-(defadvice goto-last-change-with-auto-marks (before mav-goto-last-change activate)
-  "Split the window beforehand to retain the current view"
-  (unless (eq last-command 'goto-last-change-with-auto-marks)
-    (split-window-vertically)))
-;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'autoconf-mode-hook 'flyspell-prog-mode)
 (add-hook 'autotest-mode-hook 'flyspell-prog-mode)
 (add-hook 'c++-mode-hook 'flyspell-prog-mode)
@@ -441,17 +380,51 @@
 ;; (setq midnight-period 28800)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq ido-create-new-buffer (quote never)
-;;       ido-enable-flex-matching t
-;;       ido-enable-last-directory-history nil
-;;       ido-enable-regexp nil
-;;       ido-max-directory-size 300000
-;;       ido-max-file-prompt-width 0.3
-;;       ;; ido-use-filename-at-point (quote guess)
-;;       ido-use-url-at-point t
-;;       ido-auto-merge-work-directories-length 0
-;;       ido-use-virtual-buffers t)
+;; ido-enable-last-directory-history nil
+;; ido-enable-regexp nil
+;; ido-max-directory-size 300000
+;; ido-max-file-prompt-width 0.3
+;; ;; ido-use-filename-at-point (quote guess)
+;; ido-use-url-at-point t
+;; ido-auto-merge-work-directories-length 0
+;; ido-use-virtual-buffers t)
 
 ;; ;; Allow the same buffer to be open in different frames
 ;; (setq ido-default-buffer-method 'selected-window)
+;; --8<-------------------------- separator ------------------------>8--
+(defun remove-last-file-name-history ()
+  "Add to server-switch-hook to omit emacsclient's temporary filenames from the history."
+  (setq file-name-history (cdr file-name-history)))
+(add-hook 'server-switch-hook 'remove-last-file-name-history)
+;; --8<-------------------------- separator ------------------------>8--
+(setq comint-scroll-to-bottom-on-input t) ; always insert at the bottom
+(setq comint-scroll-to-bottom-on-output nil) ; always add output at the bottom
+(setq comint-scroll-show-maximum-output t) ; scroll to show max possible output
+(setq comint-input-ignoredups t) ; no duplicates in command history
+(setq comint-buffer-maximum-size 20000) ; max length of the buffer in lines
+(setq comint-input-ring-size 5000) ; max shell history size
+;; --8<-------------------------- separator ------------------------>8--
+;; (setq tramp-remote-process-environment
+;; (cons (format "PAGER=/bin/cat")
+;; tramp-remote-process-environment))
+;; --8<-------------------------- separator ------------------------>8--
+(setq history-delete-duplicates t)
+(setq use-dialog-box nil)
+;; --8<-------------------------- separator ------------------------>8--
+(defun svn-my-diff ()
+  "For current svn directory, automatically generate command of 'svn diff -r A:B''"
+  (interactive)
+  (let (revision
+        (revision-cmd "svn info | grep '^Revision:' | awk -F' ' '{print $2}'")
+        (svn-url-cmd "svn info | grep '^URL:' | awk -F' ' '{print $2}'")
+        svn-url)
+    (setq revision (shell-command-to-string revision-cmd))
+    (setq revision (substring revision 0 (- (length revision) 1)))
+    (setq revision (parse-integer revision))
+    (setq svn-url (shell-command-to-string svn-url-cmd))
+    (setq svn-url (substring svn-url 0 (- (length svn-url) 1)))
+    (insert (format "svn diff -r %d:%d %s" (- revision 1) revision
+                    svn-url))
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

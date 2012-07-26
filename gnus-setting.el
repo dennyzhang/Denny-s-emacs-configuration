@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 00:48:07>
+;; Updated: Time-stamp: <2012-07-26 21:55:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -48,6 +48,16 @@
 ;; (nnimap-stream ssl))
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
+;; --8<-------------------------- separator ------------------------>8--
+(setq message-citation-line-function 'my-message-insert-citation-line)
+(defun my-message-insert-citation-line ()
+  "Insert a simple citation line."
+    (when message-reply-headers
+      (newline)
+      (insert "> " (mail-header-from message-reply-headers)
+              " writes:\n" "> --------\n"
+                    )
+      (forward-line -3)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
 (setq my-msmtp-config-file (concat "'" DENNY_CONF "emacs_data/filebat.msmtprc" "'"))
@@ -168,11 +178,9 @@
 ;; set mail the default mail sorting rules
 (add-hook 'gnus-select-group-hook 'set-dynamic-thread-sort-functions)
 (defun set-dynamic-thread-sort-functions ()
-  (if (string= gnus-newsgroup-name "nnfolder:mail.sent.mail")
-      (setq gnus-thread-sort-functions '((not gnus-thread-sort-by-number)))
-    (setq gnus-thread-sort-functions
-          '(gnus-thread-sort-by-author (not gnus-thread-sort-by-date)))
-    ))
+  (setq gnus-thread-sort-functions
+        '(gnus-thread-sort-by-author (not gnus-thread-sort-by-date)))
+    )
 (setq gnus-use-cache 'passive)
 (setq gnus-asynchronous 't) ;;异步操作
 ;; --8<-------------------------- separator ------------------------>8--
@@ -233,6 +241,7 @@
         ("shopex.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
         ("shopex.ci.fail" "Subject:.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
+        ("shopex.reporting" "Subject:.*reporting.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("SNS" "Subject:.*LinkedIn.*")
         ;;("shopex.misc" "From:.*shopex.*")
@@ -252,11 +261,12 @@
 (setq gnus-summary-show-article-charset-alist
       '((1 . utf-8) (2 . big5) (3 . gbk) (4 . utf-7)))
 ;; --8<-------------------------- separator ------------------------>8--
-;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
-(setq gnus-message-archive-group
-      '((if (message-news-p)
-            "nnfolder:mail.sent.news"
-          "nnfolder:mail.sent.mail")))
+;; ;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
+;; (setq gnus-message-archive-group
+;;       '((if (message-news-p)
+;;             "nnfolder:mail.sent.news"
+;;           "nnfolder:mail.sent.mail")))
+(setq gnus-message-archive-group '("nnfolder:mail.sent.mail"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;set expiration time for mails to be deleted
 (setq nnmail-expiry-wait 3)
@@ -288,6 +298,7 @@ then send mails by send-groupmail-by-mailbuffer."
           end-point string-temp
           (to-marker "To: ") (subject-marker "Subject: ")
           (from-marker "From: ") (content-marker "--text follows this line--\n")
+          (signature-marker (format "-- \n%s"common-tail-signature))
           marker (name-mail-list '()) subject mail-content from-mail)
       ;; set default the marker for name replacement
       (setq marker "{name}")
@@ -333,7 +344,9 @@ then send mails by send-groupmail-by-mailbuffer."
       (goto-char (point-min))
       (search-forward content-marker nil nil)
       (setq start-point (point))
-      (setq end-point (point-max))
+      (if (search-forward signature-marker nil nil)
+          (setq end-point (- (point) (length signature-marker)))
+        (setq end-point (point-max)))
       (setq mail-content (buffer-substring-no-properties start-point end-point))
       ;; send mails based on template
       (gnus-send-groupmail-by-template

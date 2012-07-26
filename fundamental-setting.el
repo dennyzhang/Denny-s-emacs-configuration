@@ -3,9 +3,9 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-17 23:28:59>
+;; Updated: Time-stamp: <2012-07-26 21:59:35>
 ;; --8<-------------------------- separator ------------------------>8--
-(setq debug-on-error t) ;;uncomment when emacs crash on startup
+(setq debug-on-error t)
 (set-language-environment 'utf-8)
 ;;support copy/paste among emacs and other programs
 (setq x-select-enable-clipboard t)
@@ -35,7 +35,6 @@
 (set-default 'text-scale-mode-step 1.1);;Set the zoom rate
 (iswitchb-mode 1);;interactive buffer switching
 (setq undo-limit 1000) ;;Increase number of undo
-(server-start) ;; emacs-client
 (setq kill-do-not-save-duplicates t)
 (blink-cursor-mode 0) ;; prevent cursor blinking
 (set-fringe-mode (cons 6 0))
@@ -249,6 +248,38 @@
     ))
 (ad-activate 'grep-find)
 ;; --8<-------------------------- separator ------------------------>8--
+(global-set-key (kbd "C-c .") 'my-find-file-in-parent-dir)
+(defun my-find-file-in-parent-dir ()
+  (interactive)
+  (let (filename (bounds (bounds-of-thing-at-point 'word)))
+    (setq filename (buffer-substring-no-properties
+                    (car bounds) (cdr bounds)))
+    (setq filename (read-shell-command
+                    "Run find in parent directory: "
+                    filename 'grep-find-history))
+    (find-file-in-parent-dir filename)
+    )
+  )
+(defun find-file-in-parent-dir (file-regexp)
+  "Find files by a given regexp in the parent directory"
+  (interactive)
+  (let ((sleep_interval 2)
+        find-output line-count)
+    (find-dired "../" (format "-name %s " file-regexp))
+    (sleep-for sleep_interval)
+    (switch-to-buffer "*Find*")
+    (setq line-count (count-lines (point-min) (point-max)))
+    (if (eq line-count 5)
+        ;; if only exactly one match, open the file
+        (progn
+          (move-end-of-line 1)
+          (find-file-existing (dired-file-name-at-point))
+          )
+      (message
+       (format "Matched count of file is not 1. Line count is %d not 5" line-count))
+      )
+    ))
+;; --8<-------------------------- separator ------------------------>8--
 (setq search-highlight t ; highlight when searching...
       query-replace-highlight t) ; ...and replacing
 ;; --8<-------------------------- separator ------------------------>8--
@@ -398,5 +429,8 @@ starting on the same line at which another match ended is ignored."
 (setq read-buffer-completion-ignore-case t) ;; ignore case when reading a buffer name
 (setq completion-ignore-case t) ;; do not consider case significant in completion
 (size-indication-mode 1)
+;; --8<-------------------------- separator ------------------------>8--
+(random t) ;; Seed the random-number generator
+(setq mouse-yank-at-point t) ;; mouse yank commands yank at point instead of at click.
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

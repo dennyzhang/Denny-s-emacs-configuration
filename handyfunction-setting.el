@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-10 00:24:51>
+;; Updated: Time-stamp: <2012-07-19 08:23:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -642,7 +642,7 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
                    (lambda (s1 s2) (eq (random 2) 0)))))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun rsync-dir (src_dir dst_dir)
-  (let ((command (format "rsync -r %s/* %s" src_dir dst_dir)))
+  (let ((command (format "svn ci -m '' %s; rsync -r %s/ %s" src_dir src_dir dst_dir)))
     (shell-command command)))
 (defun ramfs-flush()
   (interactive)

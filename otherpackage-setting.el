@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-17 23:57:32>
+;; Updated: Time-stamp: <2012-07-26 21:59:35>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'cl))
@@ -114,5 +114,54 @@
         anything-c-source-emacs-process))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
+(command-frequency-mode 1)
+(defvar cf-frequence-threshrold 1 "*When generating reports, only show commands over given threshrold")
+(defvar cf-stat-self-insert-command nil "*Non-nil means also statistic `self-insert-command'")
+(defvar cf-buffer-name "*command frequence*" "the name of buffer command frequence")
+
+(defvar cf-command-history nil "command frequency history")
+
+(defun cf-add-command ()
+  (when (and last-command
+             (or cf-stat-self-insert-command (not (equal last-command 'self-insert-command))))
+    (let ((cmd (assoc last-command cf-command-history)))
+      (if cmd
+          (setcdr cmd (1+ (cdr cmd)))
+        (add-to-list 'cf-command-history (cons last-command 1))))))
+
+(defun command-frequence ()
+  (interactive)
+  (with-current-buffer (get-buffer-create cf-buffer-name)
+    (linum-mode t)
+    (View-quit)
+    (erase-buffer)
+    (let ((cmds (copy-sequence cf-command-history)) (all 0))
+      (dolist (c cmds)
+        (setq all (+ all (cdr c))))
+      (insert (format "Total count of commands: %d. " all))
+      (unless cf-stat-self-insert-command
+        (insert "(exclude `self-insert-command')"))
+      (insert "\n\n")
+      (insert (format "%-5s %-5s %-30s %s\n" "Count" "Frequency" "Command" "Key"))
+      (dolist (c (sort cmds (lambda (c1 c2) (> (cdr c1) (cdr c2)))))
+        (unless (< (cdr c) cf-frequence-threshrold)
+          (insert (format "%-5d %.3f %-30S %s\n" (cdr c) (/ (cdr c) (float all)) (car c)
+                          (mapconcat 'key-description (where-is-internal (car c)) ", ")))))
+      (goto-char (point-min))
+      (setq major-mode 'emacs-lisp-mode)
+      (setq mode-name "Emacs-Lisp")
+      (use-local-map emacs-lisp-mode-map)
+      (view-mode t)
+      (switch-to-buffer (current-buffer)))))
+
+(defun cf-clear-command-history ()
+  "Clear command history"
+  (interactive)
+  (setq cf-command-history nil))
+
+(add-hook 'post-command-hook 'cf-add-command)
+(add-to-list 'desktop-globals-to-save 'cf-command-history)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-13 21:29:05>
+;; Updated: Time-stamp: <2012-07-22 01:25:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -305,7 +305,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq emms-org-file (concat DENNY_CONF "/org_data/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a") (lambda () (interactive) (update-music-to-org-file emms-org-file)))
-;; (update-music-to-org-file "/home/denny/backup/multimediea/music/music.org")
+;; (update-music-to-org-file "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/music.org")
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))
          (last-played (emms-track-get track 'last-played))

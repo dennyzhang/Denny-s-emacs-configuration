@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 23:12:41>
+;; Updated: Time-stamp: <2012-07-26 21:59:36>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -29,7 +29,7 @@
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;handle with duplicate name of different buffers
+; on duplicate filenames, show path names, not foo.x<2>, foo.x<3>, etc.
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse
       uniquify-separator " • "
@@ -161,6 +161,7 @@
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
+(setq ido-enable-flex-matching t)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (require 'thumbs)
 (auto-image-file-mode t)
@@ -360,5 +361,14 @@
 (setq recent-jump-ring-length 20)
 (global-set-key (kbd "C-c <") 'recent-jump-jump-backward)
 (global-set-key (kbd "C-c >") 'recent-jump-jump-forward)
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/goto-last-change/goto-last-change.el"))
+(global-set-key "\C-x\C-\\" 'goto-last-change)
+(autoload 'goto-last-change
+  "goto-last-change" "Set point to the position of the last change." t)
+(defadvice goto-last-change-with-auto-marks (before mav-goto-last-change activate)
+  "Split the window beforehand to retain the current view"
+  (unless (eq last-command 'goto-last-change-with-auto-marks)
+    (split-window-vertically)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: essentialpackage-setting.el ends here
