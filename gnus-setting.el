@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-26 21:55:52>
+;; Updated: Time-stamp: <2012-07-28 10:10:17>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -49,15 +49,15 @@
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
 ;; --8<-------------------------- separator ------------------------>8--
-(setq message-citation-line-function 'my-message-insert-citation-line)
-(defun my-message-insert-citation-line ()
-  "Insert a simple citation line."
-    (when message-reply-headers
-      (newline)
-      (insert "> " (mail-header-from message-reply-headers)
-              " writes:\n" "> --------\n"
-                    )
-      (forward-line -3)))
+;; (setq message-citation-line-function 'my-message-insert-citation-line)
+;; (defun my-message-insert-citation-line ()
+;; "Insert a simple citation line."
+;; (when message-reply-headers
+;; (newline)
+;; (insert "> " (mail-header-from message-reply-headers)
+;; " writes:\n" "> --------\n"
+;; )
+;; (forward-line -3)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
 (setq my-msmtp-config-file (concat "'" DENNY_CONF "emacs_data/filebat.msmtprc" "'"))
@@ -180,7 +180,7 @@
 (defun set-dynamic-thread-sort-functions ()
   (setq gnus-thread-sort-functions
         '(gnus-thread-sort-by-author (not gnus-thread-sort-by-date)))
-    )
+  )
 (setq gnus-use-cache 'passive)
 (setq gnus-asynchronous 't) ;;异步操作
 ;; --8<-------------------------- separator ------------------------>8--
@@ -210,12 +210,14 @@
 ;; 加载随机签名
 (load-file (concat DENNY_CONF "/emacs_conf/signature-motto.el"))
 (setq gnus-posting-styles
-      '((".*" ; Matches all groups of messages
+      '(
+        (".*" ; Matches all groups of messages
          (signature get-mail-signature)) ;; 使用随机签名
-        ("mail.p0"
-         (signature get-mail-signature))
         ((header "from" "sophiazhang8709@126.com\\|bz-zhangchengfeng@163.com\\|06300260051@fudan.edu.cn\\|sophiazhang8709@gmail.com")
-         (signature get-mail-signature))))
+         (signature get-mail-signature))
+        ((header "subject" "[^ ]*")
+         (signature get-short-mail-signature)) ;; use short signature, when replying mail
+        ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; category mails by bbdb group, which is defined by bbdb alias
 (defun category-gnus-mail-by-bbdb-alias()
@@ -263,9 +265,9 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
 ;; (setq gnus-message-archive-group
-;;       '((if (message-news-p)
-;;             "nnfolder:mail.sent.news"
-;;           "nnfolder:mail.sent.mail")))
+;; '((if (message-news-p)
+;; "nnfolder:mail.sent.news"
+;; "nnfolder:mail.sent.mail")))
 (setq gnus-message-archive-group '("nnfolder:mail.sent.mail"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;set expiration time for mails to be deleted
@@ -547,5 +549,8 @@ And insert header to mark message as unimportant(X-Priority).
   (org-mime-htmlize nil)
   (message-send)
   )
+;; --8<-------------------------- separator ------------------------>8--
+(setq message-forward-before-signature nil ;; put signature before message, when replying
+      message-cite-reply-position 'above)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

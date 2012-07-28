@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-22 01:23:07>
+;; Updated: Time-stamp: <2012-07-29 00:24:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -41,7 +41,6 @@
         "comint-setting.el"
         "rectangle-setting.el"
         "emacs-aggregation/emacs-aggregation-setup.el"
-        "beta-setting.el"
         "capture-setting.el"
         "sns-setting.el"
         "otherpackage-setting.el"

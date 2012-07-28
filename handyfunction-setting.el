@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-19 08:23:58>
+;; Updated: Time-stamp: <2012-07-29 00:22:34>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -691,5 +691,25 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
             (when (> (current-column) max-len)
               (setq max-len (current-column))))
           max-len))))
+;; --8<-------------------------- separator ------------------------>8--
+;; sample: (list-matched-regex "[^ ]*@gmail.com")
+(defun list-matched-regex (regexp-str)
+  "Unlike occur, which dump the whole line which match the regexp.
+This function only dump the exactly matched strings to a temporary buffer"
+  (interactive)
+  (let ((matched-list '()))
+    (save-excursion
+      (setq regexp-str (format "\\(%s\\)" regexp-str))
+      (goto-char (point-min))
+      (while (search-forward-regexp regexp-str nil t)
+        (add-to-list 'matched-list (match-string-no-properties 1)))
+      )
+    ;; dump list
+    (switch-to-buffer-other-window
+     (get-buffer-create "*Item Matched*"))
+    (erase-buffer)
+    (dolist (item matched-list)
+      (insert (format "%s\n" item)))
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

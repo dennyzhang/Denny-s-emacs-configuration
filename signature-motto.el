@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-17 23:00:49>
+;; Updated: Time-stamp: <2012-07-28 09:46:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -12,7 +12,11 @@
 微博: http://weibo.com/1686664253
 博客: https://github.com/DennyZhang
 团队: http://blog.ec-ae.com/")
-(defun get-mail-signature()
+(defun get-mail-signature ()
+  (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))
+(defun get-short-mail-signature ()
+  (format "%s\n\n%s" "Denny Zhang(张巍)" (generate-mail-signature)))
+(defun generate-mail-signature()
   (let* ((signature-string (get-motto))
          cowsay-file
          command-string)
@@ -37,7 +41,7 @@
           (fill-paragraph)
           (setq signature-string (buffer-substring-no-properties (point-min) (point-max))))
         (setq cowsay-file (get-random-cowsay ".*.txt"))
-        (format "%s\n\n%s\n%s" common-tail-signature signature-string (org-get-file-contents cowsay-file))
+        (format "%s\n%s" signature-string (org-get-file-contents cowsay-file))
         )
       )))
 
@@ -45,10 +49,15 @@
   (let ((files (directory-files (concat DENNY_CONF "/emacs_conf/cowsay") t match)))
     (nth (random (length files)) files)))
 
-(defun get-motto()
-  (let (signature-string (old-agenda-files org-agenda-files))
+(defun get-motto(&optional max-length)
+  (let (signature-string (old-agenda-files org-agenda-files) signature-list)
     (setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
-    (setq signature-string (random-string (org-tags-view-list "Motto")))
+    (setq signature-list (org-tags-view-list "Motto"))
+    ;; set default threshold
+    (if (null max-length) (setq max-length 500))
+    ;; remove item longer than max-length
+    (setq signature-list (remove-if #'(lambda(x) (> (length x) max-length)) signature-list))
+    (setq signature-string (random-string signature-list))
     (setq org-agenda-files old-agenda-files)
     (eval signature-string)
     ))
