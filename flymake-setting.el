@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-10 11:59:37>
+;; Updated: Time-stamp: <2012-07-30 11:09:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
@@ -31,7 +31,8 @@
       ;; Show information.
       (if msg (message msg))
       )))
-;;Invoke flymake-display-error-minibuffer-for-current-line, instead of flymake-display-err-menu-for-current-line
+;;Invoke flymake-display-error-minibuffer-for-current-line,
+;; instead of flymake-display-err-menu-for-current-line
 (define-key global-map (kbd "C-c d") 'flymake-display-error-minibuffer-for-current-line)
 (define-key global-map (kbd "C-c p") 'flymake-goto-prev-error)
 (define-key global-map (kbd "C-c n") 'flymake-goto-next-error)

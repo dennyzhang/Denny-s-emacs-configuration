@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 21:51:21>
+;; Updated: Time-stamp: <2012-07-30 11:08:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -36,7 +36,8 @@
          current-hostname prefix-regexp prefix)
     (with-temp-buffer
       (shell-command "hostname" (current-buffer))
-      (setq current-hostname (replace-regexp-in-string "\n" "" (buffer-string))))
+      (setq current-hostname
+            (replace-regexp-in-string "\n" "" (buffer-string))))
     (setq prefix-regexp (format "\\*shell\\*-%s-" current-hostname))
     (setq prefix (format "*shell*-%s-" current-hostname))
     (if (string= mode-name "Shell")
@@ -64,7 +65,8 @@
          (directory-name default-directory))
     (with-temp-buffer
       (shell-command "hostname" (current-buffer))
-      (setq current-hostname (replace-regexp-in-string "\n" "" (buffer-string))))
+      (setq current-hostname
+            (replace-regexp-in-string "\n" "" (buffer-string))))
     (setq prefix-regexp (format "\\*shell\\*-%s-" current-hostname))
     (setq prefix (format "*shell*-%s-" current-hostname))
     (setq shell-buffer-name (concat prefix file-name))
@@ -192,7 +194,8 @@ If arg is given, only open a shell for one direcotry.
   (if (equal major-mode 'term-mode)
       (progn
         (shell-mode)
-        (set-process-filter (get-buffer-process (current-buffer)) 'comint-output-filter )
+        (set-process-filter
+         (get-buffer-process (current-buffer)) 'comint-output-filter )
         (local-set-key (kbd "C-j") 'term-switch-to-shell-mode)
         (compilation-shell-minor-mode 1)
         (comint-send-input)
@@ -200,7 +203,8 @@ If arg is given, only open a shell for one direcotry.
     (progn
       (compilation-shell-minor-mode -1)
       (font-lock-mode -1)
-      (set-process-filter (get-buffer-process (current-buffer)) 'term-emulate-terminal)
+      (set-process-filter
+       (get-buffer-process (current-buffer)) 'term-emulate-terminal)
       (term-mode)
       (term-char-mode)
       (term-send-raw-string (kbd "C-l"))

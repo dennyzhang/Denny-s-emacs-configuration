@@ -3,12 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:38>
+;; Updated: Time-stamp: <2012-07-30 11:11:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; define customized face
 (defface font-lock-denny-face
-  '((((class color) (min-colors 88) (background light)) (:foreground "magenta"))
+  '((((class color) (min-colors 88) (background light))
+     (:foreground "magenta"))
     (t (:inverse-video t :weight bold :underline t)))
   "Font Lock mode face used to highlight warnings."
   :group 'font-lock-faces)
@@ -30,7 +31,8 @@
 
 ;; font-lock-keywords
 (font-lock-add-keywords 'erlang-mode
-                        '(("\\<\\(TODO.*\\|todo.*\\|Todo.*\\|FIXME.*\\|fixme.*\\)" 1 font-lock-denny-face)
+                        '(("\\<\\(TODO.*\\|todo.*\\|Todo.*\\|FIXME.*\\|fixme.*\\)"
+                           1 font-lock-denny-face)
                           ("\\<\\(denny.*\\)" 1 font-lock-denny-face)
                           ("\\(sophia.*\\)" 1 font-lock-denny-face)
                           )

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-28 09:46:07>
+;; Updated: Time-stamp: <2012-07-30 10:17:09>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -20,10 +20,10 @@
   (let* ((signature-string (get-motto))
          cowsay-file
          command-string)
-    ;;(setq signature-string "Emacs made me realize anything can be changed by a programmer")
     ;; cowsay doesn't support Unicode in release version
     ;; see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254557
-    (if (member (detect-coding-string signature-string) '((undecided-unix) (undecided)))
+    (if (member (detect-coding-string signature-string)
+                '((undecided-unix) (undecided)))
         (progn
           (setq cowsay-file (get-random-cowsay ".*.cow"))
           (setq command-string (format "cowthink -f %s \"%s\""
@@ -32,14 +32,16 @@
                                         signature-string (intern
                                                           "utf-8"))
                                        ))
-          (format "%s\n\n%s" common-tail-signature (shell-command-to-string command-string)))
+          (format "%s\n\n%s" common-tail-signature
+                  (shell-command-to-string command-string)))
       ;; for Unicode like Chinese, just render cowsay with empty content
       (progn
         (with-temp-buffer
           (insert signature-string)
           (goto-char (point-min))
           (fill-paragraph)
-          (setq signature-string (buffer-substring-no-properties (point-min) (point-max))))
+          (setq signature-string
+                (buffer-substring-no-properties (point-min) (point-max))))
         (setq cowsay-file (get-random-cowsay ".*.txt"))
         (format "%s\n%s" signature-string (org-get-file-contents cowsay-file))
         )
@@ -56,7 +58,8 @@
     ;; set default threshold
     (if (null max-length) (setq max-length 500))
     ;; remove item longer than max-length
-    (setq signature-list (remove-if #'(lambda(x) (> (length x) max-length)) signature-list))
+    (setq signature-list
+          (remove-if #'(lambda(x) (> (length x) max-length)) signature-list))
     (setq signature-string (random-string signature-list))
     (setq org-agenda-files old-agenda-files)
     (eval signature-string)

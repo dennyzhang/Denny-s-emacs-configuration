@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-28 10:10:17>
+;; Updated: Time-stamp: <2012-07-30 10:16:27>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -114,7 +114,8 @@
 ;; group configuration
 (setq gnus-group-line-format "%M\%S\%p\%P\ %4N/%4t :%B%(%g%)%O\n")
 (setq gnus-summary-gather-subject-limit 'fuzzy) ;聚集题目用模糊算法
-(setq gnus-summary-line-format "%4P %U%R%z%O %{%5k%} %{%14&user-date;%} %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
+(setq gnus-summary-line-format
+      "%4P %U%R%z%O %{%5k%} %{%14&user-date;%} %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
 (setq gnus-summary-mode-line-format "Gnus: %p [%A / Sc:%4z] %Z")
 (defun gnus-user-format-function-a (header) ;用户的格式函数 `%ua'
   (let ((myself (concat "<" user-mail-address ">"))
@@ -485,15 +486,18 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key message-mode-map (kbd "M-p i") 'message-important-header)
 (defun message-important-header(&optional receipt-email)
-  "Request a disposition notification (return receipt) to this message(Disposition-Notification-To).
+  "Request a disposition notification (return receipt)
+to this message(Disposition-Notification-To).
 And insert header to mark message as unimportant(X-Priority).
 "
   (interactive)
   (let (Disposition-Notification-To-Header
         (Importance-Header "X-Priority: 1\n"))
     (if (null receipt-email)
-        (setq Disposition-Notification-To-Header "Disposition-Notification-To: markfilebat@126.com\n")
-      (setq Disposition-Notification-To-Header (concat "Disposition-Notification-To: " receipt-email "\n")))
+        (setq Disposition-Notification-To-Header
+              "Disposition-Notification-To: markfilebat@126.com\n")
+      (setq Disposition-Notification-To-Header
+            (concat "Disposition-Notification-To: " receipt-email "\n")))
     (save-excursion
       (save-restriction
         (message-narrow-to-headers)
@@ -550,7 +554,8 @@ And insert header to mark message as unimportant(X-Priority).
   (message-send)
   )
 ;; --8<-------------------------- separator ------------------------>8--
-(setq message-forward-before-signature nil ;; put signature before message, when replying
-      message-cite-reply-position 'above)
+;; put signature before message, when replying
+(setq message-forward-before-signature nil)
+(setq message-cite-reply-position 'above)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

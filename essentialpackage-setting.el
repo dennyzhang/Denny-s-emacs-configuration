@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-28 15:15:08>
+;; Updated: Time-stamp: <2012-07-30 10:15:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -12,8 +12,8 @@
 ;;show recent files
 (require 'recentf)
 (recentf-mode 1)
-(setq recentf-max-saved-items 100) ;最近打开文件的最大数量
-;; (setq recentf-auto-cleanup 300) ;自动清理最近打开文件列表中重复或其他文件的时间间隔 (秒)
+(setq recentf-max-saved-items 100)
+;; (setq recentf-auto-cleanup 300)
 (defun recentf-open-files-compl ()
   (interactive)
   (let* ((all-files recentf-list)
@@ -25,7 +25,7 @@
 (global-set-key [(control x)(control r)] 'recentf-open-files-compl)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;remember where you were in a file
-(setq save-place-file (concat DENNY_CONF "emacs_data/filebat.saveplace")) ;; keep my ~/ clean
+(setq save-place-file (concat DENNY_CONF "emacs_data/filebat.saveplace"))
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
 ;; ;; --8<-------------------------- separator ------------------------>8--

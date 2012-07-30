@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-18 00:02:03>
+;; Updated: Time-stamp: <2012-07-30 11:05:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -36,7 +36,8 @@
 
 (defun ffap-w3m-other-window (url &optional new-session)
   "Browse url in w3m.
- If current frame has only one window, create a new window and browse the webpage"
+If current frame has only one window,
+create a new window and browse the webpage"
   (interactive (progn
                  (require 'browse-url)
                  (browse-url-interactive-arg "Emacs-w3m URL: ")))

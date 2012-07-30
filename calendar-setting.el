@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-16 23:19:09>
+;; Updated: Time-stamp: <2012-07-30 11:06:22>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -19,8 +19,9 @@
 ;; mark dates of holidays in the calendar
 (setq mark-holidays-in-calendar t)
 (setq calendar-date-display-form '(year "-" month "-" day))
-(setq calendar-time-display-form '(24-hours ":" minutes
-                                    (if time-zone " (") time-zone (if time-zone ")")))
+(setq calendar-time-display-form
+      '(24-hours ":" minutes
+                 (if time-zone " (") time-zone (if time-zone ")")))
 (setq calendar-view-diary-initially-flag t)
 (add-hook 'diary-display-hook 'diary-fancy-display)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -118,5 +119,5 @@
         (holiday-fixed 12 25 "[节日] -- 圣诞节")
         (holiday-fixed 3 13 "[节日] -- 杭州纪念日")
         ))
-;; --8<-------------------------- seperator ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: calendar-setting.el ends here

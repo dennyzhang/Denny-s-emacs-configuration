@@ -3,13 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 22:00:12>
+;; Updated: Time-stamp: <2012-07-30 11:07:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
 ;; (add-to-list 'auto-mode-alist '("\\.as$" . actionscript-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'auto-mode-alist '("^filebat.txt$" . (company-mode 1))) ;; TODO doens't work
+(add-to-list 'auto-mode-alist '("^filebat.txt$" . (company-mode 1))) ;; TODO doesn't work
 (add-to-list 'auto-mode-alist '("^filebat.txt$" . (rainbow-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (company-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (rainbow-mode 1)))

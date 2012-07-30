@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
-;; File: fundamental-setting.el -- most important setting, excluding thrid party packagess
+;; File: fundamental-setting.el -- most important setting, excluding third party packages
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-26 21:59:35>
+;; Updated: Time-stamp: <2012-07-30 10:18:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -58,20 +58,25 @@
 (put 'tetris 'disabled t) ;; disable the game of tetris, to prevent wasting time
 (defalias 'tetris nil) ;; Don't waste time to play this game
 ;; --8<-------------------------- separator ------------------------>8--
-(set-default-coding-systems 'utf-8-unix) ;;specify coding system when creating a new file
+;;specify coding system when creating a new file
+(set-default-coding-systems 'utf-8-unix)
 (set-face-attribute 'mode-line nil :height 0.9) ;;Make the mode-line a little lower
 (setq display-time-interval 60) ;;update of time in the mode line
-(auto-compression-mode 1) ;; auto depress, when opening archived files
-(setq enable-recursive-minibuffers t) ;;Allow minibuffer commands while in the minibuffer
-(setq isearch-allow-scroll t) ;; enable scrolling during incremental search
+;; auto depress, when opening archived files
+(auto-compression-mode 1)
+;;Allow minibuffer commands while in the minibuffer
+(setq enable-recursive-minibuffers t)
+;; enable scrolling during incremental search
+(setq isearch-allow-scroll t)
 (setq-default ispell-program-name "aspell")
-(setq ispell-personal-dictionary (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
+(setq ispell-personal-dictionary
+      (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
 ;;(setq-default show-trailing-whitespace 't)
 ;; --8<-------------------------- separator ------------------------>8--
-(global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
+;; auto-refresh all buffers, when files change on disk
+(global-auto-revert-mode t)
 (auto-image-file-mode t)
 (setq resize-mini-windows t)
-(setq warning-suppress-types nil) ;; TODO, suspicious configuration
 (setq message-log-max 8192) ;; Set the *Message* log to something higher
 (when (fboundp 'winner-mode) (winner-mode 1)) ;;Restore old window configurations
 (setq trash-directory "~/trash"
@@ -185,19 +190,22 @@
 (global-set-key [(control = )] 'text-scale-increase);;zoom out/in font
 (global-set-key [(control -)] 'text-scale-decrease)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq eshell-aliases-file (concat DENNY_CONF "emacs_data/filebat.alias")) ;; set alias for eshell
-(setq bookmark-default-file (concat DENNY_CONF "emacs_data/filebat.bmk"));; customize for bookmark file
+;; set alias for eshell
+(setq eshell-aliases-file (concat DENNY_CONF "emacs_data/filebat.alias"))
+(setq bookmark-default-file (concat DENNY_CONF "emacs_data/filebat.bmk"))
 (setq bookmark-save-flag 1) ;;save bookmark whether we change it
 (setq-default line-spacing 0.15);; set line spacing
 (setq frame-title-format "%* - %p - Keep your mind running, Denny! - %b - %f")
 ;; --8<-------------------------- separator ------------------------>8--
-;;set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
+;; set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
   (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc"))
   (setq grep-find-command "find .")
   (dolist (filter-file-name filter-name-list)
-    (setq grep-find-command (format "%s -name \"%s\" -prune -o" grep-find-command filter-file-name)))
-  (setq grep-find-command (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e ")))
+    (setq grep-find-command
+          (format "%s -name \"%s\" -prune -o" grep-find-command filter-file-name)))
+  (setq grep-find-command
+        (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e ")))
 
 (global-set-key [(super .)] 'my-occur)
 (defun my-occur (invokeoccur)
@@ -208,12 +216,13 @@
     (if invokeoccur
         (progn
           (setq occur-regexp
-                (read-regexp "List lines matching regexp in current direcotry"
+                (read-regexp "List lines matching regexp in current directory"
                              (car regexp-history)))
           (setq dmoccur-mask-internal dmoccur-mask)
           (dmoccur default-directory occur-regexp current-prefix-arg))
       (setq occur-regexp (read-regexp "List lines matching regexp" (car regexp-history)))
-      (occur-1 occur-regexp list-matching-lines-default-context-lines (list (current-buffer))))
+      (occur-1 occur-regexp list-matching-lines-default-context-lines
+               (list (current-buffer))))
     ))
 
 (global-set-key (kbd "C-.") 'grep-find-with-querystring-quoted)

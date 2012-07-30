@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-09 00:11:02>
+;; Updated: Time-stamp: <2012-07-30 11:06:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -185,8 +185,10 @@ which will be replaced by the actual name"
     (mapcar '(lambda (record) (car (bbdb-record-net record)))
             records)))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq bbdb-use-pop-up nil) ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
-(setq bbdb-check-zip-codes-p nil) ;; don't check legal zip code, when entering an address
+;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
+(setq bbdb-use-pop-up nil)
+;; don't check legal zip code, when entering an address
+(setq bbdb-check-zip-codes-p nil)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-29 00:22:34>
+;; Updated: Time-stamp: <2012-07-30 10:14:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -62,7 +62,10 @@
 With argument, do this that many times."
   (interactive "p")
   (save-excursion
-    (let ((end (progn (unless (looking-back "\\>" 1) (forward-word 1)) (point)))
+    (let ((end (progn
+                 (unless (looking-back "\\>" 1)
+                   (forward-word 1))
+                 (point)))
           (beg (progn (forward-word -1) (point))))
       (delete-region beg end)
       )))
@@ -71,7 +74,10 @@ With argument, do this that many times."
 (defun delete-current-word ()
   (interactive)
   (save-excursion
-    (let ((end (progn (unless (looking-back "\\>" 1) (forward-word 1)) (point)))
+    (let ((end (progn
+                 (unless (looking-back "\\>" 1)
+                   (forward-word 1))
+                 (point)))
           (beg (progn (forward-word -1) (point))))
       (kill-region beg end)
       )))
@@ -202,7 +208,8 @@ there's a region, all lines that region covers will be duplicated."
 (defun swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
-  (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
+  (cond ((not (= (count-windows) 2))
+         (message "You need exactly 2 windows to do this."))
         (t
          (let* ((w1 (first (window-list)))
                 (w2 (second (window-list)))
@@ -342,7 +349,8 @@ BEG and END (region to sort)."
   )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun goto-column (number)
-  "Untabify, and go to a column NUMBER within the current line (0 is beginning of the line)."
+  "Untabify, and go to a column NUMBER within the
+current line (0 is beginning of the line)."
   (interactive "nColumn number: ")
   (move-to-column number t))
 (global-set-key (kbd "M-g c") 'goto-column)
@@ -381,7 +389,8 @@ BEG and END (region to sort)."
   )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun open-folder-in-explorer ()
-  "Call when editing a file in a buffer. Open windows explorer in the current directory"
+  "Call when editing a file in a buffer.
+Open windows explorer in the current directory"
   (interactive)
   (cond
    ((eq system-type 'gnu/linux)
@@ -409,7 +418,8 @@ To use this function, you need install scrot."
 ;; TODO: there are some bugs for this function
 (global-set-key (kbd "<C-return>") 'switch-to-mode-nex-buffer)
 (defun switch-to-mode-nex-buffer()
-  "Switch to next buffer in the same mode, and also with certain buffer excluded from the candidates"
+  "Switch to next buffer in the same mode,
+and also with certain buffer excluded from the candidates"
   (interactive)
   (let* (old-buffer-mode
          buffer-choose-list
@@ -424,7 +434,8 @@ To use this function, you need install scrot."
     ;; if one buffer's name matchs buffer-prohibit-regexp-list, add it to buffer-prohibit-list
     (dolist (buffer-var buffer-choose-list)
       (set-buffer buffer-var)
-      (if (string= old-buffer-mode (if (listp mode-name) (car mode-name) mode-name))
+      (if (string= old-buffer-mode
+                   (if (listp mode-name) (car mode-name) mode-name))
           ;; If buffer is in the same mode with current buffer,
           ;; check whether we need further filter
           (dolist (buffer-prohibit-regexp buffer-prohibit-regexp-list)
@@ -519,7 +530,8 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
     (let ((total 0)
           (count 0))
       (while (re-search-forward pattern end t)
-        (setq total (+ total (string-to-number (match-string-no-properties sub-index)))
+        (setq total (+ total
+                       (string-to-number (match-string-no-properties sub-index)))
               count (1+ count)))
       (message "%d numbers totalled %d" count total)
       total)))
@@ -682,15 +694,15 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
 (defun max-line-length (begin end)
   "Return the max line length in the current buffer"
   (interactive "r")
-    (save-excursion
-      (save-restriction
-        (let ((max-len 0))
-          (goto-char (point-min))
-          (while (eq (forward-line) 0)
-            (end-of-line)
-            (when (> (current-column) max-len)
-              (setq max-len (current-column))))
-          max-len))))
+  (save-excursion
+    (save-restriction
+      (let ((max-len 0))
+        (goto-char (point-min))
+        (while (eq (forward-line) 0)
+          (end-of-line)
+          (when (> (current-column) max-len)
+            (setq max-len (current-column))))
+        max-len))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; sample: (list-matched-regex "[^ ]*@gmail.com")
 (defun list-matched-regex (regexp-str)

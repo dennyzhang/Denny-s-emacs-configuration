@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-29 00:24:52>
+;; Updated: Time-stamp: <2012-07-30 10:17:58>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -569,5 +569,7 @@
     (insert (format "svn diff -r %d:%d %s" (- revision 1) revision
                     svn-url))
     ))
+;; --8<-------------------------- separator ------------------------>8--
+(setq warning-suppress-types nil) ;; TODO, suspicious configuration
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

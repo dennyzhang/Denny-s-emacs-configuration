@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-26 21:57:47>
+;; Updated: Time-stamp: <2012-07-30 10:22:00>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -45,7 +45,8 @@
         ("CANCELED" . (:foreground "blue" :weight bold))))
 (setq org-export-headline-levels 5);;set export headline level
 ;;set export css
-;; (setq org-export-table-row-tags '("<tr onMouseOver = \"this.className = 'highlight'\" onMouseOut = \"this.className = 'initial'\">" . "</tr>"))
+;; (setq org-export-table-row-tags
+;; '("<tr onMouseOver = \"this.className = 'highlight'\" onMouseOut = \"this.className = 'initial'\">" . "</tr>"))
 ;;set table
 ;; (setq org-export-html-table-tag "<table border = \"2\" bgcolor = \"#DDDDDD\" >" )
 (setq org-time-stamp-custom-formats (quote ("<%Y-%m-%d>" . "<%Y-%m-%d %H:%M>")))
@@ -165,7 +166,8 @@
   "when regexp search, only search title of org-mode entries"
   (interactive)
   (let (regexp)
-    (setq regexp (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
+    (setq regexp
+          (read-string "Search org entries whose title matching regexp: " "^\\\*+ .*"))
     (occur-1 regexp 0 (list (current-buffer)))))
 
 (defun replace-entry(entry_title)

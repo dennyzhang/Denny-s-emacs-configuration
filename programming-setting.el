@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-23 17:35:12>
+;; Updated: Time-stamp: <2012-07-30 11:10:31>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -27,8 +27,10 @@
   "int main (int argc, char * argv[]) \n{\n"
   > _ "\n" > "return 0;"
   "\n}")
-(define-abbrev-table 'c-mode-abbrev-table '(("main" "" skeleton-c-mode-main-func 1)))
-(define-abbrev-table 'c++-mode-abbrev-table '(("main" "" skeleton-c-mode-main-func 1)))
+(define-abbrev-table 'c-mode-abbrev-table
+  '(("main" "" skeleton-c-mode-main-func 1)))
+(define-abbrev-table 'c++-mode-abbrev-table
+  '(("main" "" skeleton-c-mode-main-func 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-auto-pair ()
   (interactive)

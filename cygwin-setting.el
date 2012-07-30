@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:38>
+;; Updated: Time-stamp: <2012-07-30 11:08:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq thumbs-conversion-program "d:/cygwin/bin/convert.exe")
@@ -40,7 +40,8 @@
     )
   )
 ;; --8<-------------------------- separator ------------------------>8--
-(create-fontset-from-fontset-spec "-bitstream-Bitstream Vera Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-fontset-startup")
+(create-fontset-from-fontset-spec
+ "-bitstream-Bitstream Vera Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-fontset-startup")
 (setq default-frame-alist
       (append
        '((font . "fontset-startup")

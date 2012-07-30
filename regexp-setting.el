@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: regexp-setting.el
 ;; Created: 2012-04-18
-;; Updated: Time-stamp: <2012-04-27 11:51:34>
+;; Updated: Time-stamp: <2012-07-30 11:08:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (set-default 'case-fold-search t);;Make searches case insensitive
 ;; --8<-------------------------- separator ------------------------>8--
@@ -11,7 +11,8 @@
   "Add regexp prefix for regexp searching."
   (progn
     (delete search-prefix regexp-search-ring)
-    (setq regexp-search-ring (add-to-list 'regexp-search-ring search-prefix))
+    (setq regexp-search-ring
+          (add-to-list 'regexp-search-ring search-prefix))
     (message "regexp search with prefix: %s" search-prefix)
     ))
 (defun search-function ()

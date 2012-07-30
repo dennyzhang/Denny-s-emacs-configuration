@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-15 17:59:29>
+;; Updated: Time-stamp: <2012-07-30 00:41:53>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -59,6 +59,8 @@
         ("2658854e1ba51d656deb4bf7301acf55" 4367 "[Denny] Be happy with your family and friends -- 社交管理")
         ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
         ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
+        ("2588838cc8e052c6aa19ba45c6737ea3" 4502 "[Denny] Linux memory & cache")
+        ("37eaaf8002cfc0ca8e874fb04b3a0f93" 4508 "[Denny] Linux network -- tcp/ip")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

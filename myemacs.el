@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-29 00:24:37>
+;; Updated: Time-stamp: <2012-07-30 10:12:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -68,8 +68,9 @@
         ))
 ;; --8<-------------------------- separator ------------------------>8--
 (unless (server-running-p) (server-start))
-;; caculate how long it takes for emacs start
+;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
-  (message "Emacs startup time: %d seconds." (time-to-seconds (time-since emacs-load-start-time))))
+  (message "Emacs startup time: %d seconds."
+           (time-to-seconds (time-since emacs-load-start-time))))
 ;; --8<-------------------------- §separator§ ------------------------>8--
 ;; File: myemacs.el ends here

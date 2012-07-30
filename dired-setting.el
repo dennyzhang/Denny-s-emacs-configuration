@@ -3,10 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-07 20:44:41>
+;; Updated: Time-stamp: <2012-07-30 11:08:23>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(put 'dired-find-alternate-file 'disabled nil);;Dired reuse directory buffer
+;;Dired reuse directory buffer
+(put 'dired-find-alternate-file 'disabled nil)
 (setq dired-listing-switches "-alth")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Sort files in dired.

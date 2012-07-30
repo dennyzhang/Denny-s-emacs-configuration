@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:38>
+;; Updated: Time-stamp: <2012-07-30 11:10:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
@@ -45,7 +45,9 @@ statement for insertion to sqlite db"
     ;; insert account account
     ;;(insert (format "(http-post-simple \"http://127.0.0.1:3000/account/create\" '((username . \"denny\")(password . \"$pwd\")(accountname . \"%s\") (accounttype . \"%s\")))\n" account-name account-type))
     (unless (member account-name '("assets" "incoming" "expenses"))
-      (insert (format "sqlite3 ./development_denny.db 'insert into accounts(accountname, accounttype) values (\"%s\", \"%s\")'\n" account-name account-type)))
+      (insert (format
+               "sqlite3 ./development_denny.db 'insert into accounts(accountname, accounttype) values (\"%s\", \"%s\")'\n"
+               account-name account-type)))
     ;; check whether it has child accounts
     (while account-list
       (setq account-list-tmp (pop account-list))
@@ -69,7 +71,8 @@ statement for insertion to sqlite db"
     (if record-date
         (add-to-list 'date-list record-date)
       (dolist (x (number-sequence -6 0 1))
-        (add-to-list 'date-list (format-time-string "%Y-%m-%d" (time-add (current-time) (days-to-time x))))))
+        (add-to-list 'date-list
+                     (format-time-string "%Y-%m-%d" (time-add (current-time) (days-to-time x))))))
 
     (if ledger-file-name
         (setq ledger-buffer ledger-file-name))
@@ -89,7 +92,8 @@ statement for insertion to sqlite db"
            amount (buffer-substring-no-properties (match-beginning 4) (match-end 4))
            recorddate (buffer-substring-no-properties (match-beginning 1) (match-end 1))
            memo (buffer-substring-no-properties (match-beginning 2) (match-end 2)))
-          (add-to-list 'transaction-list (vector 'entry fromaccountname toaccountname amount recorddate memo))
+          (add-to-list 'transaction-list
+                       (vector 'entry fromaccountname toaccountname amount recorddate memo))
           ))
       ;; return the result
       transaction-list
@@ -116,7 +120,8 @@ statement for insertion to sqlite db"
     (if record-date
         (add-to-list 'date-list record-date)
       (dolist (x (number-sequence -6 0 1))
-        (add-to-list 'date-list (format-time-string "%Y-%m-%d" (time-add (current-time) (days-to-time x))))))
+        (add-to-list 'date-list
+                     (format-time-string "%Y-%m-%d" (time-add (current-time) (days-to-time x))))))
 
     ;; prepare buffer
     (set-buffer (get-buffer-create output-buffername))

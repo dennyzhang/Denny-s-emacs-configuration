@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-08 23:28:12>
+;; Updated: Time-stamp: <2012-07-30 10:12:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -15,8 +15,8 @@
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("p" "Period" table-line (file+headline "contacts.org" "秀秀--周期") "| |%<%Y-%m-%d>|\n")
         ("s" "Shopping" entry (file+headline "current.org" "Shopping") "** %?\n")
-        ("b" "Book" entry (file+headline "life.org" "Book -- 阅读") "** TODO %?\n")
-        ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
+        ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
+        ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
         ("c" "Contacts" entry (file "contacts.org")
          "* %(org-contacts-template-name)
 :PROPERTIES:
@@ -39,7 +39,8 @@
     (setq content (replace-regexp-in-string "\n+$" "\n" content))
     (concat "* web page: " w3m-current-title (make-string 10 32) "\n"
             w3m-current-url "\n"
-            "** webcontent " (make-string 20 32) ":noexport:\n#+begin_example\n" content "\n#+end_example"))
+            "** webcontent " (make-string 20 32)
+            ":noexport:\n#+begin_example\n" content "\n#+end_example"))
   )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: capture-setting.el ends here
