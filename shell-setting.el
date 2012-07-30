@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:08:14>
+;; Updated: Time-stamp: <2012-07-30 16:07:32>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -70,7 +70,7 @@
     (setq prefix-regexp (format "\\*shell\\*-%s-" current-hostname))
     (setq prefix (format "*shell*-%s-" current-hostname))
     (setq shell-buffer-name (concat prefix file-name))
-    (if (string= mode-name "Shell")
+    (if (equal mode-name "Shell")
         ;; if current buffer is a shell, switch to related file
         (pop-to-buffer (replace-regexp-in-string prefix-regexp "" file-name))
       ;; if current buffer is not a shell, check
@@ -152,7 +152,7 @@ Sample:
   "By default, if current file doesn't open a shell, generate one.
 Otherwise, switch to related shell.
 
-If arg is given, only open a shell for one direcotry.
+If arg is given, only open a shell for one directory.
  "
   (interactive "P")
   (if (null arg) (open-shell-of-current-directory)
