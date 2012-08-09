@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-28 15:30:15>
+;; Updated: Time-stamp: <2012-08-01 22:43:12>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -59,5 +59,8 @@
 (add-hook 'jabber-post-connect-hooks #'(lambda (x) (jabber-send-away-presence)) t)
 ;; Don’t disturb me if someone change presence status
 (remove-hook 'jabber-alert-presence-hooks 'jabber-presence-echo)
+;; --8<-------------------------- separator ------------------------>8--
+;; add below to avoid throwing exception for invalid avatar images
+(add-to-list 'image-type-header-regexps  '("\\`\211PNG\n\n" . png))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: sns-setting.el ends here

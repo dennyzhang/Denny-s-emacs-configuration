@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:12:11>
+;; Updated: Time-stamp: <2012-08-04 08:17:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -11,7 +11,12 @@
 (setq emacs-load-start-time (current-time))
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
+
 ;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
+(require 'weibo)
+
+;; ;; --8<-------------------------- separator ------------------------>8--
 (mapc '(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))

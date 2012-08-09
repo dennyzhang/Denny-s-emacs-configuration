@@ -4,16 +4,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:12:25>
+;; Updated: Time-stamp: <2012-08-08 09:59:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
-      '(("d" "Diary" entry (file "diary.org") "* %T %?\n\n")
-        ("m" "Mail" entry (file "current.org") (function capture-gnus-template))
+      '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("p" "Period" table-line (file+headline "contacts.org" "秀秀--周期") "| |%<%Y-%m-%d>|\n")
+        ("d" "Diary" table-line (file+headline "org_share/diary.org"
+                                               "Work log -- 工作日志")
+         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
         ("s" "Shopping" entry (file+headline "current.org" "Shopping") "** %?\n")
         ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
         ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")

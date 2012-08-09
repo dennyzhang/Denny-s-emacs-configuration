@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:22:00>
+;; Updated: Time-stamp: <2012-08-08 09:24:20>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -17,18 +17,19 @@
                               (concat DENNY_CONF "/org_data/org_share/myself.org")
                               (concat DENNY_CONF "/org_data/org_share/life.org")
                               (concat DENNY_CONF "/org_data/current.org")
-                              (concat DENNY_CONF "/org_data/diary.org")
+                              (concat DENNY_CONF "/org_data/org_share/diary.org")
                               (concat DENNY_CONF "/org_data/learn.org")
                               (concat DENNY_CONF "/org_data/english.org")
                               (concat DENNY_CONF "/org_data/project.org")
                               (concat DENNY_CONF "/org_data/org_share/connection.org")
+                              (concat DENNY_CONF "/org_data/org_share/question.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; log the time of the things I have done
 (setq-default org-log-done t)
 ;; write diary in org-mode
-(setq org-agenda-diary-file (concat DENNY_CONF "/org_data/diary.org"))
+(setq org-agenda-diary-file (concat DENNY_CONF "/org_data/org_share/diary.org"))
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
@@ -136,7 +137,8 @@
             (with-selected-window (display-buffer buf)
               (org-fit-window-to-buffer))))
       (call-interactively 'org-agenda-list))))
-;;(run-with-idle-timer 3600 t 'jump-to-org-agenda) ;; TODO, enhance the usage
+
+;;(run-with-idle-timer 3600 t 'jump-to-org-agenda)
 (setq org-agenda-repeating-timestamp-show-all nil)
 (setq org-agenda-restore-windows-after-quit t)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -272,5 +274,44 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-export-with-tasks 'done
       org-export-creator-info nil)
+;; --8<-------------------------- separator ------------------------>8--
+;; (org-tags-view-list "Motto" '("Attitude"))
+;; (org-tags-view-list "Attitude")
+(defun org-tags-view-list (tag-name &optional filter-tag-list)
+  (let (retrieve-content entry-list (orig-buffer (current-buffer)))
+    (save-excursion
+      (org-tags-view nil tag-name)
+      (goto-char (point-min))
+      (forward-line 2)
+      ;; obtain and wash data
+      (setq retrieve-content
+            (buffer-substring-no-properties (point) (point-max)))
+      (setq retrieve-content
+            (replace-regexp-in-string "^ [^:]+: +" "" retrieve-content))
+      (setq entry-list (split-string retrieve-content "\n"))
+      ;; restore cursor location
+      (kill-buffer org-agenda-buffer-name)
+      (switch-to-buffer orig-buffer)
+      (delete-other-windows)
+      ;;(kill-buffer)
+      ;; exclude entries of given tag list
+      (dolist (filter-tag filter-tag-list)
+        (setq entry-list
+              (delq nil
+                    (mapcar #'(lambda (x)
+                                (if (string-match (format ":%s" filter-tag) x)
+                                    nil x))
+                            entry-list))))
+      ;; remove tags from entry
+      (setq entry-list
+            (mapcar #'(lambda (x) (replace-regexp-in-string " *:[^ ]+$" "" x))
+                    entry-list))
+      ;; limit too short entry
+      (setq entry-list
+            (delq nil (mapcar #'(lambda (x)
+                                  (if (> (length x ) 15)
+                                      x nil))
+                              entry-list)))
+      )))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

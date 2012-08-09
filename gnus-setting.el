@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:16:27>
+;; Updated: Time-stamp: <2012-08-08 12:02:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -245,6 +245,7 @@
         ("shopex.ci.fail" "Subject:.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
         ("shopex.reporting" "Subject:.*reporting.*")
+        ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("SNS" "Subject:.*LinkedIn.*")
         ;;("shopex.misc" "From:.*shopex.*")
@@ -309,7 +310,8 @@ then send mails by send-groupmail-by-mailbuffer."
       (goto-char (point-min))
       (search-forward to-marker nil nil)
       (setq start-point (point))
-      (forward-line 1)
+      (search-forward ":" nil nil)
+      (message-beginning-of-line)
       (backward-char 1)
       (setq end-point (point))
       (setq string-temp (buffer-substring-no-properties start-point end-point))

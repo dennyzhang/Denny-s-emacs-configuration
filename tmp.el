@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:17:58>
+;; Updated: Time-stamp: <2012-08-06 18:14:23>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -126,9 +126,9 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; woman手册查询
 ;; (setq woman-default-indent 7 ;缩进格式
-;;       woman-fill-frame t ;填充满屏幕
-;;       woman-use-own-frame nil ;同一个frame
-;;       woman-cache-level 3) ;缓存级别, 最快
+;; woman-fill-frame t ;填充满屏幕
+;; woman-use-own-frame nil ;同一个frame
+;; woman-cache-level 3) ;缓存级别, 最快
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(type-break-mode) ;; notify to take a break after certain keystrokes or time
 ;; --8<-------------------------- separator ------------------------>8--
@@ -571,5 +571,27 @@
     ))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil) ;; TODO, suspicious configuration
+;; --8<-------------------------- separator ------------------------>8--
+;; ignore case for finding files
+(setq read-file-name-completion-ignore-case t)
+;; --8<-------------------------- separator ------------------------>8--
+;; (font-lock-add-keywords 'sh-mode '(
+;;                                    ("\\<--\\w+\\>" (0 font-lock-keyword-face))
+;;                                    ("[-{}()<>=;:+[.]\\|\\]" (0 font-lock-keys-face))
+;;                                    ("\\\\$" (0 font-lock-warning-face))
+;;                                    ))
+;; --8<-------------------------- separator ------------------------>8--
+(setq mail-personal-alias-file (concat DENNY_CONF "emacs_data/filebat.mailrc"))
+;; --8<-------------------------- separator ------------------------>8--
+;; Display string in large, friendly, letters
+(setq initial-scratch-message
+      (propertize "Try some elisp\n"
+                  'font-lock-face '(:height 2.5 :inherit variable-pitch))
+      inhibit-startup-screen t)
+;; --8<-------------------------- separator ------------------------>8--
+(setq require-final-newline nil)
+(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
+(require 'weibo)
+(setq weibo-directory (concat EMACS_VENDOR "/weibo/.t.weibo.emacs.d"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

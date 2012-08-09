@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:39>
+;; Updated: Time-stamp: <2012-08-09 15:43:44>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -16,7 +16,9 @@ These information is probably retrieved from internet. "
 ;;M-p i: show interesting information for current file or directory
 ;;C-u M-p i: show short file name of current buffer
 (define-key global-map (kbd "M-p i") 'show-magic-info)
-(define-key comint-mode-map (kbd "M-p") 'show-magic-info)
+;; disable predefined M-p for comint-mode-map
+(define-key comint-mode-map (kbd "M-p") nil)
+(define-key comint-mode-map (kbd "M-p i") 'show-magic-info)
 (defun show-magic-info(show-short-info-p)
   "show interesting information for current file or directory
  - If current position is dired, show lines counts for misc programming lanuages.
@@ -55,7 +57,7 @@ These information is probably retrieved from internet. "
     (if (null lanuage-postfix-list)
         (setq lanuage-postfix-list
               '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
-                "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp"
+                "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.cc" "*.cxx"
                 "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)

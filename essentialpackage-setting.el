@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:15:02>
+;; Updated: Time-stamp: <2012-08-05 11:11:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -53,7 +53,7 @@
 ;; Restoring bookmarks when on file find.
 (add-hook 'find-file-hook 'bm-buffer-restore)
 ;; Saving bookmark data on killing a buffer
-(add-hook 'kill-buffer-hook 'bm-buffer-save)
+;; (add-hook 'kill-buffer-hook 'bm-buffer-save) ;; TODO
 (defadvice bm-buffer-save (before if activate) (widen))
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when emacs is killed, so we
@@ -342,19 +342,19 @@
 (add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
 (add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
-(setq sr-speedbar-skip-other-window-p t)
-(setq speedbar-show-unknown-files t)
-(load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
-;;(setq 'outline-view-change-hook nil) ;; TODO
-;; when pressing prefix of C-u, we will use speedbar, instead of minimap
-(defun my-file-toogle (use-speedbar-p)
-  (interactive "P")
-  (if (null use-speedbar-p)
-      (minimap-toggle)
-    (sr-speedbar-toggle))
-  )
-(global-set-key (kbd "<f3>") 'my-file-toogle)
+;; (load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
+;; (setq sr-speedbar-skip-other-window-p t)
+;; (setq speedbar-show-unknown-files t)
+;; (load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
+;; ;; (setq 'outline-view-change-hook nil) ;; TODO
+;; ;; when pressing prefix of C-u, we will use speedbar, instead of minimap
+;; (defun my-file-toogle (use-speedbar-p)
+;;   (interactive "P")
+;;   (if (null use-speedbar-p)
+;;       (minimap-toggle)
+;;     (sr-speedbar-toggle))
+;;   )
+;; (global-set-key (kbd "<f3>") 'my-file-toogle)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/recent-jump/recent-jump.el"))
 (setq recent-jump-threshold 8)

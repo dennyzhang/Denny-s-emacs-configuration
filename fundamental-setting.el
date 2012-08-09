@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:18:57>
+;; Updated: Time-stamp: <2012-08-08 09:24:28>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -132,6 +132,7 @@
                                'php-mode-hook
                                'erlang-mode-hook
                                ))
+(defvar readonly-mode-list '("Image[jpeg]" "Image[gif]"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-open-file (filename)
   (interactive)
@@ -155,7 +156,7 @@
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
-(defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/diary.org"))))
+(defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contacts.org"))))
@@ -163,6 +164,7 @@
 (defalias 'programming (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/programming.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'connection (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/connection.org"))))
+(defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/question.org"))))
 (defalias 'myself (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/myself.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
@@ -178,7 +180,8 @@
              (or (file-exists-p (file-name-directory buffer-file-name))
                  (make-directory (file-name-directory buffer-file-name) t))
              ;; Remove trailing whitespace
-             (delete-trailing-whitespace)
+             (unless (member mode-name readonly-mode-list)
+               (delete-trailing-whitespace))
              ;; Auto update timestamp for some specific files
              (unless (member (file-name-extension (buffer-name)) '("org"))
                (time-stamp))
@@ -422,7 +425,6 @@ starting on the same line at which another match ended is ignored."
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq history-length 100)
-(setq require-final-newline t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; also recognize the style of Chinese sentence ending
 (setq sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")

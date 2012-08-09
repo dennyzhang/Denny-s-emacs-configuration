@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:06:22>
+;; Updated: Time-stamp: <2012-07-31 20:12:29>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -63,6 +63,7 @@
         (holiday-chinese 7 15 "大姐生日")
         (holiday-chinese 7 19 "二姐生日")
         (holiday-chinese 6 21 "Denny生日")
+        (holiday-fixed 7 30 "吴在宥生日") ;; 2010
         (holiday-fixed 9 14 "秀秀生日") ;; 1987
         (holiday-chinese 8 18 "秀秀爸爸生日") ;; 1963-10-5
         (holiday-chinese 12 20 "秀秀妈妈生日") ;; 1962-2-24

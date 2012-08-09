@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 10:14:40>
+;; Updated: Time-stamp: <2012-08-05 08:54:26>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -462,25 +462,27 @@ and also with certain buffer excluded from the candidates"
  # File : handyfunction-setting.el
  "
   (interactive)
-  (save-excursion
-    (save-restriction
-      (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
+  (unless (member mode-name readonly-mode-list)
+    (save-excursion
+      (save-restriction
+        (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
 ]*\\) *"))
-            (max-lines 15)
-            (beg (point-min)) end
-            )
-        (goto-char (point-min))
-        (forward-line max-lines)
-        (setq end (point))
-        (narrow-to-region beg end)
-        (goto-char (point-min))
-        ;; Verify looking at a file name for this mode.
-        (while (re-search-forward file-name-regexp nil t)
-          (goto-char (match-beginning 2))
-          (delete-region (match-beginning 2) (match-end 2))
-          (insert (file-name-nondirectory (buffer-file-name)))
-          ))
-      )))
+              (max-lines 15)
+              (beg (point-min)) end
+              )
+          (goto-char (point-min))
+          (forward-line max-lines)
+          (setq end (point))
+          (narrow-to-region beg end)
+          (goto-char (point-min))
+          ;; Verify looking at a file name for this mode.
+          (while (re-search-forward file-name-regexp nil t)
+            (goto-char (match-beginning 2))
+            (delete-region (match-beginning 2) (match-end 2))
+            (insert (file-name-nondirectory (buffer-file-name)))
+            ))
+        )))
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun what-hexadecimal-value ()
   "Prints the decimal value of a hexadecimal string under cursor.
@@ -714,7 +716,7 @@ This function only dump the exactly matched strings to a temporary buffer"
       (setq regexp-str (format "\\(%s\\)" regexp-str))
       (goto-char (point-min))
       (while (search-forward-regexp regexp-str nil t)
-        (add-to-list 'matched-list (match-string-no-properties 1)))
+        (add-to-list 'matched-list (match-string-no-properties 1) t))
       )
     ;; dump list
     (switch-to-buffer-other-window

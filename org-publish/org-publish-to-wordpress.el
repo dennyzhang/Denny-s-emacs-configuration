@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-11 21:25:26>
+;; Updated: Time-stamp: <2012-08-05 12:27:10>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -309,6 +309,7 @@ See `org-publish-org-to' to the list of arguments."
                                    (cadr current-md5-id-title)))
           (kill-new url-string)
           (message url-string)
+          (delete-file current-exported-filename)
           )
       (message "No related blog entry for %s" current-top-entry-title))
     ))
