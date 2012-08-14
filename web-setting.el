@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-02 07:49:50>
+;; Updated: Time-stamp: <2012-08-14 17:21:47>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -173,6 +173,7 @@ create a new window and browse the webpage"
         ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])
+        ("wiki" . [simple-query "en.wikipedia.org" "en.wikipedia.org/w/index.php?search=" ""])
         ;; --8<------------------ search engine ------------------------>8--
 
         ;; --8<------------------ ebook ------------------------>8--
@@ -302,5 +303,7 @@ create a new window and browse the webpage"
     ))
 (setq hfy-meta-tags
       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
+;; --8<-------------------------- separator ------------------------>8--
+(define-key c-mode-base-map [(meta j)] 'webjump)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: web-browse-setting.el ends here

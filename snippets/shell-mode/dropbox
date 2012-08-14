@@ -1,0 +1,1 @@
+cd /tmp; rsync -r /home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/ /home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data.disk; killall -9 dropbox ; nohup ~/.dropbox-dist/dropbox & sudo umount /home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/ & echo 100000 | sudo tee /proc/sys/fs/inotify/max_user_watches

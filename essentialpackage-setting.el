@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-05 11:11:45>
+;; Updated: Time-stamp: <2012-08-11 00:39:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -126,16 +126,37 @@
   (let ((point-orig (point)) leading-str (whitespace-count 0))
     (save-excursion
       (move-beginning-of-line nil)
-      (setq leading-str (buffer-substring-no-properties point-orig (point)))
-      (dolist (ch (string-to-list leading-str))
-        (if (eq ch 32)
-            (setq whitespace-count (+ 1 whitespace-count))
-          )))
-    (if (not (eq 0 whitespace-count))
-        (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
-      (loccur (format "^[^ ]" whitespace-count)))
-    ))
-;; ;; --8<-------------------------- separator ------------------------>8--
+      (if (eq (point) point-orig)
+          ;; pressing in the head of the line
+          (loccur (format "^[^ %c]" 9))
+        (progn
+          (setq leading-str (buffer-substring-no-properties point-orig (point)))
+          (dolist (ch (string-to-list leading-str))
+            (if (eq ch 32)
+                (setq whitespace-count (+ 1 whitespace-count))
+              )))
+        (if (eq 0 whitespace-count)
+            (loccur (format "^[^ ]" whitespace-count))
+          (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count)))
+        ))
+    )
+  )
+;; (defun loccur-skeleton ()
+;;   "Call `loccur' for code skeleton with the same leading whitespace."
+;;   (interactive)
+;;   (let ((point-orig (point)) leading-str (whitespace-count 0))
+;;     (save-excursion
+;;       (move-beginning-of-line nil)
+;;       (setq leading-str (buffer-substring-no-properties point-orig (point)))
+;;       (dolist (ch (string-to-list leading-str))
+;;         (if (eq ch 32)
+;;             (setq whitespace-count (+ 1 whitespace-count))
+;;           )))
+;;     (if (not (eq 0 whitespace-count))
+;;         (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
+;;       (loccur (format "^[^ ]" whitespace-count)))
+;;     ))
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
 (toggle-cursor-type-when-idle 1) ; On when idle

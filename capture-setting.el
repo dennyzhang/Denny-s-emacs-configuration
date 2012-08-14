@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-08 09:59:08>
+;; Updated: Time-stamp: <2012-08-11 23:20:05>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -14,7 +14,7 @@
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("p" "Period" table-line (file+headline "contacts.org" "秀秀--周期") "| |%<%Y-%m-%d>|\n")
         ("d" "Diary" table-line (file+headline "org_share/diary.org"
-                                               "Work log -- 工作日志")
+                                               "Daily Journal -- 工作日志")
          "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
         ("s" "Shopping" entry (file+headline "current.org" "Shopping") "** %?\n")
         ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")

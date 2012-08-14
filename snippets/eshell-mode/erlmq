@@ -1,0 +1,3 @@
+#name : show messages for erlang process
+# --
+process_info(list_to_pid("<$1>"), messages).

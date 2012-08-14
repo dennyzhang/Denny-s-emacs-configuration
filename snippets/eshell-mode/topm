@@ -1,0 +1,1 @@
+ps -eo pid,pmem,rss,comm --sort rss | tail -n 10

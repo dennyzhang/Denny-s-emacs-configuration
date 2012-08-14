@@ -1,0 +1,3 @@
+#name : sed -n 4p foo.txt
+# --
+sed -n $1p ./

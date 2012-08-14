@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-08 09:21:21>
+;; Updated: Time-stamp: <2012-08-13 23:34:32>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -49,19 +49,20 @@
         ("8cb2825a5242eec670f5ffa4aab3b288" 2539 "[Denny] linux调试工具集")
         ("c6edf38b312bb72f7b662028b6c6c796" 1659 "[Denny] 自我管理 -- GTD & PKM")
         ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
-        ("4f4ec8a684c78ff3e1b4cc961809c37a" 4502 "[Denny] Help me by discussing my questions")
+        ("4f4ec8a684c78ff3e1b4cc961809c37a" 4508 "[Denny] Help me by discussing my questions")
         ("5ebc33327869e48d20bb9a66de18bc11" 4202 "[Denny] erlang debug skills")
         ("79a25c6d37d3d7aa37d49be5b766f419" 4213 "[Denny] Useful shell code snippet")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
         ("f579023d3b8347172362e5025d438b3d" 2346 "[Denny] Functional Programming 函数式编程")
         ("39c2dd4f4f788c4560b9f19d75b066c2" 3129 "[Denny] Locking in programming")
-        ("abd54648a1ca060cc85d686cc85768f9" 4508 "[Denny] Programming life -- 程序人生")
+        ("abd54648a1ca060cc85d686cc85768f9" 4502 "[Denny] Programming life -- 程序人生")
         ("2658854e1ba51d656deb4bf7301acf55" 4367 "[Denny] Be happy with your family and friends -- 社交管理")
         ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
         ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
         ("2588838cc8e052c6aa19ba45c6737ea3" 3792 "[Denny] Linux memory & cache")
         ("37eaaf8002cfc0ca8e874fb04b3a0f93" 3052 "[Denny] Linux network -- tcp/ip")
-        ("404bc9e734195e518c3bdb700c9f6e4c" 4645 "[Denny] Work log -- 工作日志")
+        ("8192cd8e64030f55379112af2ede5c72" 4645 "[Denny] Daily Journal -- 工作日志")
+        ("2be42aee5276b8f016dee4f553eb8aaf" 4763 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

@@ -3,10 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-26 21:59:35>
+;; Updated: Time-stamp: <2012-08-11 14:52:56>
 ;;
-;; --8<-------------------------- separator ------------------------>8--
-(eval-when-compile (require 'cl))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
 (load-file (concat EMACS_VENDOR "/regex-tool/regex-tool.el"))
@@ -163,5 +161,9 @@
 
 (add-hook 'post-command-hook 'cf-add-command)
 (add-to-list 'desktop-globals-to-save 'cf-command-history)
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
+(require 'weibo)
+(setq weibo-directory (concat EMACS_VENDOR "/weibo/.t.weibo.emacs.d"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here

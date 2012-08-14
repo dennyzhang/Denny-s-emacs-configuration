@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-08 09:24:28>
+;; Updated: Time-stamp: <2012-08-14 17:22:34>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -121,6 +121,18 @@
                                'sgml-mode
                                'erlang-mode
                                ))
+(defvar programming-mode-name-list (list
+                                    "C/l" "C++/l"
+                                    "Emacs-Lisp" "Lisp"
+                                    "Shell"
+                                    "Python"
+                                    ;;"Ruby"
+                                    "Java/l"
+                                    "Perl"
+                                    "PHP"
+                                    '(sgml-xml-mode "XML" "SGML")
+                                    "Erlang"
+                                    ))
 (defvar programming-hook-list (list
                                'c-mode-hook 'c++-mode-hook
                                'emacs-lisp-mode-hook 'lisp-mode-hook
@@ -299,7 +311,33 @@
   (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook
                                      emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
-(define-key global-map (kbd "M-p RET") 'view-mode)
+
+(defun global-view-on ()
+  (interactive)
+  (add-hook 'find-file-hook 'enable-view-for-programmer)
+  )
+(defun global-view-off ()
+  (interactive)
+  (remove-hook 'find-file-hook 'enable-view-for-programmer)
+  )
+(defun enable-view-for-programmer ()
+  (if (member mode-name programming-mode-name-list)
+      (view-mode t))
+  )
+
+(define-key global-map (kbd "M-p RET") 'my-view-mode)
+(defun my-view-mode (globalp)
+  "Invoke, enable view-mode.
+ Invoke with C-u, enable view-mode for global wise"
+  (interactive "P")
+  (if globalp
+      (global-view-on)
+    (view-mode)
+    ))
+;; --8<-------------------------- separator ------------------------>8--
+(define-key view-mode-map "j" 'ido-dired)
+(define-key view-mode-map "n" 'scroll-up-command)
+(define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq auto-save-default nil) ;; disable auto save, like files of #XXX#
 (setq kept-old-versions 2)
@@ -443,5 +481,10 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- separator ------------------------>8--
 (random t) ;; Seed the random-number generator
 (setq mouse-yank-at-point t) ;; mouse yank commands yank at point instead of at click.
+;; --8<-------------------------- separator ------------------------>8--
+(eval-when-compile (require 'cl)) ;; use CL
+;; --8<-------------------------- separator ------------------------>8--
+;; only warn me, when file is larger than 25 MB
+(setq large-file-warning-threshold 26214400)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

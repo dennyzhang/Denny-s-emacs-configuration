@@ -1,0 +1,4 @@
+`(make-string (org-current-level) ?*)` code
+#+begin_src
+$0
+#+end_src

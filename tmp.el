@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-06 18:14:23>
+;; Updated: Time-stamp: <2012-08-14 17:22:36>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -590,8 +590,14 @@
       inhibit-startup-screen t)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq require-final-newline nil)
-(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
-(require 'weibo)
-(setq weibo-directory (concat EMACS_VENDOR "/weibo/.t.weibo.emacs.d"))
+(setq recentf-exclude '("/TAGS"
+			"/TAGS$"
+			"/var/tmp/"
+			".emacs-places"
+			".emacs.bmk"
+			".emacs~"
+			".ido.last"
+			".recentf"
+			".recentf~"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here
