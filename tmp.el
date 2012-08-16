@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-14 17:22:36>
+;; Updated: Time-stamp: <2012-08-16 15:30:22>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -599,5 +599,11 @@
 			".ido.last"
 			".recentf"
 			".recentf~"))
+;; --8<-------------------------- separator ------------------------>8--
+(define-key view-mode-map "j" 'ido-dired)
+(define-key view-mode-map "n" 'scroll-up-command)
+(define-key view-mode-map "p" 'scroll-down-command)
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-14 17:22:34>
+;; Updated: Time-stamp: <2012-08-15 17:39:14>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -334,10 +334,6 @@
       (global-view-on)
     (view-mode)
     ))
-;; --8<-------------------------- separator ------------------------>8--
-(define-key view-mode-map "j" 'ido-dired)
-(define-key view-mode-map "n" 'scroll-up-command)
-(define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq auto-save-default nil) ;; disable auto save, like files of #XXX#
 (setq kept-old-versions 2)
