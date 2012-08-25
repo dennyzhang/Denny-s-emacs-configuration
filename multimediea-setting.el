@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:05:11>
+;; Updated: Time-stamp: <2012-08-24 23:29:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -303,10 +303,10 @@
    (kill-buffer old-buffer)
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq emms-org-file (concat DENNY_CONF "/org_data/music.org"))
+(setq emms-org-file (concat DENNY_CONF "/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
   '(lambda () (interactive) (update-music-to-org-file emms-org-file)))
-;; (update-music-to-org-file "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/music.org")
+;; (update-music-to-org-file "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/music.org")
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))
          (last-played (emms-track-get track 'last-played))
@@ -338,7 +338,7 @@
     (goto-char (point-min))
     (unless (search-forward-regexp music-name nil t)
       (goto-char (point-max))
-      (insert "\n* " music-name "\n")
+      (insert "\n** " music-name "\n")
       )
     ;;(org-set-property "last-played" last-played) ;; TODO
     (org-set-property "play-count" (format "%s" play-count))
@@ -356,8 +356,7 @@
     )
   )
 
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/music.org" "merry"
-;; "/home/denny/backup/multimediea/music/test.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "merry" "/home/denny/backup/multimediea/music/playlist/merry.playlist")
 (defun export-orgfile-to-emmsplaylist (org-file org-tag playlist-file)
   (interactive)
   (unless (string= mode-name "Org")
@@ -376,7 +375,7 @@
              )
     (save-excursion
       (goto-char 0)
-      (while (search-forward-regexp "^* " nil t)
+      (while (search-forward-regexp "^\\*\\* " nil t)
         (when (member org-tag (org-get-tags))
           (setq name (org-entry-get nil "name")
                 play-count (org-entry-get nil "play-count")
@@ -417,7 +416,7 @@
       )
     )
   )
-;; (orgfile-last-played-update-current "/home/denny/backup/multimediea/music/music.org" "王菲--传奇.mp3")
+;; (orgfile-last-played-update-current "/home/denny/backup/multimediea/music/org_share/music.org" "王菲--传奇.mp3")
 (defun orgfile-last-played-update-current (org-file music-name)
   "Updates the current track in org-mode."
   (save-excursion

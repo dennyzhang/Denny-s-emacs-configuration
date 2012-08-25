@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-11 23:20:05>
+;; Updated: Time-stamp: <2012-08-24 23:01:34>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -39,6 +39,7 @@
 (defun capture-w3m-template ()
   (let ((content (buffer-string)))
     (setq content (replace-regexp-in-string "\n+$" "\n" content))
+    (setq content (replace-regexp-in-string "^\* " "# " content))
     (concat "* web page: " w3m-current-title (make-string 10 32) "\n"
             w3m-current-url "\n"
             "** webcontent " (make-string 20 32)

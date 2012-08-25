@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 16:16:27>
+;; Updated: Time-stamp: <2012-08-25 14:52:19>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -14,10 +14,21 @@
   (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))
 (defun get-short-mail-signature ()
   (format "%s\n\n%s" "Denny Zhang(张巍)" (generate-mail-signature)))
+
 (defun generate-mail-signature()
-  (let* ((signature-string (get-motto))
-         cowsay-file
-         command-string)
+  (let* (signature-string cowsay-file command-string)
+    (if (member mode-name '("Message" "Article"))
+        ;; if in the buffer of sending mail, conditionally pick English motto
+        (save-excursion
+          (goto-char (point-min))
+          (if (search-forward-regexp
+               "From: .*\\(@shopex.cn\\|@qq.com\\|@163.com\\|@126.com\\)"
+               nil t )
+              (setq signature-string (get-motto))
+            ;; only English motto
+            (setq signature-string (get-motto 't)))
+          )
+      (setq signature-string (get-motto)))
     ;; cowsay doesn't support Unicode in release version
     ;; see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254557
     (if (member (detect-coding-string signature-string)
@@ -30,8 +41,7 @@
                                         signature-string (intern
                                                           "utf-8"))
                                        ))
-          (format "%s\n\n%s" common-tail-signature
-                  (shell-command-to-string command-string)))
+          (format "%s" (shell-command-to-string command-string)))
       ;; for Unicode like Chinese, just render cowsay with empty content
       (progn
         (with-temp-buffer
@@ -59,13 +69,19 @@
 
 (setq motto-list (get-all-motto)) ;; variable to hold all motto
 
-(defun get-motto(&optional max-length)
+(defun get-motto(&optional englishp &optional max-length)
   (let (signature-string (signature-list motto-list))
-    ;; set default threshold
+    (if (null englishp) (setq englishp nil))
     (if (null max-length) (setq max-length 500))
     ;; remove item longer than max-length
     (setq signature-list
           (remove-if #'(lambda(x) (> (length x) max-length)) signature-list))
+    ;; remove item for non-English
+    (if englishp
+      (setq signature-list
+            (remove-if #'(lambda(x)
+                           (not (equal '(undecided)
+                                       (detect-coding-string x)))) signature-list)))
     (setq signature-string (random-string signature-list))
     (eval signature-string)
     ))

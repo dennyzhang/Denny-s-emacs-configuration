@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-08-08 09:24:42>
+;; Copyright © 2010-2011 Time-stamp: <2012-08-24 23:10:01>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -83,7 +83,7 @@
                                 "work.org"
                                 "current.org"
                                 "algorithm.org"
-                                "music.org"
+                                "org_share/music.org"
                                 "english.org"
                                 "wealth.org"
                                 "learn.org"

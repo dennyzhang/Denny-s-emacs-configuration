@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-01 22:43:12>
+;; Updated: Time-stamp: <2012-08-25 14:10:28>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -52,7 +52,7 @@
 
 ;; dynamically set status string
 (defadvice jabber-send-presence (after let activate)
-  (setq *jabber-current-status* (get-motto 35))
+  (setq *jabber-current-status* (get-motto nil 35))
   (setq jabber-default-status *jabber-current-status*))
 
 ;; when login, set away as default status

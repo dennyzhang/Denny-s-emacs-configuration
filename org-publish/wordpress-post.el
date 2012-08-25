@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-13 23:34:32>
+;; Updated: Time-stamp: <2012-08-25 11:19:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -36,12 +36,12 @@
         ("05fd3d60e6b3a22a0586d8e2382fa0e6" 1518 "[Denny] 云计算中的资源隔离 -- Resource segregation")
         ("0a70ef1ac75aad6ffcf1d51e6d3915cd" 2751 "[Denny] erlang code tool")
         ("bed301b5e8a7aa3269c4715b4994d409" 1693 "[Denny] linux常用工具语言")
-        ("5f10e6118c7487a577f9869315c4622a" 338 "[Denny] Music -- 音乐")
+        ("f477b91154bb421fe12da0231a1c68df" 3893 "[Denny] music in daily life")
         ("9973e899eb8912d2ebd846fa777d5efe" 1697 "[Denny] Openstack")
         ("29fdcd436940e3f07842fa4ac42258a3" 1019 "[Denny] Work Skill + Software -- 实用软件")
         ("f97d5c9d0ef27ab408d4eb2cb37363ad" 1307 "[Denny] linux security")
         ("2673753f5e99ed3823e2d428123126bd" 2158 "[Denny] linux systemtap")
-        ("fcb8feffc8536a4113836c26626dadff" 3893 "[Denny] linux signal -- 信号")
+        ("fcb8feffc8536a4113836c26626dadff" 338 "[Denny] linux signal -- 信号")
         ;; important posts
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3698 "[Denny] [置顶] Motto -- 人生格言")
@@ -60,9 +60,16 @@
         ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
         ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
         ("2588838cc8e052c6aa19ba45c6737ea3" 3792 "[Denny] Linux memory & cache")
-        ("37eaaf8002cfc0ca8e874fb04b3a0f93" 3052 "[Denny] Linux network -- tcp/ip")
         ("8192cd8e64030f55379112af2ede5c72" 4645 "[Denny] Daily Journal -- 工作日志")
+        ("f8c59fe0cfe47bc4db33864df60354da" 4867 "[Denny] Linux network -- tcp/ip")
         ("2be42aee5276b8f016dee4f553eb8aaf" 4763 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
+        ("ab572f73132656fe14ef067ab1ec2c86" 4799 "[Denny] linux /proc filesystem")
+        ("64ab0d4faf53a362c1363e8000d59b47" 4803 "[Denny] Linux processes/pipe/socket")
+        ("a5c196d7978add02e258af2a31a5b761" 4872 "[Denny] Form good habits -- 养成良好的习惯")
+        ("9c5d4af2573027b0b61b920501ad1616" 4936 "[Denny] Difficulties in zabbix")
+        ("6564602080ea28f277f2ab395095160c" 4938 "[Denny] Difficulties in puppet")
+        ("6cab7dfbfb3c122332ccf0e5593bb20a" 4940 "[Denny] Difficulties in erlang")
+        ("63004207f7b75f96ac3cf5f783cb5a76" 4960 "[Denny] Difficulties in Hudson/Jenkins")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

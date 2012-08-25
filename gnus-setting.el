@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-08 12:02:38>
+;; Updated: Time-stamp: <2012-08-25 14:40:12>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -242,13 +242,14 @@
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("shopex.ci.myfailure" "Subject:.*Crontab.*Fail.*\\|Subject:.*Elmar.*Fail.*\\|Subject:.*Deploy.*Fail.*\\|Subject:.*Snake.*Fail.*\\|Subject:.*CommandRunner.*Fail.*\\|Subject:.*HealthCheck.*Fail.*")
         ("shopex.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
-        ("shopex.ci.fail" "Subject:.*Fail.*")
+        ("shopex.ci.fail" "Subject:.*Test.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
         ("shopex.reporting" "Subject:.*reporting.*")
+        ("shopex.zabbix" "Subject:.*Zabbix Alerting.*")
         ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
-        ("SNS" "Subject:.*LinkedIn.*")
-        ;;("shopex.misc" "From:.*shopex.*")
+        ("SNS" "Subject:.*LinkedIn.*\\|From:.*monster@route.monster.com.*")
+        ("shopex.misc" "From:.*yammer@yammer.com.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
         ))
 
