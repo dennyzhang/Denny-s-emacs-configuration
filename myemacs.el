@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-04 08:17:59>
+;; Updated: Time-stamp: <2012-08-31 23:14:09>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -34,10 +34,10 @@
         ;;"flymake-setting.el"
         "calendar-setting.el"
         "largeessentialpackage-setting.el"
-        "org-setting.el"
         "bbdb-setting.el"
-        "ledger-setting.el"
+        "org-setting.el"
         "gnus-setting.el"
+        "ledger-setting.el"
         "online-search/online-search-setting.el"
         "web-setting.el"
         "insertion-setting.el"

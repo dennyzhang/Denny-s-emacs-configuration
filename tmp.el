@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-25 00:17:34>
+;; Updated: Time-stamp: <2012-08-31 23:29:26>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -421,13 +421,13 @@
     (call-interactively 'yank)
     (call-interactively 'write-file)))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun man-face-settings ()
-  "Face settings for `man'."
-  (setq Man-overstrike-face 'yellow-face)
-  (setq Man-underline-face 'underline-green-face)
-  (setq Man-reverse-face 'red-face))
+;; (defun man-face-settings ()
+;;   "Face settings for `man'."
+;;   (setq Man-overstrike-face 'yellow-face)
+;;   (setq Man-underline-face 'underline-green-face)
+;;   (setq Man-reverse-face 'red-face))
 
-(eval-after-load "man" `(man-face-settings))
+;; (eval-after-load "man" `(man-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun diff-face-settings ()
   "Face settings for `diff'."
@@ -604,6 +604,8 @@
 (define-key view-mode-map "n" 'scroll-up-command)
 (define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
+;;(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
+;; --8<-------------------------- separator ------------------------>8--
+;;(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

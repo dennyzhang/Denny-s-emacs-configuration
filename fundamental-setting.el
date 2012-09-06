@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-21 21:14:53>
+;; Updated: Time-stamp: <2012-08-26 12:33:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -160,7 +160,6 @@
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'pkm (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/pkm.org"))))
 (defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work.org"))))
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'top (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/top.org"))))

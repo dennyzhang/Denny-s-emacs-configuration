@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-25 14:52:19>
+;; Updated: Time-stamp: <2012-08-31 23:21:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
