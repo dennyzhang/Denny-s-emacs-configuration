@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-31 23:29:26>
+;; Updated: Time-stamp: <2012-09-17 22:50:38>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -333,7 +333,7 @@
 
 ;; (add-hook
 ;; 'dired-mode-hook
-;; '(lambda ()
+;; #'(lambda ()
 ;; (setq
 ;; mode-line-buffer-identification
 ;; my-mode-line-buffer-identification)))

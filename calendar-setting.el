@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-31 20:12:29>
+;; Updated: Time-stamp: <2012-09-17 22:50:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -38,7 +38,7 @@
 
 ;; set color for calendar
 (setq calendar-load-hook
-      '(lambda ()
+      #'(lambda ()
          (set-face-foreground 'diary-face "skyblue")
          (set-face-background 'holiday-face "slate blue")
          (set-face-foreground 'holiday-face "white")
@@ -67,7 +67,7 @@
         (holiday-fixed 9 14 "秀秀生日") ;; 1987
         (holiday-chinese 8 18 "秀秀爸爸生日") ;; 1963-10-5
         (holiday-chinese 12 20 "秀秀妈妈生日") ;; 1962-2-24
-        (holiday-chinese 9 10 "杨明哲生日") ;;2011
+        (holiday-fixed 9 10 "杨明哲生日") ;;2011
         (holiday-chinese 5 24 "张伟智生日")
         ;; --8<-------------------------- separator ------------------------>8--
         (holiday-chinese 12 11 "四姨生日")

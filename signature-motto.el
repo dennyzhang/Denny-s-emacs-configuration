@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-31 23:21:46>
+;; Updated: Time-stamp: <2012-09-18 23:44:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -53,7 +53,8 @@
         (setq cowsay-file (get-random-cowsay ".*.txt"))
         (format "%s\n%s" signature-string (org-get-file-contents cowsay-file))
         )
-      )))
+      )
+    ))
 
 (defun get-random-cowsay (match)
   (let ((files (directory-files (concat DENNY_CONF "/emacs_conf/cowsay") t match)))

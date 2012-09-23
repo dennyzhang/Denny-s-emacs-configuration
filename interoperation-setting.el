@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-20 08:23:41>
+;; Updated: Time-stamp: <2012-09-17 22:50:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "top-mode/top-mode.el"))
@@ -19,7 +19,7 @@ To use this extension, you need install xtrlock in your system."
     ;; Lock screen.
     (set-process-sentinel
      (start-process "xtrlock" nil "xtrlock")
-     '(lambda (process event)
+     #'(lambda (process event)
         (zone-leave-me-alone)))
     (zone)))
 ;; --8<-------------------------- separator ------------------------>8--

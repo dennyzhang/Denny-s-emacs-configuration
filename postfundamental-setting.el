@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-22 23:32:41>
+;; Updated: Time-stamp: <2012-09-17 22:50:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -90,7 +90,7 @@
 ;; ))
 ;; --8<-------------------------- separator ------------------------>
 (add-hook 'flyspell-prog-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (define-key flyspell-mode-map [(control ?\.)]
                'grep-find-with-querystring-quoted)))
 ;; --8<-------------------------- separator ------------------------>8--

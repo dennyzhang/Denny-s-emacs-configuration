@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-31 23:14:09>
+;; Updated: Time-stamp: <2012-09-17 22:50:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -17,7 +17,7 @@
 (require 'weibo)
 
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(mapc '(lambda(emacs-file)
+(mapc #'(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("fundamental-setting.el"
@@ -52,7 +52,7 @@
         ))
 (cond
  ((eq system-type 'gnu/linux)
-  (mapc '(lambda(emacs-file)
+  (mapc #'(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '("linux-setting.el"
@@ -64,7 +64,7 @@
   (load-file (concat DENNY_CONF "/emacs_conf/windowsonly-setting.el")))
  ((eq system-type 'cygwin)
   (load-file (concat DENNY_CONF "/emacs_conf/cygwin-setting.el"))))
-(mapc '(lambda(emacs-file)
+(mapc #'(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el"

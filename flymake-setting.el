@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:09:18>
+;; Updated: Time-stamp: <2012-09-17 22:50:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
@@ -91,7 +91,7 @@
        (format "%s %s" my-php-check-file (buffer-file-name))))
 
 (add-hook 'php-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-php-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
@@ -133,7 +133,7 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.sh$" flymake-shell-init))
 (add-hook 'sh-mode-hook
-          '(lambda()
+          #'(lambda()
              (unless (tramp-file-name-p buffer-file-name)
                (flymake-mode t)
                (my-shell-hook-function)
@@ -170,12 +170,12 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.el$" flymake-elisp-init))
 (add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              ))
 
 (add-hook 'lisp-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              ))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -194,7 +194,7 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.css$" flymake-css-init))
 (add-hook 'css-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-css-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
@@ -223,7 +223,7 @@
               flymake-get-real-file-name)
             flymake-allowed-file-name-masks))
 (add-hook 'javascript-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-js-hook-function)
              (make-local-variable 'flymake-err-line-patterns)
@@ -246,7 +246,7 @@
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.rb$\\|\\.Rakefile$" flymake-ruby-init))
 (add-hook 'ruby-mode-hook
-          '(lambda ()
+          #'(lambda ()
              ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
              (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                  (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
@@ -306,7 +306,7 @@
        (format "%s -p pylint,pyflakes,pep8 %s" my-python-check-file (buffer-file-name))))
 
 (add-hook 'python-mode-hook
-          '(lambda ()
+          #'(lambda ()
              ;; Activate flymake unless buffer is a tmp buffer for the interpreter
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-python-hook-function)
@@ -331,7 +331,7 @@
        (format "%s %s" my-erlang-check-file (buffer-file-name))))
 
 (add-hook 'erlang-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (unless (or (null buffer-file-name) (tramp-file-name-p buffer-file-name)) (flymake-mode t))
              (my-erlang-hook-function)
              (make-local-variable 'flymake-err-line-patterns)

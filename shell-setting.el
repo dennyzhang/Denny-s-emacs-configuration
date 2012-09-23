@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 16:07:32>
+;; Updated: Time-stamp: <2012-09-19 10:53:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -50,9 +50,10 @@
         (shell shell-buffer-name)
         (insert " ")
         ;; insert shell history
-        (load-shell-history file-name)
+        ;; (load-shell-history file-name)
         ;; send default input
-        (comint-previous-matching-input "." -1)))
+        ;; (comint-previous-matching-input "." -1)
+        ))
     ))
 
 (defun open-shell-of-current-directory ()
@@ -86,9 +87,10 @@
         (shell shell-buffer-name)
         (insert " ")
         ;; insert shell history
-        (load-shell-history file-name)
+        ;; (load-shell-history file-name)
         ;; send default input
-        (comint-previous-matching-input "." -1))))
+        ;; (comint-previous-matching-input "." -1)
+        )))
   )
 (defvar shell-history-alist
   '(;; erlang files
@@ -219,7 +221,7 @@ If arg is given, only open a shell for one directory.
      (require 'em-cmpl)
      (set-face-attribute 'eshell-prompt nil :foreground "turquoise1")
      (add-hook 'eshell-mode-hook ;; for some reason this needs to be a hook
-               '(lambda () (define-key eshell-mode-map "\C-a" 'eshell-bol)))
+               #'(lambda () (define-key eshell-mode-map "\C-a" 'eshell-bol)))
      (add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
      (setq eshell-cmpl-cycle-completions nil)
      (add-to-list 'eshell-visual-commands "ssh")
@@ -248,7 +250,7 @@ If arg is given, only open a shell for one directory.
    ))
 (dolist (mode-hook-var '(shell-mode-hook eshell-mode-hook))
   (add-hook mode-hook-var
-            '(lambda () (local-set-key (kbd "C-l") 'clear-shell))))
+            #'(lambda () (local-set-key (kbd "C-l") 'clear-shell))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; In the ls output of *eshell* buffer, enable us to open related files/directories
 (eval-after-load "em-ls"

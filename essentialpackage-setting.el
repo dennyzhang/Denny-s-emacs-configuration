@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-11 00:39:16>
+;; Updated: Time-stamp: <2012-09-17 22:30:10>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -58,7 +58,7 @@
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when emacs is killed, so we
 ;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook '(lambda nil
+(add-hook 'kill-emacs-hook #'(lambda nil
                               (bm-buffer-save-all)
                               (bm-repository-save)))
 ;; Update bookmark repository when saving the file.
@@ -216,7 +216,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/rainbow-mode/rainbow-mode.el"))
 (dolist (hook programming-hook-list)
-  (add-hook hook '(lambda () (rainbow-mode 1 ))))
+  (add-hook hook #'(lambda () (rainbow-mode 1 ))))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
 (openwith-mode t)

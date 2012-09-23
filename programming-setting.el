@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:10:31>
+;; Updated: Time-stamp: <2012-09-17 22:30:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -159,7 +159,7 @@
 ;; (autoload 'inf-ruby-keys "inf-ruby"
 ;; "Set local key defs for inf-ruby in ruby-mode")
 ;; (add-hook 'ruby-mode-hook
-;; '(lambda ()
+;; #'(lambda ()
 ;; (inf-ruby-keys)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; elisp programming
@@ -190,7 +190,7 @@
         (command nil))
     (if (not (null
               (find t candidate-make-file-name :key
-                    '(lambda (f) (file-readable-p f)))))
+                    #'(lambda (f) (file-readable-p f)))))
         (setq command "make -k ")
       ;; Makefile doesn't exist
       (if (null (buffer-file-name (current-buffer)))

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-05 16:51:05>
+;; Updated: Time-stamp: <2012-09-20 00:03:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -225,7 +225,7 @@
   (let (mail-alias-group net-list)
     (dolist (mail-alias (bbdb-get-mail-aliases))
       ;; get email address list by mail alias
-      (setq net-list (mapconcat '(lambda(mail) (concat "From:.*" mail))
+      (setq net-list (mapconcat #'(lambda(mail) (concat "From:.*" mail))
                                 (get-net-list-by-mail-alias (car mail-alias))
                                 "\\|"))
       ;; set the mail filter rule
@@ -237,7 +237,7 @@
   )
 ;;　category pop3 mails
 (setq nnmail-split-methods
-      '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*")
+      '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*\\|From:.*admin@42qu.com.*")
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("shopex.ci.myfailure" "Subject:.*Crontab.*Fail.*\\|Subject:.*Elmar.*Fail.*\\|Subject:.*Deploy.*Fail.*\\|Subject:.*Snake.*Fail.*\\|Subject:.*CommandRunner.*Fail.*\\|Subject:.*HealthCheck.*Fail.*")
@@ -245,7 +245,7 @@
         ("shopex.ci.fail" "Subject:.*Test.*Fail.*")
         ("shopex.pms" "From:.*pms@shopex.cn.*")
         ("shopex.reporting" "Subject:.*reporting.*")
-        ("shopex.zabbix" "Subject:.*[Zabbix].*\\|From:.*zabbixecae@test.cn.*")
+        ("shopex.zabbix" "Subject:.*[Zabbix].*")
         ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
@@ -259,7 +259,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; category imap mails
 ;; --8<-------------------------- separator ------------------------>8--
-(gnus-compile) ;编译一些选项, 加快速度
+;;(gnus-compile) ;编译一些选项, 加快速度
 (setq gnus-default-charset 'utf-8)
 (setq gnus-article-charset 'utf-8)
 (add-to-list 'gnus-group-charset-alist '("\\(^\\|:\\)cn\\>\\|\\<chinese\\>" utf-8))
@@ -441,7 +441,7 @@ then send mails by send-groupmail-by-mailbuffer."
 (add-hook 'message-send-mail-hook 'auto-add-message-important-header)
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key gnus-summary-mode-map "d"
-  '(lambda() (interactive)
+  #'(lambda() (interactive)
      (gnus-summary-delete-article 1) (forward-line 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; score down any mails which I don't like
@@ -544,7 +544,7 @@ And insert header to mark message as unimportant(X-Priority).
                "a" "background:#2f4f4f;color:#6495ed")
               )))
 ;; sending html mail as default
-;;(add-hook 'message-send-hook '(lambda() (org-mime-htmlize nil)))
+;;(add-hook 'message-send-hook #'(lambda() (org-mime-htmlize nil)))
 (add-hook 'message-mode-hook
           (lambda ()
             (local-set-key "\C-c\M-o" 'org-mime-htmlize)))

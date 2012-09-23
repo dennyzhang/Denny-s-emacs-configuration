@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:07:08>
+;; Updated: Time-stamp: <2012-09-17 22:50:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -22,7 +22,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.mxml$" . nxml-mode))
 (setq nxml-mode-hook
-      '(lambda ()
+      #'(lambda ()
          (setq tab-width 2
                indent-tabs-mode nil)
          (set-variable 'nxml-child-indent 2)

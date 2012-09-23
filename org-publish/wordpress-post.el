@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-04 12:06:23>
+;; Updated: Time-stamp: <2012-09-23 21:18:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -40,16 +40,11 @@
         ("f477b91154bb421fe12da0231a1c68df" 3893 "[Denny] music in daily life")
         ("29fdcd436940e3f07842fa4ac42258a3" 1019 "[Denny] Work Skill + Software -- 实用软件")
         ("f97d5c9d0ef27ab408d4eb2cb37363ad" 1307 "[Denny] linux security")
-        ("2673753f5e99ed3823e2d428123126bd" 2158 "[Denny] linux systemtap")
         ("fcb8feffc8536a4113836c26626dadff" 338 "[Denny] linux signal -- 信号")
-        ;; important posts
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
-        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 3698 "[Denny] [置顶] Motto -- 人生格言")
         ("791fd82867b54c7353c9393045897010" 2542 "[Denny] Emacs — fundanmental features")
-        ("8cb2825a5242eec670f5ffa4aab3b288" 2539 "[Denny] linux调试工具集")
         ("c6edf38b312bb72f7b662028b6c6c796" 1659 "[Denny] 自我管理 -- GTD & PKM")
         ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
-        ("5ebc33327869e48d20bb9a66de18bc11" 4202 "[Denny] erlang debug skills")
         ("79a25c6d37d3d7aa37d49be5b766f419" 4213 "[Denny] Useful shell code snippet")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
         ("f579023d3b8347172362e5025d438b3d" 2346 "[Denny] Functional Programming 函数式编程")
@@ -60,22 +55,27 @@
         ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
         ("2588838cc8e052c6aa19ba45c6737ea3" 3792 "[Denny] Linux memory & cache")
         ("ab572f73132656fe14ef067ab1ec2c86" 4763 "[Denny] linux /proc filesystem")
-        ;; --8<-------------------------- separator ------------------------>8--
+        ("d9d82b8a27d392317be812c7174c44d9" 2539 "[Denny] Linux http")
+        ("731139af6de20d46044827f8aad384ce" 4202 "[Denny] Difficulties in emacs")
+        ("22c8572a32e61b7e527c0b17c9016bde" 2158 "[Denny] Erlang performance tunning for 1,000,000 connections")
+        ("9a15e9d2f7f48b0d71f3fe970fbba15c" 4799 "[Denny] [置顶] Motto -- 人生格言")
         ("64ab0d4faf53a362c1363e8000d59b47" 4508 "[Denny] Linux processes/pipe/socket")
         ("63004207f7b75f96ac3cf5f783cb5a76" 4645 "[Denny] Difficulties in Hudson/Jenkins")
-        ("90ac35ae8c4c332a57203920b275dc51" 4799 "[Denny] Difficulties in cloud computing")
+        ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in cloud computing")
         ("e70d1b120c0db39d1a5d8eb10ee20b68" 4803 "[Denny] Difficulties in bash")
         ("6564602080ea28f277f2ab395095160c" 4867 "[Denny] Difficulties in puppet")
         ("9c5d4af2573027b0b61b920501ad1616" 4872 "[Denny] Difficulties in zabbix")
         ("6cab7dfbfb3c122332ccf0e5593bb20a" 4936 "[Denny] Difficulties in erlang")
         ("8192cd8e64030f55379112af2ede5c72" 4940 "[Denny] Daily Journal -- 工作日志")
-        ("d9d82b8a27d392317be812c7174c44d9" 4960 "[Denny] Linux http")
-        ("f8c59fe0cfe47bc4db33864df60354da" 5032 "[Denny] Linux network -- tcp/ip")
-        ("f0bafc66077f5cbf5c656aa2e27faeae" 4938 "[Denny] Linux network troubleshooting")
-        ("a5c196d7978add02e258af2a31a5b761" 5057 "[Denny] Form good habits -- 养成良好的习惯")
-        ("22c8572a32e61b7e527c0b17c9016bde" 5034 "[Denny] Erlang performance tunning for 1,000,000 connections")
-        ("2be42aee5276b8f016dee4f553eb8aaf" 5059 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
-        ("4f4ec8a684c78ff3e1b4cc961809c37a" 5127 "[Denny] Help me by discussing my questions")
+        ("f8c59fe0cfe47bc4db33864df60354da" 4938 "[Denny] Linux network -- tcp/ip")
+        ("f0bafc66077f5cbf5c656aa2e27faeae" 5032 "[Denny] Linux network troubleshooting")
+        ("5ebc33327869e48d20bb9a66de18bc11" 5057 "[Denny] erlang debug skills")
+        ("a5c196d7978add02e258af2a31a5b761" 5059 "[Denny] Form good habits -- 养成良好的习惯")
+        ("2be42aee5276b8f016dee4f553eb8aaf" 5127 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
+        ("4f4ec8a684c78ff3e1b4cc961809c37a" 5273 "[Denny] Help me by discussing my questions")
+        ("8cb2825a5242eec670f5ffa4aab3b288" 4960 "[Denny] linux调试工具集")
+        ("93cf6cd6e42d178c740407e64cde23ad" 5034 "[Denny] linux performance analysis")
+        ("2673753f5e99ed3823e2d428123126bd" 5349 "[Denny] linux systemtap")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

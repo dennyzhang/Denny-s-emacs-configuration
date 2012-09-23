@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-24 23:29:43>
+;; Updated: Time-stamp: <2012-09-17 22:50:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -272,7 +272,7 @@
 ;; auto enable emms-mark
 (add-hook 'emms-playlist-mode-hook 'emms-mark-mode)
 ;; sort emms playlist by decrease play count
-(setq emms-playlist-sort-function '(lambda ()
+(setq emms-playlist-sort-function #'(lambda ()
                                      (interactive)
                                      (let ((current-prefix-arg t))
                                        (emms-playlist-sort-by-play-count))))
@@ -280,14 +280,14 @@
   (emms-sort))
 ;; set default-directory correctly, for checking media files easily in emms playlist buffer
 (add-hook 'emms-playlist-mode-hook
-          '(lambda()
+          #'(lambda()
              (setq default-directory emms-source-file-default-directory)))
 (add-hook 'kill-emacs-hook 'emms-stop t)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.jpeg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.jpg$" . image-mode))
-(define-key image-mode-map (kbd "n") '(lambda() (interactive) (rotate-image-in-directory 1)))
-(define-key image-mode-map (kbd "p") '(lambda() (interactive) (rotate-image-in-directory -1)))
+(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1)))
+(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1)))
 (defun rotate-image-in-directory (N)
   "Enable image-mode to view previous/next image"
  (interactive)
@@ -305,7 +305,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq emms-org-file (concat DENNY_CONF "/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
-  '(lambda () (interactive) (update-music-to-org-file emms-org-file)))
+  #'(lambda () (interactive) (update-music-to-org-file emms-org-file)))
 ;; (update-music-to-org-file "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/music.org")
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))

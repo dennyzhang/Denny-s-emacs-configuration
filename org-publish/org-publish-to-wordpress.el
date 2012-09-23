@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-05 12:27:10>
+;; Updated: Time-stamp: <2012-09-18 07:27:20>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -133,7 +133,7 @@ See `org-publish-org-to' to the list of arguments."
         (delete-file dst-org-file)
         ))
     ))
-(org-defkey org-mode-map (kbd "C-c c") 'migrate-old-org)
+;;(org-defkey org-mode-map (kbd "C-c c") 'migrate-old-org)
 (defun migrate-old-org()
   (interactive)
   (save-excursion
