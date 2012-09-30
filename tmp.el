@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:50:38>
+;; Updated: Time-stamp: <2012-09-30 15:32:26>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -606,6 +606,34 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
 ;; --8<-------------------------- separator ------------------------>8--
+(defadvice tramp-maybe-open-connection (before tramp-set-connection-property activate)
+  (setenv "LC_ALL" "en_US.UTF-8")
+)
+;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
+;; --8<-------------------------- separator ------------------------>8--
+(defun sum-column (start end arg)
+  "Add up (presumed) numbers in the column defined by START and END.
+Insert if ARG."
+  (interactive "r\nP")
+  (if (< end start) (let (tmp)
+                      (setq tmp start)
+                      (setq start end)
+                      (setq end tmp)))
+  (save-excursion
+    (goto-char start)
+    (let ((numcol (current-column))
+          (numend (save-excursion (goto-char end) (current-column)))
+          (sum 0))
+      (while (< (point) end)
+        (setq sum (+ sum (string-to-number
+                          (buffer-substring (point)
+                                            (progn
+                                              (move-to-column numend t)
+                                              (point))))))
+        (beginning-of-line 2)
+        (move-to-column numcol t))
+      (if arg (insert (number-to-string sum)))
+      (message "Total: %.2f" sum))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

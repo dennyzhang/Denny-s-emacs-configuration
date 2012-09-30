@@ -1,0 +1,1 @@
+ps -e  -o "%C  : %p : %z : %a" | sort -nr | head -n 5
