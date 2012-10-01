@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-30 15:32:26>
+;; Updated: Time-stamp: <2012-10-01 12:37:11>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -422,10 +422,10 @@
     (call-interactively 'write-file)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun man-face-settings ()
-;;   "Face settings for `man'."
-;;   (setq Man-overstrike-face 'yellow-face)
-;;   (setq Man-underline-face 'underline-green-face)
-;;   (setq Man-reverse-face 'red-face))
+;; "Face settings for `man'."
+;; (setq Man-overstrike-face 'yellow-face)
+;; (setq Man-underline-face 'underline-green-face)
+;; (setq Man-reverse-face 'red-face))
 
 ;; (eval-after-load "man" `(man-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -576,10 +576,10 @@
 (setq read-file-name-completion-ignore-case t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (font-lock-add-keywords 'sh-mode '(
-;;                                    ("\\<--\\w+\\>" (0 font-lock-keyword-face))
-;;                                    ("[-{}()<>=;:+[.]\\|\\]" (0 font-lock-keys-face))
-;;                                    ("\\\\$" (0 font-lock-warning-face))
-;;                                    ))
+;; ("\\<--\\w+\\>" (0 font-lock-keyword-face))
+;; ("[-{}()<>=;:+[.]\\|\\]" (0 font-lock-keys-face))
+;; ("\\\\$" (0 font-lock-warning-face))
+;; ))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq mail-personal-alias-file (concat DENNY_CONF "emacs_data/filebat.mailrc"))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -591,14 +591,14 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq require-final-newline nil)
 (setq recentf-exclude '("/TAGS"
-			"/TAGS$"
-			"/var/tmp/"
-			".emacs-places"
-			".emacs.bmk"
-			".emacs~"
-			".ido.last"
-			".recentf"
-			".recentf~"))
+                        "/TAGS$"
+                        "/var/tmp/"
+                        ".emacs-places"
+                        ".emacs.bmk"
+                        ".emacs~"
+                        ".ido.last"
+                        ".recentf"
+                        ".recentf~"))
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key view-mode-map "j" 'ido-dired)
 (define-key view-mode-map "n" 'scroll-up-command)
@@ -608,7 +608,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (defadvice tramp-maybe-open-connection (before tramp-set-connection-property activate)
   (setenv "LC_ALL" "en_US.UTF-8")
-)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -635,5 +635,22 @@ Insert if ARG."
         (move-to-column numcol t))
       (if arg (insert (number-to-string sum)))
       (message "Total: %.2f" sum))))
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key [(control meta ?=)] 'frame-width-increase)
+(global-set-key [(control meta ?-)] 'frame-width-decrease)
+(defun frame-width-increase (&optional delta)
+  (interactive)
+  (let ((old-frame-width (window-width))
+        next-frame-width)
+    (if (null delta)
+        (setq delta 5))
+    (setq next-frame-width (+ delta old-frame-width))
+    (set-frame-width (selected-frame) next-frame-width)
+    )
+  )
+(defun frame-width-decrease ()
+  (interactive)
+  (frame-width-increase -5)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

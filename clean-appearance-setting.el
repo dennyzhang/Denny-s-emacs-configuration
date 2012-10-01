@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-05 11:10:00>
+;; Updated: Time-stamp: <2012-10-01 12:44:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -101,5 +101,31 @@
 ;;   (setq compilation-leave-directory-face 'magenta-face))
 
 ;; (eval-after-load "compile" `(compile-face-settings))
+;; --8<-------------------------- separator ------------------------>8--
+(defun fullscreen-toggle ()
+  "Toggle fullscreen status."
+  (interactive)
+  (x-send-client-message
+   nil 0 nil "_NET_WM_STATE" 32
+   ;; if first parameter is '2', can toggle fullscreen status. Otherwise, can't toggle.
+   '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+(global-set-key [f11] 'fullscreen-toggle)
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key [(control meta ?=)] 'frame-width-increase)
+(global-set-key [(control meta ?-)] 'frame-width-decrease)
+(defun frame-width-increase (&optional delta)
+  (interactive)
+  (let ((old-frame-width (window-width))
+        next-frame-width)
+    (if (null delta)
+        (setq delta 5))
+    (setq next-frame-width (+ delta old-frame-width))
+    (set-frame-width (selected-frame) next-frame-width)
+    )
+  )
+(defun frame-width-decrease ()
+  (interactive)
+  (frame-width-increase -5)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: clean-appearance-setting.el ends here
