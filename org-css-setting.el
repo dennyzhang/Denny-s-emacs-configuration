@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-26 11:18:26>
+;; Updated: Time-stamp: <2012-10-16 18:20:24>
 ;;
 ;; when hover, show author info automatically
 (setq org-export-html-home/up-format
@@ -981,4 +981,41 @@
 } /* END OF @media screen */
 </Style>"
 )
+;; for normal
+(setq org-export-html-home/up-format
+      (concat
+       "<style type=\"text/css\">
+   #org-div-home-and-up {
+       font-size: 10pt;
+       position: fixed;
+       right: 5em;
+       top: 2em;
+       background: white;
+       -webkit-box-shadow: 0 0 1em #777777;
+       -moz-box-shadow: 0 0 1em #777777;
+       -webkit-border-bottom-left-radius: 5px;
+       -moz-border-radius-bottomleft: 5px;
+       text-align:right;
+       font-size:110%%;
+       white-space:nowrap;
+   }
+   #org-div-home-and-up #text-author {
+       display: none;
+   }
+   #org-div-home-and-up:hover #text-author {
+       display: block;
+  }
+</style>
+<div id=\"org-div-home-and-up\">
+    <div id=\"text-org-div-home-and-up\">
+      <a target=\"_blank\" href=\"\"> AUTHOR </a>
+       |
+      <a accesskey=\"h\" href=\"%s\"> UP </a>
+       |
+      <a accesskey=\"H\" href=\"%s\"> HOME </a>
+   </div>"
+       (format "<div id=\"text-author\"> %s(%s) </div> </div>"
+               user-full-name user-mail-address)))
+
+;; CSS
 ;; File: org-css-setting.el ends here

@@ -5,6 +5,6 @@
 ;; Description :
 ;; --
 ;; Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
-;; Updated: Time-stamp: <2011-12-23 00:19:24>
+;; Updated: Time-stamp: <2012-10-15 00:43:01>
 ;;-------------------------------------------------------------------
 ;; File : hello ends

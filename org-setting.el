@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-21 21:14:40>
+;; Updated: Time-stamp: <2012-10-20 15:06:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -13,13 +13,12 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list
-                              (concat DENNY_CONF "/org_data/wish.org")
-                              (concat DENNY_CONF "/org_data/org_share/myself.org")
+                              (concat DENNY_CONF "/org_data/worklog.org")
                               (concat DENNY_CONF "/org_data/current.org")
-                              (concat DENNY_CONF "/org_data/org_share/diary.org")
+                              (concat DENNY_CONF "/org_data/wish.org")
                               (concat DENNY_CONF "/org_data/learn.org")
-                              (concat DENNY_CONF "/org_data/english.org")
                               (concat DENNY_CONF "/org_data/project.org")
+                              (concat DENNY_CONF "/org_data/org_share/myself.org")
                               (concat DENNY_CONF "/org_data/org_share/connection.org")
                               (concat DENNY_CONF "/org_data/org_share/question.org")
                               ))
@@ -148,7 +147,7 @@
 (org-defkey org-mode-map [(control shift up)] 'enlarge-window)
 (org-defkey org-mode-map [(control shift down)] 'shrink-window)
 (org-defkey org-mode-map [(meta .)] 'occur-org-title)
-(org-defkey org-mode-map [(tab)] 'yas/expand)
+;; (org-defkey org-mode-map [(tab)] 'yas/expand)
 (org-defkey org-mode-map (kbd "M-p i") 'my-insert-time)
 (org-defkey org-mode-map "\C-c<" 'recent-jump-jump-backward)
 (org-defkey org-mode-map "\C-c>" 'recent-jump-jump-forward)
@@ -312,5 +311,24 @@
                                       x nil))
                               entry-list)))
       )))
+;; --8<-------------------------- separator ------------------------>8--
+;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
+(setq copylog-monitor-orgfiles '("current.org" "wish.org" "top.org"))
+(setq copylog-dest-orgfile (concat DENNY_CONF "/org_data/worklog.org"))
+(defadvice org-kill-line (after kill-region activate)
+  (if (member (buffer-name) copylog-monitor-orgfiles)
+      (unless (null (string-match "^\*+ DONE" (org-no-properties (car kill-ring))))
+        (let ((old-buffer (current-buffer)))
+          ;; open buffer to store the worklog
+          (if (null (get-file-buffer copylog-dest-orgfile))
+              (find-file copylog-dest-orgfile))
+          (set-buffer (get-file-buffer copylog-dest-orgfile))
+          (end-of-buffer)
+          (insert "\n")
+          (yank)
+          (write-file copylog-dest-orgfile)
+          (switch-to-buffer old-buffer))
+        )
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

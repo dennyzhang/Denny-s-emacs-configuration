@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:50:38>
+;; Updated: Time-stamp: <2012-10-19 22:22:50>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -25,6 +25,7 @@
         "buffer-setting.el"
         "essentialpackage-setting.el"
         "dired-setting.el"
+        "org-setting.el"
         "handyfunction-setting.el"
         "diff-setting.el"
         "regexp-setting.el"
@@ -35,7 +36,6 @@
         "calendar-setting.el"
         "largeessentialpackage-setting.el"
         "bbdb-setting.el"
-        "org-setting.el"
         "gnus-setting.el"
         "ledger-setting.el"
         "online-search/online-search-setting.el"
@@ -48,6 +48,7 @@
         "emacs-aggregation/emacs-aggregation-setup.el"
         "capture-setting.el"
         "sns-setting.el"
+        "latex-setting.el"
         "otherpackage-setting.el"
         ))
 (cond

@@ -4,5 +4,4 @@
 @c data: $1
 @smallexample
 $0@end smallexample
-
-@c smallexample: $LEDGER -f $1 
+@c smallexample: $LEDGER -f $1

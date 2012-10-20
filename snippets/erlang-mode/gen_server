@@ -5,57 +5,39 @@
 %%% Description :
 %%% --
 %%% Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
-%%% Updated: Time-stamp: <2012-06-02 22:43:27>
+%%% Updated: Time-stamp: <2012-10-15 00:42:58>
 %%%-------------------------------------------------------------------
 -module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
-
 -compile(export_all).
-
 -behaviour(gen_server).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
-
 %% Public API
-
 start() ->
   gen_server:start({local, ?MODULE}, ?MODULE, [], []).
-
 stop(Module) ->
   gen_server:call(Module, stop).
-
 stop() ->
   stop(?MODULE).
-
 state(Module) ->
   gen_server:call(Module, state).
-
 state() ->
   state(?MODULE).
-
 %% Server implementation, a.k.a.: callbacks
-
 init([]) ->
   {ok, []}.
-
 handle_call(stop, _From, State) ->
   {stop, normal, stopped, State};
-
 handle_call(state, _From, State) ->
   {reply, State, State};
-
 handle_call(_Request, _From, State) ->
   {reply, ok, State}.
-
 handle_cast(_Msg, State) ->
   {noreply, State}.
-
 handle_info(_Info, State) ->
   {noreply, State}.
-
 terminate(_Reason, _State) ->
   ok.
-
 code_change(_OldVsn, State, _Extra) ->
   {ok, State}.
-
 %%% File : hello ends
 $0

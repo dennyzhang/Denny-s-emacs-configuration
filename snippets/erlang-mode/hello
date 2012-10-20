@@ -5,11 +5,9 @@
 %%% Description :
 %%% --
 %%% Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
-%%% Updated: Time-stamp: <2011-12-20 14:08:21>
+%%% Updated: Time-stamp: <2012-10-15 00:42:58>
 %%%-------------------------------------------------------------------
 -module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
-
 -compile(export_all).
-
 %%% File : hello ends
 $0

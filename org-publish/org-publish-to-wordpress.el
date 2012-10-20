@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-27 22:30:55>
+;; Updated: Time-stamp: <2012-10-02 22:16:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -269,7 +269,7 @@ See `org-publish-org-to' to the list of arguments."
                     (list (cons "title" post-title)
                           (cons "authorName" "zhangwei")
                           (cons "description" (format-time-string
-                                               "Automatically exported from local knowledge-base in emacs org-mode. Updated %Y-%m-%d %H:%M.<!--more-->" (current-time)))
+                                               "Auto-updated %Y-%m-%d %H:%M.<!--more-->" (current-time)))
                           (cons "mt_keywords"
                                 (if
                                     (string= "" keyword-list)

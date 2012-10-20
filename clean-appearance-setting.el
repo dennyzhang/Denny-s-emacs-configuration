@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-01 12:44:12>
+;; Updated: Time-stamp: <2012-10-04 22:01:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-background 'modeline "#5f9ea0") ;; set color of modeline
@@ -64,6 +64,8 @@
      nil
      '(("\\<\\(FIXME\\)" 0 font-lock-warning-face t)
        ("\\<\\(fixme\\)" 0 font-lock-warning-face t)
+       ("\\<\\(HACK\\)" 0 font-lock-warning-face t)
+       ("\\<\\(REFACTOR\\)" 0 font-lock-warning-face t)
        ("\\<\\(TODO\\)" 0 font-lock-warning-face t)
        ("\\<\\(todo\\)" 0 font-lock-warning-face t)
        ("\\<\\(Todo\\)" 0 font-lock-warning-face t)))

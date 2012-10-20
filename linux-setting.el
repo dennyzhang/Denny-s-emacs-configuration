@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-06-27 17:03:42>
+;; Updated: Time-stamp: <2012-10-01 12:54:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -25,15 +25,6 @@
        '(
          (font . "fontset-startup"))
                 default-frame-alist))
-;; --8<-------------------------- separator ------------------------>8--
-(defun fullscreen-toggle ()
-  "Toggle fullscreen status."
-  (interactive)
-  (x-send-client-message
-   nil 0 nil "_NET_WM_STATE" 32
-   ;; if first parameter is '2', can toggle fullscreen status. Otherwise, can't toggle.
-   '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-(global-set-key [f11] 'fullscreen-toggle)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
 (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))

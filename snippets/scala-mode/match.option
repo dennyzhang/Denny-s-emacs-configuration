@@ -3,6 +3,5 @@
 # --
 ${1:option} match {
   case None => $0
-  case Some(res) => 
-
+  case Some(res) =>
 }

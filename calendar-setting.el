@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:50:39>
+;; Updated: Time-stamp: <2012-10-03 15:29:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -65,7 +65,7 @@
         (holiday-chinese 6 21 "Denny生日")
         (holiday-fixed 7 30 "吴在宥生日") ;; 2010
         (holiday-fixed 9 14 "秀秀生日") ;; 1987
-        (holiday-chinese 8 18 "秀秀爸爸生日") ;; 1963-10-5
+        (holiday-chinese 10 5 "秀秀爸爸生日")
         (holiday-chinese 12 20 "秀秀妈妈生日") ;; 1962-2-24
         (holiday-fixed 9 10 "杨明哲生日") ;;2011
         (holiday-chinese 5 24 "张伟智生日")
@@ -74,23 +74,9 @@
         (holiday-fixed 11 8 "任全生日")
         (holiday-fixed 3 7 "陈赞生日")
         ;; --8<-------------------------- separator ------------------------>8--
-        (holiday-fixed 4 1 "赵曜生日")
-        (holiday-fixed 8 10 "吉嘉生日")
-        (holiday-fixed 11 8 "尹光宗生日")
-        (holiday-fixed 11 29 "刘云晕生日")
-        (holiday-fixed 7 7 "林宏生生日")
-        (holiday-fixed 5 18 "郑平生日")
-        (holiday-fixed 10 12 "李建军生日")
-        (holiday-fixed 10 15 "麦向东生日")
-        (holiday-fixed 1 1 "郑彦树生日")
         (holiday-fixed 10 1 "周宁生日")
-        (holiday-fixed 11 30 "吴杰生日")
-        (holiday-fixed 7 1 "彭丽仪生日")
         (holiday-fixed 9 7 "杨志明生日")
         (holiday-fixed 12 3 "杨晓亮生日")
-        (holiday-fixed 4 15 "肖建泽生日")
-        (holiday-fixed 12 18 "陈莹生日")
-        (holiday-chinese 8 21 "程恒生日")
         (holiday-fixed 11 26 "刘小溪生日")
         ;; --8<-------------------------- separator ------------------------>8--
         (holiday-chinese-new-year)

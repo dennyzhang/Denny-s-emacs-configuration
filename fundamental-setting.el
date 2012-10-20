@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-26 12:33:22>
+;; Updated: Time-stamp: <2012-10-03 11:40:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -73,8 +73,7 @@
       (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
 ;;(setq-default show-trailing-whitespace 't)
 ;; --8<-------------------------- separator ------------------------>8--
-;; auto-refresh all buffers, when files change on disk
-(global-auto-revert-mode t)
+;;(global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
 (auto-image-file-mode t)
 (setq resize-mini-windows t)
 (setq message-log-max 8192) ;; Set the *Message* log to something higher

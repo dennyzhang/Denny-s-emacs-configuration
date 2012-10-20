@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-29 20:17:37>
+;; Updated: Time-stamp: <2012-10-14 11:17:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -35,6 +35,8 @@
   ;; "* %t %:subject :noexport:\n %s\n%?\n\n"
   (let ((content (buffer-string)))
     (setq content (replace-regexp-in-string "\n+$" "\n" content))
+    ;; disable template substitution of org-capture, like %A, %t, etc
+    (setq content (replace-regexp-in-string "%\\([a-zA-Z]\\)" "% \\1" content))
     (concat "* TODO mail: %:subject "
             (make-string 10 32) ":noexport:\n"
             "%a\n"
@@ -45,6 +47,8 @@
   (let ((content (buffer-string)))
     (setq content (replace-regexp-in-string "\n+$" "\n" content))
     (setq content (replace-regexp-in-string "^\* " "# " content))
+    ;; disable template substitution of org-capture, like %A, %t, etc
+    (setq content (replace-regexp-in-string "%\\([a-zA-Z]\\)" "% \\1" content))
     (concat "* web page: " w3m-current-title (make-string 10 32) "\n"
             w3m-current-url "\n"
             "** webcontent " (make-string 20 32)

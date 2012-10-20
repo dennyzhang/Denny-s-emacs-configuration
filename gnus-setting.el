@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-20 00:03:37>
+;; Updated: Time-stamp: <2012-10-01 16:57:01>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -560,5 +560,13 @@ And insert header to mark message as unimportant(X-Priority).
 ;; put signature before message, when replying
 (setq message-forward-before-signature nil)
 (setq message-cite-reply-position 'above)
+;; --8<-------------------------- separator ------------------------>8--
+;; hack original citation to attach when the mail is received
+(defun message-insert-citation-line ()
+  "Insert a simple citation line."
+  (when message-reply-headers
+    (insert (mail-header-date message-reply-headers) " " (mail-header-from message-reply-headers) " writes:")
+    (newline)
+    (newline)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

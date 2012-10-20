@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-23 21:22:59>
+;; Updated: Time-stamp: <2012-10-17 20:53:32>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -64,18 +64,21 @@
         ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in cloud computing")
         ("e70d1b120c0db39d1a5d8eb10ee20b68" 4803 "[Denny] Difficulties in bash")
         ("6564602080ea28f277f2ab395095160c" 4867 "[Denny] Difficulties in puppet")
-        ("9c5d4af2573027b0b61b920501ad1616" 4872 "[Denny] Difficulties in zabbix")
+        ("ee2156b3de6592010f4aa0e7d5d9d4a2" 4872"[Denny] ubuntu skills")
         ("6cab7dfbfb3c122332ccf0e5593bb20a" 4936 "[Denny] Difficulties in erlang")
         ("8192cd8e64030f55379112af2ede5c72" 4940 "[Denny] Daily Journal -- 工作日志")
         ("f8c59fe0cfe47bc4db33864df60354da" 4938 "[Denny] Linux network -- tcp/ip")
         ("f0bafc66077f5cbf5c656aa2e27faeae" 5032 "[Denny] Linux network troubleshooting")
-        ("5ebc33327869e48d20bb9a66de18bc11" 5057 "[Denny] erlang debug skills")
         ("a5c196d7978add02e258af2a31a5b761" 5059 "[Denny] Form good habits -- 养成良好的习惯")
         ("2be42aee5276b8f016dee4f553eb8aaf" 5127 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
         ("4f4ec8a684c78ff3e1b4cc961809c37a" 5273 "[Denny] Help me by discussing my questions")
         ("2673753f5e99ed3823e2d428123126bd" 4960 "[Denny] linux systemtap")
-        ("8cb2825a5242eec670f5ffa4aab3b288" 5349 "[Denny] linux调试工具集")
-        ("93cf6cd6e42d178c740407e64cde23ad" 5034 "[Denny] linux performance analysis")
+        ("5ebc33327869e48d20bb9a66de18bc11" 5349 "[Denny] erlang debug skills")
+        ("8cb2825a5242eec670f5ffa4aab3b288" 5057 "[Denny] linux调试工具集")
+        ("ebebb36b96347ed2867a729138f001ec" 5476 "[Denny] Difficulties in mongo")
+        ("9c5d4af2573027b0b61b920501ad1616" 5454 "[Denny] Difficulties in zabbix")
+        ("93cf6cd6e42d178c740407e64cde23ad" 5485 "[Denny] linux performance analysis")
+        ("fdccde5218fd284a1f41f860eeb7147d" 5490 "[Denny] 如何测试云平台(副标题: 商派电子商务云平台的回顾和反思)")
         ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

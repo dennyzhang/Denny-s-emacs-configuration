@@ -1,1 +1,1 @@
-sudo tcpdump -c 100 -nn -i any 'port $1 ' -vvv -XX -s 0 -f
+sudo tcpdump -c 1000 -nn -i any 'port $1 ' -vvv -XX -s 0 -f

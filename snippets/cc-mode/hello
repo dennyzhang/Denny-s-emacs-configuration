@@ -5,11 +5,10 @@
 // Description :
 // --
 // Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
-// Updated: Time-stamp: <2011-12-20 14:10:01>
+// Updated: Time-stamp: <2012-10-15 00:43:14>
 //-------------------------------------------------------------------
 #include <iostream>
 using namespace std;
-
 int main(int argc, char *argv[]) {
      $0
      return 0;
