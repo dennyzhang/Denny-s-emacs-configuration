@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-20 14:22:03>
+;; Updated: Time-stamp: <2012-10-22 00:46:02>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -1634,7 +1634,5 @@ Insert if ARG."
 } /* END OF @media screen */
 </Style>"
 )
-;; --8<-------------------------- separator ------------------------>8--
-(setq gnus-delay-default-hour 10) ;; Normally I will reach the office by 10am
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

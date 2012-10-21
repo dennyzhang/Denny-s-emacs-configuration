@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-01 16:57:01>
+;; Updated: Time-stamp: <2012-10-22 00:45:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -568,5 +568,7 @@ And insert header to mark message as unimportant(X-Priority).
     (insert (mail-header-date message-reply-headers) " " (mail-header-from message-reply-headers) " writes:")
     (newline)
     (newline)))
+;; --8<-------------------------- separator ------------------------>8--
+(setq gnus-delay-default-hour 10) ;; Normally I will reach the office by 10am
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-17 20:53:32>
+;; Updated: Time-stamp: <2012-10-21 22:39:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -60,10 +60,9 @@
         ("22c8572a32e61b7e527c0b17c9016bde" 2158 "[Denny] Erlang performance tunning for 1,000,000 connections")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 4799 "[Denny] [置顶] Motto -- 人生格言")
         ("64ab0d4faf53a362c1363e8000d59b47" 4508 "[Denny] Linux processes/pipe/socket")
-        ("63004207f7b75f96ac3cf5f783cb5a76" 4645 "[Denny] Difficulties in Hudson/Jenkins")
+        ("ebebb36b96347ed2867a729138f001ec" 4645 "[Denny] Difficulties in mongo")
         ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in cloud computing")
         ("e70d1b120c0db39d1a5d8eb10ee20b68" 4803 "[Denny] Difficulties in bash")
-        ("6564602080ea28f277f2ab395095160c" 4867 "[Denny] Difficulties in puppet")
         ("ee2156b3de6592010f4aa0e7d5d9d4a2" 4872"[Denny] ubuntu skills")
         ("6cab7dfbfb3c122332ccf0e5593bb20a" 4936 "[Denny] Difficulties in erlang")
         ("8192cd8e64030f55379112af2ede5c72" 4940 "[Denny] Daily Journal -- 工作日志")
@@ -75,7 +74,8 @@
         ("2673753f5e99ed3823e2d428123126bd" 4960 "[Denny] linux systemtap")
         ("5ebc33327869e48d20bb9a66de18bc11" 5349 "[Denny] erlang debug skills")
         ("8cb2825a5242eec670f5ffa4aab3b288" 5057 "[Denny] linux调试工具集")
-        ("ebebb36b96347ed2867a729138f001ec" 5476 "[Denny] Difficulties in mongo")
+        ("6564602080ea28f277f2ab395095160c" 5476 "[Denny] Difficulties in puppet")
+        ("63004207f7b75f96ac3cf5f783cb5a76" 5034 "[Denny] Difficulties in Hudson/Jenkins")
         ("9c5d4af2573027b0b61b920501ad1616" 5454 "[Denny] Difficulties in zabbix")
         ("93cf6cd6e42d178c740407e64cde23ad" 5485 "[Denny] linux performance analysis")
         ("fdccde5218fd284a1f41f860eeb7147d" 5490 "[Denny] 如何测试云平台(副标题: 商派电子商务云平台的回顾和反思)")
