@@ -3,7 +3,37 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-22 00:46:02>
+;; Updated: Time-stamp: <2012-12-05 15:37:23>
+;; --8<-------------------------- separator ------------------------>8--
+(defun update-question-to-blog()
+  (interactive)
+  (progn
+    (question)
+    (org-export-as-freemind)
+    )
+  )
+(defun gb2312_to_utf8 ()
+  "convert current buffer from gb2312 to utf8"
+  (interactive)
+  (let* ((current-file (buffer-file-name (current-buffer)))
+         (bak-file (format "%s_%s_bak" current-file (random 100)))
+         (convert-command (format "iconv -f gb2312 -t utf-8 %s > %s"
+                                  current-file bak-file))
+         )
+    (with-temp-buffer
+      (message convert-command)
+      (shell-command convert-command t)
+      (find-file bak-file))
+    ))
+;; --8<-------------------------- separator ------------------------>8--
+(defun tidy-xml-buffer ()
+ (interactive)
+ (save-excursion
+ (call-process-region (point-min) (point-max) "tidy" t t nil
+ "-xml" "-i" "-wrap" "0" "-omit" "-q")))
+
+(eval-after-load "nxml-mode"
+ '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -156,16 +186,15 @@
 ;; (modify-syntax-entry ?[ "w")
 ;; (modify-syntax-entry ?] "w")
 ;; --8<-------------------------- separator ------------------------>8--
-(defun eshell-spawn-external-command (beg end)
- "Parse and expand any history references in current input."
- (save-excursion
- (goto-char end)
- (when (looking-back "&!" beg)
- (delete-region (match-beginning 0) (match-end 0))
- (goto-char beg)
- (insert "spawn "))))
-
-(add-hook 'eshell-expand-input-functions 'eshell-spawn-external-command)
+;; (defun eshell-spawn-external-command (beg end)
+;;  "Parse and expand any history references in current input."
+;;  (save-excursion
+;;  (goto-char end)
+;;  (when (looking-back "&!" beg)
+;;  (delete-region (match-beginning 0) (match-end 0))
+;;  (goto-char beg)
+;;  (insert "spawn "))))
+;; (add-hook 'eshell-expand-input-functions 'eshell-spawn-external-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun elint-current-buffer ()
  (interactive)
@@ -180,61 +209,52 @@
  (add-to-list 'elint-standard-variables 'emacs-major-version)
  (add-to-list 'elint-standard-variables 'window-system)))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun my-elisp-indent-or-complete (&optional arg)
- (interactive "p")
- (call-interactively 'lisp-indent-line)
- (unless (or (looking-back "^\\s-*")
- (bolp)
- (not (looking-back "[-A-Za-z0-9_*+/=<>!?]+")))
- (call-interactively 'lisp-complete-symbol)))
+;; (defun my-elisp-indent-or-complete (&optional arg)
+;;  (interactive "p")
+;;  (call-interactively 'lisp-indent-line)
+;;  (unless (or (looking-back "^\\s-*")
+;;  (bolp)
+;;  (not (looking-back "[-A-Za-z0-9_*+/=<>!?]+")))
+;;  (call-interactively 'lisp-complete-symbol)))
 
-(defun my-lisp-indent-or-complete (&optional arg)
- (interactive "p")
- (if (or (looking-back "^\\s-*") (bolp))
- (call-interactively 'lisp-indent-line)
- (call-interactively 'slime-indent-and-complete-symbol)))
+;; (defun my-lisp-indent-or-complete (&optional arg)
+;;  (interactive "p")
+;;  (if (or (looking-back "^\\s-*") (bolp))
+;;  (call-interactively 'lisp-indent-line)
+;;  (call-interactively 'slime-indent-and-complete-symbol)))
 
-(defvar slime-mode nil)
+;; (defvar slime-mode nil)
 
-(defun my-lisp-mode-hook (&optional emacs-lisp-p)
- (auto-fill-mode 1)
- ;;(paredit-mode 1)
- ;;(redshank-mode 1)
+;; (defun my-lisp-mode-hook (&optional emacs-lisp-p)
+;;  (auto-fill-mode 1)
+;;  ;;(paredit-mode 1)
+;;  ;;(redshank-mode 1)
 
- ;;(column-marker-1 79)
- (let (mode-map)
- (if emacs-lisp-p
- (progn
- (require 'edebug)
+;;  ;;(column-marker-1 79)
+;;  (let (mode-map)
+;;  (if emacs-lisp-p
+;;  (progn
+;;  (require 'edebug)
 
- (setq mode-map emacs-lisp-mode-map)
+;;  (setq mode-map emacs-lisp-mode-map)
 
- (define-key mode-map [(meta return)] 'outline-insert-heading)
- (define-key mode-map [tab] 'my-elisp-indent-or-complete)
- (define-key mode-map [tab] 'yas/expand))
+;;  (define-key mode-map [(meta return)] 'outline-insert-heading)
+;;  (define-key mode-map [tab] 'my-elisp-indent-or-complete)
+;;  (define-key mode-map [tab] 'yas/expand))
 
- ;;(turn-on-cldoc-mode)
+;;  ;;(turn-on-cldoc-mode)
 
- (setq mode-map lisp-mode-map)
+;;  (setq mode-map lisp-mode-map)
 
- (define-key mode-map [tab] 'my-lisp-indent-or-complete)
- (define-key mode-map [(meta ?q)] 'slime-reindent-defun)
- (define-key mode-map [(meta ?l)] 'slime-selector))))
+;;  (define-key mode-map [tab] 'my-lisp-indent-or-complete)
+;;  (define-key mode-map [(meta ?q)] 'slime-reindent-defun)
+;;  (define-key mode-map [(meta ?l)] 'slime-selector))))
 
-(mapc (lambda (hook)
- (add-hook hook 'my-lisp-mode-hook))
- '(lisp-mode-hook inferior-lisp-mode-hook slime-repl-mode-hook))
+;; (mapc (lambda (hook)
+;;  (add-hook hook 'my-lisp-mode-hook))
+;;  '(lisp-mode-hook inferior-lisp-mode-hook slime-repl-mode-hook))
 
-(add-hook 'emacs-lisp-mode-hook (function (lambda () (my-lisp-mode-hook t))))
-;; --8<-------------------------- separator ------------------------>8--
-(defun tidy-xml-buffer ()
- (interactive)
- (save-excursion
- (call-process-region (point-min) (point-max) "tidy" t t nil
- "-xml" "-i" "-wrap" "0" "-omit" "-q")))
-
-(eval-after-load "nxml-mode"
- '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
+;; (add-hook 'emacs-lisp-mode-hook (function (lambda () (my-lisp-mode-hook t))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ido-smart-select-text ()
  "Select the current completed item. Do NOT descend into directories."
@@ -600,10 +620,6 @@
  ".ido.last"
  ".recentf"
  ".recentf~"))
-;; --8<-------------------------- separator ------------------------>8--
-(define-key view-mode-map "j" 'ido-dired)
-(define-key view-mode-map "n" 'scroll-up-command)
-(define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -1634,5 +1650,7 @@ Insert if ARG."
 } /* END OF @media screen */
 </Style>"
 )
+;; --8<-------------------------- separator ------------------------>8--
+;;(setq message-default-charset 'utf-8)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

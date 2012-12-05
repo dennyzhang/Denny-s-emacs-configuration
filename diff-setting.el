@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2012-04-22
-;; Updated: Time-stamp: <2012-05-01 22:05:50>
+;; Updated: Time-stamp: <2012-11-26 11:27:14>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -54,6 +54,9 @@
 
 ;; when diff-mode, set buffers readonly
 (add-hook 'diff-mode-hook (lambda () (view-mode)))
+(define-key view-mode-map "j" 'ido-dired)
+(define-key view-mode-map "n" 'scroll-up-command)
+(define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ediff-sequent-lines ()
   "Compare two sequent lines in the same buffer, by calling ediff-regions-internal"

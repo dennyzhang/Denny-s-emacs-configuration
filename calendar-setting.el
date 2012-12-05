@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-03 15:29:02>
+;; Updated: Time-stamp: <2012-12-04 22:32:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -69,6 +69,7 @@
         (holiday-chinese 12 20 "秀秀妈妈生日") ;; 1962-2-24
         (holiday-fixed 9 10 "杨明哲生日") ;;2011
         (holiday-chinese 5 24 "张伟智生日")
+        (holiday-chinese 12 20 "杨晓亮生日")
         ;; --8<-------------------------- separator ------------------------>8--
         (holiday-chinese 12 11 "四姨生日")
         (holiday-fixed 11 8 "任全生日")
@@ -76,7 +77,6 @@
         ;; --8<-------------------------- separator ------------------------>8--
         (holiday-fixed 10 1 "周宁生日")
         (holiday-fixed 9 7 "杨志明生日")
-        (holiday-fixed 12 3 "杨晓亮生日")
         (holiday-fixed 11 26 "刘小溪生日")
         ;; --8<-------------------------- separator ------------------------>8--
         (holiday-chinese-new-year)

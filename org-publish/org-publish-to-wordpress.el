@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-02 22:16:44>
+;; Updated: Time-stamp: <2012-11-01 22:41:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -247,7 +247,7 @@ See `org-publish-org-to' to the list of arguments."
         keyword-list
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
-    (setq html-files (directory-files html-dir t ".html$"))
+    (setq html-files (directory-files html-dir t ".*-.*-.*html$"))
     (setq not-tracked-org-post '())
     (dolist (html-file html-files)
       (setq short-filename (file-name-sans-extension (file-name-nondirectory html-file)))

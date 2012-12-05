@@ -3,13 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-15 00:36:13>
+;; Updated: Time-stamp: <2012-11-24 15:52:31>
 ;;
-;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
-(require 'yasnippet)
-(setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
-(yas-global-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-insert-time()
   (interactive)

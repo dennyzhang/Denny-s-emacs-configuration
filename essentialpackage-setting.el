@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:30:10>
+;; Updated: Time-stamp: <2012-11-26 11:26:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -325,43 +325,6 @@
     (toggle-truncate-lines))
    (t (fold-dwim-toggle))
    ))
-;; --8<-------------------------- separator ------------------------>8--
-(require 'desktop)
-;; save a bunch of variables to the desktop file
-;; for lists specify the len of the maximal saved data also
-(setq desktop-globals-to-save
-      (append '((extended-command-history . 30)
-                (file-name-history . 100)
-                (ido-last-directory-list . 100)
-                (ido-work-directory-list . 100)
-                (ido-work-file-list . 100)
-                (grep-history . 30)
-                (compile-history . 30)
-                (minibuffer-history . 50)
-                (query-replace-history . 60)
-                (read-expression-history . 60)
-                (regexp-history . 60)
-                (regexp-search-ring . 20)
-                (search-ring . 20)
-                (comint-input-ring . 50)
-                (shell-command-history . 50)
-                desktop-missing-file-warning
-                tags-file-name
-                register-alist)))
-(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
-(setq desktop-buffers-not-to-save
-      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-              "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-              "\\)$"))
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'erc-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
-(desktop-save-mode 1)
-(desktop-release-lock)
-(add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
-(add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
 ;; (setq sr-speedbar-skip-other-window-p t)

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-22 00:45:45>
+;; Updated: Time-stamp: <2012-10-23 15:48:58>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; hacking latex export for showing Chinese characters
 (add-hook 'org-export-latex-final-hook 'update-orgbeam-latex)
@@ -16,7 +16,7 @@
  (replace-string "begin{document}
 
 " "begin{document}
-\\begin{CJK}{UTF8}{gkai}
+\\begin{CJK}{UTF8}{song}
 " nil (point-min) (point-max))
  (goto-char (point-min))
  (replace-string "
@@ -40,12 +40,12 @@
 \\usetheme{AnnArbor}
 \\subtitle{商派电子商务云平台的回顾和反思}
 \\institute[Shopex]{上海商派}
-\\logo{\\pgfimage[width=1.1cm,height=0.8cm]{shopex.png}}
+\\logo{\\pgfimage[width=1.1cm,height=0.4cm]{shopex.png}}
 
 \\AtBeginSection[]
 {
   \\begin{frame}
-    \\frametitle{目录}
+    \\frametitle{如何测试云平台}
     \\tableofcontents[currentsection]
   \\end{frame}
 }

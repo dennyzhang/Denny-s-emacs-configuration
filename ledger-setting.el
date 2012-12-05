@@ -3,14 +3,14 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:10:13>
+;; Updated: Time-stamp: <2012-11-26 11:15:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
   "parse all accounts from ledger file, and generate sql
 statement for insertion to sqlite db"
   (interactive)
-  (save-excursion
+  (with-current-buffer
     (let ((output-buffername "*ledger http*")
           asset-accounts expenses-accounts incoming-accounts)
       ;; clean output buffer

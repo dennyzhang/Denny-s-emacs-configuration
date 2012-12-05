@@ -1,1 +1,1 @@
-error_logger:info_msg("[~p][~p:~p:~p] here:~p~n",[self(), calendar:now_to_local_time(now()), ?MODULE, ?LINE, $1]),
+error_logger:info_msg("[~p:~p] here:~p~n",[?MODULE, ?LINE, $1]),

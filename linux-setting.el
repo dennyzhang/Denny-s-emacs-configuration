@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-01 12:54:26>
+;; Updated: Time-stamp: <2012-11-26 11:28:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -84,5 +84,99 @@
 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stata$" . stata-mode))
 ;;(org-defkey org-mode-map [(control meta ,)] 'org-shiftmetaleft)
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
+;;(add-to-list 'load-path "/home/denny/Downloads/yasnippet-0.6.1c/")
+(require 'yasnippet)
+(setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
+(yas-global-mode 1)
+;; --8<-------------------------- separator ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(require 'desktop)
+;; save a bunch of variables to the desktop file
+;; for lists specify the len of the maximal saved data also
+(setq desktop-globals-to-save
+      (append '((extended-command-history . 30)
+                (file-name-history . 100)
+                (ido-last-directory-list . 100)
+                (ido-work-directory-list . 100)
+                (ido-work-file-list . 100)
+                (grep-history . 30)
+                (compile-history . 30)
+                (minibuffer-history . 50)
+                (query-replace-history . 60)
+                (read-expression-history . 60)
+                (regexp-history . 60)
+                (regexp-search-ring . 20)
+                (search-ring . 20)
+                (comint-input-ring . 50)
+                (shell-command-history . 50)
+                desktop-missing-file-warning
+                tags-file-name
+                register-alist)))
+(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
+(setq desktop-buffers-not-to-save
+      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+              "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+              "\\)$"))
+(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+(add-to-list 'desktop-modes-not-to-save 'erc-mode)
+(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+(desktop-save-mode 1)
+(desktop-release-lock)
+(add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
+(add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
+;; --8<-------------------------- separator ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
+(command-frequency-mode 1)
+(defvar cf-frequence-threshrold 1 "*When generating reports, only show commands over given threshrold")
+(defvar cf-stat-self-insert-command nil "*Non-nil means also statistic `self-insert-command'")
+(defvar cf-buffer-name "*command frequence*" "the name of buffer command frequence")
+
+(defvar cf-command-history nil "command frequency history")
+
+(defun cf-add-command ()
+  (when (and last-command
+             (or cf-stat-self-insert-command (not (equal last-command 'self-insert-command))))
+    (let ((cmd (assoc last-command cf-command-history)))
+      (if cmd
+          (setcdr cmd (1+ (cdr cmd)))
+        (add-to-list 'cf-command-history (cons last-command 1))))))
+
+(defun command-frequence ()
+  (interactive)
+  (with-current-buffer (get-buffer-create cf-buffer-name)
+    (linum-mode t)
+    (View-quit)
+    (erase-buffer)
+    (let ((cmds (copy-sequence cf-command-history)) (all 0))
+      (dolist (c cmds)
+        (setq all (+ all (cdr c))))
+      (insert (format "Total count of commands: %d. " all))
+      (unless cf-stat-self-insert-command
+        (insert "(exclude `self-insert-command')"))
+      (insert "\n\n")
+      (insert (format "%-5s %-5s %-30s %s\n" "Count" "Frequency" "Command" "Key"))
+      (dolist (c (sort cmds (lambda (c1 c2) (> (cdr c1) (cdr c2)))))
+        (unless (< (cdr c) cf-frequence-threshrold)
+          (insert (format "%-5d %.3f %-30S %s\n" (cdr c) (/ (cdr c) (float all)) (car c)
+                          (mapconcat 'key-description (where-is-internal (car c)) ", ")))))
+      (goto-char (point-min))
+      (setq major-mode 'emacs-lisp-mode)
+      (setq mode-name "Emacs-Lisp")
+      (use-local-map emacs-lisp-mode-map)
+      (view-mode t)
+      (switch-to-buffer (current-buffer)))))
+
+(defun cf-clear-command-history ()
+  "Clear command history"
+  (interactive)
+  (setq cf-command-history nil))
+
+(add-hook 'post-command-hook 'cf-add-command)
+(add-to-list 'desktop-globals-to-save 'cf-command-history)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: linux-setting.el

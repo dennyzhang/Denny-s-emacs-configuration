@@ -3,12 +3,12 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-18 23:44:45>
+;; Updated: Time-stamp: <2012-10-24 22:24:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
 邮箱: markfilebat@126. com
-微博: http://weibo.com/1686664253
+微博: http://weibo.com/dennyzhang001
 博客: http://blog.ec-ae.com/")
 (defun get-mail-signature ()
   (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))

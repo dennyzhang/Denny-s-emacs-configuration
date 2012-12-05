@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-19 10:53:51>
+;; Updated: Time-stamp: <2012-11-14 16:36:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -222,7 +222,7 @@ If arg is given, only open a shell for one directory.
      (set-face-attribute 'eshell-prompt nil :foreground "turquoise1")
      (add-hook 'eshell-mode-hook ;; for some reason this needs to be a hook
                #'(lambda () (define-key eshell-mode-map "\C-a" 'eshell-bol)))
-     (add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
+     ;;(add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
      (setq eshell-cmpl-cycle-completions nil)
      (add-to-list 'eshell-visual-commands "ssh")
      (add-to-list 'eshell-visual-commands "tail")

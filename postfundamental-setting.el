@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:50:39>
+;; Updated: Time-stamp: <2012-11-22 10:34:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -57,29 +57,33 @@
 ;;(set-language-environment 'Chinese-GB)
 ;;(set-keyboard-coding-system 'chinese-iso-8bit-unix)
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro"))
-(load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
-(pomodoro)
-(setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
-(setq pomodoro-set-number 4) ;; Number of sets until a long break
-;; (defun pomodoro-message (msg)
-;; "Display a message in a buffer and maybe raise emacs frame."
-;; (when pomodoro-raise-frame
-;; (raise-frame (selected-frame)))
-;; (let ((this-window (selected-window)))
-;; (with-current-buffer (get-buffer-create pomodoro-buffer-name)
-;; (erase-buffer)
-;; (insert msg))
-;; (pop-to-buffer pomodoro-buffer-name)
-;; (ding)
-;; (sleep-for 2)
-;; (ding)
-;; ;; suggest not to change window height, since it will distract users' work environment
-;; (fit-window-to-buffer)
-;; ;; auto kill the buffer, after some wait
-;; (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
-;; (select-window this-window))
-;; (run-hook-with-args 'pomodoro-message-hook msg))
+(if (eq system-type 'gnu/linux)
+    (progn
+      (add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro"))
+      (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
+      (pomodoro)
+      (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
+      (setq pomodoro-set-number 4) ;; Number of sets until a long break
+      ;; (defun pomodoro-message (msg)
+      ;; "Display a message in a buffer and maybe raise emacs frame."
+      ;; (when pomodoro-raise-frame
+      ;; (raise-frame (selected-frame)))
+      ;; (let ((this-window (selected-window)))
+      ;; (with-current-buffer (get-buffer-create pomodoro-buffer-name)
+      ;; (erase-buffer)
+      ;; (insert msg))
+      ;; (pop-to-buffer pomodoro-buffer-name)
+      ;; (ding)
+      ;; (sleep-for 2)
+      ;; (ding)
+      ;; ;; suggest not to change window height, since it will distract users' work environment
+      ;; (fit-window-to-buffer)
+      ;; ;; auto kill the buffer, after some wait
+      ;; (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
+      ;; (select-window this-window))
+      ;; (run-hook-with-args 'pomodoro-message-hook msg))
+      )
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-buffer-file-coding-system 'utf-8)
 ;; (setq safe-local-variable-values
@@ -91,7 +95,7 @@
 ;; --8<-------------------------- separator ------------------------>
 (add-hook 'flyspell-prog-mode-hook
           #'(lambda ()
-             (define-key flyspell-mode-map [(control ?\.)]
-               'grep-find-with-querystring-quoted)))
+              (define-key flyspell-mode-map [(control ?\.)]
+                'grep-find-with-querystring-quoted)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: postfundamental-setting.el ends here
