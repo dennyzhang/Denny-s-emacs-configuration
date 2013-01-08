@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-03 14:31:11>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-08 16:10:43>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -17,9 +17,9 @@
 (setq repeat-interval 86400)
 (setq aggregate-retrieve-data-fun-list nil)
 
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-remind)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-habit-list)
 
 (add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-todo-list)

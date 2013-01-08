@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-03 14:44:50>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-08 16:09:31>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -244,23 +244,56 @@ Typical data includes:
   (when (re-search-forward end-anchor-str nil t)
     (delete-region (- (point) (length end-anchor-str))(point-max))))
 ;; --8<-------------------------- separator ------------------------>8--
+(defun list-nex-month-holiday ()
+  (interactive)
+  (let*
+      ((now-date (calendar-current-date))
+       (displayed-year (calendar-extract-year now-date))
+       (displayed-month (calendar-extract-month now-date))
+       (now-month displayed-month)
+       (now-year displayed-year)
+       (now-day (calendar-extract-day now-date))
+       (next-month displayed-month)
+       (holiday-list (calendar-list-holidays))
+       (res '())
+       )
+    (calendar-increment-month next-month now-year 1)
+    (reverse
+     (dolist (var holiday-list res)
+       (let ((date (car var)))
+         (when (and (calendar-date-compare (list date) (list (list next-month now-day now-year)))
+                    (calendar-date-compare (list now-date) (list date)))
+           (add-to-list 'res var)
+           ))))
+    ))
+
 (require 'calendar)
 (defun retrieve-diary-remind(prefetch-days)
-  (let (retrieve-content (old-buffer (current-buffer)))
+  (let ((retrieve-content "") (old-buffer (current-buffer)))
     (if (null (diary-list-entries (calendar-current-date) prefetch-days nil))
         ""
+      ;; diary
       (switch-to-buffer "*Fancy Diary Entries*")
-      (setq retrieve-content (buffer-substring-no-properties (point-min) (point-max)))
-      (holidays)
-      (switch-to-buffer "*Holidays*")
-      (setq retrieve-content
-            (concat retrieve-content "\n----------------\n"
-                    (buffer-substring-no-properties (point-min) (point-max))))
-      (switch-to-buffer old-buffer)
+      (setq retrieve-content (format "%s\n%s\n"
+                                     retrieve-content
+                                     (buffer-substring-no-properties (point-min) (point-max))))
+      (setq retrieve-content (replace-regexp-in-string "\n=======+\n" "" retrieve-content))
+      (setq retrieve-content (replace-regexp-in-string "\n+" "\n" retrieve-content))
+
+      ;; holiday
+      (dolist (var (list-nex-month-holiday))
+        (let* ((date (car var))
+               (holiday-name (car (cdr var))))
+          (setq retrieve-content (format "%s\n%s-%s-%s %s"
+                                         retrieve-content
+                                         (calendar-extract-year date)
+                                         (calendar-extract-month date)
+                                         (calendar-extract-day date)
+                                         holiday-name))
+          ))
       ;; wash data
       (setq retrieve-content (replace-regexp-in-string "Org-mode dummy$" "" retrieve-content))
-      (setq retrieve-content (replace-regexp-in-string "^=+$" "" retrieve-content))
-      (setq retrieve-content (replace-regexp-in-string "\n+" "\n" retrieve-content))
+      (setq retrieve-content (replace-regexp-in-string "\n\n+" "\n\n" retrieve-content))
       )))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun retrieve-signature()

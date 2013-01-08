@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-09 23:25:45>
+;; Updated: Time-stamp: <2013-01-08 13:30:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -319,6 +319,9 @@ See `org-publish-org-to' to the list of arguments."
          current-md5-id-title
          (old-list-md5-id-title list-md5-id-title)
          url-string)
+    ;; delete old file, if it exists
+    (if (file-exists-p current-exported-filename)
+        (delete-file current-exported-filename))
     (org-export-as-html 3)
     (rename-file (format "%s.html" short-filename) current-exported-filename)
     (wash-html-for-wordpress-internal current-exported-filename)
