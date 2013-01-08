@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-08-24 23:10:01>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-03 14:31:11>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -16,56 +16,48 @@
 (setq start-time "11:50am")
 (setq repeat-interval 86400)
 (setq aggregate-retrieve-data-fun-list nil)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-target-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-holiday-remind)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web-weather-shanghai)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-shopping-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-habit-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web-stock-zbjd)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-misc-list)
-;;(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web-weather-bingzhou)
-;;(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web-weather-changsha)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-delegation-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-todo-list)
-(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-tailing-message)
 
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-recite-list)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-web)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-remind)
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-org-habit-list)
+
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-todo-list)
+
+(add-to-list 'aggregate-retrieve-data-fun-list 'retrieve-tailing-message)
 (defun retrieve-todo-list ()
   (cons " [TODO] DENNY TODO-List " (retrieve-org-todo-list)))
 
-(defun retrieve-org-shopping-list ()
-  (cons " 超市采购清单 " (retrieve-org-tags "Shopping" t)))
-
 (defun retrieve-org-habit-list ()
-  (cons " 培养的习惯 " (retrieve-org-tags "Habit" t)))
-
-(defun retrieve-org-target-list ()
-  (cons " 第二象限 " (retrieve-org-tags "Target" t)))
-
-(defun retrieve-org-delegation-list ()
-  (cons " 委托事宜 " (retrieve-org-tags "Delegation" t)))
+  (cons " Habits to be formed " (retrieve-org-tags "Habit" t)))
 
 (defun retrieve-org-recite-list ()
-  (cons " 背诵 " (retrieve-org-tags "Recite" t)))
+  (cons " Recite List " (retrieve-org-tags "Recite" t)))
 
-(defun retrieve-org-misc-list ()
-  (cons " org-mode misc  " (retrieve-org-tags "Misc" t)))
+(defun retrieve-remind ()
+  (let (content)
+    (setq content (format "%s\n%s"
+                          (retrieve-org-tags "Remind" t)
+                          (retrieve-diary-remind 4)
+                          ))
+    (cons " Remind List " content)
+    )
+  )
 
-(defun retrieve-holiday-remind ()
-  (cons " [提醒] 生日+节日 " (retrieve-diary-remind 4)))
+(defun retrieve-web()
+  (let (content)
+    (setq content (format "上海天气:%s
 
-(defun retrieve-web-weather-shanghai()
-  (cons " [天气] 上海 " (retrieve-html-content "http://www.baidu.com/s?wd=上海+天气" "中国天气网" "中国气象局")))
+中兵光电:%s
 
-(defun retrieve-web-weather-changsha()
-  (cons " [天气] 长沙 " (retrieve-html-content "http://www.baidu.com/s?wd=长沙+天气" "中国天气网" "中国气象局")))
-
-(defun retrieve-web-weather-bingzhou()
-  (cons " [天气] 滨州 " (retrieve-html-content "http://www.baidu.com/s?wd=滨州+天气" "中国天气网" "中国气象局")))
-
-(defun retrieve-web-stock-zbjd()
-  (cons " [股票] 中兵光电 " (retrieve-html-content
-  "http://stock.stcn.com/sh/600435/" "北方导航600435" "净流量")))
+江西铜业:%s
+"
+                          (retrieve-html-content "http://www.baidu.com/s?wd=上海+天气" "中国天气网" "中国气象局")
+                          (retrieve-html-content "http://stock.stcn.com/sh/600435/" "北方导航600435" "净流量")
+                          (retrieve-html-content "http://stock.stcn.com/sh/600362/" "江西铜业600362" "净流量")
+                          ))
+    (cons " Internet information" content))
+  )
 
 (defun retrieve-tailing-message()
   (cons "=============" (retrieve-signature)))

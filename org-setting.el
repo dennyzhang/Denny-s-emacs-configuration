@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-04 16:36:11>
+;; Updated: Time-stamp: <2012-12-10 09:29:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -330,67 +330,5 @@
           (switch-to-buffer old-buffer))
         )
     ))
-;; --8<-------------------------- separator ------------------------>8--
-;; override original behavior of exporting freemind for wordpress format
-(defun org-freemind-write-node (mm-buffer drawers-regexp
-                                num-left-nodes base-level
-                                current-level next-level this-m2
-                                this-node-end
-                                this-children-visible
-                                next-node-start
-                                next-has-some-visible-child)
-  (let* (this-icons
-         this-bg-color
-         this-m2-escaped
-         this-rich-node
-         this-rich-note
-         )
-    (when (string-match "TODO" this-m2)
-      (setq this-m2 (replace-match "" nil nil this-m2))
-      (add-to-list 'this-icons "button_cancel")
-      (setq this-bg-color "#ffff88")
-      (when (string-match "\\[#\\(.\\)\\]" this-m2)
-        (let ((prior (string-to-char (match-string 1 this-m2))))
-          (setq this-m2 (replace-match "" nil nil this-m2))
-          (cond
-           ((= prior ?A)
-            (add-to-list 'this-icons "full-1")
-            (setq this-bg-color "#ff0000"))
-           ((= prior ?B)
-            (add-to-list 'this-icons "full-2")
-            (setq this-bg-color "#ffaa00"))
-           ((= prior ?C)
-            (add-to-list 'this-icons "full-3")
-            (setq this-bg-color "#ffdd00"))
-           ((= prior ?D)
-            (add-to-list 'this-icons "full-4")
-            (setq this-bg-color "#ffff00"))
-           ((= prior ?E)
-            (add-to-list 'this-icons "full-5"))
-           ((= prior ?F)
-            (add-to-list 'this-icons "full-6"))
-           ((= prior ?G)
-            (add-to-list 'this-icons "full-7"))
-           ))))
-    (setq this-m2 (org-trim this-m2))
-    (setq this-m2-escaped (org-freemind-escape-str-from-org this-m2))
-    (let ((node-notes (org-freemind-org-text-to-freemind-subnode/note
-                       this-m2-escaped
-                       this-node-end
-                       (1- next-node-start)
-                       drawers-regexp)))
-      (setq this-rich-node (nth 0 node-notes))
-      (setq this-rich-note (nth 1 node-notes)))
-    (with-current-buffer mm-buffer
-      (insert "<node><richcontent TYPE=\"NODE\"><html><body><p>"
-                                this-m2-escaped "</p></body></html></richcontent>")
-      (when this-icons
-        (dolist (icon this-icons)
-          (insert "<icon builtin=\"" icon "\"/>\n")))
-      )
-    (with-current-buffer mm-buffer
-      ;;(when this-rich-note (insert this-rich-note))
-      (when this-rich-node (insert this-rich-node))))
-  num-left-nodes)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

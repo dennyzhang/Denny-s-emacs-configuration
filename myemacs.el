@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-05 15:30:26>
+;; Updated: Time-stamp: <2013-01-03 15:46:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -71,10 +71,10 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el"
         "passwd.el"
-  ;;      "tmp.el"
+        "tmp.el"
         ))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(unless (server-running-p) (server-start))
+(unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

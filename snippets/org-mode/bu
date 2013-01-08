@@ -1,4 +1,2 @@
 `(make-string (org-current-level) ?*)` basic use
-#+begin_example
 $0
-#+end_example

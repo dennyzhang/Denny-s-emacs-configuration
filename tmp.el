@@ -3,15 +3,8 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-05 15:37:23>
+;; Updated: Time-stamp: <2012-12-11 00:28:09>
 ;; --8<-------------------------- separator ------------------------>8--
-(defun update-question-to-blog()
-  (interactive)
-  (progn
-    (question)
-    (org-export-as-freemind)
-    )
-  )
 (defun gb2312_to_utf8 ()
   "convert current buffer from gb2312 to utf8"
   (interactive)
@@ -1652,5 +1645,80 @@ Insert if ARG."
 )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq message-default-charset 'utf-8)
+;; --8<-------------------------- separator ------------------------>8--
+;; override original behavior of exporting freemind for wordpress format
+(defun my-org-freemind-write-node (mm-buffer drawers-regexp
+                                num-left-nodes base-level
+                                current-level next-level this-m2
+                                this-node-end
+                                this-children-visible
+                                next-node-start
+                                next-has-some-visible-child)
+  (let* (this-icons
+         this-bg-color
+         this-m2-escaped
+         this-rich-node
+         this-rich-note
+         )
+    (when (string-match "TODO" this-m2)
+      (setq this-m2 (replace-match "" nil nil this-m2))
+      (add-to-list 'this-icons "button_cancel")
+      (setq this-bg-color "#ffff88")
+      (when (string-match "\\[#\\(.\\)\\]" this-m2)
+        (let ((prior (string-to-char (match-string 1 this-m2))))
+          (setq this-m2 (replace-match "" nil nil this-m2))
+          (cond
+           ((= prior ?A)
+            (add-to-list 'this-icons "full-1")
+            (setq this-bg-color "#ff0000"))
+           ((= prior ?B)
+            (add-to-list 'this-icons "full-2")
+            (setq this-bg-color "#ffaa00"))
+           ((= prior ?C)
+            (add-to-list 'this-icons "full-3")
+            (setq this-bg-color "#ffdd00"))
+           ((= prior ?D)
+            (add-to-list 'this-icons "full-4")
+            (setq this-bg-color "#ffff00"))
+           ((= prior ?E)
+            (add-to-list 'this-icons "full-5"))
+           ((= prior ?F)
+            (add-to-list 'this-icons "full-6"))
+           ((= prior ?G)
+            (add-to-list 'this-icons "full-7"))
+           ))))
+    (setq this-m2 (org-trim this-m2))
+    (setq this-m2-escaped (org-freemind-escape-str-from-org this-m2))
+    (let ((node-notes (org-freemind-org-text-to-freemind-subnode/note
+                       this-m2-escaped
+                       this-node-end
+                       (1- next-node-start)
+                       drawers-regexp)))
+      (setq this-rich-node (nth 0 node-notes))
+      (setq this-rich-note (nth 1 node-notes)))
+    (with-current-buffer mm-buffer
+      (insert "<node><richcontent TYPE=\"NODE\"><html><body><p>"
+                                this-m2-escaped "</p></body></html></richcontent>")
+      (when this-icons
+        (dolist (icon this-icons)
+          (insert "<icon builtin=\"" icon "\"/>\n")))
+      )
+    (with-current-buffer mm-buffer
+      ;;(when this-rich-note (insert this-rich-note))
+      (when this-rich-node (insert this-rich-node))))
+  num-left-nodes)
+
+(defun update-question-to-blog()
+  (interactive)
+  (progn
+    (question)
+    (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
+    (org-export-as-freemind)
+    (shell-command "~/backup/essential/Dropbox/private_data/backup_small/update-blog.sh")
+    )
+  )
+(add-hook 'org-mode-hook
+	  (lambda ()
+            (defalias 'org-freemind-write-node 'my-org-freemind-write-node)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

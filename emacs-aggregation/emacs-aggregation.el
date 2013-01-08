@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-27 23:05:47>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-03 14:44:50>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -46,7 +46,7 @@
 ;;
 ;; TODO:
 ;;
-;;  -------------------------- separator --------------------------
+;; -------------------------- separator --------------------------
 
 ;;; FLY TRY =====================================================
 ;; TODO:
@@ -80,6 +80,63 @@
   (let (retrieve-data-list)
     (setq retrieve-data-list (aggregate-retrieve-data))
     (aggregate-report-result retrieve-data-list)))
+
+;; (aggregation-export-to-html "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal_template.html" "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal.html")
+(defun aggregation-export-to-html (template-file dst-file)
+  "aggregate various information to a global view, and export it to a html file"
+  (let (retrieve-data-list)
+    (setq retrieve-data-list (aggregate-retrieve-data))
+    (find-file dst-file)
+    (erase-buffer)
+    (setq index 1)
+    (setq section-template "\n<div class=\"span6\">\n<h2>%s</h2>\n<p>%s</p>\n<p>\n<a class=\"btn\" href=\"#\">View details &raquo;</a></p></div>\n")
+    (insert-file-contents template-file)
+    (dolist (item retrieve-data-list)
+      (unless (or (string= (cdr item) "") (string= (car item) "============="))
+        (setq title (car item)
+              content (cdr item))
+        (setq content (replace-regexp-in-string "\n\n$" "\n" content))
+        (setq content (replace-regexp-in-string "\n" "<br/>\n" content))
+        (goto-char (point-max))
+        (if (evenp index)
+            (insert (format section-template title content) "</div><hr>\n")
+          (insert "<div class='row-fluid'>" (format section-template title content))
+         )
+        (setq index (+ index 1))
+        )
+      )
+    (insert "
+
+      <footer>
+        <p>&copy; DennyZhang 2012, markfilebat@126.com</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/jquery.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-transition.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-alert.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-modal.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-dropdown.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-scrollspy.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-tab.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-tooltip.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-popover.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-button.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-collapse.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-carousel.js'></script>
+    <script src='http://blog.ec-ae.com/wp-content/denny/twitter-bootstrap/docs/assets/js/bootstrap-typeahead.js'></script>
+
+  </body>
+</html>
+")
+    (save-buffer 0)
+    (kill-buffer)
+    )
+  )
 
 (defun aggregate-retrieve-data ()
   "retrieve data.
@@ -158,16 +215,16 @@ Typical data includes:
   (let ((replace-rule-list
          '(("<[^>]+>" "") ("&nbsp;" " ")
            ("\r" "") (" +$" "") ("^$\r" "\r")
-            (" +" " ")
-            ("	+" " ")
-            ("^ +" "")
-            ("\n+" "\n")
+           (" +" " ")
+           ("     +" " ")
+           ("^ +" "")
+           ("\n+" "\n")
            )))
     (goto-char (point-min))
     (let ((case-fold-search t) replace-rule)
       ;; limit content
       ;; (when (re-search-forward "</form>" nil t)
-      ;;   (delete-region (point-min) (match-beginning 0)))
+      ;; (delete-region (point-min) (match-beginning 0)))
       (goto-char (point-max))
       (when (re-search-backward "</pre>" nil t)
         (delete-region (point-max) (match-beginning 0)))

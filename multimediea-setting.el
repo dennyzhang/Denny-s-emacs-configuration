@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:50:39>
+;; Updated: Time-stamp: <2013-01-03 13:14:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -356,7 +356,16 @@
     )
   )
 
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "active" "/home/denny/backup/multimediea/music/playlist/active.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "all" "/home/denny/backup/multimediea/music/playlist/all.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "blue" "/home/denny/backup/multimediea/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "blue" "/home/denny/backup/multimediea/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "funny" "/home/denny/backup/multimediea/music/playlist/funny.playlist")
 ;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "merry" "/home/denny/backup/multimediea/music/playlist/merry.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "old" "/home/denny/backup/multimediea/music/playlist/old.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "soft" "/home/denny/backup/multimediea/music/playlist/soft.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "top" "/home/denny/backup/multimediea/music/playlist/top.playlist")
+;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "wake" "/home/denny/backup/multimediea/music/playlist/wake.playlist")
 (defun export-orgfile-to-emmsplaylist (org-file org-tag playlist-file)
   (interactive)
   (unless (string= mode-name "Org")

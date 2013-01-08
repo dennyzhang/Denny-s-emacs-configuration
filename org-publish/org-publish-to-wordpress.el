@@ -3,13 +3,13 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-01 22:41:07>
+;; Updated: Time-stamp: <2012-12-09 23:25:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
 (require 'org-publish)
 (setq org-export-html-validation-link "")
-(add-to-list 'org-export-language-setup '("cn" "Author" "Time" "目录" "Footnote"))
+(add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote"))
 (setq org-export-default-language "cn")
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/wordpress"))
@@ -223,10 +223,25 @@ See `org-publish-org-to' to the list of arguments."
     (goto-char (point-min))
     (while (search-forward-regexp "</html>" nil t)
       (replace-match ""))
-    ;; wordaroud for wordpress's new paragraph
+    ;; workaround for wordpress's new paragraph
     (goto-char (point-min))
     (while (search-forward-regexp "<br/>" nil t)
       (replace-match ""))
+    ;; add digest for wordpress
+    (goto-char (point-min))
+    (while (search-forward-regexp "</ul>
+</div>
+</div>
+" nil t)
+      (replace-match "</ul>
+</div>
+</div>
+<!--more-->
+"))
+    ;; insert tailing whitespace line
+    (goto-char (point-min))
+    (while (search-forward-regexp "</body>" nil t)
+      (replace-match "<br/></body>"))
     ;; insert description for wordpress
     (unless insert-prefix-str
       (setq insert-prefix-str "")
@@ -244,6 +259,7 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
         title-md5 md5-id-title
+        more-position
         keyword-list
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
@@ -262,21 +278,27 @@ See `org-publish-org-to' to the list of arguments."
         (if md5-id-title
             ;; If related blog is found, update wordpress
             (progn
+              (goto-char (point-min))
+              (when (search-forward-regexp "<!--more-->" nil t)
+                (setq more-position (point)))
               (setq md5-id-title (cdr md5-id-title)
                     post-id (car md5-id-title)
                     post-title (cadr md5-id-title)
                     post-struct
+
                     (list (cons "title" post-title)
                           (cons "authorName" "zhangwei")
-                          (cons "description" (format-time-string
-                                               "Auto-updated %Y-%m-%d %H:%M.<!--more-->" (current-time)))
+                          (cons "description" (concat (format-time-string
+                                                       "Auto-updated %Y-%m-%d %H:%M.<br/>" (current-time))
+                                                       (buffer-substring-no-properties (point-min) more-position)))
                           (cons "mt_keywords"
                                 (if
                                     (string= "" keyword-list)
                                     "KnowledgeBase"
                                   (replace-regexp-in-string "_" "," keyword-list)))
                           (cons "categories" "个人知识库")
-                          (cons "mt_text_more" (buffer-substring-no-properties (point-min) (point-max)))))
+                          (cons "mt_text_more" (buffer-substring-no-properties more-position (point-max)))
+                          ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
                                    post-struct t)
