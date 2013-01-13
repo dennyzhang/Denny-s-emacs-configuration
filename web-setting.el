@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-14 17:21:47>
+;; Updated: Time-stamp: <2013-01-13 00:51:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -305,5 +305,20 @@ create a new window and browse the webpage"
       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key c-mode-base-map [(meta j)] 'webjump)
+;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'w3m-display-hook 'wash-w3m-buffer)
+(defun wash-w3m-buffer(&optional url)
+  (interactive)
+  (let* ((line-width 20)
+         (short-line-regex (format "^.\\{1,%d\\}$" line-width)))
+    (save-excursion
+      (goto-char (point-min))
+      (read-only-mode -1)
+      (rr " +$" "" nil (point-min) (point-max))
+      (flush-lines short-line-regex (point-min) (point-max))
+      (rr "\n\n+" "\n\n" nil (point-min) (point-max))
+      (read-only-mode 1)
+      ))
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: web-browse-setting.el ends here

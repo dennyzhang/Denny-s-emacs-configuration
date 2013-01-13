@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-26 11:28:48>
+;; Updated: Time-stamp: <2013-01-08 21:30:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -90,7 +90,6 @@
 (require 'yasnippet)
 (setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
 (yas-global-mode 1)
-;; --8<-------------------------- separator ------------------------>8--
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'desktop)
 ;; save a bunch of variables to the desktop file

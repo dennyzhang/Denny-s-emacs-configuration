@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-08 16:09:31>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-08 22:08:09>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -91,6 +91,13 @@
     (setq index 1)
     (setq section-template "\n<div class=\"span6\">\n<h2>%s</h2>\n<p>%s</p>\n<p>\n<a class=\"btn\" href=\"#\">View details &raquo;</a></p></div>\n")
     (insert-file-contents template-file)
+    ;; replace variable
+    (goto-char (point-min))
+    (perform-replace "current_time"
+                     (format-time-string "%Y-%m-%d %H:%M" (current-time))
+                     nil nil nil)
+    (goto-char (point-max))
+    ;; append tailing content
     (dolist (item retrieve-data-list)
       (unless (or (string= (cdr item) "") (string= (car item) "============="))
         (setq title (car item)
@@ -208,6 +215,10 @@ Typical data includes:
       (wash-html-content)
       (limit-html-content start-anchor-str end-anchor-str)
       (setq retrieve-content (buffer-substring-no-properties (point-min) (point-max)))
+      (setq retrieve-content (replace-regexp-in-string " *:[^ ]+$" "" retrieve-content))
+      (setq retrieve-content (replace-regexp-in-string "\n+" "\n" retrieve-content))
+      ;; remove the blank line at the end
+      (setq retrieve-content (replace-regexp-in-string "\n\'" "" retrieve-content))
       )))
 
 (defun wash-html-content ()
@@ -216,6 +227,7 @@ Typical data includes:
          '(("<[^>]+>" "") ("&nbsp;" " ")
            ("\r" "") (" +$" "") ("^$\r" "\r")
            (" +" " ")
+           ("\t+" " ")
            ("     +" " ")
            ("^ +" "")
            ("\n+" "\n")

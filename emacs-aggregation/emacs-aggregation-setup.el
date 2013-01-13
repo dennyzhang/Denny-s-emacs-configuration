@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-08 16:10:43>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-13 02:45:20>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -48,12 +48,12 @@
   (let (content)
     (setq content (format "上海天气:%s
 
-中兵光电:%s
+长沙天气:%s
 
-江西铜业:%s
-"
+江西铜业:%s"
                           (retrieve-html-content "http://www.baidu.com/s?wd=上海+天气" "中国天气网" "中国气象局")
-                          (retrieve-html-content "http://stock.stcn.com/sh/600435/" "北方导航600435" "净流量")
+                          (retrieve-html-content "http://www.baidu.com/s?wd=长沙+天气" "中国天气网" "中国气象局")
+                          ;;(retrieve-html-content "http://stock.stcn.com/sh/600435/" "北方导航600435" "净流量")
                           (retrieve-html-content "http://stock.stcn.com/sh/600362/" "江西铜业600362" "净流量")
                           ))
     (cons " Internet information" content))
