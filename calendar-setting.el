@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-04 22:32:25>
+;; Updated: Time-stamp: <2013-01-13 14:51:53>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -57,54 +57,6 @@
 (setq holiday-solar-holidays nil)
 (setq holiday-bahai-holidays nil)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq calendar-holidays
-      '((holiday-chinese 12 9 "爸爸生日") ;; 1954
-        (holiday-chinese 2 26 "妈妈生日") ;; 1956
-        (holiday-chinese 7 15 "大姐生日")
-        (holiday-chinese 7 19 "二姐生日")
-        (holiday-chinese 6 21 "Denny生日")
-        (holiday-fixed 7 30 "吴在宥生日") ;; 2010
-        (holiday-fixed 9 14 "秀秀生日") ;; 1987
-        (holiday-chinese 10 5 "秀秀爸爸生日")
-        (holiday-chinese 12 20 "秀秀妈妈生日") ;; 1962-2-24
-        (holiday-fixed 9 10 "杨明哲生日") ;;2011
-        (holiday-chinese 5 24 "张伟智生日")
-        (holiday-chinese 12 20 "杨晓亮生日")
-        ;; --8<-------------------------- separator ------------------------>8--
-        (holiday-chinese 12 11 "四姨生日")
-        (holiday-fixed 11 8 "任全生日")
-        (holiday-fixed 3 7 "陈赞生日")
-        ;; --8<-------------------------- separator ------------------------>8--
-        (holiday-fixed 10 1 "周宁生日")
-        (holiday-fixed 9 7 "杨志明生日")
-        (holiday-fixed 11 26 "刘小溪生日")
-        ;; --8<-------------------------- separator ------------------------>8--
-        (holiday-chinese-new-year)
-        (holiday-chinese-winter-solstice)
-        (holiday-fixed 1 1 "[节日] -- 元旦节")
-        (holiday-chinese 7 7 "[节日] -- 七夕节")
-        (holiday-fixed 2 14 "[节日] -- 情人节")
-        (holiday-fixed 3 14 "[节日] -- 白色情人节")
-        (holiday-fixed 4 1 "[节日] -- 愚人节")
-        (holiday-fixed 5 1 "[节日] -- 劳动节")
-        (holiday-float 5 0 2 "[节日] -- 母亲节")
-        (holiday-float 6 0 3 "[节日] -- 父亲节")
-        (holiday-float 11 4 4 "[节日] -- 感恩节")
-        (holiday-fixed 6 1 "[节日] -- 儿童节")
-        (holiday-fixed 4 5 "[节日] -- 清明节")
-        (holiday-chinese 8 15 "[节日] -- 中秋节")
-        (holiday-chinese 9 9 "[节日] -- 重阳节")
-        (holiday-chinese 1 15 "[节日] -- 元宵节")
-        (holiday-fixed 7 1 "[节日] -- 建党节")
-        (holiday-fixed 8 1 "[节日] -- 建军节")
-        (holiday-fixed 9 10 "[节日] -- 教师节")
-        (holiday-fixed 10 1 "[节日] -- 国庆节")
-        (holiday-chinese 5 5 "[节日] -- 端午节")
-        (holiday-fixed 3 8 "[节日] -- 妇女节")
-        (holiday-fixed 5 1 "[节日] -- 青年节")
-        (holiday-fixed 10 31 "[节日] -- 万圣节")
-        (holiday-fixed 12 25 "[节日] -- 圣诞节")
-        (holiday-fixed 3 13 "[节日] -- 杭州纪念日")
-        ))
+;; Friends' birthdays are a little sensitive, which will be loaded by a gpg encrypted file
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: calendar-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-03 15:46:14>
+;; Updated: Time-stamp: <2013-01-13 14:50:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -70,14 +70,17 @@
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '("postfundamental-setting.el"
-        "passwd.el"
+;;        "passwd.el"
         "tmp.el"
         ))
+
+;; loading sensitive configurations
+(load-file (concat DENNY_CONF "/emacs_conf/secrets.el.gpg"))
 ;; --8<-------------------------- separator ------------------------>8--
 (unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."
            (time-to-seconds (time-since emacs-load-start-time))))
-;; --8<-------------------------- §separator§ ------------------------>8--
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: myemacs.el ends here
