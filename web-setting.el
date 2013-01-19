@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-13 00:51:30>
+;; Updated: Time-stamp: <2013-01-19 11:14:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -309,7 +309,7 @@ create a new window and browse the webpage"
 (add-to-list 'w3m-display-hook 'wash-w3m-buffer)
 (defun wash-w3m-buffer(&optional url)
   (interactive)
-  (let* ((line-width 20)
+  (let* ((line-width 10)
          (short-line-regex (format "^.\\{1,%d\\}$" line-width)))
     (save-excursion
       (goto-char (point-min))

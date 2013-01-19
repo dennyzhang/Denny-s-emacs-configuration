@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-14 16:36:16>
+;; Updated: Time-stamp: <2013-01-13 20:17:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -309,5 +309,11 @@ From Patrick Anderson via the wiki."
         ("\\`ftp\\." "" "ftp")))
 (setq tramp-verbose 3)
 (setq password-cache-expiry 60)
+;; --8<-------------------------- separator ------------------------>8--
+;; configure remote parameters for tramp
+(add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
+(delete "PAGER=\"\"" tramp-remote-process-environment)
+(delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
+(add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: shell-setting.el

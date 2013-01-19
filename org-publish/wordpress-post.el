@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-07 22:53:28>
+;; Updated: Time-stamp: <2013-01-16 23:57:31>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -15,8 +15,7 @@
         ;;("0bca1df4f8dca2cc54864da619309ee5" 249 "[Denny] 分布式系统中, 强一致性")
 
         ("7ab597a8e9eb8827097608f1221c8597" 552 "[Denny] test")
-
-        ;;("23273917e4844f15f3d83ef5a3839f61" 549 "[Denny] Cloud continous test")
+        ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ;; ("4f4ec8a684c78ff3e1b4cc961809c37a" 6523 "[Denny] Help me by discussing my questions")
 
         ("d64c3b5d880747cb7b3ae148b0b1bad1" 238 "[Denny] Graph theory for Algorithm")
@@ -80,17 +79,17 @@
         ("2be42aee5276b8f016dee4f553eb8aaf" 5454 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 5476 "[Denny] [置顶] Motto -- 人生格言")
         ("8cb2825a5242eec670f5ffa4aab3b288" 5485 "[Denny] linux调试工具集")
-        ("791fd82867b54c7353c9393045897010" 5490 "[Denny] Emacs — fundanmental features")
         ("f8c59fe0cfe47bc4db33864df60354da" 5693 "[Denny] Linux network -- tcp/ip")
         ("a77816667dba21e27b7e2ccc162d2448" 5349 "[Denny] 商派码农再议12306")
         ("aa442dced0dd3629eca39f14fd8c24c1" 5273 "[Denny] Technical problems in my daily work -- 工作中遇到的疑难杂症")
         ("60287684a49aa965dd603353cdeda751" 5698 "[Denny] [Programming life] Leverage Ramfs to fasten your intense disk access")
-        ("cf6d4c57c905e01e016e9c148a4bfc75" 5695 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
-        ("2673753f5e99ed3823e2d428123126bd" 5767 "[Denny] linux systemtap")
+        ("344d1931f2c4ce692b4cd617625a8283" 5695 "[Denny] Erlang Implementations Details")
+        ("791fd82867b54c7353c9393045897010" 5767 "[Denny] Emacs — fundanmental features")
         ("93cf6cd6e42d178c740407e64cde23ad" 6033 "[Denny] linux performance analysis")
         ("5ebc33327869e48d20bb9a66de18bc11" 6264 "[Denny] erlang debug skills")
         ("9ceb4d12c84c207045992ce4427a2b4f" 6268 "[Denny] How To Test Paas Platform (副标题: 商派电子商务云平台的回顾和反思)")
         ("8192cd8e64030f55379112af2ede5c72" 6309 "[Denny] Daily Journal logging for I am doing everyday -- 工作日志")
+        ("2673753f5e99ed3823e2d428123126bd" 6523 "[Denny] linux systemtap")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-08 22:08:09>
+;; Copyright © 2010-2011 Time-stamp: <2013-01-13 17:45:00>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -87,6 +87,7 @@
   (let (retrieve-data-list)
     (setq retrieve-data-list (aggregate-retrieve-data))
     (find-file dst-file)
+    (read-only-mode -1)
     (erase-buffer)
     (setq index 1)
     (setq section-template "\n<div class=\"span6\">\n<h2>%s</h2>\n<p>%s</p>\n<p>\n<a class=\"btn\" href=\"#\">View details &raquo;</a></p></div>\n")

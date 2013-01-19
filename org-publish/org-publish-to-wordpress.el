@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-08 13:30:07>
+;; Updated: Time-stamp: <2013-01-14 00:26:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -217,7 +217,6 @@ See `org-publish-org-to' to the list of arguments."
  overflow: auto;
  }"
                     "h3 {padding-top: 0.5em; font-size:1.2em; line-height:150%;} "))
-    (goto-char (point-min))
     (while (search-forward-regexp "<div id=\"content\">" nil t)
       (replace-match "<div>"))
     (goto-char (point-min))
@@ -227,6 +226,11 @@ See `org-publish-org-to' to the list of arguments."
     (goto-char (point-min))
     (while (search-forward-regexp "<br/>" nil t)
       (replace-match ""))
+    ;; make a special seperator
+    (goto-char (point-min))
+    (when (search-forward-regexp "<p>:PROPERTIES:" nil t)
+      (replace-match "<br/>\n<p>:PROPERTIES:"))
+    (goto-char (point-min))
     ;; add digest for wordpress
     (goto-char (point-min))
     (while (search-forward-regexp "</ul>
