@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-09-17 22:30:13>
+;; Updated: Time-stamp: <2013-01-22 00:29:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -51,13 +51,15 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;show current function name
 (defun enable-which-function()
-  (which-function-mode t))
+  (unless (string= (current-buffer-name-extension) "org")
+    (which-function-mode t)))
 ;; --8<-------------------------- separator ------------------------>8--
 (dolist (hook programming-hook-list)
   (add-hook hook 'my-auto-pair)
   (add-hook hook 'hs-minor-mode)
   ;; (add-hook hook 'subword-mode) ;; TODO
-  (add-hook hook 'enable-which-function))
+  ;; (add-hook hook 'enable-which-function)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;switch between .h and .cpp
 (defun switch-head2source-file ()

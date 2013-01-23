@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-12-10 09:29:41>
+;; Updated: Time-stamp: <2013-01-20 01:16:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -35,6 +35,10 @@
 	  (lambda ()
 	    'turn-on-font-lock
 	    ;;(setq word-wrap 1)
+            ;; (make-local-variable 'highlight-changes-mode)
+            ;; (highlight-changes-mode 0)
+            ;; (make-local-variable 'highlight-tail-mode)
+            ;; (highlight-tail-mode 0)
 	    (setq truncate-lines t)
             (iimage-mode 't)
             ))

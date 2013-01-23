@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-13 00:00:10>
+;; Updated: Time-stamp: <2013-01-20 10:41:05>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -660,7 +660,6 @@ Insert if ARG."
 (setq backup-by-copying t)
 (setq version-control t)
 (setq org-agenda-span 14)
-(setq org-agenda-include-diary t)
 (add-to-list 'auto-mode-alist '("\\.zsh$" . sh-mode))
 ;;(set-default 'indicate-empty-lines t) ;; Show me empty lines after buffer end
 ;;(global-subword-mode 1) ;; Easily navigate sillycased words

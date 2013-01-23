@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-09 15:43:44>
+;; Updated: Time-stamp: <2013-01-21 21:40:07>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -29,15 +29,17 @@ These information is probably retrieved from internet. "
  filename with extension removed.
  "
   (interactive "P")
-  (let ((output_str buffer-file-name))
+  (let ((output_str buffer-file-name)
+        (mode-str (current-mode-str))
+        )
     (if (and output_str show-short-info-p)
         (setq output_str
               (file-name-sans-extension (file-name-nondirectory output_str))))
     (cond
-     ((string-equal mode-name "w3m") (setq output_str (w3m-current-title)))
-     ((string-match "Dired" mode-name)
+     ((string-equal mode-str "w3m") (setq output_str (w3m-current-title)))
+     ((string-match mode-str "Dired")
       (setq output_str (count-code-lines-in-directory default-directory)))
-     ((string-equal mode-name "Article") (setq output_str (w3m-print-this-url)))
+     ((string-equal mode-str "Article") (setq output_str (w3m-print-this-url)))
      (t (if (null output_str) (setq output_str (buffer-name))))
      )
     (when output_str

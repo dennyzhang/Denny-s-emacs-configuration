@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-24 22:24:49>
+;; Updated: Time-stamp: <2013-01-21 21:32:20>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -31,8 +31,9 @@
       (setq signature-string (get-motto)))
     ;; cowsay doesn't support Unicode in release version
     ;; see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=254557
-    (if (member (detect-coding-string signature-string)
+    (if (and (member (detect-coding-string signature-string)
                 '((undecided-unix) (undecided)))
+             (unless (null (executable-find "cowthink"))))
         (progn
           (setq cowsay-file (get-random-cowsay ".*.cow"))
           (setq command-string (format "cowthink -f %s \"%s\""

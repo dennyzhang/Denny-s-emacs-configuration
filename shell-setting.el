@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-13 20:17:18>
+;; Updated: Time-stamp: <2013-01-20 20:04:23>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -37,32 +37,24 @@
     (with-temp-buffer
       (shell-command "hostname" (current-buffer))
       (setq current-hostname
-            (replace-regexp-in-string "\n" "" (buffer-string))))
+            (replace-regexp-in-string "\n" "" (buffer-string)))
+      )
     (setq prefix-regexp (format "\\*shell\\*-%s-" current-hostname))
     (setq prefix (format "*shell*-%s-" current-hostname))
-    (if (string= mode-name "Shell")
+    (if (equal mode-name "Shell")
         ;; if current buffer is a shell, switch to related file
         (pop-to-buffer (replace-regexp-in-string prefix-regexp "" file-name))
       ;; if current buffer is not a shell, create a related shell buffer
       (setq shell-buffer-name (concat prefix file-name))
-      (if (get-buffer shell-buffer-name)
-          (pop-to-buffer shell-buffer-name)
-        (shell shell-buffer-name)
-        (insert " ")
-        ;; insert shell history
-        ;; (load-shell-history file-name)
-        ;; send default input
-        ;; (comint-previous-matching-input "." -1)
-        ))
-    ))
+      (shell shell-buffer-name)
+    )))
 
 (defun open-shell-of-current-directory ()
   "If any file of current directory already have a related shell, switch to it
  "
   (interactive)
-  (let* ((file-name (buffer-name))
+  (let* ((file-name (buffer-name)) shell-buffer-name
          current-hostname prefix-regexp prefix
-         shell-buffer-name
          (directory-name default-directory))
     (with-temp-buffer
       (shell-command "hostname" (current-buffer))

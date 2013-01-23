@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-08 21:30:13>
+;; Updated: Time-stamp: <2013-01-20 01:26:28>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -89,6 +89,8 @@
 ;;(add-to-list 'load-path "/home/denny/Downloads/yasnippet-0.6.1c/")
 (require 'yasnippet)
 (setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
+(yas--initialize)
+(yas-load-directory yas-snippet-dirs nil)
 (yas-global-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'desktop)

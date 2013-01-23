@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-07 16:47:16>
+;; Updated: Time-stamp: <2013-01-22 00:24:02>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -112,7 +112,6 @@
                                'c-mode 'c++-mode
                                'emacs-lisp-mode 'lisp-mode
                                'shel-mode
-                               'python-mode
                                ;;'ruby-mode
                                'java-mode
                                'perl-mode
@@ -307,7 +306,7 @@
       query-replace-highlight t) ; ...and replacing
 ;; --8<-------------------------- separator ------------------------>8--
 (dolist (hook programming-hook-list)
-  (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook
+  (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook python-mode-hook
                                      emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
 
@@ -483,5 +482,16 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- separator ------------------------>8--
 ;; only warn me, when file is larger than 25 MB
 (setq large-file-warning-threshold 26214400)
+;; --8<-------------------------- separator ------------------------>8--
+(defun current-buffer-name-extension ()
+  (let ((buffer-fname (buffer-file-name)))
+    (if (null buffer-fname) "" (file-name-extension buffer-fname)
+    )))
+
+(defun current-mode-str ()
+  (cond
+   ((listp mode-name) (list-to-string mode-name))
+   (t mode-name)
+   ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

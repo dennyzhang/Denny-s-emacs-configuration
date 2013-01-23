@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-22 00:45:58>
+;; Updated: Time-stamp: <2013-01-21 22:01:45>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -276,7 +276,8 @@
 ;;set expiration time for mails to be deleted
 (setq nnmail-expiry-wait 3)
 ;; --8<-------------------------- separator ------------------------>8--
-(defun gnus-send-groupmail-by-template (name-mail-list subject mail-content from-mail marker)
+
+(defun gnus-send-groupmail-by-template (name-mail-list subject mail-content from-mail cc-mail bcc-mail marker)
   "send group mails based on template.
  We send mails to each recipient a mail with subject and
  content specified by the variables of subject and mail-content.
@@ -284,27 +285,49 @@
  name-mail-list containing names should be a list of two-element lists,
  in the format (\"Name\" \"email address\").
 "
-  (dolist (name-mail-entry name-mail-list)
-    (compose-mail (nth 1 name-mail-entry) ;; to address
-                  subject
-                  `(("From" . ,from-mail)) ;; all other headers
-                  nil nil nil nil) ;; don't remember
-    (insert mail-content)
-    ;; move to the beginning of buffer, and perform in replacement
-    (goto-char (point-min))
-    (perform-replace marker (nth 0 name-mail-entry) nil nil nil) ; insert name
-    (message-send-and-exit)))
+  (let ((other-headers `(("From" . ,from-mail))))
+    (unless (string-empty-p cc-mail) (add-to-list 'other-headers (cons "Cc" cc-mail)))
+    (unless (string-empty-p bcc-mail) (add-to-list 'other-headers (cons "Bcc" bcc-mail)))
+    (dolist (name-mail-entry name-mail-list)
+      (compose-mail (nth 1 name-mail-entry) ;; to address
+                    subject
+                    other-headers
+                    nil nil nil nil) ;; don't remember
+      (insert mail-content)
+      ;; move to the beginning of buffer, and perform in replacement
+      (goto-char (point-min))
+      (perform-replace marker (nth 0 name-mail-entry) nil nil nil) ; insert name
+      (message-send-and-exit)))
+  )
 (defun gnus-send-template-mail()
   "Parse current buffer as a mail template,
 then send mails by send-groupmail-by-mailbuffer."
   (interactive)
   (save-excursion
-    (let (start-point
-          end-point string-temp
-          (to-marker "To: ") (subject-marker "Subject: ")
-          (from-marker "From: ") (content-marker "--text follows this line--\n")
+    (let (subject from-mail
+          (cc-mail "") (bcc-mail "")
+          start-point end-point string-temp
+          (to-marker "To: ")
+          (content-marker "--text follows this line--\n")
           (signature-marker (format "-- \n%s"common-tail-signature))
-          marker (name-mail-list '()) subject mail-content from-mail)
+          marker (name-mail-list '())  mail-content)
+      ;; obtain fields of from, cc, bcc, subject
+      (goto-char (point-min))
+      (when (search-forward-regexp "^[Ff]rom: \\(.*\\)$" nil t)
+        (setq from-mail (match-string-no-properties 1)))
+
+      (goto-char (point-min))
+      (when (search-forward-regexp "^[Cc]c: \\(.*\\)$" nil t)
+        (setq cc-mail (match-string-no-properties 1)))
+
+      (goto-char (point-min))
+      (when (search-forward-regexp "^[Bb]cc: \\(.*\\)$" nil t)
+        (setq bcc-mail (match-string-no-properties 1)))
+
+      (goto-char (point-min))
+      (when (search-forward-regexp "^[Ss]ubject: \\(.*\\)$" nil t)
+        (setq subject (match-string-no-properties 1)))
+
       ;; set default the marker for name replacement
       (setq marker "{name}")
       ;; obtain name and mail address list of recipients by searching: XXX <>
@@ -330,22 +353,6 @@ then send mails by send-groupmail-by-mailbuffer."
                  (error "Please make sure format for the reciepent(TO field) is 'XXX <XX@XX>'")
                  ))
              (split-string string-temp ",")))
-      ;; Obtain subject by searching: Subject: XXX
-      (goto-char (point-min))
-      (search-forward subject-marker nil nil)
-      (setq start-point (point))
-      (forward-line 1)
-      (backward-char 1)
-      (setq end-point (point))
-      (setq subject (buffer-substring-no-properties start-point end-point))
-      ;; Obtain from by searching: From: XXX
-      (goto-char (point-min))
-      (search-forward from-marker nil nil)
-      (setq start-point (point))
-      (forward-line 1)
-      (backward-char 1)
-      (setq end-point (point))
-      (setq from-mail (buffer-substring-no-properties start-point end-point))
       ;; Obtain mail content by searching: --text follows this line--
       (goto-char (point-min))
       (search-forward content-marker nil nil)
@@ -356,7 +363,7 @@ then send mails by send-groupmail-by-mailbuffer."
       (setq mail-content (buffer-substring-no-properties start-point end-point))
       ;; send mails based on template
       (gnus-send-groupmail-by-template
-       name-mail-list subject mail-content from-mail marker)
+       name-mail-list subject mail-content from-mail cc-mail bcc-mail marker)
       )
     )
   )
@@ -516,7 +523,7 @@ And insert header to mark message as unimportant(X-Priority).
 (setq gnus-gcc-mark-as-read t) ;;automatically mark Gcc articles as read
 (setq gnus-gcc-externalize-attachments 'all)
 (setq nnml-use-compressed-files t) ;;using compressed message files
-(setq nnmail-crosspost t) ;; do crossposting if several split methods match the mail.
+;; (setq nnmail-crosspost t) ;; do crossposting if several split methods match the mail.
 (setq bbdb/gnus-update-records-mode 'searching) ;; don't update bbdb records automatically
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-mime)
