@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-31 19:45:42>
+;; Updated: Time-stamp: <2013-02-02 14:40:32>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -658,6 +658,7 @@ Insert if ARG."
 (add-to-list 'auto-mode-alist '("\\.zsh$" . sh-mode))
 ;;(set-default 'indicate-empty-lines t) ;; Show me empty lines after buffer end
 ;;(global-subword-mode 1) ;; Easily navigate sillycased words
+
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
 ;; (require 'yasnippet-bundle)
