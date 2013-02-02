@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-08 13:36:26>
+;; Updated: Time-stamp: <2013-01-31 19:48:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -483,6 +483,11 @@ and also with certain buffer excluded from the candidates"
             ))
         )))
   )
+
+;; Auto update time-stamp
+(add-hook 'before-save-hook 'time-stamp)
+(setq time-stamp-pattern "Time-stamp: <%04y-%02m-%02d %02H:%02M:%02S>")
+(setq time-stamp-line-limit 20)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun what-hexadecimal-value ()
   "Prints the decimal value of a hexadecimal string under cursor.
@@ -724,6 +729,17 @@ This function only dump the exactly matched strings to a temporary buffer"
     (erase-buffer)
     (dolist (item matched-list)
       (insert (format "%s\n" item)))
+    ))
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key (kbd "C-c C-b") 'my-backup-buffer)
+(defun my-backup-buffer (&optional fname)
+  "Backup current buffer"
+  (interactive)
+  (progn
+    (if (null fname)
+        (setq fname (format "%s/%s-%s" "/tmp/" (buffer-name)
+                            (format-time-string "%Y-%m-%d_%H_%M_%S" (current-time)))))
+    (write-region (point-min) (point-max) fname)
     ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: handyfunction-setting.el ends here

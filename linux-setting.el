@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-20 01:26:28>
+;; Updated: Time-stamp: <2013-01-28 16:37:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -27,11 +27,11 @@
                 default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
-(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
-(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
-(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
-(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
+;; (load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
+;; (autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
+;; (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
+;; (add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
 ;;(global-set-key [(f9)] 'gnuplot-make-buffer)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p r: root edit current file
@@ -129,7 +129,6 @@
 (desktop-release-lock)
 (add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
 (add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
-;; --8<-------------------------- separator ------------------------>8--
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
 (command-frequency-mode 1)

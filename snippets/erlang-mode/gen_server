@@ -1,11 +1,11 @@
 %%%-------------------------------------------------------------------
-%%% @copyright 2011 ShopEx Network Technology Co,.Ltd
+%%% @copyright 2013 ShopEx Network Technology Co,.Ltd
 %%% File : gen_server
 %%% Author : filebat <markfilebat@126.com>
 %%% Description :
 %%% --
-%%% Created : <${1:$(format-time-string "%Y-%m-%d" (current-time))}>
-%%% Updated: Time-stamp: <2012-10-15 00:42:58>
+%%% Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
+%%% Updated: Time-stamp: <2013-01-28 15:54:28>
 %%%-------------------------------------------------------------------
 -module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
 -compile(export_all).

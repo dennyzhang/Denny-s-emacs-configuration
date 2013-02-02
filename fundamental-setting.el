@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-22 00:24:02>
+;; Updated: Time-stamp: <2013-01-31 19:45:41>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -176,6 +176,7 @@
 (defalias 'connection (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/connection.org"))))
 (defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/question.org"))))
 (defalias 'myself (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/myself.org"))))
+(defalias 'topic (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/topic.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -212,7 +213,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
-  (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc"))
+  (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc" "worklog.org"))
   (setq grep-find-command "find .")
   (dolist (filter-file-name filter-name-list)
     (setq grep-find-command
@@ -364,14 +365,6 @@ backup_dir specify where the backup copy shall go"
     (message (concat "Backup saved as: " (file-name-nondirectory bfilename)))
     ))
 
-(global-set-key [(meta p)(b)] 'backup-current-file)
-(defun backup-current-file (&optional backup_dir)
-  (interactive)
-  (let ((bfilename (file-name-nondirectory (buffer-file-name))))
-    (if (null backup_dir) (setq backup_dir "/tmp/"))
-    (write-region (point-min) (point-max)
-                  (format "%s/%d-%s" backup_dir (random 10000) bfilename))
-    ))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun notify-popup (title msg &optional icon sound)
   "Show a popup if we're on X, or echo it otherwise; TITLE is the title
@@ -493,5 +486,14 @@ starting on the same line at which another match ended is ignored."
    ((listp mode-name) (list-to-string mode-name))
    (t mode-name)
    ))
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key [(meta p)(b)] 'backup-current-file)
+(defun backup-current-file (&optional backup_dir)
+  (interactive)
+  (let ((bfilename (file-name-nondirectory (buffer-file-name))))
+    (if (null backup_dir) (setq backup_dir "/tmp/"))
+    (write-region (point-min) (point-max)
+                  (format "%s/%d-%s" backup_dir (random 10000) bfilename))
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-20 10:41:05>
+;; Updated: Time-stamp: <2013-01-31 19:45:42>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -154,12 +154,6 @@
 ;; woman-cache-level 3) ;缓存级别, 最快
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(type-break-mode) ;; notify to take a break after certain keystrokes or time
-;; --8<-------------------------- separator ------------------------>8--
-;; Use time stamps
-;; (add-hook 'write-file-hooks 'time-stamp)
-;; (setq time-stamp-active t)
-;; (setq time-stamp-format "%:u %04y-%02m-%02d %02H:%02M:%02S")
-;; (setq time-stamp-end: "\n")
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(define-key minibuffer-local-map " " nil)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -525,6 +519,7 @@
 (add-hook 'nxml-mode-hook 'flyspell-prog-mode)
 (add-hook 'python-mode-hook 'flyspell-prog-mode)
 (add-hook 'sh-mode-hook 'flyspell-prog-mode)
+(setq python-indent-offset 4)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'midnight)
 ;; (midnight-delay-set 'midnight-delay "0:10am")

@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-21 21:40:07>
+;; Updated: Time-stamp: <2013-01-27 15:26:33>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -36,10 +36,10 @@ These information is probably retrieved from internet. "
         (setq output_str
               (file-name-sans-extension (file-name-nondirectory output_str))))
     (cond
-     ((string-equal mode-str "w3m") (setq output_str (w3m-current-title)))
-     ((string-match mode-str "Dired")
+     ((string-prefix-p "w3m" mode-str) (setq output_str (w3m-current-title)))
+     ((string-prefix-p "Dired" mode-str)
       (setq output_str (count-code-lines-in-directory default-directory)))
-     ((string-equal mode-str "Article") (setq output_str (w3m-print-this-url)))
+     ((string-prefix-p "Article" mode-str) (setq output_str (w3m-print-this-url)))
      (t (if (null output_str) (setq output_str (buffer-name))))
      )
     (when output_str

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-20 20:04:23>
+;; Updated: Time-stamp: <2013-01-28 15:44:31>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -303,6 +303,7 @@ From Patrick Anderson via the wiki."
 (setq password-cache-expiry 60)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; configure remote parameters for tramp
+(require 'tramp-sh)
 (add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
 (delete "PAGER=\"\"" tramp-remote-process-environment)
 (delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
