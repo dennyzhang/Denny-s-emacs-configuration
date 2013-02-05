@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-16 23:57:31>
+;; Updated: Time-stamp: <2013-02-02 17:21:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -16,8 +16,7 @@
 
         ("7ab597a8e9eb8827097608f1221c8597" 552 "[Denny] test")
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
-        ;; ("4f4ec8a684c78ff3e1b4cc961809c37a" 6523 "[Denny] Help me by discussing my questions")
-
+        ("90ac35ae8c4c332a57203920b275dc51" 6523 "[Denny] Difficulties in Python")
         ("d64c3b5d880747cb7b3ae148b0b1bad1" 238 "[Denny] Graph theory for Algorithm")
         ("62fc36d98dff6682e4187565c1c13b33" 341 "[Denny] Set theory for Algorithm")
         ("045b889854057c9e9c8476d2d8d8f959" 561 "[Denny] Special Scenario for Algorithm -- 通过问题的特殊性来解决")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-19 11:14:18>
+;; Updated: Time-stamp: <2013-02-03 12:03:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -315,7 +315,7 @@ create a new window and browse the webpage"
       (goto-char (point-min))
       (read-only-mode -1)
       (rr " +$" "" nil (point-min) (point-max))
-      (flush-lines short-line-regex (point-min) (point-max))
+      ;;(flush-lines short-line-regex (point-min) (point-max)) ;; TODO here
       (rr "\n\n+" "\n\n" nil (point-min) (point-max))
       (read-only-mode 1)
       ))
