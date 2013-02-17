@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-02 17:21:37>
+;; Updated: Time-stamp: <2013-02-06 22:33:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -89,6 +89,7 @@
         ("9ceb4d12c84c207045992ce4427a2b4f" 6268 "[Denny] How To Test Paas Platform (副标题: 商派电子商务云平台的回顾和反思)")
         ("8192cd8e64030f55379112af2ede5c72" 6309 "[Denny] Daily Journal logging for I am doing everyday -- 工作日志")
         ("2673753f5e99ed3823e2d428123126bd" 6523 "[Denny] linux systemtap")
+        ("cfca3c3a4d874d4f9d47990967a4ebf7" 7867 "[Denny] Google Go")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

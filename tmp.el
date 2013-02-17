@@ -3,14 +3,14 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-02 14:40:32>
+;; Updated: Time-stamp: <2013-02-06 10:49:31>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
  (interactive)
  (let* ((current-file (buffer-file-name (current-buffer)))
  (bak-file (format "%s_%s_bak" current-file (random 100)))
- (convert-command (format "iconv -f gb2312 -t utf-8 %s > %s"
+  (convert-command (format "iconv -f gb2312 -t utf-8 %s > %s"
  current-file bak-file))
  )
  (with-temp-buffer
@@ -1715,5 +1715,13 @@ Insert if ARG."
 (add-hook 'org-mode-hook
 	 (lambda ()
  (defalias 'org-freemind-write-node 'my-org-freemind-write-node)))
+;; --8<-------------------------- separator ------------------------>8--
+(defun my-unfill-region ()
+  (interactive)
+  (make-variable-buffer-local 'fill-column)
+  (setq fill-column 10000)
+  (unfill-region (point-min) (point-max))
+  )
+(defalias 'uf 'my-unfill-region)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

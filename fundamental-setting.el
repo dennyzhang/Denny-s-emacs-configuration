@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-31 19:45:41>
+;; Updated: Time-stamp: <2013-02-12 11:33:32>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -190,9 +190,9 @@
              ;; If the file path doesn't exist, create it, including any parent directories.
              (or (file-exists-p (file-name-directory buffer-file-name))
                  (make-directory (file-name-directory buffer-file-name) t))
-             ;; Remove trailing whitespace
-             (unless (member mode-name readonly-mode-list)
-               (delete-trailing-whitespace))
+             ;; ;; Remove trailing whitespace  ;; TODO
+             ;; (unless (member mode-name readonly-mode-list)
+             ;;   (delete-trailing-whitespace))
              ;; Auto update timestamp for some specific files
              (unless (member (file-name-extension (buffer-name)) '("org"))
                (time-stamp))
