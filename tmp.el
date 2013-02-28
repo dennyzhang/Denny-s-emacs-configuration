@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-06 10:49:31>
+;; Updated: Time-stamp: <2013-02-28 00:15:33>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-06 22:33:07>
+;; Updated: Time-stamp: <2013-02-27 23:34:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -16,7 +16,7 @@
 
         ("7ab597a8e9eb8827097608f1221c8597" 552 "[Denny] test")
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
-        ("90ac35ae8c4c332a57203920b275dc51" 6523 "[Denny] Difficulties in Python")
+        ("90ac35ae8c4c332a57203920b275dc51" 6523 "[Denny] Difficulties in cloud computing")
         ("d64c3b5d880747cb7b3ae148b0b1bad1" 238 "[Denny] Graph theory for Algorithm")
         ("62fc36d98dff6682e4187565c1c13b33" 341 "[Denny] Set theory for Algorithm")
         ("045b889854057c9e9c8476d2d8d8f959" 561 "[Denny] Special Scenario for Algorithm -- 通过问题的特殊性来解决")
@@ -40,7 +40,7 @@
         ("f97d5c9d0ef27ab408d4eb2cb37363ad" 1307 "[Denny] linux security")
         ("c6edf38b312bb72f7b662028b6c6c796" 1659 "[Denny] 自我管理 -- GTD & PKM")
         ("bed301b5e8a7aa3269c4715b4994d409" 1693 "[Denny] linux常用工具语言")
-        ("58ef3129b66316e2c4c586c94616b5f9" 1697 "[Denny] IO profiling")
+        ("5e92572a5a50968ca00e23ff3ff8be0d" 1697 "[Denny] 电商的数据分析和处理")
         ("22c8572a32e61b7e527c0b17c9016bde" 2158 "[Denny] Erlang performance tunning for 1,000,000 connections")
         ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
         ("f579023d3b8347172362e5025d438b3d" 2346 "[Denny] Functional Programming 函数式编程")
@@ -50,7 +50,7 @@
         ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
         ("39c2dd4f4f788c4560b9f19d75b066c2" 3129 "[Denny] Locking in programming")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
-        ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in cloud computing")
+        ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in Python")
         ("2588838cc8e052c6aa19ba45c6737ea3" 3792 "[Denny] Linux memory & cache")
         ("f477b91154bb421fe12da0231a1c68df" 3893 "[Denny] music in daily life")
         ("731139af6de20d46044827f8aad384ce" 4202 "[Denny] Difficulties in emacs")
@@ -90,6 +90,7 @@
         ("8192cd8e64030f55379112af2ede5c72" 6309 "[Denny] Daily Journal logging for I am doing everyday -- 工作日志")
         ("2673753f5e99ed3823e2d428123126bd" 6523 "[Denny] linux systemtap")
         ("cfca3c3a4d874d4f9d47990967a4ebf7" 7867 "[Denny] Google Go")
+        ("64ae47502012e5348bd8af5bb01e8506" 7882 "[Denny] R: The R Project for Statistical Computing")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

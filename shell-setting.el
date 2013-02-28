@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-28 15:44:31>
+;; Updated: Time-stamp: <2013-02-25 18:31:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When killing a file, also kill related shell buffer
@@ -305,6 +305,7 @@ From Patrick Anderson via the wiki."
 ;; configure remote parameters for tramp
 (require 'tramp-sh)
 (add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
+(add-to-list 'tramp-remote-process-environment "SSH_ASKPASS=\"\"") ;; unset $SSH_ASKPASS
 (delete "PAGER=\"\"" tramp-remote-process-environment)
 (delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
 (add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
