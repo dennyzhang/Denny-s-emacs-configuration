@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-03 12:03:44>
+;; Updated: Time-stamp: <2013-03-13 00:21:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -306,7 +306,7 @@ create a new window and browse the webpage"
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key c-mode-base-map [(meta j)] 'webjump)
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'w3m-display-hook 'wash-w3m-buffer)
+;;(add-to-list 'w3m-display-hook 'wash-w3m-buffer) ;; TODO denny
 (defun wash-w3m-buffer(&optional url)
   (interactive)
   (let* ((line-width 10)

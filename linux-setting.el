@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-28 16:37:11>
+;; Updated: Time-stamp: <2013-03-13 01:14:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -18,13 +18,15 @@
          )
        default-frame-alist))
 
- (create-fontset-from-fontset-spec
-    "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
-(setq default-frame-alist
-      (append
-       '(
-         (font . "fontset-startup"))
-                default-frame-alist))
+;; TODO denny
+;;  (create-fontset-from-fontset-spec
+;;     "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
+
+;; (setq default-frame-alist
+;;       (append
+;;        '(
+;;          (font . "fontset-startup"))
+;;                 default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
@@ -86,7 +88,7 @@
 ;;(org-defkey org-mode-map [(control meta ,)] 'org-shiftmetaleft)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
-;;(add-to-list 'load-path "/home/denny/Downloads/yasnippet-0.6.1c/")
+;;(add-to-list 'load-path "~/Downloads/yasnippet-0.6.1c/")
 (require 'yasnippet)
 (setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
 (yas--initialize)

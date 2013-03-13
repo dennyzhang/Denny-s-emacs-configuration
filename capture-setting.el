@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-14 11:17:07>
+;; Updated: Time-stamp: <2013-03-01 16:36:19>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -21,14 +21,9 @@
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
          "** %<%Y-%m-%d>: %?")
-        ("s" "Shopping" entry (file+headline "current.org" "Shopping") "** %?\n")
+        ("c" "Communication" entry (file+headline "current.org" "Communication") "** %?\n")
         ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
         ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
-        ("c" "Contacts" entry (file "contacts.org")
-         "* %(org-contacts-template-name)
-:PROPERTIES:
-:EMAIL: %(org-contacts-template-email)
-:END:")
         ))
 
 (defun capture-gnus-template ()

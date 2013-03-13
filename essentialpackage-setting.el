@@ -3,11 +3,29 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-26 11:26:02>
+;; Updated: Time-stamp: <2013-03-11 17:31:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
+;; TODO denny
+(defun plist-to-alist (plist)
+  "Convert property list PLIST into the equivalent association-list form.
+The alist is returned.  This converts from
+
+\(a 1 b 2 c 3)
+
+into
+
+\((a . 1) (b . 2) (c . 3))
+
+The original plist is not modified.  See also `destructive-plist-to-alist'."
+  (let (alist)
+    (while plist
+      (setq alist (cons (cons (car plist) (cadr plist)) alist))
+      (setq plist (cddr plist)))
+    (nreverse alist)))
+
 (color-theme-dark-blue)
 ;;show recent files
 (require 'recentf)
@@ -44,23 +62,23 @@
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
+;; (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el")) ;; TODO denny
 (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
 ;; make bookmarks persistent as default
 (setq-default bm-buffer-persistence t)
 ;; Loading the repository from file when on start up.
-(add-hook 'after-init-hook 'bm-repository-load)
+;;(add-hook 'after-init-hook 'bm-repository-load) ;; TODO denny
 ;; Restoring bookmarks when on file find.
-(add-hook 'find-file-hook 'bm-buffer-restore)
+;;(add-hook 'find-file-hook 'bm-buffer-restore) ;; TODO
 ;; Saving bookmark data on killing a buffer
 ;; (add-hook 'kill-buffer-hook 'bm-buffer-save) ;; TODO
 (defadvice bm-buffer-save (before if activate) (widen))
 ;; Saving the repository to file when on exit.
 ;; kill-buffer-hook is not called when emacs is killed, so we
 ;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook #'(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
+;;(add-hook 'kill-emacs-hook #'(lambda nil ;; TODO denny
+;;                              (bm-buffer-save-all) ;; TODO denny
+;;                              (bm-repository-save))) ;; TODO denny
 ;; Update bookmark repository when saving the file.
 ;;(add-hook 'after-save-hook 'bm-buffer-save)
 ;; Restore bookmarks when buffer is reverted.
@@ -240,7 +258,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
 ;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
-(require 'proced)
+;;(require 'proced) ;; TODO denny
 (setq proced-sort "pmem")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keep-buffers/keep-buffers.el"))

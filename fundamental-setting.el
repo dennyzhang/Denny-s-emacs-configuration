@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-22 11:42:43>
+;; Updated: Time-stamp: <2013-03-12 18:06:09>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -37,7 +37,7 @@
 (setq undo-limit 1000) ;;Increase number of undo
 (setq kill-do-not-save-duplicates t)
 (blink-cursor-mode 0) ;; prevent cursor blinking
-(set-fringe-mode (cons 6 0))
+;; (set-fringe-mode (cons 6 0)) ;; TODO denny
 (size-indication-mode t)
 (setq redisplay-dont-pause t)
 (setq tooltip-use-echo-area t)
@@ -219,7 +219,13 @@
     (setq grep-find-command
           (format "%s -name \"%s\" -prune -o" grep-find-command filter-file-name)))
   (setq grep-find-command
-        (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e ")))
+        (cond
+         ((eq system-type 'darwin)
+          (concat grep-find-command " -type f -print0 | xargs -0 grep -inH -e "))
+         (t
+          (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e "))
+          ))
+  )
 
 (global-set-key [(super .)] 'my-occur)
 (defun my-occur (invokeoccur)
