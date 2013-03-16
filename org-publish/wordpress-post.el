@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-09 23:29:27>
+;; Updated: Time-stamp: <2013-03-15 23:27:36>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -92,6 +92,7 @@
         ("cfca3c3a4d874d4f9d47990967a4ebf7" 7867 "[Denny] Google Go")
         ("64ae47502012e5348bd8af5bb01e8506" 7882 "[Denny] R: The R Project for Statistical Computing")
         ("49482b38b0e52cea09356e3ba1effd64" 8133 "[Denny] 数据分析 -- Data analysis & Big Data")
+        ("8a81647c0b408e66aad14415480befa8" 8161 "[Denny] Fighting with mac")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

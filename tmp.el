@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-13 00:35:36>
+;; Updated: Time-stamp: <2013-03-16 11:18:19>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1733,4 +1733,24 @@ Insert if ARG."
 (set-face-foreground 'function-name "YellowGreen")
 (setq font-lock-function-name-face  'function-name)
 ;; --8<-------------------------- separator ------------------------>8--
+;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
+;; (openwith-mode t)
+;; ;; ask for confirmation before invoke external program
+;; (setq openwith-confirm-invocation t)
+;; (cond
+;;  ((eq system-type 'gnu/linux)
+;;   ;; clean up previous open associations, and reconfigure
+;;   (setq openwith-associations
+;;         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
+;;           ("\\.epub\\'" "calibre" (file))
+;;           ;;("\\.pdf\\'" "evince" (file))
+;;           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
+;;           )))
+;;  ((eq system-type 'windows-nt)
+;;   ;;TODO problematic
+;;   (setq openwith-associations
+;;         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
+;;           )))
+;;  )
+;; ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

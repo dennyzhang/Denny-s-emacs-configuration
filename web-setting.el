@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-13 00:21:30>
+;; Updated: Time-stamp: <2013-03-16 15:30:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -15,9 +15,7 @@
   (bbdb-initialize 'w3))
 
 (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
-(eval-after-load 'w3m
-  '(progn
-     ))
+(if window-system (require 'w3m-load))
 (custom-set-variables
  '(w3m-form-input-map-mode-hook (quote (flyspell-mode)))
  '(w3m-tab-width 4)
@@ -168,8 +166,8 @@ create a new window and browse the webpage"
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
         ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
         ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
-        ("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
-        ;;("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
+        ;;("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
+        ("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
         ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])

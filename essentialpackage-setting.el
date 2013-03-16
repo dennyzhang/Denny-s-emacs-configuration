@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-11 17:31:11>
+;; Updated: Time-stamp: <2013-03-14 22:12:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -62,7 +62,7 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el")) ;; TODO denny
+(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
 (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
 ;; make bookmarks persistent as default
 (setq-default bm-buffer-persistence t)
@@ -235,26 +235,6 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
 (load-file (concat EMACS_VENDOR "/rainbow-mode/rainbow-mode.el"))
 (dolist (hook programming-hook-list)
   (add-hook hook #'(lambda () (rainbow-mode 1 ))))
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
-(openwith-mode t)
-;; ask for confirmation before invoke external program
-(setq openwith-confirm-invocation t)
-(cond
- ((eq system-type 'gnu/linux)
-  ;; clean up previous open associations, and reconfigure
-  (setq openwith-associations
-        '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
-          ("\\.epub\\'" "calibre" (file))
-          ;;("\\.pdf\\'" "evince" (file))
-          ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
-          )))
- ((eq system-type 'windows-nt)
-  ;;TODO problematic
-  (setq openwith-associations
-        '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
-          )))
- )
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
 ;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
