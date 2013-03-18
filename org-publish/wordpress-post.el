@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-15 23:27:36>
+;; Updated: Time-stamp: <2013-03-17 02:06:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
@@ -74,16 +74,15 @@
         ("a5c196d7978add02e258af2a31a5b761" 5059 "[Denny] Form good habits -- 养成良好的习惯")
         ("10bdf4ab84688a22e433f542e3108ab9" 4872 "[Denny] Difficulties in latex beamer")
         ("ee2156b3de6592010f4aa0e7d5d9d4a2" 5127 "[Denny] ubuntu skills")
-        ("06e78243ef9008db7ab0f600bd8527d4" 5273 "[Denny] linux arp")
         ("2be42aee5276b8f016dee4f553eb8aaf" 5454 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 5476 "[Denny] [置顶] Motto -- 人生格言")
         ("8cb2825a5242eec670f5ffa4aab3b288" 5485 "[Denny] linux调试工具集")
         ("f8c59fe0cfe47bc4db33864df60354da" 5693 "[Denny] Linux network -- tcp/ip")
         ("a77816667dba21e27b7e2ccc162d2448" 5349 "[Denny] 商派码农再议12306")
-        ("aa442dced0dd3629eca39f14fd8c24c1" 5273 "[Denny] Technical problems in my daily work -- 工作中遇到的疑难杂症")
+        ("aa442dced0dd3629eca39f14fd8c24c1" 5767 "[Denny] Technical problems in my daily work -- 工作中遇到的疑难杂症")
         ("60287684a49aa965dd603353cdeda751" 5698 "[Denny] [Programming life] Leverage Ramfs to fasten your intense disk access")
         ("344d1931f2c4ce692b4cd617625a8283" 5695 "[Denny] Erlang Implementations Details")
-        ("791fd82867b54c7353c9393045897010" 5767 "[Denny] Emacs — fundanmental features")
+        ("791fd82867b54c7353c9393045897010" 5273 "[Denny] Emacs — fundanmental features")
         ("93cf6cd6e42d178c740407e64cde23ad" 6033 "[Denny] linux performance analysis")
         ("5ebc33327869e48d20bb9a66de18bc11" 6264 "[Denny] erlang debug skills")
         ("9ceb4d12c84c207045992ce4427a2b4f" 6268 "[Denny] How To Test Paas Platform (副标题: 商派电子商务云平台的回顾和反思)")
@@ -93,6 +92,7 @@
         ("64ae47502012e5348bd8af5bb01e8506" 7882 "[Denny] R: The R Project for Statistical Computing")
         ("49482b38b0e52cea09356e3ba1effd64" 8133 "[Denny] 数据分析 -- Data analysis & Big Data")
         ("8a81647c0b408e66aad14415480befa8" 8161 "[Denny] Fighting with mac")
+        ("a5084c5b36f309e58b2629bed5212e6a" 8182 "[Denny] Objective-C")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

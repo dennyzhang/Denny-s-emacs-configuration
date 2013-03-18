@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-16 13:54:05>
+;; Updated: Time-stamp: <2013-03-17 01:49:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -59,7 +59,8 @@ These information is probably retrieved from internet. "
     (if (null lanuage-postfix-list)
         (setq lanuage-postfix-list
               '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
-                "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.cc" "*.cxx" "*.m"
+                "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.cc" "*.cxx"
+                "*.m" "*.h"
                 "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)

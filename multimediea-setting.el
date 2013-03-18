@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-13 01:14:57>
+;; Updated: Time-stamp: <2013-03-16 17:49:50>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -81,9 +81,6 @@
 (require 'emms-player-mplayer)
 (emms-devel)
 (emms-default-players)
-(push 'emms-player-mpg321-remote emms-player-list)
-(push 'emms-player-mplayer emms-player-list)
-(push 'emms-player-mplayer-playlist emms-player-list)
 (setq emms-info-asynchronously t
       later-do-interval 0.0001
       emms-info-functions '(emms-info-libtag))
@@ -117,7 +114,7 @@
       emms-player-mpg321-parameters '("-o" "alsa")
       emms-player-mplayer-command-name "mplayer"
       emms-player-list '(emms-player-mplayer
-                         emms-player-mplayer-playlist
+                         ;;emms-player-mplayer-playlist
                          emms-player-ogg123
                          emms-player-mpg321))
 ;; my customizable playlist format
@@ -508,5 +505,6 @@
       (export-orgfile-to-emmsplaylist
        emms-org-file tag
        (format "%s/playlist/%s.playlist" emms-source-file-default-directory tag)))))
+
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: multimediea-setting.el
