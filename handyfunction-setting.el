@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-31 19:48:22>
+;; Updated: Time-stamp: <2013-03-24 13:55:48>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -395,6 +395,8 @@ Open windows explorer in the current directory"
   (cond
    ((eq system-type 'gnu/linux)
     (shell-command-to-string (concat "nautilus " default-directory)))
+   ((eq system-type 'darwin)
+    (shell-command-to-string (concat "open " default-directory)))
    ((eq system-type 'windows-nt)
     (w32-shell-execute "open" "explorer"
                        (concat "/e,/select,"

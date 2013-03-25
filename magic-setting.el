@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-27 15:26:33>
+;; Updated: Time-stamp: <2013-03-24 13:57:04>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -60,6 +60,7 @@ These information is probably retrieved from internet. "
         (setq lanuage-postfix-list
               '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
                 "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.cc" "*.cxx"
+                "*.m" "*.h"
                 "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)
@@ -68,7 +69,8 @@ These information is probably retrieved from internet. "
       (setq command-output
             (shell-command-to-string
              (format "find . -name '%s' | xargs wc -l 2>/dev/null | tail -n 1" lanuage-var)))
-      (unless (string= command-output "0\n")
+      (unless (or (string= command-output "0\n")
+                  (string= command-output ""))
         (setq output-str (format "%s\n%s: %s " output-str lanuage-var command-output))
         ))
     ;; return the result

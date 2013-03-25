@@ -3,11 +3,29 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-26 11:26:02>
+;; Updated: Time-stamp: <2013-03-24 00:49:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
+;; TODO denny
+(defun plist-to-alist (plist)
+  "Convert property list PLIST into the equivalent association-list form.
+The alist is returned.  This converts from
+
+\(a 1 b 2 c 3)
+
+into
+
+\((a . 1) (b . 2) (c . 3))
+
+The original plist is not modified.  See also `destructive-plist-to-alist'."
+  (let (alist)
+    (while plist
+      (setq alist (cons (cons (car plist) (cadr plist)) alist))
+      (setq plist (cddr plist)))
+    (nreverse alist)))
+
 (color-theme-dark-blue)
 ;;show recent files
 (require 'recentf)
@@ -44,33 +62,37 @@
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
-(setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
-;; make bookmarks persistent as default
-(setq-default bm-buffer-persistence t)
-;; Loading the repository from file when on start up.
-(add-hook 'after-init-hook 'bm-repository-load)
-;; Restoring bookmarks when on file find.
-(add-hook 'find-file-hook 'bm-buffer-restore)
-;; Saving bookmark data on killing a buffer
-;; (add-hook 'kill-buffer-hook 'bm-buffer-save) ;; TODO
-(defadvice bm-buffer-save (before if activate) (widen))
-;; Saving the repository to file when on exit.
-;; kill-buffer-hook is not called when emacs is killed, so we
-;; must save all bookmarks first.
-(add-hook 'kill-emacs-hook #'(lambda nil
-                              (bm-buffer-save-all)
-                              (bm-repository-save)))
-;; Update bookmark repository when saving the file.
-;;(add-hook 'after-save-hook 'bm-buffer-save)
-;; Restore bookmarks when buffer is reverted.
-;;(add-hook 'after-revert-hook 'bm-buffer-restore)
-;; make sure bookmarks is saved before check-in (and revert-buffer)
-(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-(global-set-key (kbd "<C-f2>") 'bm-toggle)
-(global-set-key (kbd "<f2>") 'bm-next)
-(global-set-key (kbd "<S-f2>") 'bm-previous)
-;; ;; --8<-------------------------- separator ------------------------>8--
+(if window-system
+    (progn
+      (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
+      (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
+      ;; make bookmarks persistent as default
+      (setq-default bm-buffer-persistence t)
+      ;; Loading the repository from file when on start up.
+      ;;(add-hook 'after-init-hook 'bm-repository-load) ;; TODO denny
+      ;; Restoring bookmarks when on file find.
+      ;;(add-hook 'find-file-hook 'bm-buffer-restore) ;; TODO
+      ;; Saving bookmark data on killing a buffer
+      ;; (add-hook 'kill-buffer-hook 'bm-buffer-save) ;; TODO
+      (defadvice bm-buffer-save (before if activate) (widen))
+      ;; Saving the repository to file when on exit.
+      ;; kill-buffer-hook is not called when emacs is killed, so we
+      ;; must save all bookmarks first.
+      ;;(add-hook 'kill-emacs-hook #'(lambda nil ;; TODO denny
+      ;; (bm-buffer-save-all) ;; TODO denny
+      ;; (bm-repository-save))) ;; TODO denny
+      ;; Update bookmark repository when saving the file.
+      ;;(add-hook 'after-save-hook 'bm-buffer-save)
+      ;; Restore bookmarks when buffer is reverted.
+      ;;(add-hook 'after-revert-hook 'bm-buffer-restore)
+      ;; make sure bookmarks is saved before check-in (and revert-buffer)
+      (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+      (global-set-key (kbd "<C-f2>") 'bm-toggle)
+      (global-set-key (kbd "<f2>") 'bm-next)
+      (global-set-key (kbd "<S-f2>") 'bm-previous)
+      )
+  )
+;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<f5>") 'highlight-symbol-next)
@@ -218,29 +240,29 @@
 (dolist (hook programming-hook-list)
   (add-hook hook #'(lambda () (rainbow-mode 1 ))))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
-(openwith-mode t)
-;; ask for confirmation before invoke external program
-(setq openwith-confirm-invocation t)
-(cond
- ((eq system-type 'gnu/linux)
-  ;; clean up previous open associations, and reconfigure
-  (setq openwith-associations
-        '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
-          ("\\.epub\\'" "calibre" (file))
-          ;;("\\.pdf\\'" "evince" (file))
-          ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
-          )))
- ((eq system-type 'windows-nt)
-  ;;TODO problematic
-  (setq openwith-associations
-        '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
-          )))
- )
+;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
+;; (openwith-mode t)
+;; ;; ask for confirmation before invoke external program
+;; (setq openwith-confirm-invocation t)
+;; (cond
+;;  ((eq system-type 'gnu/linux)
+;;   ;; clean up previous open associations, and reconfigure
+;;   (setq openwith-associations
+;;         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
+;;           ("\\.epub\\'" "calibre" (file))
+;;           ;;("\\.pdf\\'" "evince" (file))
+;;           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
+;;           )))
+;;  ((eq system-type 'windows-nt)
+;;   ;;TODO problematic
+;;   (setq openwith-associations
+;;         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
+;;           )))
+;;  )
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
 ;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
-(require 'proced)
+;;(require 'proced) ;; TODO denny
 (setq proced-sort "pmem")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keep-buffers/keep-buffers.el"))

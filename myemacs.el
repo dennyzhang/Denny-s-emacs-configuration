@@ -3,18 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-20 00:46:22>
+;; Updated: Time-stamp: <2013-03-23 23:50:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;;(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
-;;(defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
+(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
+(defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
 (setq emacs-load-start-time (current-time))
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
 
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
-(require 'weibo)
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
+;;(require 'weibo)
 
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (mapc #'(lambda(emacs-file)
@@ -50,6 +50,19 @@
         "otherpackage-setting.el"
         ))
 (cond
+ ((eq system-type 'darwin)
+  (mapc #'(lambda(emacs-file)
+         (load-file
+	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
+        '(
+          "diff-setting.el"
+          "web-setting.el"
+          "linux-setting.el"
+          "multimediea-setting.el"
+          "shell-setting.el"
+          "voice-setting.el"
+          "mac-setting.el"
+          "interoperation-setting.el")))
  ((eq system-type 'gnu/linux)
   (mapc #'(lambda(emacs-file)
          (load-file
@@ -78,7 +91,7 @@
 ;;(load-file (concat DENNY_CONF "/emacs_conf/secrets.el.gpg"))
 
 ;; --8<-------------------------- separator ------------------------>8--
-(unless (server-running-p) (server-start))
+;;(unless (server-running-p) (server-start)) ;; TODO denny
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

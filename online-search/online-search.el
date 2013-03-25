@@ -1,7 +1,7 @@
 ;;; online-search.el --- Online dictionary or intelligent api search engine for developers
 ;; -*- mode: EMACS-LISP; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-05-16 08:15:36>
+;; Copyright © 2010-2011 Time-stamp: <2013-03-24 23:33:13>
 ;;; ================================================================
 
 ;;; online-search.el --- Emacs interface to the Online Search
@@ -95,24 +95,36 @@
                :start-anchor-str ""
                :end-anchor-str "更多网络释义")
               )
-
-        ;; search php api, in php mode
-        (if (string-equal mode-name "PHP")
-            (setq online-search-configuration
-                  (make-online-search-struct
+        (cond
+         ((string= mode-name"ObjC/l")
+           ;; search xcode api
+          ;;(setq anything-pattern "NSString")
+          (anything (list (xcdoc:search-source)) word)
+          (other-window 1)
+          (switch-to-buffer (car (w3m-list-buffers)))
+          ;;(w3m-switch-buffer)
+          ;; (ido-switch-buffer)
+          )
+         ((string= mode-name "PHP")
+           ;; search php api, in php mode
+           (setq online-search-configuration
+                 (make-online-search-struct
                    :search-engine-url-format "http://cn.php.net/manual/en/function."
                    :start-anchor-str ""
-                   :end-anchor-str "")))
-        ;; search c/c++ api, in c/c++ mode
-        (if (member mode-name '("C/l" "C++/l"))
-            (setq online-search-configuration
+                   :end-anchor-str ""))
+           (online-search-word word))
+         ((member mode-name '("C/l" "C++/l"))
+           ;; search c/c++ api, in c/c++ mode
+           (setq online-search-configuration
                   (make-online-search-struct
                    :search-engine-url-format "http://www.cplusplus.com/search.do?q="
                    :start-anchor-str ""
-                   :end-anchor-str "")))
-        ;; perform the actual operation
-        (online-search-word word)
+                   :end-anchor-str ""))
+           (online-search-word word))
+          (t
+           (online-search-word word))
         ))
+    )
   (if (listp mode-name)
       (progn
         (if (member "HTML" mode-name)

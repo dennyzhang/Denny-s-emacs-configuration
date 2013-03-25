@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-03 12:03:44>
+;; Updated: Time-stamp: <2013-03-24 13:59:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -168,8 +168,8 @@ create a new window and browse the webpage"
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
         ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
         ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
-        ("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
-        ;;("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
+        ;;("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
+        ("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
         ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])
@@ -303,8 +303,6 @@ create a new window and browse the webpage"
     ))
 (setq hfy-meta-tags
       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
-;; --8<-------------------------- separator ------------------------>8--
-(define-key c-mode-base-map [(meta j)] 'webjump)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'w3m-display-hook 'wash-w3m-buffer)
 (defun wash-w3m-buffer(&optional url)

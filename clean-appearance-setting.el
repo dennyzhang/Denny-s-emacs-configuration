@@ -3,10 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-04 22:01:11>
+;; Updated: Time-stamp: <2013-03-23 22:59:20>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(set-face-background 'modeline "#5f9ea0") ;; set color of modeline
+;; set color of modeline
+;;(set-face-background 'modeline "#5f9ea0")
 (set-face-attribute 'mode-line nil :height 100)
 (defun toggle-mode-line ()
   "toggles the modeline on and off"
@@ -21,12 +22,12 @@
 (mouse-avoidance-mode 'animate)
 (setq mouse-avoidance-threshold 10)
 ;; enable mouse wheel support
-(mouse-wheel-mode 1)
+;;(mouse-wheel-mode 1) ;; TODO denny
 ;; --8<-------------------------- separator ------------------------>8--
 (defun emacs-clean ()
   ;; let's have a clean world
   (interactive)
-  (set-scroll-bar-mode 'right) ;;scroll bar
+  ;;(set-scroll-bar-mode 'right) ;;scroll bar ;; TODO denny
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1)) ;; Hide toolbar
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)) ;;Hide menubar
   (setq inhibit-startup-message t

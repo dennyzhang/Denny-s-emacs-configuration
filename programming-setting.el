@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-22 00:29:18>
+;; Updated: Time-stamp: <2013-03-24 13:59:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -61,14 +61,14 @@
   ;; (add-hook hook 'enable-which-function)
   )
 ;; --8<-------------------------- separator ------------------------>8--
-;;switch between .h and .cpp
+;;switch between .h <--> .cpp/.m/.cxx
 (defun switch-head2source-file ()
   "if current file is a header file, then open the
  corresponding source file or vice versa."
   (interactive)
   (let ((f (buffer-file-name))
         (headers '("h" "hpp" "hxx"))
-        (sources '("c" "cxx" "cpp" "cc")))
+        (sources '("c" "cxx" "cpp" "cc" "m")))
     (if f
         (let* ((b (file-name-sans-extension f))
                (x (file-name-extension f))
@@ -91,6 +91,7 @@
                       return-value t))
                (t (setq s (cdr s))))))
           return-value))))
+(global-set-key [(control c) (control t)] 'switch-head2source-file)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Get etags file intelligently
 (add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
@@ -327,5 +328,7 @@
                  answer)
              (set-window-buffer window buf)
              window))))))
+;; --8<-------------------------- separator ------------------------>8--
+(define-key c-mode-base-map [(meta j)] 'webjump)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

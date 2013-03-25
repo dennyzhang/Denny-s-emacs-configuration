@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-28 16:37:11>
+;; Updated: Time-stamp: <2013-03-24 11:34:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
@@ -18,20 +18,22 @@
          )
        default-frame-alist))
 
- (create-fontset-from-fontset-spec
-    "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
-(setq default-frame-alist
-      (append
-       '(
-         (font . "fontset-startup"))
-                default-frame-alist))
+;; TODO denny
+;;  (create-fontset-from-fontset-spec
+;;     "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
+
+;; (setq default-frame-alist
+;;       (append
+;;        '(
+;;          (font . "fontset-startup"))
+;;                 default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
-;; (load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
-;; (autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-;; (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
-;; (add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
+(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode.0.6.0"))
+(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
+(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
+(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
+(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
 ;;(global-set-key [(f9)] 'gnuplot-make-buffer)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p r: root edit current file
@@ -93,42 +95,42 @@
 (yas-load-directory yas-snippet-dirs nil)
 (yas-global-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'desktop)
+;; (require 'desktop)
 ;; save a bunch of variables to the desktop file
 ;; for lists specify the len of the maximal saved data also
-(setq desktop-globals-to-save
-      (append '((extended-command-history . 30)
-                (file-name-history . 100)
-                (ido-last-directory-list . 100)
-                (ido-work-directory-list . 100)
-                (ido-work-file-list . 100)
-                (grep-history . 30)
-                (compile-history . 30)
-                (minibuffer-history . 50)
-                (query-replace-history . 60)
-                (read-expression-history . 60)
-                (regexp-history . 60)
-                (regexp-search-ring . 20)
-                (search-ring . 20)
-                (comint-input-ring . 50)
-                (shell-command-history . 50)
-                desktop-missing-file-warning
-                tags-file-name
-                register-alist)))
-(add-to-list 'desktop-globals-to-save 'vc-comment-ring)
-(setq desktop-buffers-not-to-save
-      (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-              "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-              "\\)$"))
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'erc-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
-(desktop-save-mode 1)
-(desktop-release-lock)
-(add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
-(add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
+;; (setq desktop-globals-to-save
+;;       (append '((extended-command-history . 30)
+;;                 (file-name-history . 100)
+;;                 (ido-last-directory-list . 100)
+;;                 (ido-work-directory-list . 100)
+;;                 (ido-work-file-list . 100)
+;;                 (grep-history . 30)
+;;                 (compile-history . 30)
+;;                 (minibuffer-history . 50)
+;;                 (query-replace-history . 60)
+;;                 (read-expression-history . 60)
+;;                 (regexp-history . 60)
+;;                 (regexp-search-ring . 20)
+;;                 (search-ring . 20)
+;;                 (comint-input-ring . 50)
+;;                 (shell-command-history . 50)
+;;                 desktop-missing-file-warning
+;;                 tags-file-name
+;;                 register-alist)))
+;; (add-to-list 'desktop-globals-to-save 'vc-comment-ring)
+;; (setq desktop-buffers-not-to-save
+;;       (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+;;               "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+;;               "\\)$"))
+;; (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+;; (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+;; (add-to-list 'desktop-modes-not-to-save 'erc-mode)
+;; (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+;; (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+;; (desktop-save-mode 1)
+;; (desktop-release-lock)
+;; (add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
+;; (add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
 (command-frequency-mode 1)
@@ -177,6 +179,6 @@
   (setq cf-command-history nil))
 
 (add-hook 'post-command-hook 'cf-add-command)
-(add-to-list 'desktop-globals-to-save 'cf-command-history)
+;; (add-to-list 'desktop-globals-to-save 'cf-command-history)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: linux-setting.el
