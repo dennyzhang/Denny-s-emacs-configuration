@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-13 17:45:00>
+;; Copyright © 2010-2011 Time-stamp: <2013-03-13 01:14:57>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -81,7 +81,7 @@
     (setq retrieve-data-list (aggregate-retrieve-data))
     (aggregate-report-result retrieve-data-list)))
 
-;; (aggregation-export-to-html "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal_template.html" "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal.html")
+;; (aggregation-export-to-html "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal_template.html" "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal.html")
 (defun aggregation-export-to-html (template-file dst-file)
   "aggregate various information to a global view, and export it to a html file"
   (let (retrieve-data-list)

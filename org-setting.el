@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-23 23:43:05>
+;; Updated: Time-stamp: <2013-03-23 16:44:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
@@ -271,9 +271,7 @@
  '(org-level-2 ((t (:inherit outline-2 :foreground "YellowGreen"))))
  '(org-level-3 ((t (:inherit outline-3 :foreground "SeaGreen3"))))
  '(org-todo ((t (:weight bold))))
- ;;'(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod"))))
- '(org-warning ((t (:inherit font-lock-warning-face :foreground "OliveDrab"))))
- )
+ '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'org-contacts)
 ;; (add-to-list 'org-contacts-files (concat DENNY_CONF "/org_data/contacts.org"))
@@ -338,5 +336,43 @@
           (switch-to-buffer old-buffer))
         )
     ))
+;; --8<-------------------------- separator ------------------------>8--
+(require 'org-mime)
+(setq org-mime-library 'mml) ;; tell org-mime which Emacs mail agent you use
+(setq org-export-with-special-strings nil)
+;; don't interpret "_" and "^" for export
+(setq org-export-with-sub-superscripts nil)
+(add-hook 'org-mime-html-hook
+          (lambda ()
+            (save-excursion
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "p" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "table" "background:#2f4f4f;color:#6495ed;width:100%")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "li" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "ul" "margin:0;border:0;padding:0;background:#2f4f4f;color:#6495ed")
+              (goto-char (point-min))
+              (org-mime-change-element-style
+               "a" "background:#2f4f4f;color:#6495ed")
+              )))
+;; sending html mail as default
+;;(add-hook 'message-send-hook #'(lambda() (org-mime-htmlize nil)))
+(add-hook 'message-mode-hook
+          (lambda ()
+            (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
+(add-hook 'message-mode-hook
+          (lambda ()
+            (local-set-key "\C-c\C-h" 'message-html-send)))
+(defun message-html-send ()
+  (interactive)
+  (org-mime-htmlize nil)
+  (message-send)
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

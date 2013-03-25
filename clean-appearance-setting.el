@@ -3,11 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-23 22:59:20>
+;; Updated: Time-stamp: <2013-03-25 22:09:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; set color of modeline
-;;(set-face-background 'modeline "#5f9ea0")
+;; (set-face-background 'modeline "#5f9ea0") ;; set color of modeline ;; TODO denny
 (set-face-attribute 'mode-line nil :height 100)
 (defun toggle-mode-line ()
   "toggles the modeline on and off"

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-21 22:01:45>
+;; Updated: Time-stamp: <2013-03-16 14:19:14>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -264,7 +264,12 @@
 (setq gnus-article-charset 'utf-8)
 (add-to-list 'gnus-group-charset-alist '("\\(^\\|:\\)cn\\>\\|\\<chinese\\>" utf-8))
 (setq gnus-summary-show-article-charset-alist
-      '((1 . utf-8) (2 . big5) (3 . gbk) (4 . utf-7)))
+      '((1 . cn-gb-2312)
+        (2 . gb18030)
+        (3 . chinese-iso-8bit)
+        (4 . gbk)
+        (5 . big5)
+        (6 . utf-8)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;; store news and mails which are sent into mail.sent.news and mail.sent.mail respectively
 ;; (setq gnus-message-archive-group
@@ -305,12 +310,12 @@ then send mails by send-groupmail-by-mailbuffer."
   (interactive)
   (save-excursion
     (let (subject from-mail
-          (cc-mail "") (bcc-mail "")
-          start-point end-point string-temp
-          (to-marker "To: ")
-          (content-marker "--text follows this line--\n")
-          (signature-marker (format "-- \n%s"common-tail-signature))
-          marker (name-mail-list '())  mail-content)
+                  (cc-mail "") (bcc-mail "")
+                  start-point end-point string-temp
+                  (to-marker "To: ")
+                  (content-marker "--text follows this line--\n")
+                  (signature-marker (format "-- \n%s"common-tail-signature))
+                  marker (name-mail-list '()) mail-content)
       ;; obtain fields of from, cc, bcc, subject
       (goto-char (point-min))
       (when (search-forward-regexp "^[Ff]rom: \\(.*\\)$" nil t)
@@ -449,7 +454,7 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key gnus-summary-mode-map "d"
   #'(lambda() (interactive)
-     (gnus-summary-delete-article 1) (forward-line 1)))
+      (gnus-summary-delete-article 1) (forward-line 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; score down any mails which I don't like
 (setq gnus-use-adaptive-scoring t)

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-24 00:49:30>
+;; Updated: Time-stamp: <2013-03-25 22:13:52>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -11,7 +11,7 @@
 ;; TODO denny
 (defun plist-to-alist (plist)
   "Convert property list PLIST into the equivalent association-list form.
-The alist is returned.  This converts from
+The alist is returned. This converts from
 
 \(a 1 b 2 c 3)
 
@@ -19,7 +19,7 @@ into
 
 \((a . 1) (b . 2) (c . 3))
 
-The original plist is not modified.  See also `destructive-plist-to-alist'."
+The original plist is not modified. See also `destructive-plist-to-alist'."
   (let (alist)
     (while plist
       (setq alist (cons (cons (car plist) (cadr plist)) alist))
@@ -27,6 +27,10 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
     (nreverse alist)))
 
 (color-theme-dark-blue)
+;; (color-theme-bharadwaj-slate)
+;;(load-theme 'light-blue t)
+;;(load-theme 'tango-dark t)
+;; --8<-------------------------- separator ------------------------>8--
 ;;show recent files
 (require 'recentf)
 (recentf-mode 1)
@@ -47,7 +51,7 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
 ;; ;; --8<-------------------------- separator ------------------------>8--
-; on duplicate filenames, show path names, not foo.x<2>, foo.x<3>, etc.
+                                        ; on duplicate filenames, show path names, not foo.x<2>, foo.x<3>, etc.
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse
       uniquify-separator " • "
@@ -90,9 +94,8 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
       (global-set-key (kbd "<C-f2>") 'bm-toggle)
       (global-set-key (kbd "<f2>") 'bm-next)
       (global-set-key (kbd "<S-f2>") 'bm-previous)
-      )
-  )
-;; --8<-------------------------- separator ------------------------>8--
+      ))
+;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<f5>") 'highlight-symbol-next)
@@ -164,20 +167,20 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
     )
   )
 ;; (defun loccur-skeleton ()
-;;   "Call `loccur' for code skeleton with the same leading whitespace."
-;;   (interactive)
-;;   (let ((point-orig (point)) leading-str (whitespace-count 0))
-;;     (save-excursion
-;;       (move-beginning-of-line nil)
-;;       (setq leading-str (buffer-substring-no-properties point-orig (point)))
-;;       (dolist (ch (string-to-list leading-str))
-;;         (if (eq ch 32)
-;;             (setq whitespace-count (+ 1 whitespace-count))
-;;           )))
-;;     (if (not (eq 0 whitespace-count))
-;;         (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
-;;       (loccur (format "^[^ ]" whitespace-count)))
-;;     ))
+;; "Call `loccur' for code skeleton with the same leading whitespace."
+;; (interactive)
+;; (let ((point-orig (point)) leading-str (whitespace-count 0))
+;; (save-excursion
+;; (move-beginning-of-line nil)
+;; (setq leading-str (buffer-substring-no-properties point-orig (point)))
+;; (dolist (ch (string-to-list leading-str))
+;; (if (eq ch 32)
+;; (setq whitespace-count (+ 1 whitespace-count))
+;; )))
+;; (if (not (eq 0 whitespace-count))
+;; (loccur (format "^ \\{1,%d\\}[^ ]\\|^[^ ]" whitespace-count))
+;; (loccur (format "^[^ ]" whitespace-count)))
+;; ))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
@@ -239,26 +242,6 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
 (load-file (concat EMACS_VENDOR "/rainbow-mode/rainbow-mode.el"))
 (dolist (hook programming-hook-list)
   (add-hook hook #'(lambda () (rainbow-mode 1 ))))
-;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
-;; (openwith-mode t)
-;; ;; ask for confirmation before invoke external program
-;; (setq openwith-confirm-invocation t)
-;; (cond
-;;  ((eq system-type 'gnu/linux)
-;;   ;; clean up previous open associations, and reconfigure
-;;   (setq openwith-associations
-;;         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
-;;           ("\\.epub\\'" "calibre" (file))
-;;           ;;("\\.pdf\\'" "evince" (file))
-;;           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
-;;           )))
-;;  ((eq system-type 'windows-nt)
-;;   ;;TODO problematic
-;;   (setq openwith-associations
-;;         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
-;;           )))
-;;  )
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
 ;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
@@ -355,11 +338,11 @@ The original plist is not modified.  See also `destructive-plist-to-alist'."
 ;; ;; (setq 'outline-view-change-hook nil) ;; TODO
 ;; ;; when pressing prefix of C-u, we will use speedbar, instead of minimap
 ;; (defun my-file-toogle (use-speedbar-p)
-;;   (interactive "P")
-;;   (if (null use-speedbar-p)
-;;       (minimap-toggle)
-;;     (sr-speedbar-toggle))
-;;   )
+;; (interactive "P")
+;; (if (null use-speedbar-p)
+;; (minimap-toggle)
+;; (sr-speedbar-toggle))
+;; )
 ;; (global-set-key (kbd "<f3>") 'my-file-toogle)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/recent-jump/recent-jump.el"))

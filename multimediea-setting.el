@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-03 13:14:41>
+;; Updated: Time-stamp: <2013-03-16 17:49:50>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -81,9 +81,6 @@
 (require 'emms-player-mplayer)
 (emms-devel)
 (emms-default-players)
-(push 'emms-player-mpg321-remote emms-player-list)
-(push 'emms-player-mplayer emms-player-list)
-(push 'emms-player-mplayer-playlist emms-player-list)
 (setq emms-info-asynchronously t
       later-do-interval 0.0001
       emms-info-functions '(emms-info-libtag))
@@ -117,7 +114,7 @@
       emms-player-mpg321-parameters '("-o" "alsa")
       emms-player-mplayer-command-name "mplayer"
       emms-player-list '(emms-player-mplayer
-                         emms-player-mplayer-playlist
+                         ;;emms-player-mplayer-playlist
                          emms-player-ogg123
                          emms-player-mpg321))
 ;; my customizable playlist format
@@ -286,8 +283,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.jpeg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.jpg$" . image-mode))
-(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1)))
-(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1)))
+;;(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1))) ;; TODO denny
+;;(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1))) ;; TODO denny
 (defun rotate-image-in-directory (N)
   "Enable image-mode to view previous/next image"
  (interactive)
@@ -306,7 +303,7 @@
 (setq emms-org-file (concat DENNY_CONF "/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
   #'(lambda () (interactive) (update-music-to-org-file emms-org-file)))
-;; (update-music-to-org-file "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/music.org")
+;; (update-music-to-org-file "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/music.org")
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))
          (last-played (emms-track-get track 'last-played))
@@ -356,16 +353,16 @@
     )
   )
 
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "active" "/home/denny/backup/multimediea/music/playlist/active.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "all" "/home/denny/backup/multimediea/music/playlist/all.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "blue" "/home/denny/backup/multimediea/music/playlist/blue.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "blue" "/home/denny/backup/multimediea/music/playlist/blue.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "funny" "/home/denny/backup/multimediea/music/playlist/funny.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "merry" "/home/denny/backup/multimediea/music/playlist/merry.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "old" "/home/denny/backup/multimediea/music/playlist/old.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "soft" "/home/denny/backup/multimediea/music/playlist/soft.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "top" "/home/denny/backup/multimediea/music/playlist/top.playlist")
-;; (export-orgfile-to-emmsplaylist "/home/denny/backup/multimediea/music/org_share/music.org" "wake" "/home/denny/backup/multimediea/music/playlist/wake.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "active" "~/backup/multimediea/music/playlist/active.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "all" "~/backup/multimediea/music/playlist/all.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "blue" "~/backup/multimediea/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "blue" "~/backup/multimediea/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "funny" "~/backup/multimediea/music/playlist/funny.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "merry" "~/backup/multimediea/music/playlist/merry.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "old" "~/backup/multimediea/music/playlist/old.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "soft" "~/backup/multimediea/music/playlist/soft.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "top" "~/backup/multimediea/music/playlist/top.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "wake" "~/backup/multimediea/music/playlist/wake.playlist")
 (defun export-orgfile-to-emmsplaylist (org-file org-tag playlist-file)
   (interactive)
   (unless (string= mode-name "Org")
@@ -425,7 +422,7 @@
       )
     )
   )
-;; (orgfile-last-played-update-current "/home/denny/backup/multimediea/music/org_share/music.org" "王菲--传奇.mp3")
+;; (orgfile-last-played-update-current "~/backup/multimediea/music/org_share/music.org" "王菲--传奇.mp3")
 (defun orgfile-last-played-update-current (org-file music-name)
   "Updates the current track in org-mode."
   (save-excursion
@@ -508,5 +505,6 @@
       (export-orgfile-to-emmsplaylist
        emms-org-file tag
        (format "%s/playlist/%s.playlist" emms-source-file-default-directory tag)))))
+
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: multimediea-setting.el

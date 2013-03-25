@@ -3,9 +3,10 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-02-25 18:31:25>
+;; Updated: Time-stamp: <2013-03-17 09:46:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
+(setq shell-file-name "/bin/bash")
 ;; When killing a file, also kill related shell buffer
 ;;(add-hook 'kill-buffer-hook 'kill-shell-buffer)
 (defun kill-shell-buffer()

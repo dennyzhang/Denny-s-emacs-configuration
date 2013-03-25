@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-23 23:50:02>
+;; Updated: Time-stamp: <2013-03-25 22:12:21>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -20,22 +20,33 @@
 (mapc #'(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
-      '("fundamental-setting.el"
+      '(
+        "bbdb-setting.el"
+        "gnus-setting.el"
+
+        "fundamental-setting.el" ;; suspicous
+
         "clean-appearance-setting.el"
+
         "buffer-setting.el"
+
         "essentialpackage-setting.el"
-        "dired-setting.el"
         "org-setting.el"
+
+        "web-setting.el"
+
+        "dired-setting.el"
         "handyfunction-setting.el"
         "regexp-setting.el"
         "magic-setting.el"
+        "otherpackage-setting.el"
         "programming-setting.el"
         "facing-setting.el"
-        ;;"flymake-setting.el"
         "calendar-setting.el"
-        "largeessentialpackage-setting.el"
-        "bbdb-setting.el"
-        "gnus-setting.el"
+
+        ;;"flymake-setting.el" ;; TODO denny
+        ;;"largeessentialpackage-setting.el"
+
         "ledger-setting.el"
         "online-search/online-search-setting.el"
         "insertion-setting.el"
@@ -47,7 +58,6 @@
         "capture-setting.el"
         "sns-setting.el"
         "latex-setting.el"
-        "otherpackage-setting.el"
         ))
 (cond
  ((eq system-type 'darwin)
@@ -56,12 +66,11 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '(
           "diff-setting.el"
-          "web-setting.el"
           "linux-setting.el"
+          "mac-setting.el"
           "multimediea-setting.el"
           "shell-setting.el"
           "voice-setting.el"
-          "mac-setting.el"
           "interoperation-setting.el")))
  ((eq system-type 'gnu/linux)
   (mapc #'(lambda(emacs-file)
@@ -69,7 +78,6 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '(
           "diff-setting.el"
-          "web-setting.el"
           "linux-setting.el"
           "multimediea-setting.el"
           "shell-setting.el"

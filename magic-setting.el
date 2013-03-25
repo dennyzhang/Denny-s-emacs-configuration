@@ -3,7 +3,7 @@
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-24 13:57:04>
+;; Updated: Time-stamp: <2013-03-25 22:10:27>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.

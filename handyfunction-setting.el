@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-24 13:55:48>
+;; Updated: Time-stamp: <2013-03-25 22:10:15>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -668,8 +668,8 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
 (defun ramfs-flush()
   (interactive)
   (rsync-dir
-   "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data/"
-   "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data.disk")
+   "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data/"
+   "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data.disk")
   )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-nsplit-line (n)

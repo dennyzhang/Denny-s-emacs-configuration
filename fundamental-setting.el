@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:06:23>
+;; Updated: Time-stamp: <2013-03-25 22:11:46>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -223,7 +223,7 @@
         (cond
          ((eq system-type 'darwin)
           (concat grep-find-command " -type f -print0 | xargs -0 grep -inH -e "))
-         ((t)
+         (t
           (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e "))
           ))
   )

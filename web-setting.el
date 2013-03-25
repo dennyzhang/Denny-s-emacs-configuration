@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-24 13:59:24>
+;; Updated: Time-stamp: <2013-03-25 22:13:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -15,9 +15,8 @@
   (bbdb-initialize 'w3))
 
 (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
-(eval-after-load 'w3m
-  '(progn
-     ))
+;;(require 'w3m-load)
+(if window-system (require 'w3m-load))
 (custom-set-variables
  '(w3m-form-input-map-mode-hook (quote (flyspell-mode)))
  '(w3m-tab-width 4)
@@ -304,7 +303,7 @@ create a new window and browse the webpage"
 (setq hfy-meta-tags
       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'w3m-display-hook 'wash-w3m-buffer)
+;;(add-to-list 'w3m-display-hook 'wash-w3m-buffer) ;; TODO denny
 (defun wash-w3m-buffer(&optional url)
   (interactive)
   (let* ((line-width 10)
