@@ -3,12 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-<<<<<<< HEAD
-;; Updated: Time-stamp: <2013-03-23 16:44:45>
-=======
-;; Updated: Time-stamp: <2013-03-09 23:23:43>
->>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
-;;
+;; Updated: Time-stamp: <2013-03-25 22:37:43>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))

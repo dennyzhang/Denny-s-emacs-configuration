@@ -3,11 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-<<<<<<< HEAD
-;; Updated: Time-stamp: <2013-03-25 22:10:15>
-=======
-;; Updated: Time-stamp: <2013-03-13 01:23:04>
->>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
+;; Updated: Time-stamp: <2013-03-25 22:36:36>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)

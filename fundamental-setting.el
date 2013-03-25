@@ -3,11 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-<<<<<<< HEAD
-;; Updated: Time-stamp: <2013-03-25 22:11:46>
-=======
-;; Updated: Time-stamp: <2013-03-12 18:06:09>
->>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
+;; Updated: Time-stamp: <2013-03-25 22:36:31>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)

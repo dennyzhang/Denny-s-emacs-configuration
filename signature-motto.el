@@ -62,12 +62,13 @@
     (nth (random (length files)) files)))
 
 (defun get-all-motto ()
-  (let ((old-agenda-files org-agenda-files) signature-list)
-    (setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
-    (setq signature-list (org-tags-view-list "Motto"))
-    (setq org-agenda-files old-agenda-files)
-    (setq signature-list signature-list) ;; TODO more graceful way to return value
-    ))
+  (if (object-p org-agenda-files)
+      (let ((old-agenda-files org-agenda-files) signature-list)
+	(setq org-agenda-files (list (concat DENNY_CONF "/org_data/org_share/motto.org")))
+	(setq signature-list (org-tags-view-list "Motto"))
+	(setq org-agenda-files old-agenda-files)
+	(setq signature-list signature-list) ;; TODO more graceful way to return value
+    )))
 
 (setq motto-list (get-all-motto)) ;; variable to hold all motto
 

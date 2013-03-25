@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-03-13 01:14:58>
+;; Copyright © 2010-2011 Time-stamp: <2013-02-06 11:32:16>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -66,8 +66,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")
-(setq mobile-export-src-dir "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data")
-(setq mobile-export-publish-dir "~/backup/essential/Dropbox/private_data/temp/mobile_export/")
+(setq mobile-export-src-dir "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/org_data")
+(setq mobile-export-publish-dir "/home/denny/backup/essential/Dropbox/private_data/temp/mobile_export/")
 (setq mobile-export-file-list '("contacts.org"
                                 ;;"project.org"
                                 "career.org"
