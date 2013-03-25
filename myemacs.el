@@ -3,7 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
+<<<<<<< HEAD
 ;; Updated: Time-stamp: <2013-03-25 22:12:21>
+=======
+;; Updated: Time-stamp: <2013-03-16 15:31:13>
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
@@ -65,9 +69,16 @@
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '(
+<<<<<<< HEAD
           "diff-setting.el"
           "linux-setting.el"
           "mac-setting.el"
+=======
+          "mac-setting.el"
+          "diff-setting.el"
+          "web-setting.el"
+          "linux-setting.el"
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
           "multimediea-setting.el"
           "shell-setting.el"
           "voice-setting.el"

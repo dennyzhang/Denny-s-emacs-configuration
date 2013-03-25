@@ -3,7 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
+<<<<<<< HEAD
 ;; Updated: Time-stamp: <2013-03-25 22:13:52>
+=======
+;; Updated: Time-stamp: <2013-03-14 22:12:42>
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -11,7 +15,11 @@
 ;; TODO denny
 (defun plist-to-alist (plist)
   "Convert property list PLIST into the equivalent association-list form.
+<<<<<<< HEAD
 The alist is returned. This converts from
+=======
+The alist is returned.  This converts from
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 
 \(a 1 b 2 c 3)
 
@@ -19,7 +27,11 @@ into
 
 \((a . 1) (b . 2) (c . 3))
 
+<<<<<<< HEAD
 The original plist is not modified. See also `destructive-plist-to-alist'."
+=======
+The original plist is not modified.  See also `destructive-plist-to-alist'."
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
   (let (alist)
     (while plist
       (setq alist (cons (cons (car plist) (cadr plist)) alist))
@@ -66,6 +78,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (global-set-key [(control left)] 'move-frame-left)
 (global-set-key [(control right)] 'move-frame-right)
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
+<<<<<<< HEAD
 (if window-system
     (progn
       (load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
@@ -95,6 +108,34 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       (global-set-key (kbd "<f2>") 'bm-next)
       (global-set-key (kbd "<S-f2>") 'bm-previous)
       ))
+=======
+(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
+(setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
+;; make bookmarks persistent as default
+(setq-default bm-buffer-persistence t)
+;; Loading the repository from file when on start up.
+;;(add-hook 'after-init-hook 'bm-repository-load) ;; TODO denny
+;; Restoring bookmarks when on file find.
+;;(add-hook 'find-file-hook 'bm-buffer-restore) ;; TODO
+;; Saving bookmark data on killing a buffer
+;; (add-hook 'kill-buffer-hook 'bm-buffer-save) ;; TODO
+(defadvice bm-buffer-save (before if activate) (widen))
+;; Saving the repository to file when on exit.
+;; kill-buffer-hook is not called when emacs is killed, so we
+;; must save all bookmarks first.
+;;(add-hook 'kill-emacs-hook #'(lambda nil ;; TODO denny
+;;                              (bm-buffer-save-all) ;; TODO denny
+;;                              (bm-repository-save))) ;; TODO denny
+;; Update bookmark repository when saving the file.
+;;(add-hook 'after-save-hook 'bm-buffer-save)
+;; Restore bookmarks when buffer is reverted.
+;;(add-hook 'after-revert-hook 'bm-buffer-restore)
+;; make sure bookmarks is saved before check-in (and revert-buffer)
+(add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+(global-set-key (kbd "<C-f2>") 'bm-toggle)
+(global-set-key (kbd "<f2>") 'bm-next)
+(global-set-key (kbd "<S-f2>") 'bm-previous)
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)

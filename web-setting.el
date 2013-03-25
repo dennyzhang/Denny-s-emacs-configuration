@@ -3,7 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
+<<<<<<< HEAD
 ;; Updated: Time-stamp: <2013-03-25 22:13:14>
+=======
+;; Updated: Time-stamp: <2013-03-16 15:30:57>
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -15,7 +19,10 @@
   (bbdb-initialize 'w3))
 
 (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
+<<<<<<< HEAD
 ;;(require 'w3m-load)
+=======
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 (if window-system (require 'w3m-load))
 (custom-set-variables
  '(w3m-form-input-map-mode-hook (quote (flyspell-mode)))
@@ -303,6 +310,11 @@ create a new window and browse the webpage"
 (setq hfy-meta-tags
       (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
+<<<<<<< HEAD
+=======
+(define-key c-mode-base-map [(meta j)] 'webjump)
+;; --8<-------------------------- separator ------------------------>8--
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;;(add-to-list 'w3m-display-hook 'wash-w3m-buffer) ;; TODO denny
 (defun wash-w3m-buffer(&optional url)
   (interactive)

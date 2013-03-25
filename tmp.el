@@ -3,7 +3,11 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
+<<<<<<< HEAD
 ;; Updated: Time-stamp: <2013-03-25 22:13:26>
+=======
+;; Updated: Time-stamp: <2013-03-16 11:18:19>
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
   "convert current buffer from gb2312 to utf8"
@@ -1724,14 +1728,22 @@ Insert if ARG."
   )
 (defalias 'uf 'my-unfill-region)
 ;; --8<-------------------------- separator ------------------------>8--
+<<<<<<< HEAD
 ;; (setq desktop-load-locked-desktop 't)
+=======
+(setq desktop-load-locked-desktop 't)
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;;(setq font-lock-function-name-face '((t (:foreground "YellowGreen" :background "Wheat"))))
 ;;(setq font-lock-function-name-face '((t (:foreground "YellowGreen"))))
 ;;(setq font-lock-function-name-face 'font-lock-function-name-face)
 
 (make-face 'function-name)
 (set-face-foreground 'function-name "YellowGreen")
+<<<<<<< HEAD
 (setq font-lock-function-name-face 'function-name)
+=======
+(setq font-lock-function-name-face  'function-name)
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
 ;; (openwith-mode t)
@@ -1752,6 +1764,7 @@ Insert if ARG."
 ;;         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
 ;;           )))
 ;;  )
+<<<<<<< HEAD
 
 (add-hook 'message-mode-hook 'disable-openwith-associations)
 (defun disable-openwith-associations ()
@@ -1821,4 +1834,7 @@ Insert if ARG."
       )
   )
 ;; --8<-------------------------- separator ------------------------>8--
+=======
+;; ;; --8<-------------------------- separator ------------------------>8--
+>>>>>>> 6bf5adcc25e32fbb86e9e2ad2e25e5e78aff34a1
 ;; File: tmp.el ends here
