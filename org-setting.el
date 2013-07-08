@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:37:43>
+;; Updated: Time-stamp: <2013-06-13 16:15:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -18,6 +18,7 @@
                               (concat DENNY_CONF "/org_data/current.org")
                               (concat DENNY_CONF "/org_data/wish.org")
                               (concat DENNY_CONF "/org_data/learn.org")
+                              (concat DENNY_CONF "/org_data/contacts.org")
                               (concat DENNY_CONF "/org_data/project.org")
                               (concat DENNY_CONF "/org_data/org_share/myself.org")
                               (concat DENNY_CONF "/org_data/org_share/connection.org")
@@ -102,7 +103,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
-(setq org-mobile-directory (concat DENNY_CONF "../MobileOrg"))
+(setq org-mobile-directory (concat DENNY_CONF "../../Apps/MobileOrg"))
 (setq org-mobile-files (list (concat DENNY_CONF "/org_data/tomobile.org")))
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 ;; pulling from MobileOrg

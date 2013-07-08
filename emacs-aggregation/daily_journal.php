@@ -40,7 +40,7 @@ include('denny_lock.php');
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Information Aggregation!</h1>
-        <p>Automatically generate a daily journal for me, which includes information aggregated from local knowledgebase, or the Internet. <font size="2px">2013-03-04 13:00</font> &nbsp;
+        <p>Automatically generate a daily journal for me, which includes information aggregated from local knowledgebase, or the Internet. <font size="2px">2013-03-31 13:05</font> &nbsp;
         <a class="btn btn-primary btn-small" href="http://blog.ec-ae.com">Learn more &raquo;</a>
         </p>
 
@@ -52,21 +52,30 @@ include('denny_lock.php');
 <div class="span6">
 <h2> Remind List </h2>
 <p><br/>
-</p>
+<br/>
+2013-3-31 Keep a "Feel Good" List and "Feel bad" List<br/>
+2013-4-1:  [节日] -- 愚人节 找同事进行访谈交流<br/>
+ 给一个月的自己写一封信<br/>
+ 每月照一张家庭照<br/>
+2013-4-2 每月为家人准备一个礼物<br/>
+<br/>
+2013-4-1 [节日] -- 愚人节<br/>
+2013-4-5 [节日] -- 清明节<br/>
+2013-4-6 妈妈生日</p>
 <p>
 <a class="btn" href="#">View details &raquo;</a></p></div>
 
 <div class="span6">
 <h2> Internet information</h2>
-<p>上海天气: - 最近访问：今天（周一）17～6℃晴西风3-4级明天（周二）16～8℃晴东北风3-4级后天（周三）20～10℃晴转多云南风3-4级<br/>
+<p>上海天气: - 最近访问：今天（周日）16～9℃多云转阴东北风3-4级明天（周一）17～10℃小雨转阴东南风3-4级后天（周二）16～7℃多云北风4-5级<br/>
 <br/>
-长沙天气: - 最近访问：今天（周一）21～7℃晴南风明天（周二）22～9℃晴转多云北风后天（周三）23～12℃多云南风<br/>
+长沙天气: - 最近访问：今天（周日）22～15℃多云转阵雨北风明天（周一）22～16℃阵雨转多云北风后天（周二）21～17℃阵雨北风<br/>
 <br/>
 江西铜业:<br/>
-23.44-0.87(-3.58%)<br/>
-昨收盘：24.31今开盘：23.93<br/>
-最高价：23.93最低价：23.41<br/>
-委比：44.28换手率：0.59%市盈率：0.00成交量：12.31万<br/>
+22.19-0.21(-0.94%)<br/>
+昨收盘：22.40今开盘：22.25<br/>
+最高价：22.53最低价：21.88<br/>
+委比：43.79换手率：0.35%市盈率：0.00成交量：7.37万<br/>
 </p>
 <p>
 <a class="btn" href="#">View details &raquo;</a></p></div>

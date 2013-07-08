@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-16 14:19:14>
+;; Updated: Time-stamp: <2013-06-25 14:31:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -14,7 +14,7 @@
       gnus-kill-files-directory (concat mail-parent-directory-var "Mail/trash")
       gnus-agent-directory (concat mail-parent-directory-var "Mail/agent")
       gnus-cache-directory (concat mail-parent-directory-var "Mail/cache")
-      mail-source-directory (concat mail-parent-directory-var "Mail/incoming")
+      ;; mail-source-directory (concat mail-parent-directory-var "Mail/incoming")
       nnmail-message-id-cache-file (concat mail-parent-directory-var "Mail/.nnmail-cache")
       nnml-newsgroups-file (concat mail-parent-directory-var "Mail/")
       message-directory (concat mail-parent-directory-var "Mail")
@@ -29,7 +29,7 @@
 (setq gnus-interactive-exit nil) ;; No confirmation when exiting Gnus.
 ;; --8<-------------------------- separator ------------------------>8--
 ;; view mail, and skip nntp newsgroup
-(setq gnus-select-method '(nnml ""))
+
 ;; TODO: 126 imap没法读取邮件,　单独的python可以通过imap协议来操作,　应该是集成的问题
 ;; (setq gnus-select-method
 ;; '(nnimap "126"
@@ -84,6 +84,9 @@
       (cond
        ((string= from-mail "markfilebat@126.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
+              user-mail-address from-mail))
+       ((string= from-mail "filebat.mark@gmail.com")
+        (setq message-sendmail-extra-arguments '("-a" "gmail")
               user-mail-address from-mail))
        ((string= from-mail "zhangwei@shopex.cn")
         (setq message-sendmail-extra-arguments '("-a" "shopex")

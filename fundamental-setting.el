@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:36:31>
+;; Updated: Time-stamp: <2013-06-30 22:08:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -315,7 +315,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (dolist (hook programming-hook-list)
   (unless (member hook '(c-mode-hook c++-mode-hook lisp-mode-hook python-mode-hook
-                                     emacs-lisp-mode-hook erlang-mode-hook))
+                                     php-mode-hook emacs-lisp-mode-hook erlang-mode-hook))
     (add-hook hook '(lambda () (view-mode 1)))))
 
 (defun global-view-on ()
@@ -469,6 +469,7 @@ starting on the same line at which another match ended is ignored."
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gc-cons-threshold 4000000 ;; control emacs garbage collection
       password-cache-expiry nil
+      gnus-use-correct-string-widths nil
       history-length 250)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq read-buffer-completion-ignore-case t) ;; ignore case when reading a buffer name

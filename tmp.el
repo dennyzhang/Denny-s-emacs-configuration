@@ -3,30 +3,30 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:37:54>
+;; Updated: Time-stamp: <2013-06-30 22:08:43>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
-  "convert current buffer from gb2312 to utf8"
-  (interactive)
-  (let* ((current-file (buffer-file-name (current-buffer)))
-         (bak-file (format "%s_%s_bak" current-file (random 100)))
-         (convert-command (format "iconv -f gb2312 -t utf-8 %s > %s"
-                                  current-file bak-file))
-         )
-    (with-temp-buffer
-      (message convert-command)
-      (shell-command convert-command t)
-      (find-file bak-file))
-    ))
+ "convert current buffer from gb2312 to utf8"
+ (interactive)
+ (let* ((current-file (buffer-file-name (current-buffer)))
+ (bak-file (format "%s_%s_bak" current-file (random 100)))
+ (convert-command (format "iconv -f gb2312 -t utf-8 %s > %s"
+ current-file bak-file))
+ )
+ (with-temp-buffer
+ (message convert-command)
+ (shell-command convert-command t)
+ (find-file bak-file))
+ ))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun tidy-xml-buffer ()
-  (interactive)
-  (save-excursion
-    (call-process-region (point-min) (point-max) "tidy" t t nil
-                         "-xml" "-i" "-wrap" "0" "-omit" "-q")))
+ (interactive)
+ (save-excursion
+ (call-process-region (point-min) (point-max) "tidy" t t nil
+ "-xml" "-i" "-wrap" "0" "-omit" "-q")))
 
 (eval-after-load "nxml-mode"
-  '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
+ '(define-key nxml-mode-map [(control shift ?h)] 'tidy-xml-buffer))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun save-information ()
 ;; (dolist (func kill-emacs-hook)
@@ -184,17 +184,17 @@
 ;; (add-hook 'eshell-expand-input-functions 'eshell-spawn-external-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun elint-current-buffer ()
-  (interactive)
-  (elint-initialize)
-  (elint-current-buffer))
+ (interactive)
+ (elint-initialize)
+ (elint-current-buffer))
 
 (eval-after-load "elint"
-  '(progn
-     (add-to-list 'elint-standard-variables 'current-prefix-arg)
-     (add-to-list 'elint-standard-variables 'command-line-args-left)
-     (add-to-list 'elint-standard-variables 'buffer-file-coding-system)
-     (add-to-list 'elint-standard-variables 'emacs-major-version)
-     (add-to-list 'elint-standard-variables 'window-system)))
+ '(progn
+ (add-to-list 'elint-standard-variables 'current-prefix-arg)
+ (add-to-list 'elint-standard-variables 'command-line-args-left)
+ (add-to-list 'elint-standard-variables 'buffer-file-coding-system)
+ (add-to-list 'elint-standard-variables 'emacs-major-version)
+ (add-to-list 'elint-standard-variables 'window-system)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun my-elisp-indent-or-complete (&optional arg)
 ;; (interactive "p")
@@ -244,35 +244,35 @@
 ;; (add-hook 'emacs-lisp-mode-hook (function (lambda () (my-lisp-mode-hook t))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ido-smart-select-text ()
-  "Select the current completed item. Do NOT descend into directories."
-  (interactive)
-  (when (and (or (not ido-require-match)
-                 (if (memq ido-require-match
-                           '(confirm confirm-after-completion))
-                     (if (or (eq ido-cur-item 'dir)
-                             (eq last-command this-command))
-                         t
-                       (setq ido-show-confirm-message t)
-                       nil))
-                 (ido-existing-item-p))
-             (not ido-incomplete-regexp))
-    (when ido-current-directory
-      (setq ido-exit 'takeprompt)
-      (unless (and ido-text (= 0 (length ido-text)))
-        (let ((match (ido-name (car ido-matches))))
-          (throw 'ido
-                 (setq ido-selected
-                       (if match
-                           (replace-regexp-in-string "/\\'" "" match)
-                         ido-text)
-                       ido-text ido-selected
-                       ido-final-text ido-text)))))
-    (exit-minibuffer)))
+ "Select the current completed item. Do NOT descend into directories."
+ (interactive)
+ (when (and (or (not ido-require-match)
+ (if (memq ido-require-match
+ '(confirm confirm-after-completion))
+ (if (or (eq ido-cur-item 'dir)
+ (eq last-command this-command))
+ t
+ (setq ido-show-confirm-message t)
+ nil))
+ (ido-existing-item-p))
+ (not ido-incomplete-regexp))
+ (when ido-current-directory
+ (setq ido-exit 'takeprompt)
+ (unless (and ido-text (= 0 (length ido-text)))
+ (let ((match (ido-name (car ido-matches))))
+ (throw 'ido
+ (setq ido-selected
+ (if match
+ (replace-regexp-in-string "/\\'" "" match)
+ ido-text)
+ ido-text ido-selected
+ ido-final-text ido-text)))))
+ (exit-minibuffer)))
 
 (add-hook 'ido-minibuffer-setup-hook
-          (lambda ()
-            (define-key ido-file-completion-map "\C-m"
-              'ido-smart-select-text)))
+ (lambda ()
+ (define-key ido-file-completion-map "\C-m"
+ 'ido-smart-select-text)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (eval-after-load "magit"
 ;; '(progn
@@ -311,13 +311,13 @@
 ;;(add-hook 'mail-citation-hook 'sc-cite-original)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun lisp-indent-or-complete (&optional arg)
-  (interactive "p")
-  (if (or (looking-back "^\\s-*") (bolp))
-      (call-interactively 'lisp-indent-line)
-    (call-interactively 'slime-indent-and-complete-symbol)))
+ (interactive "p")
+ (if (or (looking-back "^\\s-*") (bolp))
+ (call-interactively 'lisp-indent-line)
+ (call-interactively 'slime-indent-and-complete-symbol)))
 (eval-after-load "lisp-mode"
-  '(progn
-     (define-key lisp-mode-map (kbd "TAB") 'lisp-indent-or-complete)))
+ '(progn
+ (define-key lisp-mode-map (kbd "TAB") 'lisp-indent-or-complete)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'sh-set-shell-hook 'flymake-shell-load)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -346,8 +346,8 @@
 ;; my-mode-line-buffer-identification)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun rgrau-erc-oops (txt)
-  (when (member txt '("ls" "xb" "cd"))
-    (setq erc-send-this nil)))
+ (when (member txt '("ls" "xb" "cd"))
+ (setq erc-send-this nil)))
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -357,76 +357,76 @@
 ;; Specifies whether the desktop should be loaded if locked.
 ;;(setq desktop-load-locked-desktop t)
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'nnir)
-(setq nnir-search-engine 'namazu)
-(setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
-(setq nnir-namazu-remove-prefix (expand-file-name "~/backup/essential/Dropbox/private_data/gnus_data/Mail"))
-(setq nnir-mail-backend gnus-select-method)
+;; (require 'nnir)
+;; (setq nnir-search-engine 'namazu)
+;; (setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
+;; (setq nnir-namazu-remove-prefix (expand-file-name "~/backup/essential/Dropbox/private_data/gnus_data/Mail"))
+;; (setq nnir-mail-backend gnus-select-method)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun nuke-unmodified-buffers (&optional list)
-  "For each buffer in LIST, kill it if unmodified."
-  (interactive)
-  (if (null list)
-      (setq list (buffer-list)))
-  (dolist (buffer list)
-    (if (and (not (member (buffer-name buffer)
-                          '("" "*Message*" "*buffer-selection*"
-                            "*Shell Command Output*" "*scratch*"
-                            "*nav*" "*imenu-tree*")))
-             (not (buffer-modified-p buffer)))
-        (kill-buffer buffer))))
+ "For each buffer in LIST, kill it if unmodified."
+ (interactive)
+ (if (null list)
+ (setq list (buffer-list)))
+ (dolist (buffer list)
+ (if (and (not (member (buffer-name buffer)
+ '("" "*Message*" "*buffer-selection*"
+ "*Shell Command Output*" "*scratch*"
+ "*nav*" "*imenu-tree*")))
+ (not (buffer-modified-p buffer)))
+ (kill-buffer buffer))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun wcy-shell-mode-kill-buffer-on-exit (process state)
-  (message "%s" state)
-  (if (or
-       (string-match "exited abnormally with code.*" state)
-       (string-match "finished" state))
-      (kill-buffer (current-buffer))))
+ (message "%s" state)
+ (if (or
+ (string-match "exited abnormally with code.*" state)
+ (string-match "finished" state))
+ (kill-buffer (current-buffer))))
 
 (add-hook 'shell-mode-hook
-          (lambda ()
-            (set-process-sentinel (get-buffer-process (current-buffer))
-                                  #'wcy-shell-mode-kill-buffer-on-exit)))
+ (lambda ()
+ (set-process-sentinel (get-buffer-process (current-buffer))
+ #'wcy-shell-mode-kill-buffer-on-exit)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun sh-mode-face-settings ()
-  "Face settings for `sh-mode'."
-  (custom-set-faces
-   '(sh-heredoc
-     ((((min-colors 88) (class color)
-        (background dark))
-       (:foreground "deeppink"))
-      (((class color)
-        (background dark))
-       (:foreground "deeppink"))
-      (((class color)
-        (background light))
-       (:foreground "tan1" ))
-      (t
-       (:weight bold))))))
+ "Face settings for `sh-mode'."
+ (custom-set-faces
+ '(sh-heredoc
+ ((((min-colors 88) (class color)
+ (background dark))
+ (:foreground "deeppink"))
+ (((class color)
+ (background dark))
+ (:foreground "deeppink"))
+ (((class color)
+ (background light))
+ (:foreground "tan1" ))
+ (t
+ (:weight bold))))))
 
 (eval-after-load "sh-script"
-  `(sh-mode-face-settings))
+ `(sh-mode-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun svn-face-settings ()
-  "Face settings for `psvn'."
-  (custom-set-faces
-   '(svn-status-filename-face
-     ((((type tty)) :bold t :foreground "yellow")
-      (t :foreground "yellow")))))
+ "Face settings for `psvn'."
+ (custom-set-faces
+ '(svn-status-filename-face
+ ((((type tty)) :bold t :foreground "yellow")
+ (t :foreground "yellow")))))
 
 (eval-after-load "psvn" `(svn-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq w3m-use-mule-ucs t)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun w3m-save-current-buffer ()
-  "Save current w3m buffer."
-  (interactive)
-  (save-excursion
-    (mark-whole-buffer)
-    (call-interactively 'copy-region-as-kill-nomark))
-  (with-temp-buffer
-    (call-interactively 'yank)
-    (call-interactively 'write-file)))
+ "Save current w3m buffer."
+ (interactive)
+ (save-excursion
+ (mark-whole-buffer)
+ (call-interactively 'copy-region-as-kill-nomark))
+ (with-temp-buffer
+ (call-interactively 'yank)
+ (call-interactively 'write-file)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun man-face-settings ()
 ;; "Face settings for `man'."
@@ -437,36 +437,36 @@
 ;; (eval-after-load "man" `(man-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun diff-face-settings ()
-  "Face settings for `diff'."
-  (custom-set-faces '(diff-header ((((class color)) :foreground "green"))))
-  (custom-set-faces '(diff-hunk-header ((((type tty pc)) :bold t :foreground "green")
-                                        (t :foreground "OliveDrab1"))))
-  (custom-set-faces '(diff-index ((((class color)) :foreground "cyan"))))
-  (custom-set-faces '(diff-file-header ((((class color)) :foreground "magenta"))))
-  (custom-set-faces '(diff-removed ((((class color)) :foreground "red"))))
-  (custom-set-faces '(diff-indicator-removed ((((type tty pc)) :foreground "yellow" :background "red")
-                                              (t :foreground "yellow" :background "red"))))
-  (custom-set-faces '(diff-added ((((type tty pc)) :foreground "yellow")
-                                  ;; (t :foreground "deep pink"))))
-                                  (t :foreground "aquamarine"))))
-  (custom-set-faces '(diff-indicator-added ((((type tty pc)) :foreground "red" :background "white")
-                                            (t :foreground "red" :background "white"))))
-  (custom-set-faces '(diff-changed ((((type tty pc)) :foreground "red" :background "blue")
-                                    (t :foreground "deep pink"))))
-  (custom-set-faces '(diff-refine-change ((((type tty pc)) :foreground "white" :background "blue")
-                                          (t :foreground "dark orchid"))))
-  (custom-set-faces '(diff-context
-                      ((((class grayscale) (background light)) (:foreground "LightGray" :weight bold))
-                       (((class grayscale) (background dark)) (:foreground "DimGray" :weight bold))
-                       (((class color) (min-colors 88) (background light)) (:foreground "Orchid"))
-                       (((class color) (min-colors 88) (background dark)) (:foreground "cornflower blue"))
-                       (((class color) (min-colors 16) (background light)) (:foreground "Orchid"))
-                       (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue"))
-                       (((class color) (min-colors 8)) (:foreground "blue" :weight bold))
-                       (t (:weight bold))))))
+ "Face settings for `diff'."
+ (custom-set-faces '(diff-header ((((class color)) :foreground "green"))))
+ (custom-set-faces '(diff-hunk-header ((((type tty pc)) :bold t :foreground "green")
+ (t :foreground "OliveDrab1"))))
+ (custom-set-faces '(diff-index ((((class color)) :foreground "cyan"))))
+ (custom-set-faces '(diff-file-header ((((class color)) :foreground "magenta"))))
+ (custom-set-faces '(diff-removed ((((class color)) :foreground "red"))))
+ (custom-set-faces '(diff-indicator-removed ((((type tty pc)) :foreground "yellow" :background "red")
+ (t :foreground "yellow" :background "red"))))
+ (custom-set-faces '(diff-added ((((type tty pc)) :foreground "yellow")
+ ;; (t :foreground "deep pink"))))
+ (t :foreground "aquamarine"))))
+ (custom-set-faces '(diff-indicator-added ((((type tty pc)) :foreground "red" :background "white")
+ (t :foreground "red" :background "white"))))
+ (custom-set-faces '(diff-changed ((((type tty pc)) :foreground "red" :background "blue")
+ (t :foreground "deep pink"))))
+ (custom-set-faces '(diff-refine-change ((((type tty pc)) :foreground "white" :background "blue")
+ (t :foreground "dark orchid"))))
+ (custom-set-faces '(diff-context
+ ((((class grayscale) (background light)) (:foreground "LightGray" :weight bold))
+ (((class grayscale) (background dark)) (:foreground "DimGray" :weight bold))
+ (((class color) (min-colors 88) (background light)) (:foreground "Orchid"))
+ (((class color) (min-colors 88) (background dark)) (:foreground "cornflower blue"))
+ (((class color) (min-colors 16) (background light)) (:foreground "Orchid"))
+ (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue"))
+ (((class color) (min-colors 8)) (:foreground "blue" :weight bold))
+ (t (:weight bold))))))
 
 (eval-after-load "diff-mode"
-  `(diff-face-settings))
+ `(diff-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (defun ediff-face-settings ()
 ;; "Face settings for `ediff'."
@@ -499,15 +499,15 @@
 (require 'psvn)
 (setq svn-status-verbose nil)
 (defsubst svn-status-interprete-state-mode-color (stat)
-  "Interpret vc-svn-state symbol to mode line color"
-  (case stat
-    ('up-to-date "GreenYellow")
-    ('edited "tomato")
-    ('unknown "gray")
-    ('added "blue")
-    ('deleted "red")
-    ('unmerged "purple")
-    (t "black")))
+ "Interpret vc-svn-state symbol to mode line color"
+ (case stat
+ ('up-to-date "GreenYellow")
+ ('edited "tomato")
+ ('unknown "gray")
+ ('added "blue")
+ ('deleted "red")
+ ('unmerged "purple")
+ (t "black")))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'autoconf-mode-hook 'flyspell-prog-mode)
 (add-hook 'autotest-mode-hook 'flyspell-prog-mode)
@@ -544,16 +544,16 @@
 ;; (setq ido-default-buffer-method 'selected-window)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun remove-last-file-name-history ()
-  "Add to server-switch-hook to omit emacsclient's temporary filenames from the history."
-  (setq file-name-history (cdr file-name-history)))
+ "Add to server-switch-hook to omit emacsclient's temporary filenames from the history."
+ (setq file-name-history (cdr file-name-history)))
 (add-hook 'server-switch-hook 'remove-last-file-name-history)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq comint-scroll-to-bottom-on-input t) ; always insert at the bottom
 (setq comint-scroll-to-bottom-on-output nil) ; always add output at the bottom
 (setq comint-scroll-show-maximum-output t) ; scroll to show max possible output
 (setq comint-input-ignoredups t) ; no duplicates in command history
-(setq comint-buffer-maximum-size 20000) ; max length of the buffer in lines
-(setq comint-input-ring-size 5000) ; max shell history size
+(setq comint-buffer-maximum-size 10000) ; max length of the buffer in lines
+(setq comint-input-ring-size 100) ; max shell history size
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq tramp-remote-process-environment
 ;; (cons (format "PAGER=/bin/cat")
@@ -563,20 +563,20 @@
 (setq use-dialog-box nil)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun svn-my-diff ()
-  "For current svn directory, automatically generate command of 'svn diff -r A:B''"
-  (interactive)
-  (let (revision
-        (revision-cmd "svn info | grep '^Revision:' | awk -F' ' '{print $2}'")
-        (svn-url-cmd "svn info | grep '^URL:' | awk -F' ' '{print $2}'")
-        svn-url)
-    (setq revision (shell-command-to-string revision-cmd))
-    (setq revision (substring revision 0 (- (length revision) 1)))
-    (setq revision (parse-integer revision))
-    (setq svn-url (shell-command-to-string svn-url-cmd))
-    (setq svn-url (substring svn-url 0 (- (length svn-url) 1)))
-    (insert (format "svn diff -r %d:%d %s" (- revision 1) revision
-                    svn-url))
-    ))
+ "For current svn directory, automatically generate command of 'svn diff -r A:B''"
+ (interactive)
+ (let (revision
+ (revision-cmd "svn info | grep '^Revision:' | awk -F' ' '{print $2}'")
+ (svn-url-cmd "svn info | grep '^URL:' | awk -F' ' '{print $2}'")
+ svn-url)
+ (setq revision (shell-command-to-string revision-cmd))
+ (setq revision (substring revision 0 (- (length revision) 1)))
+ (setq revision (parse-integer revision))
+ (setq svn-url (shell-command-to-string svn-url-cmd))
+ (setq svn-url (substring svn-url 0 (- (length svn-url) 1)))
+ (insert (format "svn diff -r %d:%d %s" (- revision 1) revision
+ svn-url))
+ ))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil) ;; TODO, suspicious configuration
 ;; --8<-------------------------- separator ------------------------>8--
@@ -593,53 +593,53 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Display string in large, friendly, letters
 (setq initial-scratch-message
-      (propertize "Try some elisp\n"
-                  'font-lock-face '(:height 2.5 :inherit variable-pitch))
-      inhibit-startup-screen t)
+ (propertize "Try some elisp\n"
+ 'font-lock-face '(:height 2.5 :inherit variable-pitch))
+ inhibit-startup-screen t)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq require-final-newline nil)
 (setq mode-require-final-newline nil)
 (setq recentf-exclude '("/TAGS"
-                        "/TAGS$"
-                        "/var/tmp/"
-                        ".emacs-places"
-                        ".emacs.bmk"
-                        ".emacs~"
-                        ".ido.last"
-                        ".recentf"
-                        ".recentf~"))
+ "/TAGS$"
+ "/var/tmp/"
+ ".emacs-places"
+ ".emacs.bmk"
+ ".emacs~"
+ ".ido.last"
+ ".recentf"
+ ".recentf~"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defadvice tramp-maybe-open-connection (before tramp-set-connection-property activate)
-  (setenv "LC_ALL" "en_US.UTF-8")
-  )
+ (setenv "LC_ALL" "en_US.UTF-8")
+ )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun sum-column (start end arg)
-  "Add up (presumed) numbers in the column defined by START and END.
+ "Add up (presumed) numbers in the column defined by START and END.
 Insert if ARG."
-  (interactive "r\nP")
-  (if (< end start) (let (tmp)
-                      (setq tmp start)
-                      (setq start end)
-                      (setq end tmp)))
-  (save-excursion
-    (goto-char start)
-    (let ((numcol (current-column))
-          (numend (save-excursion (goto-char end) (current-column)))
-          (sum 0))
-      (while (< (point) end)
-        (setq sum (+ sum (string-to-number
-                          (buffer-substring (point)
-                                            (progn
-                                              (move-to-column numend t)
-                                              (point))))))
-        (beginning-of-line 2)
-        (move-to-column numcol t))
-      (if arg (insert (number-to-string sum)))
-      (message "Total: %.2f" sum))))
+ (interactive "r\nP")
+ (if (< end start) (let (tmp)
+ (setq tmp start)
+ (setq start end)
+ (setq end tmp)))
+ (save-excursion
+ (goto-char start)
+ (let ((numcol (current-column))
+ (numend (save-excursion (goto-char end) (current-column)))
+ (sum 0))
+ (while (< (point) end)
+ (setq sum (+ sum (string-to-number
+ (buffer-substring (point)
+ (progn
+ (move-to-column numend t)
+ (point))))))
+ (beginning-of-line 2)
+ (move-to-column numcol t))
+ (if arg (insert (number-to-string sum)))
+ (message "Total: %.2f" sum))))
 ;; --8<-------------------------- separator ------------------------>8--
 (savehist-mode 1)
 (url-handler-mode 1) ; Allow to open URL
@@ -684,7 +684,7 @@ Insert if ARG."
 ;; $0"))))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-export-html-style
-      "<style type=\"text/css\">
+ "<style type=\"text/css\">
 @media all
 {
  body {
@@ -1637,91 +1637,91 @@ Insert if ARG."
  }
 } /* END OF @media screen */
 </Style>"
-      )
+ )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq message-default-charset 'utf-8)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; override original behavior of exporting freemind for wordpress format
 (defun my-org-freemind-write-node (mm-buffer drawers-regexp
-                                             num-left-nodes base-level
-                                             current-level next-level this-m2
-                                             this-node-end
-                                             this-children-visible
-                                             next-node-start
-                                             next-has-some-visible-child)
-  (let* (this-icons
-         this-bg-color
-         this-m2-escaped
-         this-rich-node
-         this-rich-note
-         )
-    (when (string-match "TODO" this-m2)
-      (setq this-m2 (replace-match "" nil nil this-m2))
-      (add-to-list 'this-icons "button_cancel")
-      (setq this-bg-color "#ffff88")
-      (when (string-match "\\[#\\(.\\)\\]" this-m2)
-        (let ((prior (string-to-char (match-string 1 this-m2))))
-          (setq this-m2 (replace-match "" nil nil this-m2))
-          (cond
-           ((= prior ?A)
-            (add-to-list 'this-icons "full-1")
-            (setq this-bg-color "#ff0000"))
-           ((= prior ?B)
-            (add-to-list 'this-icons "full-2")
-            (setq this-bg-color "#ffaa00"))
-           ((= prior ?C)
-            (add-to-list 'this-icons "full-3")
-            (setq this-bg-color "#ffdd00"))
-           ((= prior ?D)
-            (add-to-list 'this-icons "full-4")
-            (setq this-bg-color "#ffff00"))
-           ((= prior ?E)
-            (add-to-list 'this-icons "full-5"))
-           ((= prior ?F)
-            (add-to-list 'this-icons "full-6"))
-           ((= prior ?G)
-            (add-to-list 'this-icons "full-7"))
-           ))))
-    (setq this-m2 (org-trim this-m2))
-    (setq this-m2-escaped (org-freemind-escape-str-from-org this-m2))
-    (let ((node-notes (org-freemind-org-text-to-freemind-subnode/note
-                       this-m2-escaped
-                       this-node-end
-                       (1- next-node-start)
-                       drawers-regexp)))
-      (setq this-rich-node (nth 0 node-notes))
-      (setq this-rich-note (nth 1 node-notes)))
-    (with-current-buffer mm-buffer
-      (insert "<node><richcontent TYPE=\"NODE\"><html><body><p>"
-              this-m2-escaped "</p></body></html></richcontent>")
-      (when this-icons
-        (dolist (icon this-icons)
-          (insert "<icon builtin=\"" icon "\"/>\n")))
-      )
-    (with-current-buffer mm-buffer
-      ;;(when this-rich-note (insert this-rich-note))
-      (when this-rich-node (insert this-rich-node))))
-  num-left-nodes)
+ num-left-nodes base-level
+ current-level next-level this-m2
+ this-node-end
+ this-children-visible
+ next-node-start
+ next-has-some-visible-child)
+ (let* (this-icons
+ this-bg-color
+ this-m2-escaped
+ this-rich-node
+ this-rich-note
+ )
+ (when (string-match "TODO" this-m2)
+ (setq this-m2 (replace-match "" nil nil this-m2))
+ (add-to-list 'this-icons "button_cancel")
+ (setq this-bg-color "#ffff88")
+ (when (string-match "\\[#\\(.\\)\\]" this-m2)
+ (let ((prior (string-to-char (match-string 1 this-m2))))
+ (setq this-m2 (replace-match "" nil nil this-m2))
+ (cond
+ ((= prior ?A)
+ (add-to-list 'this-icons "full-1")
+ (setq this-bg-color "#ff0000"))
+ ((= prior ?B)
+ (add-to-list 'this-icons "full-2")
+ (setq this-bg-color "#ffaa00"))
+ ((= prior ?C)
+ (add-to-list 'this-icons "full-3")
+ (setq this-bg-color "#ffdd00"))
+ ((= prior ?D)
+ (add-to-list 'this-icons "full-4")
+ (setq this-bg-color "#ffff00"))
+ ((= prior ?E)
+ (add-to-list 'this-icons "full-5"))
+ ((= prior ?F)
+ (add-to-list 'this-icons "full-6"))
+ ((= prior ?G)
+ (add-to-list 'this-icons "full-7"))
+ ))))
+ (setq this-m2 (org-trim this-m2))
+ (setq this-m2-escaped (org-freemind-escape-str-from-org this-m2))
+ (let ((node-notes (org-freemind-org-text-to-freemind-subnode/note
+ this-m2-escaped
+ this-node-end
+ (1- next-node-start)
+ drawers-regexp)))
+ (setq this-rich-node (nth 0 node-notes))
+ (setq this-rich-note (nth 1 node-notes)))
+ (with-current-buffer mm-buffer
+ (insert "<node><richcontent TYPE=\"NODE\"><html><body><p>"
+ this-m2-escaped "</p></body></html></richcontent>")
+ (when this-icons
+ (dolist (icon this-icons)
+ (insert "<icon builtin=\"" icon "\"/>\n")))
+ )
+ (with-current-buffer mm-buffer
+ ;;(when this-rich-note (insert this-rich-note))
+ (when this-rich-node (insert this-rich-node))))
+ num-left-nodes)
 
 (defun update-question-to-blog()
-  (interactive)
-  (progn
-    (question)
-    (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
-    (org-export-as-freemind)
-    (shell-command "~/backup/essential/Dropbox/private_data/backup_small/update-blog.sh")
-    )
-  )
+ (interactive)
+ (progn
+ (question)
+ (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
+ (org-export-as-freemind)
+ (shell-command "~/backup/essential/Dropbox/private_data/backup_small/update-blog.sh")
+ )
+ )
 (add-hook 'org-mode-hook
-          (lambda ()
-            (defalias 'org-freemind-write-node 'my-org-freemind-write-node)))
+ (lambda ()
+ (defalias 'org-freemind-write-node 'my-org-freemind-write-node)))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-unfill-region ()
-  (interactive)
-  (make-variable-buffer-local 'fill-column)
-  (setq fill-column 10000)
-  (unfill-region (point-min) (point-max))
-  )
+ (interactive)
+ (make-variable-buffer-local 'fill-column)
+ (setq fill-column 10000)
+ (unfill-region (point-min) (point-max))
+ )
 (defalias 'uf 'my-unfill-region)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq desktop-load-locked-desktop 't)
@@ -1738,87 +1738,93 @@ Insert if ARG."
 ;; ;; ask for confirmation before invoke external program
 ;; (setq openwith-confirm-invocation t)
 ;; (cond
-;;  ((eq system-type 'gnu/linux)
-;;   ;; clean up previous open associations, and reconfigure
-;;   (setq openwith-associations
-;;         '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
-;;           ("\\.epub\\'" "calibre" (file))
-;;           ;;("\\.pdf\\'" "evince" (file))
-;;           ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
-;;           )))
-;;  ((eq system-type 'windows-nt)
-;;   ;;TODO problematic
-;;   (setq openwith-associations
-;;         '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
-;;           )))
-;;  )
+;; ((eq system-type 'gnu/linux)
+;; ;; clean up previous open associations, and reconfigure
+;; (setq openwith-associations
+;; '(("\\.\\(doc\\|docx\\|xlsx\\|xls\\|ppt\\|pptx\\)\\'" "libreoffice" (file))
+;; ("\\.epub\\'" "calibre" (file))
+;; ;;("\\.pdf\\'" "evince" (file))
+;; ;; ("\\.\\(png\\|bmp\\)\\'" "display" (file))
+;; )))
+;; ((eq system-type 'windows-nt)
+;; ;;TODO problematic
+;; (setq openwith-associations
+;; '(("\\.\\(doc\\|docx\\)\\'" "winword" (file))
+;; )))
+;; )
 
 (add-hook 'message-mode-hook 'disable-openwith-associations)
 (defun disable-openwith-associations ()
-    (if (object-p 'openwith-associations)
-        (progn
-          (make-local-variable 'openwith-associations)
-          (setq openwith-associations "")
-          )
-      )
+ (if (object-p 'openwith-associations)
+ (progn
+ (make-local-variable 'openwith-associations)
+ (setq openwith-associations "")
+ )
+ )
 )
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'post-command-hook 'invoke-voice-command)
 (defun invoke-voice-command ()
-  (interactive)
-  (if (string= (buffer-name) "voice")
-      (let (start end text)
-        (save-excursion
-          (move-beginning-of-line nil)
-          (setq start (point))
-          (move-end-of-line nil)
-          (setq end (point))
-          (setq text (buffer-substring-no-properties start end))
-          (run-voice-command text)
-          )
-        )
-    )
-  )
+ (interactive)
+ (if (string= (buffer-name) "voice")
+ (let (start end text)
+ (save-excursion
+ (move-beginning-of-line nil)
+ (setq start (point))
+ (move-end-of-line nil)
+ (setq end (point))
+ (setq text (buffer-substring-no-properties start end))
+ (run-voice-command text)
+ )
+ )
+ )
+ )
 (global-set-key (kbd "<C-tab>") 'invoke-voice-command) ;; TODO
 
 (defun run-voice-command (text)
-  (let* ((command-rule-list
-          '(
-            ("腾讯" . "open -a /Applications/QQ.app")
-            ("内部" . "open -a /Applications/RTX.app")
-            ("音乐" . "mplayer /Users/mac/backup/multimediea/music/boyzone--everyday_i_love_you.mp3 &")
-            ("文件" . "open /Users/mac/")
-            ("微博" . "open http://www.weibo.com")
-            ("邮箱" . "open http://www.126.com")
-            ("淘宝" . "open http://www.taobao.com")
-            ))
-         command)
-    (setq command (assoc-default text command-rule-list 'string-match))
-    (if command
-        (shell-command command)
-      ))
-  )
-;; --8<-------------------------- separator ------------------------>8--
-;;gnuplot
-(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
-(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
-(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
-(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
-;;(global-set-key [(f9)] 'gnuplot-make-buffer)
+ (let* ((command-rule-list
+ '(
+ ("腾讯" . "open -a /Applications/QQ.app")
+ ("内部" . "open -a /Applications/RTX.app")
+ ("音乐" . "mplayer /Users/mac/backup/multimediea/music/boyzone--everyday_i_love_you.mp3 &")
+ ("文件" . "open /Users/mac/")
+ ("微博" . "open http://www.weibo.com")
+ ("邮箱" . "open http://www.126.com")
+ ("淘宝" . "open http://www.taobao.com")
+ ))
+ command)
+ (setq command (assoc-default text command-rule-list 'string-match))
+ (if command
+ (shell-command command)
+ ))
+ )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ios programming
 (if (eq system-type 'darwin)
-    (progn
-      (load-file (concat EMACS_VENDOR "emacs-xcode-document-viewer/xcode-document-viewer.el"))
-      (setq xcdoc:document-path "/Users/mac/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS6.1.iOSLibrary.docset") ;; TODO
-      (setq xcdoc:open-w3m-other-buffer t)
-      (defun xcdoc:docsetutil-command ()
-        (or (executable-find "docsetutil")
-            (and (file-executable-p "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil") "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-            (error "docsetutil command is not found. Perhaps you dont have Xcode man.")))
+ (progn
+ (load-file (concat EMACS_VENDOR "emacs-xcode-document-viewer/xcode-document-viewer.el"))
+ (setq xcdoc:document-path "/Users/mac/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS6.1.iOSLibrary.docset") ;; TODO
+ (setq xcdoc:open-w3m-other-buffer t)
+ (defun xcdoc:docsetutil-command ()
+ (or (executable-find "docsetutil")
+ (and (file-executable-p "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil") "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+ (error "docsetutil command is not found. Perhaps you dont have Xcode man.")))
 
-      )
-  )
+ )
+ )
+;; --8<-------------------------- separator ------------------------>8--
+(setq nnrss-use-local t
+ nnrss-directory (concat DENNY_CONF "/../emacs_stuff/rss/"))
+;;(setq gnus-select-method '(nnml ""))
+;;(setq gnus-select-method nil)
+;; --8<-------------------------- separator ------------------------>8--
+(defun get-mail ()
+ "Run shell script to get mail"
+ (interactive)
+ (progn
+   (shell-command "~/backup/essential/Dropbox/private_data/backup_small/fetch_mail/fetch_mail.sh")
+ ))
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key "\M-$" 'flyspell-word)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

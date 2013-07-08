@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-01 16:36:19>
+;; Updated: Time-stamp: <2013-04-01 15:54:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -21,7 +21,10 @@
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
          "** %<%Y-%m-%d>: %?")
-        ("c" "Communication" entry (file+headline "current.org" "Communication") "** %?\n")
+        ("c" "Communication" table-line
+         (file+headline "manage.org" "[#A] contact list")
+         "| | %? | |%<%Y-%m-%d>| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
+
         ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
         ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
         ))

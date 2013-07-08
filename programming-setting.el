@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-24 13:59:26>
+;; Updated: Time-stamp: <2013-04-30 14:18:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -330,5 +330,15 @@
              window))))))
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key c-mode-base-map [(meta j)] 'webjump)
+;; --8<-------------------------- separator ------------------------>8--
+(add-hook 'python-mode-hook
+          #'(lambda()
+              (progn
+                (make-local-variable 'indent-tabs-mode)
+                (make-local-variable 'tab-width)
+                (setq tab-width 4)
+                (setq indent-tabs-mode 't)
+                ))
+          )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

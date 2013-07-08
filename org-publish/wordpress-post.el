@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:37:44>
+;; Updated: Time-stamp: <2013-07-08 18:02:49>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
@@ -13,12 +13,12 @@
         ;;("d190350c888b9c7adaa1b4c0c025e9db" 245 "[Denny] IO profiling")
         ;;("0bca1df4f8dca2cc54864da619309ee5" 249 "[Denny] 分布式系统中, 强一致性")
 
-        ("7ab597a8e9eb8827097608f1221c8597" 552 "[Denny] test")
+        ("fb106d5dd87a652559d650e87671b70f" 552 "[Denny] Various discussion")
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ("90ac35ae8c4c332a57203920b275dc51" 6523 "[Denny] Difficulties in cloud computing")
         ("d64c3b5d880747cb7b3ae148b0b1bad1" 238 "[Denny] Graph theory for Algorithm")
         ("62fc36d98dff6682e4187565c1c13b33" 341 "[Denny] Set theory for Algorithm")
-        ("045b889854057c9e9c8476d2d8d8f959" 561 "[Denny] Special Scenario for Algorithm -- 通过问题的特殊性来解决")
+        ("ae11c71196486c78bc8f3337a4b88a18" 561 "[Denny] Programming for iOS (iPhone/iPad)")
         ("a1af0db3bc34ff959b33896ce4b25e01" 251 "[Denny] Proved Common Algorithm and Data Structure")
         ("e5792fe338cc1e325a03b4ff64767c86" 1518 "[Denny] Algorithm Question -- 每日一算法")
         ("9a4533361bc29153e047ea05c20cf365" 216 "[Denny] Mnesia — Erlang的DMBS")
@@ -32,7 +32,7 @@
         ("2ee5b436678bdfae73904e541a7ecd2e" 557 "[Denny] 公众演讲: How to deliver a public speech")
         ("8c825c42309004ae5e912a382c8a5ebb" 559 "[Denny] tsung: an open-source multi-protocol distributed load testing tool")
         ("002ce3def307b2977da2765749df8ddd" 561 "[Denny] erlang cowboy")
-        ("0fe628af0698f632bbb40a130869399e" 934 "[Denny] 推荐电影 -- 欢迎追加")
+        ("49e9dee849af541bf4e4197e7ae0e95c" 934 "[Denny] Fun -- 电影 & 音乐")
         ("8d2382a454827ff0acb3ddb071f8c8b6" 1017 "[Denny] Child education -- 孩子教育")
         ("29fdcd436940e3f07842fa4ac42258a3" 1019 "[Denny] Work Skill + Software -- 实用软件")
         ("7d2e1f114303ea02918d2d8534b329a0" 1305 "[Denny] Health — 健康")
@@ -46,7 +46,7 @@
         ("d9d82b8a27d392317be812c7174c44d9" 2539 "[Denny] Linux http")
         ("ee9b3badcd43b894d25a02ba4b853d90" 2542 "[Denny] Expect: 执行远端命令或登录时，避免输入命令")
         ("0a70ef1ac75aad6ffcf1d51e6d3915cd" 2751 "[Denny] erlang code tool")
-        ("b3027400ad46f11128d4c1b842e06594" 2824 "[Denny] 技术网页分享")
+        ("4c68b5cb04d9c784396e9f6aa02516b2" 2824 "[Denny] puppet: 强大的中心化配置管理系统 -- SA的利器")
         ("39c2dd4f4f788c4560b9f19d75b066c2" 3129 "[Denny] Locking in programming")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
         ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in Python")
@@ -62,7 +62,7 @@
         ("ebebb36b96347ed2867a729138f001ec" 4645 "[Denny] Difficulties in mongo")
         ("ab572f73132656fe14ef067ab1ec2c86" 4763 "[Denny] linux /proc filesystem")
         ("6564602080ea28f277f2ab395095160c" 4799 "[Denny] Difficulties in puppet")
-        ("d865b43257f95520c16b0fd0a2c25419" 4803 "[Denny] 打造个人品牌: 技术人员的价值外现, 和提高社会的广泛认知度")
+        ("79a25c6d37d3d7aa37d49be5b766f419" 4803 "[Denny] Useful shell code snippet")
         ("6cab7dfbfb3c122332ccf0e5593bb20a" 4936 "[Denny] Difficulties in erlang")
         ("34d4c0129551f92a464c317273c40375" 4938 "[Denny] Difficulties in leveldb")
         ("708888d007115fb7fab34035d6d498db" 4940 "[Denny] excel vba插件")
@@ -88,10 +88,14 @@
         ("8192cd8e64030f55379112af2ede5c72" 6309 "[Denny] Daily Journal logging for I am doing everyday -- 工作日志")
         ("2673753f5e99ed3823e2d428123126bd" 6523 "[Denny] linux systemtap")
         ("cfca3c3a4d874d4f9d47990967a4ebf7" 7867 "[Denny] Google Go")
-        ("64ae47502012e5348bd8af5bb01e8506" 7882 "[Denny] R: The R Project for Statistical Computing")
-        ("49482b38b0e52cea09356e3ba1effd64" 8133 "[Denny] 数据分析 -- Data analysis & Big Data")
-        ("8a81647c0b408e66aad14415480befa8" 8161 "[Denny] Fighting with mac")
-        ("a5084c5b36f309e58b2629bed5212e6a" 8182 "[Denny] Objective-C")
+        ("8a81647c0b408e66aad14415480befa8" 7882 "[Denny] Fighting with mac")
+        ("a5084c5b36f309e58b2629bed5212e6a" 8133 "[Denny] Objective-C")
+        ("49482b38b0e52cea09356e3ba1effd64" 8161 "[Denny] 数据分析 -- Data analysis & Big Data")
+        ("64ae47502012e5348bd8af5bb01e8506" 8182 "[Denny] R: The R Project for Statistical Computing")
+        ("3b186162b50b07a58597ac989a1cea30" 8326 "[Denny] 数据分析基本知识 -- 统计学及线性代数")
+        ("399fe99a23432b476f8b803cc7cbf5ce" 8410 "[Denny] git")
+        ("429c92099c27f80a689fd3b07ffa95b9" 8418 "[Denny] Mail in emacs -- gnus")
+        ("70d9f395b067a308617a1e9a9b281846" 8433 "[Denny] Selenium -- GUI automation")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

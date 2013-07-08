@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-16 17:49:50>
+;; Updated: Time-stamp: <2013-06-25 16:34:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -283,14 +283,15 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.jpeg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.jpg$" . image-mode))
-;;(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1))) ;; TODO denny
-;;(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1))) ;; TODO denny
+(add-to-list 'auto-mode-alist '("\\.png$" . image-mode))
+(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1))) 
+(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1))) 
 (defun rotate-image-in-directory (N)
   "Enable image-mode to view previous/next image"
  (interactive)
  (let* ((current-file (file-name-nondirectory (buffer-file-name)))
         (old-buffer (current-buffer))
-        (file-list (directory-files "." nil ".*jpg\\|.*jpeg"))
+        (file-list (directory-files "." nil ".*jpg\\|.*jpeg\\|.*.png"))
         (file-count (length file-list))
         index)
    (setq index (mod

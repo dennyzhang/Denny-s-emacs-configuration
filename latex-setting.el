@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-23 15:48:58>
+;; Updated: Time-stamp: <2013-07-02 15:23:56>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; hacking latex export for showing Chinese characters
 (add-hook 'org-export-latex-final-hook 'update-orgbeam-latex)
@@ -16,7 +16,7 @@
  (replace-string "begin{document}
 
 " "begin{document}
-\\begin{CJK}{UTF8}{song}
+\\begin{CJK}{UTF8}{gkai}
 " nil (point-min) (point-max))
  (goto-char (point-min))
  (replace-string "
@@ -37,7 +37,7 @@
 
 (setq org-export-latex-append-header "
 \\usepackage{tikz}
-\\usetheme{AnnArbor}
+\\usetheme{Boadilla}
 \\subtitle{商派电子商务云平台的回顾和反思}
 \\institute[Shopex]{上海商派}
 \\logo{\\pgfimage[width=1.1cm,height=0.4cm]{shopex.png}}
@@ -50,5 +50,10 @@
   \\end{frame}
 }
 ")
+;; --8<-------------------------- separator ------------------------>8--
+(setq ps-paper-type 'a4
+      ps-font-size 16.0
+      ps-print-header nil
+      ps-landscape-mode nil)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here

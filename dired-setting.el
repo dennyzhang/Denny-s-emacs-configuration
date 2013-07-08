@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:08:23>
+;; Updated: Time-stamp: <2013-06-29 21:56:50>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Dired reuse directory buffer
@@ -50,7 +50,7 @@
       (message "Size of %s: %s" current-file
                (progn
                  (goto-char (point-min))
-                 (re-search-forward "\\(^[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
+                 (re-search-forward "\\(^ *[0-9.,]+[A-Za-z]+\\).*\\(total\\|总计\\)$")
                  (match-string 1))))))
 
 (define-key dired-mode-map "\M-e" 'dired-sort-extension)
@@ -63,6 +63,33 @@
  '(dired-recursive-copies (quote always))
  '(dired-recursive-deletes (quote always))
  )
+
+(remove-hook 'dired-mode-hook
+	  (function
+	   (lambda ()
+	     (define-key dired-mode-map "T" 'dired-tar-pack-unpack))))
+
+(add-hook 'dired-mode-hook
+	  (function
+	   (lambda ()
+	     (define-key dired-mode-map "T" 'my-dired-tar-pack-unpack))))
+
+(defun my-dired-tar-pack-unpack (prefix-arg)
+  ""
+  (interactive "P")
+  (let (tar_command
+        (marked-files (dired-get-marked-files t nil)))
+    (if (= 1 (length marked-files))
+        (dired-tar-pack-unpack prefix-arg)
+      (progn
+        (setq tar_command (format "tar cvf - %s | gzip --best --stdout > file.tar.gz"
+                                  (mapconcat 'identity (dired-get-marked-files t nil) " ")))
+        (shell-command tar_command)
+        )
+    )
+  )
+)
+
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/dired+/dired+.el"))
 ;;(require 'dired+)

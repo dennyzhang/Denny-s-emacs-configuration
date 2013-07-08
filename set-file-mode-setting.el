@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-10-01 12:42:25>
+;; Updated: Time-stamp: <2013-04-06 19:42:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -19,6 +19,7 @@
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (enriched-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode));;rhtml
+(add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.mxml$" . nxml-mode))
 (setq nxml-mode-hook

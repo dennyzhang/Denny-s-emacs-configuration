@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:18:03>
+;; Updated: Time-stamp: <2013-06-27 00:30:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq mac-command-modifier 'meta) 
@@ -57,5 +57,13 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-foreground 'default "#996633")
 (setq shell-file-name "/bin/bash")
+;; --8<-------------------------- separator ------------------------>8--
+;; configure remote parameters for tramp
+(require 'tramp-sh) ;; TODO
+(add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
+(add-to-list 'tramp-remote-process-environment "SSH_ASKPASS=\"\"") ;; unset $SSH_ASKPASS
+(delete "PAGER=\"\"" tramp-remote-process-environment)
+(delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
+(add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: mac-setting.el

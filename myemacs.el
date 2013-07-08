@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:37:18>
+;; Updated: Time-stamp: <2013-05-23 17:17:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
 (defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
@@ -21,19 +21,15 @@
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '(
         "bbdb-setting.el"
-        "gnus-setting.el"
+
 
         "fundamental-setting.el" ;; suspicous
-
         "clean-appearance-setting.el"
-
         "buffer-setting.el"
-
         "essentialpackage-setting.el"
         "org-setting.el"
-
+        "gnus-setting.el"
         "web-setting.el"
-
         "dired-setting.el"
         "handyfunction-setting.el"
         "regexp-setting.el"
@@ -64,13 +60,13 @@
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
         '(
-          "mac-setting.el"
           "diff-setting.el"
           "web-setting.el"
           "linux-setting.el"
           "multimediea-setting.el"
           "shell-setting.el"
           "voice-setting.el"
+          "mac-setting.el"
           "interoperation-setting.el")))
  ((eq system-type 'gnu/linux)
   (mapc #'(lambda(emacs-file)

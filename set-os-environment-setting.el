@@ -3,10 +3,24 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-13 01:14:56>
+;; Updated: Time-stamp: <2013-03-25 23:00:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set environment variables for different OS
+(if (string= "darwin" system-type)
+    (progn
+      (setenv "LEDGER" "/usr/local/bin/ledger")
+      (setenv "LEDGER_FILE" "~/backup/essential/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
+      (setenv "EMACS_BIN" "/usr/local/bin/emacs")
+      )
+  )
+(if (string= "gnu/linux" system-type)
+    (progn
+      (setenv "LEDGER" "/usr/bin/ledger")
+      (setenv "LEDGER_FILE" "~/backup/essential/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
+      (setenv "EMACS_BIN" "/usr/local/bin/emacs")
+      )
+  )
 (if (string= "windows-nt" system-type)
     (progn
       (setenv "LEDGER" "~/myemacs/nonelisp-tool/ledger/ledger.exe")
@@ -18,13 +32,6 @@
       (setenv "LEDGER" "/usr/bin/ledger")
       (setenv "LEDGER_FILE" "e:/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
       (setenv "EMACS_BIN" "~/bin/emacs.exe")
-      )
-  )
-(if (string= "gnu/linux" system-type)
-    (progn
-      (setenv "LEDGER" "/usr/bin/ledger")
-      (setenv "LEDGER_FILE" "~/backup/essential/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
-      (setenv "EMACS_BIN" "/usr/local/bin/emacs")
       )
   )
 ;; --8<-------------------------- separator ------------------------>8--
