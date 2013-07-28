@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/python
 ##-------------------------------------------------------------------
 ## @copyright 2013 ShopEx Network Technology Co,.Ltd
@@ -6,7 +7,7 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-01-28 15:54:21>
+## Updated: Time-stamp: <2013-07-16 23:13:33>
 ##-------------------------------------------------------------------
 def test():
     print "hello, world"

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-06-26 15:01:31>
+;; Updated: Time-stamp: <2013-07-21 14:47:05>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -18,14 +18,14 @@
        default-frame-alist))
 
 ;; TODO denny
-;;  (create-fontset-from-fontset-spec
-;;     "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
+;; (create-fontset-from-fontset-spec
+;; "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
 
 ;; (setq default-frame-alist
-;;       (append
-;;        '(
-;;          (font . "fontset-startup"))
-;;                 default-frame-alist))
+;; (append
+;; '(
+;; (font . "fontset-startup"))
+;; default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
@@ -99,29 +99,29 @@
 ;; save a bunch of variables to the desktop file
 ;; for lists specify the len of the maximal saved data also
 ;; (setq desktop-globals-to-save
-;;       (append '((extended-command-history . 30)
-;;                 (file-name-history . 100)
-;;                 (ido-last-directory-list . 100)
-;;                 (ido-work-directory-list . 100)
-;;                 (ido-work-file-list . 100)
-;;                 (grep-history . 30)
-;;                 (compile-history . 30)
-;;                 (minibuffer-history . 50)
-;;                 (query-replace-history . 60)
-;;                 (read-expression-history . 60)
-;;                 (regexp-history . 60)
-;;                 (regexp-search-ring . 20)
-;;                 (search-ring . 20)
-;;                 (comint-input-ring . 50)
-;;                 (shell-command-history . 50)
-;;                 desktop-missing-file-warning
-;;                 tags-file-name
-;;                 register-alist)))
+;; (append '((extended-command-history . 30)
+;; (file-name-history . 100)
+;; (ido-last-directory-list . 100)
+;; (ido-work-directory-list . 100)
+;; (ido-work-file-list . 100)
+;; (grep-history . 30)
+;; (compile-history . 30)
+;; (minibuffer-history . 50)
+;; (query-replace-history . 60)
+;; (read-expression-history . 60)
+;; (regexp-history . 60)
+;; (regexp-search-ring . 20)
+;; (search-ring . 20)
+;; (comint-input-ring . 50)
+;; (shell-command-history . 50)
+;; desktop-missing-file-warning
+;; tags-file-name
+;; register-alist)))
 ;; (add-to-list 'desktop-globals-to-save 'vc-comment-ring)
 ;; (setq desktop-buffers-not-to-save
-;;       (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
-;;               "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
-;;               "\\)$"))
+;; (concat "\\(" "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+;; "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+;; "\\)$"))
 ;; (add-to-list 'desktop-modes-not-to-save 'dired-mode)
 ;; (add-to-list 'desktop-modes-not-to-save 'Info-mode)
 ;; (add-to-list 'desktop-modes-not-to-save 'erc-mode)
@@ -180,5 +180,32 @@
 
 (add-hook 'post-command-hook 'cf-add-command)
 ;; (add-to-list 'desktop-globals-to-save 'cf-command-history)
+;; --8<-------------------------- separator ------------------------>8--
+(if (eq system-type 'gnu/linux)
+    (progn
+      (add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro"))
+      (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
+      (pomodoro)
+      (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
+      (setq pomodoro-set-number 4) ;; Number of sets until a long break
+      ;; (defun pomodoro-message (msg)
+      ;; "Display a message in a buffer and maybe raise emacs frame."
+      ;; (when pomodoro-raise-frame
+      ;; (raise-frame (selected-frame)))
+      ;; (let ((this-window (selected-window)))
+      ;; (with-current-buffer (get-buffer-create pomodoro-buffer-name)
+      ;; (erase-buffer)
+      ;; (insert msg))
+      ;; (pop-to-buffer pomodoro-buffer-name)
+      ;; (ding)
+      ;; (sleep-for 2)
+      ;; (ding)
+      ;; ;; suggest not to change window height, since it will distract users' work environment
+      ;; (fit-window-to-buffer)
+      ;; ;; auto kill the buffer, after some wait
+      ;; (run-at-time "8 sec" nil 'kill-buffer pomodoro-buffer-name)
+      ;; (select-window this-window))
+      ;; (run-hook-with-args 'pomodoro-message-hook msg))
+      ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: linux-setting.el

@@ -1,0 +1,1 @@
+git push && git checkout master && git merge denny && git pull && git push && git checkout denny

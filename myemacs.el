@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-05-23 17:17:37>
+;; Updated: Time-stamp: <2013-07-14 09:05:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
 (defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
@@ -95,7 +95,7 @@
 ;;(load-file (concat DENNY_CONF "/emacs_conf/secrets.el.gpg"))
 
 ;; --8<-------------------------- separator ------------------------>8--
-;;(unless (server-running-p) (server-start)) ;; TODO denny
+(unless (server-running-p) (server-start)) ;; TODO denny
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

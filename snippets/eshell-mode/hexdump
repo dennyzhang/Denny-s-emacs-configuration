@@ -1,0 +1,1 @@
+hexdump -C -n $1 -s $20 $3/etc/hosts

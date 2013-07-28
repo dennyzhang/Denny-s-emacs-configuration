@@ -1,0 +1,6 @@
+*.elc
+*.gpg
+*.el~
+.DS_Store
+passwd.el
+org-background.png

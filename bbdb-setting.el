@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-07-30 11:06:45>
+;; Updated: Time-stamp: <2013-07-14 09:22:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -57,8 +57,11 @@
           (backward-char (length vcard-photo-anchor))
           (insert
            photo-vcard-prefix
-           (shell-command-to-string
-            (format "base64 -w 0 %s" bbdb-image-filename))
+           (if (eq system-type 'darwin)
+               (shell-command-to-string
+                (format "base64 %s" bbdb-image-filename))
+             (shell-command-to-string
+              (format "base64 -w 0 %s" bbdb-image-filename)))
            "\n")
           (save-buffer)
           (kill-buffer)
