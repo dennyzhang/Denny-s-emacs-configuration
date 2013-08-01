@@ -6,7 +6,29 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-01-28 15:55:44>
+## Updated: Time-stamp: <2013-07-30 09:26:40>
 ##-------------------------------------------------------------------
+function log()
+{
+    local msg=\${1?}
+    echo -ne \`date +['%Y-%m-%d %H:%M:%S']\`" \$msg\n"
+}
+
+function ensure_variable_isset() {
+    var=\${1?}
+    # TODO support sudo, without source
+    if [ -z "$var" ]; then
+        echo "Error: Certain variable is not set"
+        exit 1
+    fi
+}
+
+function ensure_is_root() {
+    # Make sure only root can run our script
+    if [[ $EUID -ne 0 ]]; then
+        echo "Error: This script must be run as root." 1>&2
+        exit 1
+    fi
+}
 
 ## File : hello ends

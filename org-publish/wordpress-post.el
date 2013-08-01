@@ -3,16 +3,16 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-07-28 11:41:12>
+;; Updated: Time-stamp: <2013-08-01 10:57:08>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
         ;;("012fcbe8b922b317852870d3857b801a" 554 "[Denny] 分布式数据库 -- Distributed Database")
-        ;;("e91bf9ed018289501e716203ff2237a8" 240 "[Denny] 云计算常识")
         ;;("dd7972a1cd67fb2e655a2ec64feeac33" 248 "[Denny] 云平台")
-        ;;("d190350c888b9c7adaa1b4c0c025e9db" 245 "[Denny] IO profiling")
         ;;("0bca1df4f8dca2cc54864da619309ee5" 249 "[Denny] 分布式系统中, 强一致性")
 
+        ("e91bf9ed018289501e716203ff2237a8" 4645 "[Denny] 云计算常识")
+        ("d190350c888b9c7adaa1b4c0c025e9db" 4867 "[Denny] IO profiling")
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ("2ce2567cb72d0dc24faec01008bb205d" 243 "[Denny] Daily life -- 日常家务")
         ("f20035de6081f6511cd34ba6f3a047fd" 252 "[Denny] 推荐书目 — 欢迎追加")
@@ -45,7 +45,7 @@
         ("2658854e1ba51d656deb4bf7301acf55" 4367 "[Denny] Be happy with your family and friends -- 社交管理")
         ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
 
-        ("ebebb36b96347ed2867a729138f001ec" 4645 "[Denny] Difficulties in mongo")
+
         ("ab572f73132656fe14ef067ab1ec2c86" 4763 "[Denny] linux /proc filesystem")
         ("6564602080ea28f277f2ab395095160c" 4799 "[Denny] Difficulties in puppet")
         ("79a25c6d37d3d7aa37d49be5b766f419" 4803 "[Denny] Useful shell code snippet")
@@ -72,7 +72,7 @@
         ("49482b38b0e52cea09356e3ba1effd64" 6033 "[Denny] 数据分析 -- Data analysis & Big Data")
         ("3b186162b50b07a58597ac989a1cea30" 6523 "[Denny] 数据分析基本知识 -- 统计学及线性代数")
         ("70d9f395b067a308617a1e9a9b281846" 6264 "[Denny] Selenium -- GUI automation")
-        ("028b16b2b98a604dbd82e6db7a0b8976" 8133 "[Denny] Mongodb: a scalable, high-performance, open-source, document-oriented database")
+        ("aa0f5ca16ea0703d4a371ca1608d72a5" 8133 "[Denny] Difficulties in mongodb")
         ("429c92099c27f80a689fd3b07ffa95b9" 8182 "[Denny] Mail in emacs -- gnus")
 
         ("2673753f5e99ed3823e2d428123126bd" 8326 "[Denny] linux systemtap")
