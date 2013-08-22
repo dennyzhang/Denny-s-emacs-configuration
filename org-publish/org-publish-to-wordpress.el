@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-01-14 00:26:11>
+;; Updated: Time-stamp: <2013-08-19 23:51:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -294,7 +294,7 @@ See `org-publish-org-to' to the list of arguments."
                           (cons "authorName" "zhangwei")
                           (cons "description" (concat (format-time-string
                                                        "Auto-updated %Y-%m-%d %H:%M.<br/>" (current-time))
-                                                       (buffer-substring-no-properties (point-min) more-position)))
+                                                      (buffer-substring-no-properties (point-min) more-position)))
                           (cons "mt_keywords"
                                 (if
                                     (string= "" keyword-list)

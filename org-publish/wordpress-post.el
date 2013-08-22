@@ -3,16 +3,14 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-01 10:57:08>
+;; Updated: Time-stamp: <2013-08-15 15:16:10>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
         ;;("012fcbe8b922b317852870d3857b801a" 554 "[Denny] 分布式数据库 -- Distributed Database")
-        ;;("dd7972a1cd67fb2e655a2ec64feeac33" 248 "[Denny] 云平台")
-        ;;("0bca1df4f8dca2cc54864da619309ee5" 249 "[Denny] 分布式系统中, 强一致性")
-
-        ("e91bf9ed018289501e716203ff2237a8" 4645 "[Denny] 云计算常识")
-        ("d190350c888b9c7adaa1b4c0c025e9db" 4867 "[Denny] IO profiling")
+        ("71b609d8c2f2940da35bc8c55b50b142" 248 "[Denny] Trello: 团队流程协作管理工具")
+        ("650d5c602afcab8a406f589da6b7751c" 249 "[Denny] irc/erc: Internet Relay Chat")
+        
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ("2ce2567cb72d0dc24faec01008bb205d" 243 "[Denny] Daily life -- 日常家务")
         ("f20035de6081f6511cd34ba6f3a047fd" 252 "[Denny] 推荐书目 — 欢迎追加")
@@ -37,23 +35,25 @@
         ("d9d82b8a27d392317be812c7174c44d9" 2539 "[Denny] Linux http")
         ("4c68b5cb04d9c784396e9f6aa02516b2" 2824 "[Denny] puppet: 强大的中心化配置管理系统 -- SA的利器")
 
-        ("90ac35ae8c4c332a57203920b275dc51" 3698 "[Denny] Difficulties in Python")
         ("f477b91154bb421fe12da0231a1c68df" 3893 "[Denny] music in daily life")
-        ("731139af6de20d46044827f8aad384ce" 4202 "[Denny] Difficulties in emacs")
-        ("9c5d4af2573027b0b61b920501ad1616" 4213 "[Denny] Difficulties in zabbix")
+        ("10bdf4ab84688a22e433f542e3108ab9" 4872 "[Denny] Difficulties in latex beamer")
+        ("90ac35ae8c4c332a57203920b275dc51" 5034 "[Denny] Difficulties in cloud computing")
+        ("f477b91154bb421fe12da0231a1c68df" 3893 "[Denny] music in daily life")
+        ("731139af6de20d46044827f8aad384ce" 4213 "[Denny] Difficulties in emacs")
+        ("9c5d4af2573027b0b61b920501ad1616" 4799 "[Denny] Difficulties in zabbix")
         ("c3afca1e7d69c936d4a9627520ff4401" 4364 "[Denny] Empower your knowledge -- 知识库管理")
         ("2658854e1ba51d656deb4bf7301acf55" 4367 "[Denny] Be happy with your family and friends -- 社交管理")
         ("90dd4a40592c7008a3242a484c7fe5f4" 4369 "[Denny] Be friends with your soul -- 自我管理")
 
-
         ("ab572f73132656fe14ef067ab1ec2c86" 4763 "[Denny] linux /proc filesystem")
-        ("6564602080ea28f277f2ab395095160c" 4799 "[Denny] Difficulties in puppet")
+        ("6564602080ea28f277f2ab395095160c" 5057 "[Denny] Difficulties in puppet")
         ("79a25c6d37d3d7aa37d49be5b766f419" 4803 "[Denny] Useful shell code snippet")
-        ("6cab7dfbfb3c122332ccf0e5593bb20a" 4936 "[Denny] Difficulties in erlang")
+        ("6cab7dfbfb3c122332ccf0e5593bb20a" 4938 "[Denny] Difficulties in erlang")
         ("4b0a9739f68136ba2d2a5a7d5bb38c05" 4960 "[Denny] tcpdump")
         ("f0bafc66077f5cbf5c656aa2e27faeae" 5032 "[Denny] Linux network troubleshooting")
-        ("63004207f7b75f96ac3cf5f783cb5a76" 5034 "[Denny] Difficulties in Hudson/Jenkins")
-        ("66bbbf0e832187dc12b79b25c5623539" 5057 "[Denny] Difficulties in shell/bash")
+        ("63004207f7b75f96ac3cf5f783cb5a76" 4936 "[Denny] Difficulties in Hudson/Jenkins")
+        ("34d4c0129551f92a464c317273c40375" 4202 "[Denny] Difficulties in leveldb")
+        ("66bbbf0e832187dc12b79b25c5623539" 3698 "[Denny] Difficulties in shell/bash")
         ("a5c196d7978add02e258af2a31a5b761" 5059 "[Denny] Form good habits -- 养成良好的习惯")
         ("2be42aee5276b8f016dee4f553eb8aaf" 5454 "[Denny] Linux internal: 研究linux源码，它山之石可以攻玉")
         ("9a15e9d2f7f48b0d71f3fe970fbba15c" 5476 "[Denny] [置顶] Motto -- 人生格言")
@@ -79,6 +79,7 @@
         ("a5084c5b36f309e58b2629bed5212e6a" 8445 "[Denny] Objective-C")
         ("64ae47502012e5348bd8af5bb01e8506" 8418 "[Denny] R: The R Project for Statistical Computing")
         ("5ebc33327869e48d20bb9a66de18bc11" 8433 "[Denny] erlang debug skills")
+        ("9d3fb9f17cf97ae92eff8c07b782e4df" 8772 "[Denny] Difficulities in openstack")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

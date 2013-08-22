@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-06-25 16:34:45>
+;; Updated: Time-stamp: <2013-08-07 17:13:21>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -65,7 +65,7 @@
 (require 'emms-player-simple)
 (setq emms-directory (concat DENNY_CONF "../emms/"))
 ;; set directory to look for media files.
-(setq emms-source-file-default-directory "~/backup/multimediea/music/")
+(setq emms-source-file-default-directory "~/backup/music/")
 ;; use faster finding facility if you have GNU find
 (setq emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -354,16 +354,16 @@
     )
   )
 
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "active" "~/backup/multimediea/music/playlist/active.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "all" "~/backup/multimediea/music/playlist/all.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "blue" "~/backup/multimediea/music/playlist/blue.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "blue" "~/backup/multimediea/music/playlist/blue.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "funny" "~/backup/multimediea/music/playlist/funny.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "merry" "~/backup/multimediea/music/playlist/merry.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "old" "~/backup/multimediea/music/playlist/old.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "soft" "~/backup/multimediea/music/playlist/soft.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "top" "~/backup/multimediea/music/playlist/top.playlist")
-;; (export-orgfile-to-emmsplaylist "~/backup/multimediea/music/org_share/music.org" "wake" "~/backup/multimediea/music/playlist/wake.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "active" "~/backup/music/playlist/active.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "all" "~/backup/music/playlist/all.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "blue" "~/backup/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "blue" "~/backup/music/playlist/blue.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "funny" "~/backup/music/playlist/funny.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "merry" "~/backup/music/playlist/merry.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "old" "~/backup/music/playlist/old.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "soft" "~/backup/music/playlist/soft.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "top" "~/backup/music/playlist/top.playlist")
+;; (export-orgfile-to-emmsplaylist "~/backup/music/org_share/music.org" "wake" "~/backup/music/playlist/wake.playlist")
 (defun export-orgfile-to-emmsplaylist (org-file org-tag playlist-file)
   (interactive)
   (unless (string= mode-name "Org")
@@ -423,7 +423,7 @@
       )
     )
   )
-;; (orgfile-last-played-update-current "~/backup/multimediea/music/org_share/music.org" "王菲--传奇.mp3")
+;; (orgfile-last-played-update-current "~/backup/music/org_share/music.org" "王菲--传奇.mp3")
 (defun orgfile-last-played-update-current (org-file music-name)
   "Updates the current track in org-mode."
   (save-excursion

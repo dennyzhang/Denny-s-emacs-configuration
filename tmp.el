@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-06-30 22:08:43>
+;; Updated: Time-stamp: <2013-08-07 17:13:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -654,7 +654,7 @@ Insert if ARG."
 (setq safe-local-variable-values '((encoding . utf-8)))
 (setq backup-by-copying t)
 (setq version-control t)
-(setq org-agenda-span 14)
+(setq org-agenda-span 10)
 (add-to-list 'auto-mode-alist '("\\.zsh$" . sh-mode))
 ;;(set-default 'indicate-empty-lines t) ;; Show me empty lines after buffer end
 ;;(global-subword-mode 1) ;; Easily navigate sillycased words
@@ -1786,7 +1786,7 @@ Insert if ARG."
  '(
  ("腾讯" . "open -a /Applications/QQ.app")
  ("内部" . "open -a /Applications/RTX.app")
- ("音乐" . "mplayer /Users/mac/backup/multimediea/music/boyzone--everyday_i_love_you.mp3 &")
+ ("音乐" . "mplayer /Users/mac/backup/music/boyzone--everyday_i_love_you.mp3 &")
  ("文件" . "open /Users/mac/")
  ("微博" . "open http://www.weibo.com")
  ("邮箱" . "open http://www.126.com")

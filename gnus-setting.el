@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-06-25 14:31:30>
+;; Updated: Time-stamp: <2013-08-20 20:06:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -90,6 +90,9 @@
               user-mail-address from-mail))
        ((string= from-mail "zhangwei@shopex.cn")
         (setq message-sendmail-extra-arguments '("-a" "shopex")
+              user-mail-address from-mail))
+       ((string= from-mail "denny@unitedstack.com")
+        (setq message-sendmail-extra-arguments '("-a" "unitedstack")
               user-mail-address from-mail))
        (t
         (setq message-sendmail-extra-arguments '("-a" "126")
@@ -244,16 +247,12 @@
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("shopex.ci.myfailure" "Subject:.*Crontab.*Fail.*\\|Subject:.*Elmar.*Fail.*\\|Subject:.*Deploy.*Fail.*\\|Subject:.*Snake.*Fail.*\\|Subject:.*CommandRunner.*Fail.*\\|Subject:.*HealthCheck.*Fail.*")
-        ("shopex.ci.success" "Subject:.*Successful.*\\|Subject:.*Fixed.*")
-        ("shopex.ci.fail" "Subject:.*Test.*Fail.*")
-        ("shopex.pms" "From:.*pms@shopex.cn.*")
-        ("shopex.reporting" "Subject:.*reporting.*")
-        ("shopex.zabbix" "Subject:.*[Zabbix].*")
         ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
-        ("shopex.misc" "From:.*yammer@yammer.com.*")
         ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
+        ("unitedstack_zabbix" "Subject:^Auto.*\\|From:.*@unitedstack.com.*")
+        ("openstack-infra" "From:.*OpenStack Infra.*")
         ))
 
 ;; category mails by bbdb group
@@ -406,12 +405,13 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-novice-user nil) ;; no confirmation is required
 ;; --8<-------------------------- separator ------------------------>8--
+(setq working-email-postfix "@unitedstack.com")
 (defun check-from-mail ()
   "Check whether I am sending from company's email adress, when coping with work stuff"
   (interactive)
   (save-excursion
-    (let ((working-mail "@shopex.cn")
-          (confirm-msg "Are you sure sending from markfilebat@126.com for shopex emails? Press C-g to stop. ")
+    (let ((working-mail working-email-postfix)
+          (confirm-msg "Are you sure sending from markfilebat@126.com for working emails? Press C-g to stop. ")
           )
       (goto-char (point-min))
       (when (search-forward-regexp (regexp-quote working-mail) nil t)

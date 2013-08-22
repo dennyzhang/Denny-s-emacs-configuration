@@ -3,14 +3,18 @@
 ;;
 ;; Author: Denny Zhang(markfilebat@126.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-08-25 14:10:28>
+;; Updated: Time-stamp: <2013-08-16 16:10:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
-      erc-user-full-name "Denny Zhang")
+      erc-user-full-name "Denny Zhang"
+      erc-prompt-for-password nil
+      )
 (erc-autojoin-mode 1)
 (setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs" "##linux")))
+      ;;'(("freenode.net" "#emacs" "##linux" "#ustack")))
+      '(("freenode.net" "#openstack-infra" "#ustack")))
+
 (erc-match-mode 1)
 (setq erc-keywords '("emacs" "gnus" "linux"))
 ;;(setq erc-pals '("rms"))
