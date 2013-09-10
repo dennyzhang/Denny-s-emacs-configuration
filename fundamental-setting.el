@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: fundamental-setting.el -- most important setting, excluding third party packages
 ;;
-;; Author: DennyZhang(markfilebat@126.com)
+;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-03 00:02:13>
+;; Updated: Time-stamp: <2013-09-09 14:01:42>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -55,8 +55,8 @@
 (put 'downcase-region 'disabled nil)
 (put 'eval-expression 'disabled nil)
 ;; --8<-------------------------- separator ------------------------>8--
-(put 'tetris 'disabled t) ;; disable the game of tetris, to prevent wasting time
-(defalias 'tetris nil) ;; Don't waste time to play this game
+;;(put 'tetris 'disabled t) ;; disable the game of tetris, to prevent wasting time
+;;(defalias 'tetris nil) ;; Don't waste time to play this game
 ;; --8<-------------------------- separator ------------------------>8--
 ;;specify coding system when creating a new file
 (set-default-coding-systems 'utf-8-unix)
@@ -160,7 +160,6 @@
 (defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work.org"))))
 (defalias 'manage (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/manage.org"))))
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
-(defalias 'top (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/top.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))

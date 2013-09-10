@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-07-14 09:05:58>
+;; Updated: Time-stamp: <2013-09-09 14:01:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
 (defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")

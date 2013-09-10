@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; File: regexp-setting.el
 ;; Created: 2012-04-18
-;; Updated: Time-stamp: <2012-07-30 11:08:58>
+;; Updated: Time-stamp: <2013-09-09 14:01:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (set-default 'case-fold-search t);;Make searches case insensitive
 ;; --8<-------------------------- separator ------------------------>8--

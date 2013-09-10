@@ -1,11 +1,11 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2012-07-14 10:09:08>
+;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:43>
 ;;; ================================================================
 
 ;;; File: mobilize-orgfile.el --- A plug-in system for information aggregation of daily life
 ;;;
-;;; Author: Denny Zhang <markfilebat@126.com>
+;;; Author: Denny Zhang <filebat.mark@gmail.com>
 ;;; Keywords: aggregation
 ;;; Version: 0.1
 ;;
@@ -24,7 +24,7 @@
 ;; Software Foundation, ShangHai, China
 ;;
 ;; Please send suggestions and bug reports to
-;; <markfilebat@126.com>. The latest version of this package
+;; <filebat.mark@gmail.com>. The latest version of this package
 ;; should be available from
 ;;
 ;; <URL:http://www.emacswiki.org/emacs// TODO>

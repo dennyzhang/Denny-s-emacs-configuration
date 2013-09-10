@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: sns-setting.el -- social network stuff
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-16 16:10:30>
+;; Updated: Time-stamp: <2013-09-09 14:01:35>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -14,12 +14,12 @@
 (setq erc-autojoin-channels-alist
       ;;'(("freenode.net" "#emacs" "##linux" "#ustack")))
       '(("freenode.net" "#openstack-infra" "#ustack")))
-
 (erc-match-mode 1)
 (setq erc-keywords '("emacs" "gnus" "linux"))
 ;;(setq erc-pals '("rms"))
 (setq erc-ignore-list nil)
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
+;;(erc) ;; auto login
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/jabber"))
 (require 'jabber)

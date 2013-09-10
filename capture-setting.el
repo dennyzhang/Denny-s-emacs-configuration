@@ -2,9 +2,9 @@
 ;; File: capture-setting.el -- easily capture and beautify various
 ;; information to knowledgebase of emacs org-mode
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-04-01 15:54:51>
+;; Updated: Time-stamp: <2013-09-09 14:01:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -18,6 +18,16 @@
         ("d" "Diary" table-line (file+headline "org_share/diary.org"
                                                "Daily Journal -- 工作日志")
          "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
+        ("u" "UnitedStack" entry (file+headline "current.org"
+                                               "UnitedStack")
+         "** %<%Y-%m-%d>: %?")
+        ("l" "Life" entry (file+headline "current.org" "Life")
+         "** %<%Y-%m-%d>: %?")
+        ("b" "Blog" entry (file+headline "current.org" "Blog")
+         "** %<%Y-%m-%d>: %?")
+
+         ("t" "Talk" entry (file+headline "current.org" "Talk")
+          (function capture-talk-template))
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
          "** %<%Y-%m-%d>: %?")
@@ -25,9 +35,23 @@
          (file+headline "manage.org" "[#A] contact list")
          "| | %? | |%<%Y-%m-%d>| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
 
-        ("b" "Book" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
+        ("r" "Read" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
         ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
         ))
+
+(defun capture-talk-template ()
+  (if (string= mode-name "Article")
+      (progn
+        (setq content (buffer-string))
+        (setq content (replace-regexp-in-string "\n+$" "\n" content))
+        ;; disable template substitution of org-capture, like %A, %t, etc
+        (setq content (replace-regexp-in-string "%\\([a-zA-Z]\\)" "% \\1" content))
+        (concat "** %<%Y-%m-%d>: [%?\n*** TODO mail: %:subject "
+                (make-string 10 32) ":noexport:\n"
+                "%a\n"
+                "#+begin_example\n" content "\n#+end_example"))
+    (setq content "** %<%Y-%m-%d>: [%?"))
+  )
 
 (defun capture-gnus-template ()
   ;; "* %t %:subject :noexport:\n %s\n%?\n\n"

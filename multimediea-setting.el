@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: multimediea-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-07 17:13:21>
+;; Updated: Time-stamp: <2013-09-09 14:01:40>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms

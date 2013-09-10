@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python
 ##-------------------------------------------------------------------
-## @copyright 2013 ShopEx Network Technology Co,.Ltd
+## @copyright 2013 UnitedStack Co,.Ltd
 ## File : hello
 ## Author : filebat <markfilebat@126.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-07-16 23:13:33>
+## Updated: Time-stamp: <2013-09-05 17:43:47>
 ##-------------------------------------------------------------------
 def test():
     print "hello, world"

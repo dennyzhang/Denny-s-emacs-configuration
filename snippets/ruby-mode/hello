@@ -1,12 +1,12 @@
 #!/usr/bin/ruby
 ##-------------------------------------------------------------------
-## @copyright 2013 ShopEx Network Technology Co,.Ltd
+## @copyright 2013 UnitedStack Co,.Ltd
 ## File : hello
 ## Author : filebat <markfilebat@126.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-01-28 15:54:17>
+## Updated: Time-stamp: <2013-09-05 17:43:50>
 ##-------------------------------------------------------------------
 puts "hello, world"
 ## File : hello ends

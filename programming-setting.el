@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: programming-setting.el --- utilities for developers
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-04-30 14:18:43>
+;; Updated: Time-stamp: <2013-09-09 14:01:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色

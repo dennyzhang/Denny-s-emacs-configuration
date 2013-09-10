@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: diff-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2012-04-22
-;; Updated: Time-stamp: <2012-11-26 11:27:14>
+;; Updated: Time-stamp: <2013-09-09 14:01:43>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)

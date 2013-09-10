@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: largeessentialpackage-setting.el --- org-mode export css
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-04-27 11:51:43>
+;; Updated: Time-stamp: <2013-09-09 14:01:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/common"))

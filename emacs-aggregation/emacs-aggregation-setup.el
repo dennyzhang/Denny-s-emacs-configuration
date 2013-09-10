@@ -1,18 +1,18 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-08-01 11:55:21>
+;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:43>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
 ;;;
-;;; Author: Denny Zhang <markfilebat@126.com>
+;;; Author: Denny Zhang <filebat.mark@gmail.com>
 ;;
 
 ;;(load-file (concat EMACS_VENDOR "/emacs-aggregation/emacs-aggregation.el"))
 (load-file (concat DENNY_CONF "/emacs_conf/emacs-aggregation/emacs-aggregation.el"))
 (setq report-subject (format "Emacs Daily Journal from %s" system-name))
-;; (setq recipient-mail "markfilebat@126.com filebat.mark@gmail.com sophiazhang8709@126.com")
-(setq recipient-mail "markfilebat@126.com filebat.mark@gmail.com")
+;; (setq recipient-mail "filebat.mark@gmail.com filebat.mark@gmail.com sophiazhang8709@126.com")
+(setq recipient-mail "filebat.mark@gmail.com filebat.mark@gmail.com")
 (setq start-time "11:50am")
 (setq repeat-interval 86400)
 (setq aggregate-retrieve-data-fun-list nil)

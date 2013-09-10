@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: windowsonly-setting.el --- Settings only valid for Windows OS
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-05-16 08:14:08>
+;; Updated: Time-stamp: <2013-09-09 14:01:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [f11] 'w32-maximize-frame)

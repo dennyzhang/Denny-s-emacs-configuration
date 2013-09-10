@@ -1,11 +1,11 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-01-13 17:45:00>
+;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:43>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
 ;;;
-;;; Author: Denny Zhang <markfilebat@126.com>
+;;; Author: Denny Zhang <filebat.mark@gmail.com>
 ;;; Keywords: aggregation
 ;;; Version: 0.1
 ;;
@@ -24,7 +24,7 @@
 ;; Software Foundation, ShangHai, China
 ;;
 ;; Please send suggestions and bug reports to
-;; <markfilebat@126.com>. The latest version of this package
+;; <filebat.mark@gmail.com>. The latest version of this package
 ;; should be available from
 ;;
 ;; <URL:http://www.emacswiki.org/emacs// TODO>
@@ -116,7 +116,7 @@
     (insert "
 
       <footer>
-        <p>&copy; DennyZhang 2012, markfilebat@126.com</p>
+        <p>&copy; DennyZhang 2012, filebat.mark@gmail.com</p>
       </footer>
 
     </div> <!-- /container -->
@@ -163,7 +163,7 @@ Typical data includes:
   (interactive)
   (let (send-mail-command (content "")
                           mail-content
-                          (from-mail "markfilebat@126.com"))
+                          (from-mail "filebat.mark@gmail.com"))
     (dolist (item retrieve-data-list)
       (unless (string= (cdr item) "")
         (setq content (format "%s===%s===\n%s\n\n"

@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: essentialpackage-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:45:55>
+;; Updated: Time-stamp: <2013-09-09 14:01:42>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))

@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: tmp.el -- tentatively try new features/configuration with limited impact
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-07 17:13:38>
+;; Updated: Time-stamp: <2013-09-09 14:01:35>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"

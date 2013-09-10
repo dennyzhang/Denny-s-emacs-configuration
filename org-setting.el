@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-01 12:02:36>
+;; Updated: Time-stamp: <2013-09-09 14:01:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -94,7 +94,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set css for html export in org-mode
 (setq user-full-name "Denny Zhang")
-(setq user-mail-address "markfilebat@126.com")
+(setq user-mail-address "filebat.mark@gmail.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))

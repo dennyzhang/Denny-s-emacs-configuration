@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: ledger-setting.el --- ledger configuration, especially comunication with rdaccount
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-26 11:15:57>
+;; Updated: Time-stamp: <2013-09-09 14:01:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()

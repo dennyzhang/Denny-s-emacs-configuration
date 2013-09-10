@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: bbdb-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-07-14 09:22:38>
+;; Updated: Time-stamp: <2013-09-09 14:01:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -77,7 +77,7 @@
    (list (bbdb-search-prompt "Search records %m regexp: ")
          current-prefix-arg))
   (bbdb string elidep 't)
-)
+  )
 
 (defun bbdb (string elidep &optional combo)
   "Override default bbdb behaviour, with the enhancement: also search in notes."
@@ -92,7 +92,7 @@
         ;; If in bbdb buffer, only perform check in records in current buffer
         (setq potential-records (mapcar 'car bbdb-records))
       ;; Perform check in all records of bbdb
-        (setq potential-records (bbdb-records)))
+      (setq potential-records (bbdb-records)))
     (setq alias-notes (cons 'mail-alias string))
     (setq records
           (append
@@ -195,7 +195,7 @@ which will be replaced by the actual name"
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names
-      (regexp-opt '("markfilebat@126.com" "filebat.mark@gmail.com" "zhangwei@shopex.cn")))
+      (regexp-opt '("filebat.mark@gmail.com" "filebat.mark@gmail.com" "denny@unitedstack.com")))
 (setq bbdb-complete-name-allow-cycling t)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/"))
@@ -227,5 +227,18 @@ which will be replaced by the actual name"
 (setq bbdb-dwim-net-address-allow-redundancy t)
 ;; no popup on auto-complete
 (setq bbdb-completion-display-record nil)
+;; --8<-------------------------- separator ------------------------>8--
+(defun bbdb-to-vcards (&optional arg)
+  (interactive "P")
+  (let ((filename "/tmp/vcard.vcf"))
+    (shell-command "cd ~/exported-vcards/; rm -rf *")
+    (bbdb "" nil)
+    (bbdb-vcard-export "~/exported-vcards/" t t)
+    (shell-command "cd ~/exported-vcards/; rm -rf *-1.vcf")
+    (update-bbdb-picture-to-vcard)
+    (shell-command (format "cd ~/exported-vcards/; cat * > %s" filename))
+    (message (format "generate bbdb to vcards: %s" filename))
+    )
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: bbdb-setting.el ends here

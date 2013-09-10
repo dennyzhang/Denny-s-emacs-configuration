@@ -1,13 +1,13 @@
 ;; -*- coding: utf-8 -*-
 ;; File: gnus-setting.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-20 20:06:30>
+;; Updated: Time-stamp: <2013-09-10 11:55:39>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
-(setq gnus-startup-file (concat mail-parent-directory-var ".newsrc")
+(setq gnus-startup-file (concat DENNY_CONF "emacs_data/filebat.newsrc")
       gnus-home-directory (concat mail-parent-directory-var "Mail")
       gnus-default-directory (concat mail-parent-directory-var "Mail")
       gnus-article-save-directory (concat mail-parent-directory-var "Mail/save")
@@ -82,7 +82,7 @@
         (setq from-mail (buffer-substring-no-properties
                          (match-beginning 1) (match-end 1))))
       (cond
-       ((string= from-mail "markfilebat@126.com")
+       ((string= from-mail "filebat.mark@gmail.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
@@ -96,7 +96,7 @@
               user-mail-address from-mail))
        (t
         (setq message-sendmail-extra-arguments '("-a" "126")
-              user-mail-address "markfilebat@126.com")))
+              user-mail-address "filebat.mark@gmail.com")))
       )))
 ;; (setq gnus-parameters
 ;; ;;Use gmail id for all INBOX mails
@@ -110,11 +110,11 @@
 ;; ;;use 126 id for all other mails
 ;; (".*"
 ;; (posting-style
-;; (address "markfilebat@126.com")
+;; (address "filebat.mark@gmail.com")
 ;; (name "markfilebat126")
 ;; ;;(body "")
 ;; (eval (setq message-sendmail-extra-arguments '("-a" "126")))
-;; (user-mail-address "markfilebat@126.com")))))
+;; (user-mail-address "filebat.mark@gmail.com")))))
 
 ;; --8<-------------------------- separator ------------------------>8--
 ;; group configuration
@@ -246,13 +246,13 @@
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*\\|From:.*admin@42qu.com.*")
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
-        ("shopex.ci.myfailure" "Subject:.*Crontab.*Fail.*\\|Subject:.*Elmar.*Fail.*\\|Subject:.*Deploy.*Fail.*\\|Subject:.*Snake.*Fail.*\\|Subject:.*CommandRunner.*Fail.*\\|Subject:.*HealthCheck.*Fail.*")
         ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
-        ("myself" "From:.*markfilebat@126.com.*\\|From:.*zhangwei@shopex.cn.*")
-        ("unitedstack_zabbix" "Subject:^Auto.*\\|From:.*@unitedstack.com.*")
-        ("openstack-infra" "From:.*OpenStack Infra.*")
+        ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*filebat.mark@gmail.com.*\\|From:.*denny@unitedstack.com.*")
+        ("unitedstack_zabbix" "Subject:.*Ustack-Jenkins.*Auto.*")
+        ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*")
+        ("emacs-group" "To:.*help-gnu-emacs@gnu.org.*\\|To:.*emacs-orgmode@gnu.org.*")
         ))
 
 ;; category mails by bbdb group
@@ -411,7 +411,7 @@ then send mails by send-groupmail-by-mailbuffer."
   (interactive)
   (save-excursion
     (let ((working-mail working-email-postfix)
-          (confirm-msg "Are you sure sending from markfilebat@126.com for working emails? Press C-g to stop. ")
+          (confirm-msg "Are you sure sending from filebat.mark@gmail.com for working emails? Press C-g to stop. ")
           )
       (goto-char (point-min))
       (when (search-forward-regexp (regexp-quote working-mail) nil t)
@@ -513,7 +513,7 @@ And insert header to mark message as unimportant(X-Priority).
         (Importance-Header "X-Priority: 1\n"))
     (if (null receipt-email)
         (setq Disposition-Notification-To-Header
-              "Disposition-Notification-To: markfilebat@126.com\n")
+              "Disposition-Notification-To: filebat.mark@gmail.com\n")
       (setq Disposition-Notification-To-Header
             (concat "Disposition-Notification-To: " receipt-email "\n")))
     (save-excursion

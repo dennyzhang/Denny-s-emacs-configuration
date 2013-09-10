@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-css-setting.el --- org-mode export css
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2012-11-12 22:26:05>
+;; Updated: Time-stamp: <2013-09-09 14:01:39>
 ;;
 ;; when hover, show author info automatically
 (setq org-export-html-home/up-format

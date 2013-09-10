@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-03-25 22:36:53>
+;; Updated: Time-stamp: <2013-09-09 14:01:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.

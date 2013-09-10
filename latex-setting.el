@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: latex-setting.el -- latex for presentation or html
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-16 22:43:54>
+;; Updated: Time-stamp: <2013-09-09 14:01:41>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; hacking latex export for showing Chinese characters
 (add-hook 'org-export-latex-final-hook 'update-orgbeam-latex)
@@ -28,28 +28,11 @@
 ;; \\begin{CJK}{UTF8}{song}
 ;; \\begin{CJK}{UTF8}{gkai}
 
-(setq org-beamer-outline-frame-title "To be the elite of elite")
 (setq org-beamer-frame-default-options "[allowframebreaks]")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; skip generating table of contents
 (setq org-export-latex-format-toc-function 'org-export-latex-format-toc-stumb)
 (defun org-export-latex-format-toc-stumb (depth) "")
-
-(setq org-export-latex-append-header "
-\\usepackage{tikz}
-\\usetheme{Boadilla}
-\\subtitle{}
-\\institute[UnitedStack]{UnitedStack}
-\\logo{\\pgfimage[width=1.1cm,height=0.4cm]{shopex.png}}
-
-\\AtBeginSection[]
-{
-  \\begin{frame}
-    \\frametitle{To be the elite of elite}
-    \\tableofcontents[currentsection]
-  \\end{frame}
-}
-")
 ;; --8<-------------------------- separator ------------------------>8--
 (setq ps-paper-type 'a4
       ps-font-size 16.0

@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/bash -e
 ##-------------------------------------------------------------------
-## @copyright 2013 ShopEx Network Technology Co,.Ltd
+## @copyright 2013 UnitedStack Co,.Ltd
 ## File : hello
 ## Author : filebat <markfilebat@126.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-08-04 22:57:55>
+## Updated: Time-stamp: <2013-09-10 09:53:10>
 ##-------------------------------------------------------------------
 function log()
 {

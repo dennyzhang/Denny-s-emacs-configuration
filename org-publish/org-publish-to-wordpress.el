@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-publish-to-wordpress.el
 ;;
-;; Author: Denny Zhang(markfilebat@126.com)
+;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-08-19 23:51:07>
+;; Updated: Time-stamp: <2013-09-09 14:01:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
