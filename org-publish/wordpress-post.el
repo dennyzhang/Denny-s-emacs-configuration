@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:39>
+;; Updated: Time-stamp: <2013-09-17 09:57:21>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
@@ -80,6 +80,8 @@
         ("64ae47502012e5348bd8af5bb01e8506" 8418 "[Denny] R: The R Project for Statistical Computing")
         ("5ebc33327869e48d20bb9a66de18bc11" 8433 "[Denny] erlang debug skills")
         ("9d3fb9f17cf97ae92eff8c07b782e4df" 8772 "[Denny] Difficulities in openstack")
+        ("2fb9c80020098ea88b2f19757bd2a9de" 8811 "[Denny] Living in US")
+        ("d30b9e1c0dea955985c31fefaf11997e" 8826 "[Denny] openstack tempest")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

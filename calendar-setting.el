@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:44>
+;; Updated: Time-stamp: <2013-09-16 20:31:34>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -32,9 +32,12 @@
       display-time-format " [%m-%d %H:%M]")
 ;; --8<-------------------------- separator ------------------------>8--
 ;;set the latitude/longitude
-(setq calendar-latitude +31.11)
-(setq calendar-longitude +121.29)
-(setq calendar-location-name "Shanghai")
+;; (setq calendar-latitude +31.11)
+;; (setq calendar-longitude +121.29)
+;; (setq calendar-location-name "Shanghai")
+(setq calendar-latitude +29.76)
+(setq calendar-longitude +95.38)
+(setq calendar-location-name "Houston")
 
 ;; set color for calendar
 (setq calendar-load-hook
