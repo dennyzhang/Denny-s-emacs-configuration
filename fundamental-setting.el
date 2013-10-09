@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-15 09:14:40>
+;; Updated: Time-stamp: <2013-10-07 00:24:10>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -163,6 +163,10 @@
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
 (defalias 'community (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/community.org"))))
+(defalias 'us (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/us.org"))))
+(defalias 'newcomer (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/newcomer.org"))))
+(defalias 'job (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/job.org"))))
+(defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/openstack.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
@@ -501,5 +505,19 @@ starting on the same line at which another match ended is ignored."
     (write-region (point-min) (point-max)
                   (format "%s/%d-%s" backup_dir (random 10000) bfilename))
     ))
+;; --8<-------------------------- separator ------------------------>8--
+(global-set-key [(control x)(control o)] 'my-delete-blank-lines)
+(defun my-delete-blank-lines ()
+  (interactive "*")
+  (delete-blank-lines)
+  (if (equal mode-name "Org")
+      (save-excursion
+        (end-of-buffer)
+        (unless (equal (char-before) 10)
+          (insert-char 10)
+          )
+        )
+    )
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

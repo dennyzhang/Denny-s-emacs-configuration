@@ -3,18 +3,15 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-17 09:57:21>
+;; Updated: Time-stamp: <2013-10-03 15:55:31>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
         ;;("012fcbe8b922b317852870d3857b801a" 554 "[Denny] 分布式数据库 -- Distributed Database")
-        ("71b609d8c2f2940da35bc8c55b50b142" 248 "[Denny] Trello: 团队流程协作管理工具")
         ("650d5c602afcab8a406f589da6b7751c" 249 "[Denny] irc/erc: Internet Relay Chat")
-        
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ("2ce2567cb72d0dc24faec01008bb205d" 243 "[Denny] Daily life -- 日常家务")
         ("f20035de6081f6511cd34ba6f3a047fd" 252 "[Denny] 推荐书目 — 欢迎追加")
-        ("1af0a8d51e754804dc8a29d06b62bd5d" 2275 "[Denny] PaaS系统开发的经验总结")
         ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
 
         ("a77816667dba21e27b7e2ccc162d2448" 5349 "[Denny] 商派码农再议12306")
@@ -80,8 +77,20 @@
         ("64ae47502012e5348bd8af5bb01e8506" 8418 "[Denny] R: The R Project for Statistical Computing")
         ("5ebc33327869e48d20bb9a66de18bc11" 8433 "[Denny] erlang debug skills")
         ("9d3fb9f17cf97ae92eff8c07b782e4df" 8772 "[Denny] Difficulities in openstack")
-        ("2fb9c80020098ea88b2f19757bd2a9de" 8811 "[Denny] Living in US")
         ("d30b9e1c0dea955985c31fefaf11997e" 8826 "[Denny] openstack tempest")
+        ("bea1a8f5f4ae6631b929bdde4e070564" 8811 "[Denny] Cards in US: 在美信用卡，银行卡")
+        ("3f9b66cce2602b7957dd19dc533a0939" 8837 "[Denny] Car purchasing in US: 在美买车")
+        ("eedd0304f19f358a835eb669560058a6" 8839 "[Denny] Real estate in US: 在美买房")
+        ("07afeaf7ec2b763b3adc4a363c2230e9" 8841 "[Denny] Managing money matters: 在美理财")
+        ("71015f9573f29cc248f5ced4e2becc36" 8848 "[Denny] Living in US")
+        ("d70089d9d69a0d571f52bd610b854122" 8871 "[Denny] openstack trove: Database as a service")
+        ("16e245007c9fe0dc1653007d17265601" 8873 "[Denny] openstack ceilometer")
+        ("78c3daeb75ccb0e5666e2f126133b3dc" 8875 "[Denny] openstack logservice")
+        ("6e64711b730105b9793b3186196606a6" 8877 "[Denny] openstack keystone")
+        ("01e0d2876c6c49979cfb564cb7fdc6fc" 8879 "[Denny] openstack heat")
+        ("0a553777f74a478e196060678e86c054" 8880 "[Denny] openstack Savanna: integrate hadoop to openstack")
+        ("880bf10219c0ccb35418e1e9a863ca72" 8882 "[Denny] openstack cinder")
+        ("439132d5c4135c986c0ffc12cfd82d94" 8884 "[Denny] openstack neutron: network")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

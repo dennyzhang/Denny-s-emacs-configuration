@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-10 11:55:39>
+;; Updated: Time-stamp: <2013-10-04 15:21:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -82,7 +82,7 @@
         (setq from-mail (buffer-substring-no-properties
                          (match-beginning 1) (match-end 1))))
       (cond
-       ((string= from-mail "filebat.mark@gmail.com")
+       ((string= from-mail "markfilebat@126.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
@@ -251,7 +251,7 @@
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
         ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*filebat.mark@gmail.com.*\\|From:.*denny@unitedstack.com.*")
         ("unitedstack_zabbix" "Subject:.*Ustack-Jenkins.*Auto.*")
-        ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*")
+        ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*\\|From:.*@.*openstack.org.*")
         ("emacs-group" "To:.*help-gnu-emacs@gnu.org.*\\|To:.*emacs-orgmode@gnu.org.*")
         ))
 

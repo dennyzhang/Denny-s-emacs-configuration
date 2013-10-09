@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:37>
+;; Updated: Time-stamp: <2013-09-25 09:00:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -337,7 +337,7 @@
                 (make-local-variable 'indent-tabs-mode)
                 (make-local-variable 'tab-width)
                 (setq tab-width 4)
-                (setq indent-tabs-mode 't)
+                (setq indent-tabs-mode nil) ;; don't use tab for python indentation
                 ))
           )
 ;; --8<-------------------------- separator ------------------------>8--

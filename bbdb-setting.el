@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:44>
+;; Updated: Time-stamp: <2013-09-30 17:36:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -185,8 +185,8 @@ which will be replaced by the actual name"
   "Get email address list by mail alias"
   (let ((target (cons bbdb-define-all-aliases-field mail-alias)) records)
     (setq records (bbdb-search (bbdb-records) nil nil nil target))
-    (mapcar '(lambda (record) (car (bbdb-record-net record)))
-            records)))
+    (mapcar '(lambda (record) (car (bbdb-record-net record))) records)
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
 (setq bbdb-use-pop-up nil)

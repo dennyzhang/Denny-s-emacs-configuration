@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-18 08:23:37>
+;; Updated: Time-stamp: <2013-10-05 21:12:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -13,7 +13,7 @@
 (erc-autojoin-mode 1)
 (setq erc-autojoin-channels-alist
       ;;'(("freenode.net" "#emacs" "##linux" "#ustack")))
-      '(("freenode.net" "#openstack-infra" "#openstack-meeting" "#ustack")))
+      '(("freenode.net" "#openstack-infra" "#openstack-dev" "#openstack-meeting" "#openstack-qa" "#ustack" "#savanna")))
 (erc-match-mode 1)
 (setq erc-keywords '("emacs" "gnus" "linux"))
 ;;(setq erc-pals '("rms"))

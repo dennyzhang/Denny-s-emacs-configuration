@@ -83,7 +83,7 @@ include('denny_lock.php');
 
 
       <footer>
-        <p>&copy; DennyZhang 2012, markfilebat@126.com</p>
+        <p>&copy; DennyZhang 2012, filebat.mark@gmail.com</p>
       </footer>
 
     </div> <!-- /container -->

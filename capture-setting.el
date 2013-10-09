@@ -4,23 +4,15 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-11 15:49:44>
+;; Updated: Time-stamp: <2013-10-04 13:47:53>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
-        ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("p" "Period" table-line
-         (file+headline "contacts.org" "秀秀--周期")
-         "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
-        ("r" "Read" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
         ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
-
-        ("d" "Diary" table-line (file+headline "org_share/diary.org"
-                                               "Daily Journal -- 工作日志")
-         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
+        ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("u" "UnitedStack" entry (file+headline "current.org"
                                                "UnitedStack")
          "** %<%Y-%m-%d>: %?")
@@ -28,12 +20,25 @@
          "** %<%Y-%m-%d>: %?")
         ("b" "Blog" entry (file+headline "current.org" "Blog")
          "** %<%Y-%m-%d>: %?")
+        ("a" "America" entry (file+headline "current.org" "Living in America")
+         "** %<%Y-%m-%d>: %?")
         ("c" "Community" entry (file+headline "current.org" "Community")
          "** %<%Y-%m-%d>: %?")
-
+        ("i" "Myself postmortem" entry (file+headline "current.org" "iPostmortem")
+         "** %<%Y-%m-%d>: %?")
+        ("r" "Remote work" entry (file+headline "current.org" "Remote work")
+         "** %<%Y-%m-%d>: %?")
          ("t" "Talk" entry (file+headline "current.org" "Talk")
           (function capture-talk-template))
+        ("d" "Diary" table-line (file+headline "org_share/diary.org"
+                                               "Daily Journal -- 工作日志")
+        ("p" "Period" table-line
+         (file+headline "contacts.org" "秀秀--周期")
+         "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
+        ;;("r" "Read" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
 
+
+         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
          "** %<%Y-%m-%d>: %?")

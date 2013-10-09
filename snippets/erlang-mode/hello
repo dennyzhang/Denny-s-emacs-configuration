@@ -1,11 +1,11 @@
 %%%-------------------------------------------------------------------
 %%% @copyright 2013 UnitedStack Co,.Ltd
 %%% File : hello
-%%% Author : filebat <markfilebat@126.com>
+%%% Author : filebat <filebat.mark@gmail.com>
 %%% Description :
 %%% --
 %%% Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-%%% Updated: Time-stamp: <2013-09-05 17:43:34>
+%%% Updated: Time-stamp: <2013-10-08 20:21:11>
 %%%-------------------------------------------------------------------
 -module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
 -compile(export_all).
