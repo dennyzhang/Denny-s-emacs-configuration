@@ -6,7 +6,7 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-10-08 20:21:10>
+## Updated: Time-stamp: <2013-10-22 19:48:45>
 ##-------------------------------------------------------------------
 function log()
 {
@@ -58,5 +58,10 @@ function request_url_get() {
         echo "Error: fail to run $command"; exit -1
     fi
 }
+XTRACE=$(set +o | grep xtrace)
+set -o errexit
+set -o xtrace
 
+# Restore xtrace
+$XTRACE
 ## File : hello ends

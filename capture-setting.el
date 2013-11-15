@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-10-04 13:47:53>
+;; Updated: Time-stamp: <2013-10-11 09:07:54>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -32,13 +32,13 @@
           (function capture-talk-template))
         ("d" "Diary" table-line (file+headline "org_share/diary.org"
                                                "Daily Journal -- 工作日志")
+         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
+
         ("p" "Period" table-line
          (file+headline "contacts.org" "秀秀--周期")
          "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
         ;;("r" "Read" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
 
-
-         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
          "** %<%Y-%m-%d>: %?")

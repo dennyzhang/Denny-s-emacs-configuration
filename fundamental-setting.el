@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-10-07 00:24:10>
+;; Updated: Time-stamp: <2013-10-25 17:14:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -162,10 +162,11 @@
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
+(defalias 'td (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/today.org"))))
 (defalias 'community (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/community.org"))))
 (defalias 'us (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/us.org"))))
 (defalias 'newcomer (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/newcomer.org"))))
-(defalias 'job (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/job.org"))))
+(defalias 'job (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/job.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/openstack.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))

@@ -3,18 +3,18 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-10-03 15:55:31>
+;; Updated: Time-stamp: <2013-11-13 15:54:53>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-md5-id-title
       '(
-        ;;("012fcbe8b922b317852870d3857b801a" 554 "[Denny] 分布式数据库 -- Distributed Database")
-        ("650d5c602afcab8a406f589da6b7751c" 249 "[Denny] irc/erc: Internet Relay Chat")
+        ("dc413d733eceabd346e8072ef0113183" 554 "[Denny] export knowledgebase of org-mode to Internet")
+        ("84605f29bf029510c5347807ce18da80" 249 "[Denny] Watch on-line tv")
         ("cf6d4c57c905e01e016e9c148a4bfc75" 549 "[Denny] [Programming life] Empower mobile phones for local knowledge-base")
         ("2ce2567cb72d0dc24faec01008bb205d" 243 "[Denny] Daily life -- 日常家务")
         ("f20035de6081f6511cd34ba6f3a047fd" 252 "[Denny] 推荐书目 — 欢迎追加")
-        ("fa9a03df21156b03f294bec81443030a" 3229 "[Denny] How to design test case for PaaS system")
+        ("7813653c3575a8dd867d21a9fea8ab78" 3229 "[Denny] Denny memo")
 
-        ("a77816667dba21e27b7e2ccc162d2448" 5349 "[Denny] 商派码农再议12306")
+        ("d48788168076b999d36c4f3ccb75ba2f" 5349 "[Denny] meeting")
         ("9ceb4d12c84c207045992ce4427a2b4f" 8410 "[Denny] How To Test Paas Platform (副标题: 商派电子商务云平台的回顾和反思)")
 
         ("59b8aa4d8def0bb7ae8f709c4cf1a135" 234 "[Denny] Erlang")
@@ -85,12 +85,33 @@
         ("71015f9573f29cc248f5ced4e2becc36" 8848 "[Denny] Living in US")
         ("d70089d9d69a0d571f52bd610b854122" 8871 "[Denny] openstack trove: Database as a service")
         ("16e245007c9fe0dc1653007d17265601" 8873 "[Denny] openstack ceilometer")
-        ("78c3daeb75ccb0e5666e2f126133b3dc" 8875 "[Denny] openstack logservice")
         ("6e64711b730105b9793b3186196606a6" 8877 "[Denny] openstack keystone")
         ("01e0d2876c6c49979cfb564cb7fdc6fc" 8879 "[Denny] openstack heat")
         ("0a553777f74a478e196060678e86c054" 8880 "[Denny] openstack Savanna: integrate hadoop to openstack")
         ("880bf10219c0ccb35418e1e9a863ca72" 8882 "[Denny] openstack cinder")
         ("439132d5c4135c986c0ffc12cfd82d94" 8884 "[Denny] openstack neutron: network")
+        ("590031b0022de503f52fbfd4295cd58c" 8964 "[Denny] openstack trove: Database as a service")
+        ("de42cf0528b253a9b2681a53b807c2c1" 8967 "[Denny] openstack cinder")
+        ("5b68d062d28a359e44bdf375cd192adc" 8970 "[Denny] openstack Ironic: Openstack Baremetal Hypervisor")
+        ("032c816e674d78b270940555cd5f8fdf" 8976 "[Denny] openstack tripleO: Openstack on Openstack")
+        ("78e0e2da3abeb87e487a1219c2753f4e" 8981 "[Denny] openstack Designate: DNSaaS services")
+        ("96c77f632f78db185142850892f4b16a" 8985 "[Denny] openstack neutron")
+        ("e9c725148470660ef3778ad4d0ab52d2" 8988 "[Denny] openstack glance")
+        ("3623309bc6ff5eea56b31526afae8253" 8875 "[Denny] Openstack Marconi: message queue")
+        ("fe468f949c9152b9bd86112a13b1b151" 8995 "[Denny] Hypervisor")
+        ("78c3daeb75ccb0e5666e2f126133b3dc" 8992 "[Denny] openstack logservice")
+        ("dca898345a83209153b24dbd7679ee04" 9005 "[Denny] Openstack billing service")
+        ("ddd573ad8047cdb53339e9a5ef2b59ad" 9000 "[Denny] Driving in US")
+        ("c2f2f4a2da2b068432d02c0e8aecd87f" 9008 "[Denny] Openstack LBaaS: LoadBalancer as a service")
+        ("0a66d3e6459ac2c09c6145d05067d859" 9013 "[Denny] Openstack HA")
+        ("5ae6f29fd4bb003648c960fcfd3ba429" 9016 "[Denny] Openstack nova")
+        ("fdb1bd98050ee590f551c5712ba92b13" 9021 "[Denny] Openstack swift")
+        ("0045a0ae9473e048094c417d0e39cd21" 9024 "[Denny] Openstack devstack")
+        ("d6407f49ba6cb6f3b14e5ed8ea966a5b" 9029 "[Denny] Openstack related company")
+        ("4b1bd1f550a829cfda0369250809d46c" 9034 "[Denny] Openstack oslo")
+        ("e27f17ac2eccaa16390058bf78d9ca49" 9038 "[Denny] Openstack rally: Benchmark-as-a-Service")
+        ("5481fb091e8fd2c0f6f6adc05dcd5eb7" 9045 "[Denny] Openstack Murano: deploy Windows-based environments")
+        ("a84e2271b7109bae49b9f3cb022002e2" 9049 "[Denny] Openstack Rubick: Diagnostics project")
        ))
 ;; Temporarily export specific web pages
 ;; (setq list-md5-id-title

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:38>
+;; Updated: Time-stamp: <2013-10-25 17:14:49>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -16,6 +16,7 @@
 (dolist (org-agenda-file-var (list
                               (concat DENNY_CONF "/org_data/worklog.org")
                               (concat DENNY_CONF "/org_data/current.org")
+                              (concat DENNY_CONF "/org_data/today.org")
                               (concat DENNY_CONF "/org_data/wish.org")
                               (concat DENNY_CONF "/org_data/learn.org")
                               (concat DENNY_CONF "/org_data/contacts.org")
@@ -318,7 +319,7 @@
       )))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
-(setq copylog-monitor-orgfiles '("current.org" "wish.org" "top.org"))
+(setq copylog-monitor-orgfiles '("current.org" "wish.org" "today.org" "top.org"))
 (setq copylog-dest-orgfile (concat DENNY_CONF "/org_data/worklog.org"))
 (defadvice org-kill-line (after kill-region activate)
   (if (member (buffer-name) copylog-monitor-orgfiles)

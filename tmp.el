@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:35>
+;; Updated: Time-stamp: <2013-11-08 10:37:02>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1827,4 +1827,14 @@ Insert if ARG."
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-$" 'flyspell-word)
 ;; --8<-------------------------- separator ------------------------>8--
+(defun export_bbdb_to_vcard ()
+ (interactive)
+ (message "Manually invoke M-x bbdb first") ;;TODO
+ (shell-command "rm -rf ~/exported-vcards/*" t)
+ (bbdb-vcard-export "~/exported-vcards/" t t)
+ (shell-command "rm -rf ~/exported-vcards/*-1.vcf" t)
+ (update-bbdb-picture-to-vcard)
+ (shell-command "cat ~/exported-vcards/* > /tmp/vcard.vcf" t)
+ )
 ;; File: tmp.el ends here
+
