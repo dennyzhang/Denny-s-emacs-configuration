@@ -1,0 +1,4 @@
+egrep -i 'centos' /etc/issue && install="sudo yum install"
+egrep -i '(ubuntu|debian)' /etc/issue && install="sudo apt-get install"
+
+$install sshpass
