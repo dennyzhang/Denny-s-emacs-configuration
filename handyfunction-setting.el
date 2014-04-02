@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:42>
+;; Updated: Time-stamp: <2014-01-10 15:20:03>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -459,6 +459,7 @@ and also with certain buffer excluded from the candidates"
 (add-hook 'write-file-hooks 'auto-update-file-fields)
 (defun auto-update-file-fields ()
   "Update fields in file, such as filename, time-stamp, etc
+   Only the head and tail of the file will be checked and updated.
  Sample:
  - filename format:
  # File : handyfunction-setting.el
@@ -470,19 +471,36 @@ and also with certain buffer excluded from the candidates"
         (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
 ]*\\) *"))
               (max-lines 15)
-              (beg (point-min)) end
+              beg end
               )
+          ;; Update the header of file
           (goto-char (point-min))
+          (setq beg (point))
           (forward-line max-lines)
           (setq end (point))
           (narrow-to-region beg end)
-          (goto-char (point-min))
+          (goto-char beg)
           ;; Verify looking at a file name for this mode.
           (while (re-search-forward file-name-regexp nil t)
             (goto-char (match-beginning 2))
             (delete-region (match-beginning 2) (match-end 2))
             (insert (file-name-nondirectory (buffer-file-name)))
-            ))
+            )
+          (widen)
+          ;; Update the tail of file
+          (goto-char (point-max))
+          (setq end (point))
+          (forward-line (- max-lines))
+          (setq beg (point))
+          (narrow-to-region beg end)
+          (goto-char beg)
+          ;; Verify looking at a file name for this mode.
+          (while (re-search-forward file-name-regexp nil t)
+            (goto-char (match-beginning 2))
+            (delete-region (match-beginning 2) (match-end 2))
+            (insert (file-name-nondirectory (buffer-file-name)))
+            )
+          )
         )))
   )
 

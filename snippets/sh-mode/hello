@@ -1,13 +1,13 @@
 #!/bin/bash -e
 ##-------------------------------------------------------------------
-## @copyright 2013 UnitedStack Co,.Ltd
 ## File : hello
 ## Author : filebat <filebat.mark@gmail.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2013-10-22 19:48:45>
+## Updated: Time-stamp: <2014-01-16 14:39:28>
 ##-------------------------------------------------------------------
+. utility.sh
 function log()
 {
     local msg=\${1?}
@@ -16,52 +16,55 @@ function log()
 
 function ensure_variable_isset() {
     var=\${1?}
+    message=\${2:-"parameter name should be given"}
     # TODO support sudo, without source
-    if [ -z "$var" ]; then
-        echo "Error: Certain variable is not set"
+    if [ -z "\$var" ]; then
+        echo "Error: Certain variable(\$message) is not set"
         exit 1
     fi
 }
 
 function ensure_is_root() {
     # Make sure only root can run our script
-    if [[ $EUID -ne 0 ]]; then
+    if [[ \$EUID -ne 0 ]]; then
         echo "Error: This script must be run as root." 1>&2
         exit 1
     fi
 }
 
 function request_url_post() {
-    url=${1?}
-    data=${2?}
-    header=${3:-""}
-    if [ `uname` == "Darwin" ]; then
-        data=$(echo "$data" | sed "s/\'/\\\\\"/g")
+    url=\${1?}
+    data=\${2?}
+    header=\${3:-""}
+    if [ \`uname\` == "Darwin" ]; then
+        data=\$(echo "\$data" | sed "s/\\'/\\\\\\\\\\"/g")
     else
-        data=$(echo "$data" | sed "s/'/\\\\\"/g")
+        data=\$(echo "\$data" | sed "s/'/\\\\\\\\\\"/g")
     fi;
-    command="curl $header -d \"$data\" \"$url\""
-    echo -e "\n$command"
-    eval "$command"
-    if [ $? -ne 0 ]; then
-        echo "Error: fail to run $command"; exit -1
+    if [ "$header" = "" ]; then
+        command="curl -d \\"\$data\\" \\"\$url\\""
+    else
+        command="curl \$header -d \\"\$data\\" \\"\$url\\""
+    fi;
+
+    echo -e "\\n\$command"
+    eval "\$command"
+    if [ \$? -ne 0 ]; then
+        echo "Error: fail to run \$command"; exit -1
     fi
 }
 
 function request_url_get() {
-    url=${1?}
-    header=${2:-""}
-    command="curl $header \"$url\""
-    echo -e "\n$command"
-    eval "$command"
-    if [ $? -ne 0 ]; then
-        echo "Error: fail to run $command"; exit -1
+    url=\${1?}
+    header=\${2:-""}
+    command="curl \$header \\"\$url\\""
+    echo -e "\\n\$command"
+    eval "\$command"
+    if [ \$? -ne 0 ]; then
+        echo "Error: fail to run \$command"; exit -1
     fi
 }
-XTRACE=$(set +o | grep xtrace)
-set -o errexit
-set -o xtrace
 
-# Restore xtrace
-$XTRACE
+$0
+
 ## File : hello ends

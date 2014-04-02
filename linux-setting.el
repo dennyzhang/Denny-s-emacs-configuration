@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:41>
+;; Updated: Time-stamp: <2014-01-31 15:34:05>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -28,13 +28,13 @@
 ;; default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
-;; (load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
-;; (require 'gnuplot)
-;; (autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-;; (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
-;; (add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
-;; (global-set-key [(f9)] 'gnuplot-make-buffer)
+(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
+(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
+(require 'gnuplot)
+(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
+(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
+(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
+(global-set-key [(f9)] 'gnuplot-make-buffer)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p r: root edit current file
 (define-key global-map (kbd "M-p r") 'open-current-file-as-root)

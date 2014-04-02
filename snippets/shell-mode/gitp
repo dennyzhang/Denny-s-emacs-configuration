@@ -1,3 +1,1 @@
-#name : gitp
-# --
-cd $XZB_HOME; sudo xzb_update_category.sh; git pull; git push
+for d in \`ls -d */. \`; do (cd $d; git pull); done

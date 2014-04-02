@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-10-25 17:14:22>
+;; Updated: Time-stamp: <2014-03-04 22:00:52>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -249,7 +249,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (setq proced-sort "pmem")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keep-buffers/keep-buffers.el"))
-;;(setq keep-buffers-protected-list '("tmp" "*Messages*" "current.org" "pkm.org" "programming.org" "today.org"))
+;;(setq keep-buffers-protected-list '("tmp" "*Messages*" "current.org" "pkm.org"))
 ;;(keep-buffers-erase-on-kill nil)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'hilit-chg)

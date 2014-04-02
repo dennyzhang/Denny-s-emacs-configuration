@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-11-01 08:20:26>
+;; Updated: Time-stamp: <2014-02-10 18:50:12>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -88,14 +88,11 @@
        ((string= from-mail "filebat.mark@gmail.com")
         (setq message-sendmail-extra-arguments '("-a" "gmail")
               user-mail-address from-mail))
-       ((string= from-mail "zhangwei@shopex.cn")
-        (setq message-sendmail-extra-arguments '("-a" "shopex")
-              user-mail-address from-mail))
-       ((string= from-mail "denny@unitedstack.com")
-        (setq message-sendmail-extra-arguments '("-a" "unitedstack")
+       ((string= from-mail "denny.zhang@oscgc.com")
+        (setq message-sendmail-extra-arguments '("-a" "osc")
               user-mail-address from-mail))
        (t
-        (setq message-sendmail-extra-arguments '("-a" "126")
+        (setq message-sendmail-extra-arguments '("-a" "gmail")
               user-mail-address "filebat.mark@gmail.com")))
       )))
 ;; (setq gnus-parameters
@@ -256,6 +253,7 @@
         ("job" "From:.*@indeed.com.*\\|From:.*@.*monster.com\\|From:.*@cybercoders.com")
         ("work" "From:.*@unitedstack.com.*")
         ("emacs-group" "To:.*help-gnu-emacs@gnu.org.*\\|To:.*emacs-orgmode@gnu.org.*")
+        ("report" "Subject:.*UOS 每日测试报告.*")
         ))
 
 ;; category mails by bbdb group
@@ -408,7 +406,7 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-novice-user nil) ;; no confirmation is required
 ;; --8<-------------------------- separator ------------------------>8--
-(setq working-email-postfix "@unitedstack.com")
+(setq working-email-postfix "@oscgc.com")
 (defun check-from-mail ()
   "Check whether I am sending from company's email adress, when coping with work stuff"
   (interactive)
@@ -431,7 +429,7 @@ then send mails by send-groupmail-by-mailbuffer."
   (interactive)
   (save-excursion
     (if (string= gnus-newsgroup-name "nndraft:delayed")
-        (yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop. "))
+        (yes-or-no-p "Are you sure to send this delayed mail? Press C-g to stop. "))
     ))
 (add-hook 'message-send-mail-hook 'confirm-for-delayed-mail)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -454,12 +452,14 @@ then send mails by send-groupmail-by-mailbuffer."
     (goto-char (point-min))
     (when (search-forward-regexp "To: .* \<527988044@qq.com\>" nil t)
       (message-important-header))
-    ;;(yes-or-no-p "Are you sure to sending this delayed mail? Press C-g to stop")
+    ;;(yes-or-no-p "Are you sure to send this delayed mail? Press C-g to stop")
     ))
 (add-hook 'message-send-mail-hook 'auto-add-message-important-header)
 ;; --8<-------------------------- separator ------------------------>8--
 (define-key gnus-summary-mode-map "d"
   #'(lambda() (interactive)
+      (if (string= gnus-newsgroup-name "nndraft:delayed")
+          (yes-or-no-p "Are you sure to delete this delayed mail? Press C-g to stop. "))
       (gnus-summary-delete-article 1) (forward-line 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; score down any mails which I don't like
@@ -550,5 +550,6 @@ And insert header to mark message as unimportant(X-Priority).
     (newline)))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-delay-default-hour 10) ;; Normally I will reach the office by 10am
+(require 'sendmail)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: gnus-setting.el ends here

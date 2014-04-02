@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:39>
+;; Updated: Time-stamp: <2014-04-02 17:03:27>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -263,7 +263,7 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
         title-md5 md5-id-title
-        more-position
+        (more-position (point-min))
         keyword-list
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))

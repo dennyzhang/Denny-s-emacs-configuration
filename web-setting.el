@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:34>
+;; Updated: Time-stamp: <2014-01-14 20:07:54>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -176,8 +176,11 @@ create a new window and browse the webpage"
         ;; --8<------------------ search engine ------------------------>8--
 
         ;; --8<------------------ ebook ------------------------>8--
+        ("book-itebooks" . [simple-query "it-ebooks-search.info" "it-ebooks-search.info/search?q=" ""])
+        ("book-kickass" . [simple-query "kickass.to" "kickass.to/usearch/" ""])
         ("book-shupeng" . [simple-query "www.shupeng.com" "www.shupeng.com/search/" ""])
         ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
+        ("book-51cto" . [simple-query "down.51cto.com" "down.51cto.com/search.php?q=" ""])
         ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
         ("book-iask" . [simple-query "ishare.iask.sina.com.cn" "ishare.iask.sina.com.cn/search.php?key=" ""])
         ("book-douban" . [simple-query "book.douban.com" "book.douban.com/subject_search?cat=1001&search_text=" ""])
@@ -318,4 +321,4 @@ create a new window and browse the webpage"
       ))
   )
 ;; --8<-------------------------- separator ------------------------>8--
-;; File: web-browse-setting.el ends here
+;; File: web-setting.el ends here

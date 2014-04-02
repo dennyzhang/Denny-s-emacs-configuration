@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-11-17 09:36:58>
+;; Updated: Time-stamp: <2014-01-24 12:07:44>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -14,14 +14,14 @@
 (setq erc-autojoin-channels-alist
       ;;'(("freenode.net" "#emacs" "##linux" "#ustack")))
       '(("freenode.net" "#openstack-infra" "#openstack-dev" "#openstack-meeting"
-         "#openstack-meeting-alt" "#openstack-qa" "#ustack" "#savanna")))
+         "#openstack-meeting-alt" "#openstack-qa")))
 
 (erc-match-mode 1)
 (setq erc-keywords '("emacs" "gnus" "linux"))
 ;;(setq erc-pals '("rms"))
 (setq erc-ignore-list nil)
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
-(erc) ;; auto login
+;;(erc) ;; auto login ;; TODO add try.. catch
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/jabber"))
 (require 'jabber)

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:43>
+;; Updated: Time-stamp: <2014-02-25 21:04:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Dired reuse directory buffer
@@ -46,7 +46,7 @@
   (interactive)
   (let ((current-file (dired-get-filename t)))
     (with-temp-buffer
-      (shell-command (format "/usr/bin/du -sch %s" current-file) t)
+      (shell-command (format "/usr/bin/du -sch '%s'" current-file) t)
       (message "Size of %s: %s" current-file
                (progn
                  (goto-char (point-min))

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-11-08 10:37:02>
+;; Updated: Time-stamp: <2014-02-05 17:34:13>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1835,6 +1835,60 @@ Insert if ARG."
  (shell-command "rm -rf ~/exported-vcards/*-1.vcf" t)
  (update-bbdb-picture-to-vcard)
  (shell-command "cat ~/exported-vcards/* > /tmp/vcard.vcf" t)
+ (message "Generated vcard file : /tmp/vcard.vcf ")
  )
-;; File: tmp.el ends here
 
+(defun seq-colum (num)
+  (interactive "nend number: ")
+  (dotimes (i num) (insert (format "%2d\n" (1+ i))))
+  )
+
+(defun my-export-org-to-latex ()
+  (save-excursion
+    (let ((filename (file-name-sans-extension
+                     (shell-command-to-string "ls -1 *.org"))))
+    (find-file (format "%s.org" filename))
+    (org-export-as-latex 3)
+    (shell-command (format "pdflatex ./%s.tex" filename))
+    )
+    )
+  )
+;; --8<-------------------------- separator ------------------------>8--
+;; display-time-world
+(setq display-time-world-list
+      '(
+        ("America/Chicago" "Houston")
+        ;;("America/Los_Angeles" "Seattle")
+        ("America/New_York" "Boston")
+        ("Asia/Shanghai" "Changsha")
+        ))
+
+(global-set-key [M-f4]
+                #'(lambda ()
+                    (interactive)
+                    (display-time-world)
+                    (other-window 1)
+                    (enlarge-window 3)
+                    ))
+
+(defun update-r-period()
+  (interactive)
+  (let ((rawfile "/tmp/raw.txt")
+        (pngfile "/tmp/sophia.png"))
+    (contact)
+    (save-excursion
+      (save-restriction
+        (when (re-search-forward "^* 秀秀--" nil t)
+          (progn
+            (org-narrow-to-subtree)
+            (write-region (point-min) (point-max) rawfile)
+              (shell-command (format "cd %s/../backup_small/life/sophia_period; ./sophia_period.sh %s %s "
+                                     DENNY_CONF rawfile pngfile))
+              (message (format "check picture of %s" pngfile))
+            )
+          )
+        ))
+    )
+  )
+;; --8<-------------------------- separator ------------------------>8--
+;; File: tmp.el ends here

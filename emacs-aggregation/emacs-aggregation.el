@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:43>
+;; Copyright © 2010-2011 Time-stamp: <2014-02-01 23:54:43>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -78,8 +78,10 @@
   "aggregate various information to a global view"
   (interactive)
   (let (retrieve-data-list)
+    (if (null mail-attachment)
+        (setq mail-attachment " "))
     (setq retrieve-data-list (aggregate-retrieve-data))
-    (aggregate-report-result retrieve-data-list)))
+    (aggregate-report-result retrieve-data-list mail-attachment)))
 
 ;; (aggregation-export-to-html "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal_template.html" "/home/denny/backup/essential/Dropbox/private_data/emacs_stuff/emacs_conf/emacs-aggregation/daily_journal.html")
 (defun aggregation-export-to-html (template-file dst-file)
@@ -158,7 +160,7 @@ Typical data includes:
       (add-to-list 'retrieve-data-list (apply retrieve-fun nil)))
     (setq list-ret retrieve-data-list)))
 
-(defun aggregate-report-result (retrieve-data-list)
+(defun aggregate-report-result (retrieve-data-list mail-attachment)
   "send summary report"
   (interactive)
   (let (send-mail-command (content "")
@@ -180,7 +182,7 @@ Typical data includes:
     (setq mail-content (replace-regexp-in-string "%" "％" mail-content))
     ;; send mail
     (setq send-mail-command
-          (format "echo \"%s\" | /usr/bin/msmtp -d -f %s %s" mail-content from-mail recipient-mail))
+          (format "(echo \"%s\" %s) | msmtp -d -f %s %s" mail-content mail-attachment from-mail recipient-mail))
     (shell-command send-mail-command)
     ))
 

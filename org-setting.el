@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-10-25 17:14:49>
+;; Updated: Time-stamp: <2014-03-04 22:00:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -16,13 +16,12 @@
 (dolist (org-agenda-file-var (list
                               (concat DENNY_CONF "/org_data/worklog.org")
                               (concat DENNY_CONF "/org_data/current.org")
-                              (concat DENNY_CONF "/org_data/today.org")
                               (concat DENNY_CONF "/org_data/wish.org")
                               (concat DENNY_CONF "/org_data/learn.org")
+                              (concat DENNY_CONF "/org_data/work.org")
                               (concat DENNY_CONF "/org_data/contacts.org")
-                              (concat DENNY_CONF "/org_data/project.org")
-                              (concat DENNY_CONF "/org_data/habit.org")
                               (concat DENNY_CONF "/org_data/org_share/question.org")
+                              (concat DENNY_CONF "/org_data/org_share/topic.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -231,7 +230,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; auto add "TODO " for top task
 (defadvice org-meta-return (after cond activate)
-  (when (= 1 (org-current-level))
+  (when (and (= 1 (org-current-level))
+             (not (member (file-name-nondirectory buffer-file-name) '("learn.org"))))
     (insert "TODO "))
   )
 ;; (defadvice get-page-title (after insert activate)
@@ -319,7 +319,7 @@
       )))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
-(setq copylog-monitor-orgfiles '("current.org" "wish.org" "today.org" "top.org"))
+(setq copylog-monitor-orgfiles '("current.org" "wish.org" "top.org"))
 (setq copylog-dest-orgfile (concat DENNY_CONF "/org_data/worklog.org"))
 (defadvice org-kill-line (after kill-region activate)
   (if (member (buffer-name) copylog-monitor-orgfiles)

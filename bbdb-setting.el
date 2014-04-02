@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-30 17:36:43>
+;; Updated: Time-stamp: <2014-01-12 17:29:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -232,7 +232,7 @@ which will be replaced by the actual name"
   (interactive "P")
   (let ((filename "/tmp/vcard.vcf"))
     (shell-command "cd ~/exported-vcards/; rm -rf *")
-    (bbdb "" nil)
+    (bbdb "" 't)
     (bbdb-vcard-export "~/exported-vcards/" t t)
     (shell-command "cd ~/exported-vcards/; rm -rf *-1.vcf")
     (update-bbdb-picture-to-vcard)
