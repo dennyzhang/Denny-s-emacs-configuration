@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-03-05 13:10:24>
+;; Updated: Time-stamp: <2014-04-27 19:48:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -30,9 +30,9 @@
          "** %<%Y-%m-%d>: %?")
         ("r" "Remote work" entry (file+headline "current.org" "Remote work")
          "** %<%Y-%m-%d>: %?")
-         ("t" "Talk" entry (file+headline "current.org" "Talk")
+        ("t" "Talk" entry (file+headline "org_share/linux.org" "Questions I'm expecting discussion")
           (function capture-talk-template))
-        ("d" "Diary" table-line (file+headline "org_share/diary.org"
+        ("d" "Diary" table-line (file+headline "org_share/linux.org"
                                                "Daily Journal -- 工作日志")
          "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
 

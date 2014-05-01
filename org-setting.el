@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-03-04 22:00:38>
+;; Updated: Time-stamp: <2014-04-30 15:54:25>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -18,10 +18,18 @@
                               (concat DENNY_CONF "/org_data/current.org")
                               (concat DENNY_CONF "/org_data/wish.org")
                               (concat DENNY_CONF "/org_data/learn.org")
+                              (concat DENNY_CONF "/org_data/project.org")
                               (concat DENNY_CONF "/org_data/work.org")
                               (concat DENNY_CONF "/org_data/contacts.org")
                               (concat DENNY_CONF "/org_data/org_share/question.org")
+                              (concat DENNY_CONF "/org_data/org_share/skill.org")
+                              (concat DENNY_CONF "/org_data/org_share/openstack.org")
+                              (concat DENNY_CONF "/org_data/org_share/life.org")
                               (concat DENNY_CONF "/org_data/org_share/topic.org")
+                              (concat DENNY_CONF "/org_data/org_share/cloud.org")
+                              (concat DENNY_CONF "/org_data/org_share/web.org")
+                              (concat DENNY_CONF "/org_data/org_share/language.org")
+                              (concat DENNY_CONF "/org_data/org_share/linux.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--

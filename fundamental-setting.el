@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-03-12 14:46:17>
+;; Updated: Time-stamp: <2014-04-30 15:59:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -164,10 +164,6 @@
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
-(defalias 'community (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/community.org"))))
-(defalias 'us (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/us.org"))))
-(defalias 'newcomer (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/newcomer.org"))))
-(defalias 'job (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/job.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/openstack.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
@@ -522,5 +518,6 @@ starting on the same line at which another match ended is ignored."
         )
     )
   )
+(setq case-fold-search t) ;; search case insensitive
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

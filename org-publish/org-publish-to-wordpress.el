@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-04-02 17:03:27>
+;; Updated: Time-stamp: <2014-04-25 15:47:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -263,10 +263,12 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
         title-md5 md5-id-title
+        (category "")
         (more-position (point-min))
         keyword-list
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
+    (wash-html-for-wordpress html-dir)
     (setq html-files (directory-files html-dir t ".*-.*-.*html$"))
     (setq not-tracked-org-post '())
     (dolist (html-file html-files)
@@ -300,7 +302,8 @@ See `org-publish-org-to' to the list of arguments."
                                     (string= "" keyword-list)
                                     "KnowledgeBase"
                                   (replace-regexp-in-string "_" "," keyword-list)))
-                          (cons "categories" "个人知识库")
+                          ;;(cons "categories" (list "Life"))
+                          (cons "categories" (list category))
                           (cons "mt_text_more" (buffer-substring-no-properties more-position (point-max)))
                           ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
@@ -311,6 +314,7 @@ See `org-publish-org-to' to the list of arguments."
         (kill-buffer)))
     (if not-tracked-org-post
         (message (format "count of new posts:%d." (length not-tracked-org-post))))
+    ;;(shell-command (format "rm -rf %s/*" html-dir))
     ))
 (defun update-wordpress-current-entry ()
   (interactive)
@@ -335,7 +339,7 @@ See `org-publish-org-to' to the list of arguments."
           (setq list-md5-id-title (list current-md5-id-title))
           (update-wordpress-blog current-exported-dir)
           (setq list-md5-id-title old-list-md5-id-title)
-          (setq url-string (format "http://blog.ec-ae.com/?p=%d"
+          (setq url-string (format "http://www.dennyzhang.com/?p=%d"
                                    (cadr current-md5-id-title)))
           (kill-new url-string)
           (message url-string)
