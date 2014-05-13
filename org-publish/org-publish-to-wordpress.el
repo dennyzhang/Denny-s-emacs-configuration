@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-04-25 15:47:59>
+;; Updated: Time-stamp: <2014-05-13 15:58:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -54,14 +54,17 @@ See `org-publish-org-to' to the list of arguments."
   (setq top-entry-title (replace-regexp-in-string "\\[" "(" top-entry-title))
   (setq top-entry-title (replace-regexp-in-string "\\]" ")" top-entry-title))
   )
+
 (defun org-export-as-website (arg &optional hidden ext-plist
                                   to-buffer body-only pub-dir not-generate-sitemap)
   (interactive "P")
   (let* ((src-org-file buffer-file-name)
          (dst-org-file (format "%s.index" (file-name-sans-extension src-org-file)))
+         (org-tag '())
          src-shortname export-buffer export-file
          org-tag top-entry-link start-pos end-pos
          keyword-list
+         category
          top-entry-pos (top-entry-pos-list '())
          top-entry-title (top-entry-title-list '()))
     ;; caculate top entries
@@ -82,6 +85,7 @@ See `org-publish-org-to' to the list of arguments."
               )))
       (goto-char (+ 1 top-entry-pos))
       )
+    (setq category (car (delete "BLOG" org-tag)))
     ;; generate a separate page for each top entry
     (let (start-end-pos)
       (dolist (top-entry-title top-entry-title-list)
@@ -96,9 +100,10 @@ See `org-publish-org-to' to the list of arguments."
         (set-mark (point))
         (goto-char end-pos)
         ;; export html
-        (setq export-buffer (format "%s-%s-%s.html"
+        (setq export-buffer (format "%s-%s-%s_%s.html"
                                     (file-name-sans-extension (file-name-nondirectory buffer-file-name))
                                     (md5 top-entry-title)
+                                    category
                                     keyword-list
                                     ))
         (save-excursion
@@ -269,17 +274,19 @@ See `org-publish-org-to' to the list of arguments."
         post-struct post-id post-title)
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
     (wash-html-for-wordpress html-dir)
-    (setq html-files (directory-files html-dir t ".*-.*-.*html$"))
+    (setq html-files (directory-files html-dir t ".*-.*-.*_.*.html$"))
     (setq not-tracked-org-post '())
     (dolist (html-file html-files)
       (setq short-filename (file-name-sans-extension (file-name-nondirectory html-file)))
       (progn
         (find-file html-file)
-        (string-match "\\(^[^-]*\\)-\\([^.-]*\\)-\\([^.]*\\)" short-filename)
+        (string-match "\\(^[^.-]*\\)-\\([^.-]*\\)-\\([^._]*\\)_\\([^.]*\\)" short-filename)
         (setq title-md5
               (match-string 2 short-filename)
+              category
+              (match-string 3 short-filename)
               keyword-list
-              (match-string 3 short-filename))
+              (match-string 4 short-filename))
         (setq md5-id-title (assoc title-md5 list-md5-id-title))
         (if md5-id-title
             ;; If related blog is found, update wordpress
@@ -293,18 +300,12 @@ See `org-publish-org-to' to the list of arguments."
                     post-struct
 
                     (list (cons "title" post-title)
-                          (cons "authorName" "zhangwei")
-                          (cons "description" (concat (format-time-string
-                                                       "Auto-updated %Y-%m-%d %H:%M.<br/>" (current-time))
-                                                      (buffer-substring-no-properties (point-min) more-position)))
-                          (cons "mt_keywords"
-                                (if
-                                    (string= "" keyword-list)
-                                    "KnowledgeBase"
-                                  (replace-regexp-in-string "_" "," keyword-list)))
-                          ;;(cons "categories" (list "Life"))
+                          (cons "authorName" "dennyzhang.com")
+                          (cons "description" (modify_description
+                                               (buffer-substring-no-properties (point-min) more-position)))
+                          (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list))
                           (cons "categories" (list category))
-                          (cons "mt_text_more" (buffer-substring-no-properties more-position (point-max)))
+                          (cons "mt_text_more" (modify_content (buffer-substring-no-properties more-position (point-max))))
                           ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
@@ -316,14 +317,38 @@ See `org-publish-org-to' to the list of arguments."
         (message (format "count of new posts:%d." (length not-tracked-org-post))))
     ;;(shell-command (format "rm -rf %s/*" html-dir))
     ))
+
+(defun modify_description (str)
+  ;; modify description before sending to worpress  
+  (let ((ret str))
+    ;; remove PROPERTIES
+    (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
+    )
+  )
+
+(defun modify_content (str)
+  ;; modify content before sending to worpress
+  (let ((ret str))
+    ;; update link
+    (setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
+    ;; update time description
+    (setq ret (replace-regexp-in-string "<p class=\"date\">Time" "<p class=\"date\">Update Time" ret))
+    ;; remove DONE decorator
+    (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
+    (setq ret (replace-regexp-in-string "<p>    <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
+    )
+  )
+
 (defun update-wordpress-current-entry ()
   (interactive)
   (let* ((current-top-entry-title (get-top-entry-title))
          (current-md5 (md5 current-top-entry-title))
          (current-exported-dir (file-name-directory (buffer-file-name)))
          (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
+         (org-tag (org-get-tags))
+         (category (car (delete "BLOG" org-tag)))
          (current-exported-filename
-          (format "%s-%s-%s.html" short-filename current-md5 (org-entry-get nil "type")))
+          (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
          current-md5-id-title
          (old-list-md5-id-title list-md5-id-title)
          url-string)

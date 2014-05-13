@@ -1,1 +1,1 @@
-convert -resize 50%x50% $1.png $2.png
+convert -resize 768x1024 -extent 768x1024 $1.png $2.png

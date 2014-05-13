@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-04-27 19:48:41>
+;; Updated: Time-stamp: <2014-05-06 18:43:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -18,6 +18,10 @@
          "** %<%Y-%m-%d>: %?")
         ("s" "Shopping" entry (file+headline "current.org" "Shopping list")
          "** %?")
+
+        ("l" "learn" entry (file "learn.org")
+         "** %?")
+
         ("e" "English" entry (file+headline "english.org" "每日英文")
          "** %?")
         ("b" "Blog" entry (file+headline "current.org" "Blog")
