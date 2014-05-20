@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-20 09:29:30>
+;; Updated: Time-stamp: <2014-05-20 14:58:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -241,7 +241,7 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-username mywordpress-username)
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
-        title-md5 md5-id-title
+        title-md5 post-meta
         meta-start meta-end
         (category "")
         (description-str "")
@@ -269,8 +269,8 @@ See `org-publish-org-to' to the list of arguments."
               (match-string 3 short-filename)
               keyword-list
               (match-string 4 short-filename))
-        (setq md5-id-title (assoc title-md5 list-md5-id-title))
-        (if md5-id-title
+        (setq post-meta (assoc title-md5 list-post-meta))
+        (if post-meta
             ;; If related blog is found, update wordpress
             (progn
               (setq content-str (buffer-substring-no-properties (point-min) (point-max)))
@@ -281,7 +281,7 @@ See `org-publish-org-to' to the list of arguments."
                     (when (search-forward-regexp "<hr/>" nil t)
                       (setq meta-end (point))
                       (setq description-str (buffer-substring-no-properties meta-start meta-end))
-                      
+
                       (setq content-str
                             (concat (buffer-substring-no-properties (point-min) meta-start)
                                     (buffer-substring-no-properties meta-end (point-max))
@@ -290,19 +290,24 @@ See `org-publish-org-to' to the list of arguments."
                       )
                     )
                 )
-              (setq md5-id-title (cdr md5-id-title)
-                    post-id (car md5-id-title)
-                    post-title (cadr md5-id-title)
-                    post-struct
+              (setq
+               post-id (nth (position post-meta list-post-meta) list-post-id)
 
-                    (list (cons "title" post-title)
-                          (cons "authorName" "dennyzhang.com")
-                          (cons "description" (modify_description description-str))
-                          (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list))
-                          (cons "wp_slug" "this_is_a_test")
-                          (cons "categories" (list category))
-                          (cons "mt_text_more" (modify_content content-str))
-                          ))
+               post-meta (cdr post-meta)
+               post-title (car post-meta)
+               post-meta (cdr post-meta)
+               post-slug (car post-meta)
+               post-meta (cdr post-meta)
+
+               post-struct
+               (list (cons "title" post-title)
+                     (cons "authorName" "dennyzhang.com")
+                     (cons "description" (modify_description description-str))
+                     (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list))
+                     (cons "wp_slug" post-slug)
+                     (cons "categories" (list category))
+                     (cons "mt_text_more" (modify_content content-str))
+                     ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
                                    post-struct t)
@@ -315,7 +320,7 @@ See `org-publish-org-to' to the list of arguments."
     ))
 
 (defun modify_description (str)
-  ;; modify description before sending to worpress  
+  ;; modify description before sending to worpress
   (let ((ret str))
     ;; remove hr
     (setq ret (replace-regexp-in-string "<hr/>" "" ret))
@@ -335,7 +340,7 @@ See `org-publish-org-to' to the list of arguments."
     (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n\n\n<br/>\n" "" ret))
     ;; remove DONE decorator
     (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
-    (setq ret (replace-regexp-in-string "<p>    <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
+    (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
     ;; remove hr
     ;;(setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )
@@ -351,8 +356,8 @@ See `org-publish-org-to' to the list of arguments."
          (category (car (delete "BLOG" org-tag)))
          (current-exported-filename
           (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
-         current-md5-id-title
-         (old-list-md5-id-title list-md5-id-title)
+         current-post-meta
+         (old-list-post-meta list-post-meta)
          url-string)
     ;; delete old file, if it exists
     (if (file-exists-p current-exported-filename)
@@ -360,14 +365,15 @@ See `org-publish-org-to' to the list of arguments."
     (org-export-as-html 3)
     (rename-file (format "%s.html" short-filename) current-exported-filename)
     (wash-html-for-wordpress-internal current-exported-filename)
-    (setq current-md5-id-title (assoc current-md5 list-md5-id-title))
-    (if current-md5-id-title
+    (setq current-post-meta (assoc current-md5 list-post-meta))
+    (if current-post-meta
         (progn
-          (setq list-md5-id-title (list current-md5-id-title))
+          (setq list-post-meta (list current-post-meta))
           (update-wordpress-blog current-exported-dir)
-          (setq list-md5-id-title old-list-md5-id-title)
-          (setq url-string (format "http://www.dennyzhang.com/?p=%d"
-                                   (cadr current-md5-id-title)))
+          (setq list-post-meta old-list-post-meta)
+          (setq url-string (format "http://www.dennyzhang.com/%s"
+                                   (cadr (cdr current-post-meta))
+                                   ))
           (kill-new url-string)
           (message url-string)
           (delete-file current-exported-filename)
