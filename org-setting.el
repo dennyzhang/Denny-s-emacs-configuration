@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-04-30 15:54:25>
+;; Updated: Time-stamp: <2014-05-13 16:15:26>
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 (add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -26,6 +26,8 @@
                               (concat DENNY_CONF "/org_data/org_share/openstack.org")
                               (concat DENNY_CONF "/org_data/org_share/life.org")
                               (concat DENNY_CONF "/org_data/org_share/topic.org")
+                              (concat DENNY_CONF "/org_data/org_share/freelancer.org")
+                              (concat DENNY_CONF "/org_data/org_share/sa.org")
                               (concat DENNY_CONF "/org_data/org_share/cloud.org")
                               (concat DENNY_CONF "/org_data/org_share/web.org")
                               (concat DENNY_CONF "/org_data/org_share/language.org")

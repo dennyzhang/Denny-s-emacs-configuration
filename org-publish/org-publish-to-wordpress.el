@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-13 15:58:33>
+;; Updated: Time-stamp: <2014-05-20 09:29:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -85,7 +85,7 @@ See `org-publish-org-to' to the list of arguments."
               )))
       (goto-char (+ 1 top-entry-pos))
       )
-    (setq category (car (delete "BLOG" org-tag)))
+
     ;; generate a separate page for each top entry
     (let (start-end-pos)
       (dolist (top-entry-title top-entry-title-list)
@@ -95,6 +95,7 @@ See `org-publish-org-to' to the list of arguments."
         ;; mark region
         (transient-mark-mode t)
         (goto-char start-pos)
+        (setq category (car (delete "BLOG" (org-get-tags))))
         (setq keyword-list (org-entry-get nil "type"))
         (if (null keyword-list) (setq keyword-list ""))
         (set-mark (point))
@@ -138,33 +139,6 @@ See `org-publish-org-to' to the list of arguments."
         (delete-file dst-org-file)
         ))
     ))
-;;(org-defkey org-mode-map (kbd "C-c c") 'migrate-old-org)
-(defun migrate-old-org()
-  (interactive)
-  (save-excursion
-    (remove-entry-quote "useful link")
-    (url-link-quote)
-    (replace-entry "basic use")
-    (replace-entry "best practice")
-    (replace-entry "console")
-    (goto-char (point-min))
-    (while (re-search-forward "\n+\\(#\\+begin.*\\)\n+" nil t)
-      (replace-match (format "\n%s\n" (match-string 1)) nil nil))
-    (goto-char (point-min))
-    (while (re-search-forward "\n+\\(#\\+end.*\\)\n+" nil t)
-      (replace-match (format "\n%s\n" (match-string 1)) nil nil))
-    ;; (goto-char (point-min))
-    ;; (while (re-search-forward "^\\*\\(.*\\)\n+" nil t)
-    ;; (replace-match (format "*%s\n" (match-string 1)) nil nil))
-    ;; (goto-char (point-min))
-    ;; (while (re-search-forward "\n\n+" nil t)
-    ;; (replace-match "\n\n" nil nil))
-    (goto-char (point-min))
-    (while (re-search-forward "#\\+BEGIN_EXAMPLE\n+#\\+END_EXAMPLE" nil t)
-      (replace-match "" nil nil))
-    (beautify-region-by-mode)
-    (org-shifttab t))
-  )
 (org-defkey org-mode-map (kbd "C-c v") 'beautify-web-quotation)
 (defun beautify-web-quotation ()
   (interactive)
@@ -268,10 +242,18 @@ See `org-publish-org-to' to the list of arguments."
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
         title-md5 md5-id-title
+        meta-start meta-end
         (category "")
+        (description-str "")
+        (content-str "")
         (more-position (point-min))
         keyword-list
         post-struct post-id post-title)
+
+    ;; ;; prevent export toc
+    ;; (make-local-variable 'org-export-with-toc)
+    ;; (setq org-export-with-toc nil)
+
     (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
     (wash-html-for-wordpress html-dir)
     (setq html-files (directory-files html-dir t ".*-.*-.*_.*.html$"))
@@ -291,9 +273,23 @@ See `org-publish-org-to' to the list of arguments."
         (if md5-id-title
             ;; If related blog is found, update wordpress
             (progn
+              (setq content-str (buffer-substring-no-properties (point-min) (point-max)))
               (goto-char (point-min))
-              (when (search-forward-regexp "<!--more-->" nil t)
-                (setq more-position (point)))
+              (if (search-forward-regexp "<hr/>" nil t)
+                  (progn
+                    (setq meta-start (point))
+                    (when (search-forward-regexp "<hr/>" nil t)
+                      (setq meta-end (point))
+                      (setq description-str (buffer-substring-no-properties meta-start meta-end))
+                      
+                      (setq content-str
+                            (concat (buffer-substring-no-properties (point-min) meta-start)
+                                    (buffer-substring-no-properties meta-end (point-max))
+                                    ))
+
+                      )
+                    )
+                )
               (setq md5-id-title (cdr md5-id-title)
                     post-id (car md5-id-title)
                     post-title (cadr md5-id-title)
@@ -301,11 +297,11 @@ See `org-publish-org-to' to the list of arguments."
 
                     (list (cons "title" post-title)
                           (cons "authorName" "dennyzhang.com")
-                          (cons "description" (modify_description
-                                               (buffer-substring-no-properties (point-min) more-position)))
+                          (cons "description" (modify_description description-str))
                           (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list))
+                          (cons "wp_slug" "this_is_a_test")
                           (cons "categories" (list category))
-                          (cons "mt_text_more" (modify_content (buffer-substring-no-properties more-position (point-max))))
+                          (cons "mt_text_more" (modify_content content-str))
                           ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
@@ -321,21 +317,27 @@ See `org-publish-org-to' to the list of arguments."
 (defun modify_description (str)
   ;; modify description before sending to worpress  
   (let ((ret str))
-    ;; remove PROPERTIES
-    (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
+    ;; remove hr
+    (setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )
   )
 
 (defun modify_content (str)
   ;; modify content before sending to worpress
   (let ((ret str))
+    ;; remove PROPERTIES
+    (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
     ;; update link
     (setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
     ;; update time description
     (setq ret (replace-regexp-in-string "<p class=\"date\">Time" "<p class=\"date\">Update Time" ret))
+    ;; remove title from content
+    (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n\n\n<br/>\n" "" ret))
     ;; remove DONE decorator
     (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
     (setq ret (replace-regexp-in-string "<p>    <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
+    ;; remove hr
+    ;;(setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )
   )
 
