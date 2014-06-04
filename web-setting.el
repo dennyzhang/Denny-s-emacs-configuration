@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-07 15:02:31>
+;; Updated: Time-stamp: <2014-06-03 17:06:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -193,6 +193,7 @@ create a new window and browse the webpage"
         ;; --8<------------------ paper ------------------------>8--
 
         ("alexa" . [simple-query "www.alexa.com" "www.alexa.com/siteinfo/www." ""])
+        ("fanyi" . [simple-query "fanyi.baidu.com" "fanyi.baidu.com/translate#en/zh/" ""])
         ;; --8<------------------ life ------------------------>8--
         ;;TODO: keyword need to be escaped
         ("taobao" . [simple-query "www.taobao.com" "s.taobao.com/search?q=" ""])

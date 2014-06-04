@@ -4,14 +4,14 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-06 18:43:58>
+;; Updated: Time-stamp: <2014-06-03 20:40:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
-        ("f" "Film" entry (file+headline "org_share/life.org" "Film -- 电影") "** TODO %?\n")
+        ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("u" "UnitedStack" entry (file+headline "current.org"
                                                "UnitedStack")
@@ -24,16 +24,16 @@
 
         ("e" "English" entry (file+headline "english.org" "每日英文")
          "** %?")
-        ("b" "Blog" entry (file+headline "current.org" "Blog")
-         "** %<%Y-%m-%d>: %?")
+        ("b" "Branding" entry (file+headline "current.org" "Blog")
+         "** %?")
         ("a" "America" entry (file+headline "current.org" "Living in America")
          "** %<%Y-%m-%d>: %?")
         ("c" "Communicate" entry (file+headline "current.org" "Communicate")
-         "** %<%Y-%m-%d>: %?")
+         "** %?")
         ("i" "Myself postmortem" entry (file+headline "current.org" "iPostmortem")
          "** %<%Y-%m-%d>: %?")
-        ("r" "Remote work" entry (file+headline "current.org" "Remote work")
-         "** %<%Y-%m-%d>: %?")
+        ("r" "Reading" entry (file+headline "life.org" "Reading -- 阅读")
+         "** %?")
         ("t" "Talk" entry (file+headline "org_share/linux.org" "Questions I'm expecting discussion")
           (function capture-talk-template))
         ("d" "Diary" table-line (file+headline "org_share/linux.org"
@@ -43,7 +43,7 @@
         ("p" "Period" table-line
          (file+headline "contacts.org" "秀秀--周期")
          "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
-        ;;("r" "Read" entry (file+headline "org_share/life.org" "Book -- 阅读") "** TODO %?\n")
+        ;;("r" "Read" entry (file+headline "life.org" "Book -- 阅读") "** TODO %?\n")
 
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-20 14:58:08>
+;; Updated: Time-stamp: <2014-06-02 19:13:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -275,6 +275,7 @@ See `org-publish-org-to' to the list of arguments."
             (progn
               (setq content-str (buffer-substring-no-properties (point-min) (point-max)))
               (goto-char (point-min))
+              (setq description-str "")
               (if (search-forward-regexp "<hr/>" nil t)
                   (progn
                     (setq meta-start (point))
@@ -302,11 +303,11 @@ See `org-publish-org-to' to the list of arguments."
                post-struct
                (list (cons "title" post-title)
                      (cons "authorName" "dennyzhang.com")
-                     (cons "description" (modify_description description-str))
-                     (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list))
+                     (cons "description" (modify_description description-str)) ;; digest
+                     (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list)) ;; tag
                      (cons "wp_slug" post-slug)
-                     (cons "categories" (list category))
-                     (cons "mt_text_more" (modify_content content-str))
+                     (cons "categories" (list category)) ;; category
+                     (cons "mt_text_more" (modify_content content-str)) ;; Read more
                      ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
@@ -329,13 +330,21 @@ See `org-publish-org-to' to the list of arguments."
 
 (defun modify_content (str)
   ;; modify content before sending to worpress
-  (let ((ret str))
+  (let ((ret str)
+        
+        )
     ;; remove PROPERTIES
     (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
     ;; update link
-    (setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
+    ;;(setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"author\".*" "" ret))
+
     ;; update time description
-    (setq ret (replace-regexp-in-string "<p class=\"date\">Time" "<p class=\"date\">Update Time" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"date\">Time.*"
+                                        (format-time-string
+                                         "<p class=\"author\" align=\"right\">By <a href='http://www.dennyzhang.com'>Denny</a> %D</p>"
+                                                            (current-time))
+                                        ret))
     ;; remove title from content
     (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n\n\n<br/>\n" "" ret))
     ;; remove DONE decorator
@@ -357,7 +366,7 @@ See `org-publish-org-to' to the list of arguments."
          (current-exported-filename
           (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
          current-post-meta
-         (old-list-post-meta list-post-meta)
+         ;;(old-list-post-meta list-post-meta)
          url-string)
     ;; delete old file, if it exists
     (if (file-exists-p current-exported-filename)
@@ -368,9 +377,9 @@ See `org-publish-org-to' to the list of arguments."
     (setq current-post-meta (assoc current-md5 list-post-meta))
     (if current-post-meta
         (progn
-          (setq list-post-meta (list current-post-meta))
+          ;;(setq list-post-meta (list current-post-meta))
           (update-wordpress-blog current-exported-dir)
-          (setq list-post-meta old-list-post-meta)
+          ;;(setq list-post-meta old-list-post-meta)
           (setq url-string (format "http://www.dennyzhang.com/%s"
                                    (cadr (cdr current-post-meta))
                                    ))
