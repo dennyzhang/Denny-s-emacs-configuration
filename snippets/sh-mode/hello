@@ -1,11 +1,11 @@
 #!/bin/bash -e
 ##-------------------------------------------------------------------
 ## File : hello
-## Author : filebat <filebat.mark@gmail.com>
+## Author : Denny <denny.zhang001@gmail.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2014-01-16 14:39:28>
+## Updated: Time-stamp: <2014-06-15 18:40:38>
 ##-------------------------------------------------------------------
 . utility.sh
 function log()

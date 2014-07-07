@@ -4,7 +4,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-06-03 20:40:33>
+;; Updated: Time-stamp: <2014-06-20 10:59:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -13,21 +13,13 @@
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
         ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("u" "UnitedStack" entry (file+headline "current.org"
-                                               "UnitedStack")
-         "** %<%Y-%m-%d>: %?")
         ("s" "Shopping" entry (file+headline "current.org" "Shopping list")
          "** %?")
-
         ("l" "learn" entry (file "learn.org")
          "** %?")
-
         ("e" "English" entry (file+headline "english.org" "每日英文")
          "** %?")
-        ("b" "Branding" entry (file+headline "current.org" "Blog")
-         "** %?")
-        ("a" "America" entry (file+headline "current.org" "Living in America")
-         "** %<%Y-%m-%d>: %?")
+
         ("c" "Communicate" entry (file+headline "current.org" "Communicate")
          "** %?")
         ("i" "Myself postmortem" entry (file+headline "current.org" "iPostmortem")

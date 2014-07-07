@@ -1,11 +1,11 @@
 //-------------------------------------------------------------------
-// @copyright 2013 UnitedStack Co,.Ltd
+// @copyright 2014 DennyZhang.com
 // File : hello
-// Author : filebat <filebat.mark@gmail.com>
+// Author : Denny <denny.zhang001@gmail.com>
 // Description :
 // --
 // Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-// Updated: Time-stamp: <2013-10-08 20:21:11>
+// Updated: Time-stamp: <2014-06-15 18:40:39>
 //-------------------------------------------------------------------
 #include <iostream>
 using namespace std;

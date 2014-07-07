@@ -3,10 +3,11 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-06-02 19:13:48>
+;; Updated: Time-stamp: <2014-06-21 23:53:04>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
+(load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
 (require 'org-publish)
 (setq org-export-html-validation-link "")
 (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote"))
@@ -74,7 +75,7 @@ See `org-publish-org-to' to the list of arguments."
       ;; obtain titles of top entries
       (setq top-entry-title (get-top-entry-title))
       (setq org-tag (org-get-tags))
-      (if (member "BLOG" org-tag)
+      (if (member BlOG-TAG org-tag)
           (progn
             (unless (null top-entry-title)
               (setq start-pos top-entry-pos)
@@ -95,7 +96,7 @@ See `org-publish-org-to' to the list of arguments."
         ;; mark region
         (transient-mark-mode t)
         (goto-char start-pos)
-        (setq category (car (delete "BLOG" (org-get-tags))))
+        (setq category (car (delete BlOG-TAG (org-get-tags))))
         (setq keyword-list (org-entry-get nil "type"))
         (if (null keyword-list) (setq keyword-list ""))
         (set-mark (point))
@@ -237,7 +238,7 @@ See `org-publish-org-to' to the list of arguments."
 ;; --8<-------------------------- separator ------------------------>8--
 (defun update-wordpress-blog (&optional html-dir)
   (interactive)
-  (let ((wordpress-server-url mywordpress-server-url)
+  (let ((wordpress-server-url (concat mywordpress-server-url "/xmlrpc.php"))
         (wordpress-username mywordpress-username)
         (wordpress-pwd mywordpress-pwd)
         html-files short-filename
@@ -309,9 +310,12 @@ See `org-publish-org-to' to the list of arguments."
                      (cons "categories" (list category)) ;; category
                      (cons "mt_text_more" (modify_content content-str)) ;; Read more
                      ))
+              ;; update post
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
                                    post-struct t)
+              ;; update seo
+              (update-post-seo (number-to-string post-id) post-meta)
               )
           (add-to-list 'not-tracked-org-post title-md5))
         (kill-buffer)))
@@ -359,10 +363,11 @@ See `org-publish-org-to' to the list of arguments."
   (interactive)
   (let* ((current-top-entry-title (get-top-entry-title))
          (current-md5 (md5 current-top-entry-title))
+         (old-buffer (current-buffer))
          (current-exported-dir (file-name-directory (buffer-file-name)))
          (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
          (org-tag (org-get-tags))
-         (category (car (delete "BLOG" org-tag)))
+         (category (car (delete BlOG-TAG org-tag)))
          (current-exported-filename
           (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
          current-post-meta
@@ -388,7 +393,45 @@ See `org-publish-org-to' to the list of arguments."
           (delete-file current-exported-filename)
           )
       (message "No related blog entry for %s" current-top-entry-title))
+    (switch-to-buffer old-buffer)
     ))
+
+(defun update-post-seo (post-id post-meta)
+  (let* ((meta-title (car post-meta))
+         (post-meta (cdr post-meta))
+
+         (meta-description (car post-meta))
+         (post-meta (cdr post-meta))
+
+         (meta-keywords (car post-meta))
+         (post-meta (cdr post-meta))
+
+         field-list
+         )
+
+    ;; update seo of title
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_aioseop_title"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") meta-title))
+    (http-post-simple mywordpress-updatemeta-url field-list)
+
+    ;; update seo of description
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_aioseop_description"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") meta-description))
+    (http-post-simple mywordpress-updatemeta-url field-list)
+
+    ;; update seo of keywords
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_aioseop_keywords"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") meta-keywords))
+    (http-post-simple mywordpress-updatemeta-url field-list)
+    )
+  )
+
 ;; --8<-------------------------- separator ------------------------>8--
 (defun xml-rpc-value-to-xml-list (value)
   "Return XML representation of VALUE properly formatted for use with the \

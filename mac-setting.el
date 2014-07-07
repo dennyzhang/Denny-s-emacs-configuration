@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-01-07 23:38:42>
+;; Updated: Time-stamp: <2014-06-17 10:41:00>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq mac-command-modifier 'meta) 
