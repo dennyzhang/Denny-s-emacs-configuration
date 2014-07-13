@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-03-04 22:00:52>
+;; Updated: Time-stamp: <2014-07-12 19:04:22>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 (load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -256,7 +256,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (add-hook 'find-file-hook 'enable-highlight-changes-mode)
 (defun enable-highlight-changes-mode ()
   "Enable highlight-changes-mode, with several modes excluded"
-  (let ((prohibit-mode-list '("Org" "Erlang")))
+  (let ((prohibit-mode-list '("Org" "Erlang" "DocView")))
     (make-local-variable 'highlight-changes-mode)
     (highlight-changes-mode 0) ;; first disable highlight-changes-mode
     (unless (member mode-name prohibit-mode-list)

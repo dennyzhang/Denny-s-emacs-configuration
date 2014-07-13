@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-06-03 17:06:48>
+;; Updated: Time-stamp: <2014-07-12 17:39:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -182,6 +182,7 @@ create a new window and browse the webpage"
         ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
         ("book-51cto" . [simple-query "down.51cto.com" "down.51cto.com/search.php?q=" ""])
         ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
+        ("book-greenebookshop" . [simple-query "www.greenebookshop.com" "www.greenebookshop.com/" ""])
         ("book-iask" . [simple-query "ishare.iask.sina.com.cn" "ishare.iask.sina.com.cn/search.php?key=" ""])
         ("book-douban" . [simple-query "book.douban.com" "book.douban.com/subject_search?cat=1001&search_text=" ""])
         ("book-yinian" . "www.inien.com/w/#/Index")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:40>
+;; Updated: Time-stamp: <2014-07-12 18:50:46>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
 (defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-02-10 18:50:12>
+;; Updated: Time-stamp: <2014-07-12 00:11:53>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
@@ -84,6 +84,9 @@
       (cond
        ((string= from-mail "markfilebat@126.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
+              user-mail-address from-mail))
+       ((string= from-mail "denny.zyang@totvs.com")
+        (setq message-sendmail-extra-arguments '("-a" "exchange")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
         (setq message-sendmail-extra-arguments '("-a" "gmail")
@@ -245,6 +248,8 @@
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
+        ("totvs-test" "From:.*test@texoit.com.*")
+        ("totvs-healthcheck" "Subject:.*Health Check Of Fluig Servers Has Failed.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
         ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*filebat.mark@gmail.com.*\\|From:.*denny@unitedstack.com.*")
         ("unitedstack_zabbix" "Subject:.*Ustack-Jenkins.*Auto.*")

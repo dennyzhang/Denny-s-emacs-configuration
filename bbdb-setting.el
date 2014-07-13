@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-01-12 17:29:38>
+;; Updated: Time-stamp: <2014-07-12 21:13:56>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -98,7 +98,7 @@
           (append
            ;; also search in notes
            (bbdb-search potential-records nil nil nil alias-notes nil)
-           (bbdb-search potential-records string string string notes nil)))
+           (bbdb-search potential-records string string string notes string)))
     (if records
         (bbdb-display-records records)
       ;; we could use error here, but it's not really an error.
