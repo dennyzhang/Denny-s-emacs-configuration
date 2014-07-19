@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-12 21:13:56>
+;; Updated: Time-stamp: <2014-07-13 12:40:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -195,7 +195,7 @@ which will be replaced by the actual name"
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names
-      (regexp-opt '("filebat.mark@gmail.com" "filebat.mark@gmail.com" "denny@unitedstack.com")))
+      (regexp-opt '("filebat.mark@gmail.com" "denny.zhang@oscgc.com" "denny.zhang001@gmail.com")))
 (setq bbdb-complete-name-allow-cycling t)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/"))
