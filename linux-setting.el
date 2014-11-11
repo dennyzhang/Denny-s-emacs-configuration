@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-01-31 15:34:05>
+;; Updated: Time-stamp: <2014-11-10 22:52:55>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -28,13 +28,13 @@
 ;; default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
-(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
-(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
-(require 'gnuplot)
-(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
-(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
-(global-set-key [(f9)] 'gnuplot-make-buffer)
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
+;;(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
+;;(require 'gnuplot)
+;;(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
+;;(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
+;;(add-to-list 'auto-mode-alist '("\\.gp$" . gnuplot-mode))
+;;(global-set-key [(f9)] 'gnuplot-make-buffer)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p r: root edit current file
 (define-key global-map (kbd "M-p r") 'open-current-file-as-root)
@@ -81,13 +81,11 @@
 ;; (load-file (concat EMACS_VENDOR "/ascii/ascii.el"))
 ;; (require 'ascii)
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/ess-5.14/lisp"))
-(require 'ess-site) ;; TODO, it will always popup a *ESS* buffer
 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stata$" . stata-mode))
 ;;(org-defkey org-mode-map [(control meta ,)] 'org-shiftmetaleft)
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
 ;;(add-to-list 'load-path "~/Downloads/yasnippet-0.6.1c/")
 (require 'yasnippet)
 (setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))

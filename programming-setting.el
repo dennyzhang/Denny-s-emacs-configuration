@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-25 09:00:17>
+;; Updated: Time-stamp: <2014-11-10 22:19:00>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -94,10 +94,10 @@
 (global-set-key [(control c) (control t)] 'switch-head2source-file)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Get etags file intelligently
-(add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
-(require 'etags-select)
-(require 'etags-table)
-(setq etags-table-search-up-depth 10)
+;;(add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
+;;(require 'etags-select)
+;;(require 'etags-table)
+;;(setq etags-table-search-up-depth 10)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun create-tags (directory)
   "Create tags file."
@@ -118,7 +118,7 @@
              '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; C# programming
-(load-file (concat EMACS_VENDOR "csharp/csharp-mode-0.4.0.el"))
+(load-file (concat EMACS_VENDOR "csharp/csharp-mode.el")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; php programming
 (add-to-list 'load-path (concat EMACS_VENDOR "/php-mode-1.5.0/"))
@@ -238,19 +238,19 @@
             ;; add Erlang functions to an imenu menu
             (imenu-add-to-menubar "imenu")))
 
-;; distel: an add-on to the erlang-mode
-(add-to-list 'load-path (concat EMACS_VENDOR "/distel/elisp"))
-(require 'distel)
-(distel-setup)
-;; A number of the erlang-extended-mode key bindings are useful in the shell too
-(defconst distel-shell-keys
-  '(("\C-\M-i" erl-complete)
-    ("\M-?" erl-complete)
-    ("\M-." erl-find-source-under-point)
-    ("\M-," erl-find-source-unwind)
-    ("\M-*" erl-find-source-unwind)
-    )
-  "Additional keys to bind when in Erlang shell.")
+;;;; distel: an add-on to the erlang-mode
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/distel/elisp"))
+;;(require 'distel)
+;;(distel-setup)
+;;;; A number of the erlang-extended-mode key bindings are useful in the shell too
+;;(defconst distel-shell-keys
+;;  '(("\C-\M-i" erl-complete)
+;;    ("\M-?" erl-complete)
+;;    ("\M-." erl-find-source-under-point)
+;;    ("\M-," erl-find-source-unwind)
+;;    ("\M-*" erl-find-source-unwind)
+;;    )
+;;  "Additional keys to bind when in Erlang shell.")
 (add-hook 'erlang-shell-mode-hook
           (lambda ()
             ;; add some Distel bindings to the Erlang shell
@@ -329,6 +329,7 @@
              (set-window-buffer window buf)
              window))))))
 ;; --8<-------------------------- separator ------------------------>8--
+(require 'cc-mode)
 (define-key c-mode-base-map [(meta j)] 'webjump)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'python-mode-hook

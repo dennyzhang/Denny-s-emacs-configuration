@@ -3,10 +3,10 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-05 14:02:54>
+;; Updated: Time-stamp: <2014-11-10 21:24:55>
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
-(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/org-mode/lisp"))
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/org-mode/contrib/lisp"))
 (require 'org)
@@ -91,8 +91,8 @@
 (setq user-mail-address "filebat.mark@gmail.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
-(load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el"))
+;;(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))  ;; TODO
+;; (load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el")) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
@@ -217,7 +217,8 @@
   )
 
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/graphviz-dot-mode/graphviz-dot-mode.el"))
+;;(load-file (concat EMACS_VENDOR "/graphviz-dot-mode/graphviz-dot-mode.el"))
+(require 'graphviz-dot-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-directory (concat DENNY_CONF "/org_data/"))
 (setq org-default-notes-file "current.org")

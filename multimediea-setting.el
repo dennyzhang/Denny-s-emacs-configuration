@@ -3,11 +3,11 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:40>
+;; Updated: Time-stamp: <2014-11-10 22:57:11>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
-(add-to-list 'load-path (concat EMACS_VENDOR "/emms/"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/emms/"))
 (load "emms")
 (require 'emms-setup)
 (require 'emms-cache)
@@ -284,8 +284,9 @@
 (add-to-list 'auto-mode-alist '("\\.jpeg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.jpg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.png$" . image-mode))
-(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1))) 
-(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1))) 
+;; TODO
+;;(define-key image-mode-map (kbd "n") #'(lambda() (interactive) (rotate-image-in-directory 1))) 
+;;(define-key image-mode-map (kbd "p") #'(lambda() (interactive) (rotate-image-in-directory -1))) 
 (defun rotate-image-in-directory (N)
   "Enable image-mode to view previous/next image"
  (interactive)

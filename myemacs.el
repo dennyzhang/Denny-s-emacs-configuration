@@ -3,39 +3,36 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-12 18:50:46>
+;; Updated: Time-stamp: <2014-11-11 15:12:04>
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "~/backup/essential/emacs_vendor/")
-(defconst DENNY_CONF "~/backup/essential/Dropbox/private_data/emacs_stuff/")
+(defconst EMACS_VENDOR "~/Dropbox/emacs_vendor/")
+(defconst DENNY_CONF "~/Dropbox/private_data/emacs_stuff/")
+
+;; Load 3rd packages
+(load-file (concat DENNY_CONF "/emacs_conf/packages.el"))
+
 (setq emacs-load-start-time (current-time))
 (when (< emacs-major-version 22)
   (error "Configuration not supported on Emacs < 22."))
-
-;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/weibo/"))
-;;(require 'weibo)
-
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (mapc #'(lambda(emacs-file)
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '(
-        "bbdb-setting.el"
-
-
+;;        "bbdb-setting.el" TODO
         "fundamental-setting.el" ;; suspicous
         "clean-appearance-setting.el"
         "buffer-setting.el"
         "essentialpackage-setting.el"
         "org-setting.el"
-        "gnus-setting.el"
+;;        "gnus-setting.el" TODO
         "web-setting.el"
         "dired-setting.el"
         "handyfunction-setting.el"
         "regexp-setting.el"
         "magic-setting.el"
         "otherpackage-setting.el"
-        "programming-setting.el"
+;;        "programming-setting.el" ;; TODO
         "facing-setting.el"
         "calendar-setting.el"
 

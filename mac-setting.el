@@ -3,14 +3,14 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-06-17 10:41:00>
+;; Updated: Time-stamp: <2014-11-10 22:48:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq mac-command-modifier 'meta) 
 (setq mac-control-modifier 'control) 
 (setq mac-option-modifier 'alt)
 
-(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/usr/local/texlive/2013/bin/universal-darwin/")
+(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/usr/local/texlive/2013/bin/universal-darwin/:/opt/local/bin")
 (add-to-list 'exec-path "/usr/local/bin")
 
 (setq split-width-threshold nil)

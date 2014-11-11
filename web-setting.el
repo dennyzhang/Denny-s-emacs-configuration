@@ -3,20 +3,23 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-12 17:39:57>
+;; Updated: Time-stamp: <2014-11-11 00:48:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
-(load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
+;;(load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
+(require 'org-w3m)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Insinuate with BBDB
 (when (featurep 'bbdb)
   (provide 'w3)
-  (bbdb-initialize 'w3))
+  (bbdb-initialize 'w3)
+)
 
+;; TODO
 (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
 ;;(require 'w3m-load)
-(if window-system (require 'w3m-load))
+;;(if window-system (require 'w3m-load))
 (custom-set-variables
  '(w3m-form-input-map-mode-hook (quote (flyspell-mode)))
  '(w3m-tab-width 4)

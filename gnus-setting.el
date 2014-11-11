@@ -3,10 +3,10 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-15 18:45:03>
+;; Updated: Time-stamp: <2014-11-10 23:29:35>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
-(setq mail-parent-directory-var (concat DENNY_CONF "../gnus_data/"))
+(setq mail-parent-directory-var "~/gnus_data/")
 (setq gnus-startup-file (concat DENNY_CONF "emacs_data/filebat.newsrc")
       gnus-home-directory (concat mail-parent-directory-var "Mail")
       gnus-default-directory (concat mail-parent-directory-var "Mail")
@@ -17,7 +17,7 @@
       ;; mail-source-directory (concat mail-parent-directory-var "Mail/incoming")
       nnmail-message-id-cache-file (concat mail-parent-directory-var "Mail/.nnmail-cache")
       nnml-newsgroups-file (concat mail-parent-directory-var "Mail/")
-      message-directory (concat mail-parent-directory-var "Mail")
+      message-directory (concat mail-parent-directory-var "Mail/")
       nndraft-directory (concat mail-parent-directory-var "Mail/drafts/")
       mm-default-directory (concat mail-parent-directory-var "Attachment/")
       message-auto-save-directory (concat mail-parent-directory-var "Mail/drafts/"))

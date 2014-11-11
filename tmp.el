@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-02-05 17:34:13>
+;; Updated: Time-stamp: <2014-11-11 00:06:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -351,7 +351,8 @@
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
+;;(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
+(require 'screenshot)
 (setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Specifies whether the desktop should be loaded if locked.
@@ -495,19 +496,19 @@
 ;; (eval-after-load "ediff"
 ;; `(ediff-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
-(require 'psvn)
-(setq svn-status-verbose nil)
-(defsubst svn-status-interprete-state-mode-color (stat)
- "Interpret vc-svn-state symbol to mode line color"
- (case stat
- ('up-to-date "GreenYellow")
- ('edited "tomato")
- ('unknown "gray")
- ('added "blue")
- ('deleted "red")
- ('unmerged "purple")
- (t "black")))
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
+;; (require 'psvn)
+;; (setq svn-status-verbose nil)
+;; (defsubst svn-status-interprete-state-mode-color (stat)
+;;  "Interpret vc-svn-state symbol to mode line color"
+;;  (case stat
+;;  ('up-to-date "GreenYellow")
+;;  ('edited "tomato")
+;;  ('unknown "gray")
+;;  ('added "blue")
+;;  ('deleted "red")
+;;  ('unmerged "purple")
+;;  (t "black")))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-hook 'autoconf-mode-hook 'flyspell-prog-mode)
 (add-hook 'autotest-mode-hook 'flyspell-prog-mode)

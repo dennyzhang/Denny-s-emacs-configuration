@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:40>
+;; Updated: Time-stamp: <2014-11-10 22:24:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
@@ -32,20 +32,20 @@
 (autoload 'pylookup-update "pylookup"
   "Run pylookup-update and create the database at `pylookup-db-file'." t)
 ;; --8<-------------------------- separator ------------------------>8--
-;;search c/c++ document
-(setq cclookup-dir (concat EMACS_VENDOR "/cclookup"))
-(add-to-list 'load-path cclookup-dir)
-;; load cclookup when compile time
-(eval-when-compile (require 'cclookup))
+;; ;;search c/c++ document
+;; (setq cclookup-dir (concat EMACS_VENDOR "/cclookup"))
+;; (add-to-list 'load-path cclookup-dir)
+;; ;; load cclookup when compile time
+;; (eval-when-compile (require 'cclookup))
 
-;; set executable file and db file
-(setq cclookup-program (concat cclookup-dir "/cclookup.py"))
-(setq cclookup-db-file (concat cclookup-dir "/cclookup.db"))
+;; ;; set executable file and db file
+;; (setq cclookup-program (concat cclookup-dir "/cclookup.py"))
+;; (setq cclookup-db-file (concat cclookup-dir "/cclookup.db"))
 
-;; to speedup, just load it on demand
-(autoload 'cclookup-lookup "cclookup"
-  "Lookup SEARCH-TERM in the C++ Reference indexes." t)
-(autoload 'cclookup-update "cclookup"
-  "Run cclookup-update and create the database at `cclookup-db-file'." t)
+;; ;; to speedup, just load it on demand
+;; (autoload 'cclookup-lookup "cclookup"
+;;   "Lookup SEARCH-TERM in the C++ Reference indexes." t)
+;; (autoload 'cclookup-update "cclookup"
+;;   "Run cclookup-update and create the database at `cclookup-db-file'." t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: online-search-setting.el ends here

@@ -3,17 +3,18 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-06-21 23:53:04>
+;; Updated: Time-stamp: <2014-11-10 22:55:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
-(require 'org-publish)
+(require 'http-post-simple)
+(load-file (concat EMACS_VENDOR "org-publish/org-publish.el")
+;;(require 'org-publish) ;; TODO
 (setq org-export-html-validation-link "")
 (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote"))
 (setq org-export-default-language "cn")
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/wordpress"))
 (require 'weblogger)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-publish-project-alist

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:36>
+;; Updated: Time-stamp: <2014-11-10 22:26:30>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -14,10 +14,12 @@
 (add-to-list 'auto-mode-alist '("^tmp$" . (company-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (rainbow-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (flyspell-mode 1)))
+
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (iimage-mode 1)))
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (enriched-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'auto-mode-alist '("\\.groovy$" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode));;rhtml
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -39,8 +41,8 @@
 (add-to-list 'auto-mode-alist '("\\.stp$" . systemtap-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
-(add-to-list 'load-path (concat EMACS_VENDOR "/ledger"))
-(load "ledger")
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/ledger"))
+(require 'ledger-mode)
 (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.erb$" . nxml-mode))
@@ -48,8 +50,9 @@
 (add-to-list 'auto-mode-alist '("\\.h$" . (c++-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "google-go/go-mode.el"))
-(load-file (concat EMACS_VENDOR "google-go/go-mode-load.el"))
-(require 'go-mode-load)
+;;(load-file (concat EMACS_VENDOR "google-go/go-mode-load.el"))
+;;(require 'go-mode-load)
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el"))
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))

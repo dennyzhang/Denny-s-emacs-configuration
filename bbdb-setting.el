@@ -3,13 +3,15 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-13 12:40:24>
+;; Updated: Time-stamp: <2014-11-11 00:57:26>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
-(global-set-key [(super b)] 'bbdb)
 (require 'bbdb)
+(bbdb-initialize)
+(require 'bbdb-com)
 (require 'bbdb-snarf)
+(global-set-key [(super b)] 'bbdb)
 ;;(add-hook 'mail-setup-hook 'bbdb-define-all-aliases)
 (setq bbdb-default-country "中国");;Default country for emacs
 (add-hook 'message-setup-hook 'bbdb-define-all-aliases)
@@ -25,10 +27,10 @@
 (load-file (concat EMACS_VENDOR "/bbdb/bbdb-picture.el"))
 (setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
-(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
-(require 'vcard)
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard")) ;; TODO
+;;(require 'vcard) ;; TODO
 ;;(bbdb-vcard-export "~/exported-vcards/" t t)
-(require 'bbdb-vcard)
+;; (require 'bbdb-vcard) TODO
 (defun update-bbdb-picture-to-vcard(&optional vcard-dir)
   "update bbdb picture as a photo property of vcard files"
   (interactive)
@@ -181,25 +183,26 @@ which will be replaced by the actual name"
     (message-send-and-exit)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (bbdb-get-mail-aliases): Return a list of mail aliases used in the BBDB.
-(defun get-net-list-by-mail-alias(mail-alias)
-  "Get email address list by mail alias"
-  (let ((target (cons bbdb-define-all-aliases-field mail-alias)) records)
-    (setq records (bbdb-search (bbdb-records) nil nil nil target))
-    (mapcar '(lambda (record) (car (bbdb-record-net record))) records)
-    ))
+;; TODO
+;; (defun get-net-list-by-mail-alias(mail-alias)
+;;   "Get email address list by mail alias"
+;;   (let ((target (cons bbdb-define-all-aliases-field mail-alias)) records)
+;;     (setq records (bbdb-search (bbdb-records) nil nil nil target))
+;;     (mapcar '(lambda (record) (car (bbdb-record-net record))) records)
+;;     ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
 (setq bbdb-use-pop-up nil)
 ;; don't check legal zip code, when entering an address
 (setq bbdb-check-zip-codes-p nil)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
+;;(load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names
       (regexp-opt '("filebat.mark@gmail.com" "denny.zhang@oscgc.com" "denny.zhang001@gmail.com")))
 (setq bbdb-complete-name-allow-cycling t)
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/"))
-(require 'google-maps)
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/")) TODO
+;;(require 'google-maps) ;; TODO
 (defun show-bbdb-loaction ()
   "put all my contacts stored into BBDB on a Google Maps' map"
   (interactive)

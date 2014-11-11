@@ -3,7 +3,7 @@
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-07-06 15:30:47>
+;; Updated: Time-stamp: <2014-08-25 21:59:35>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -154,6 +154,7 @@
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/cloud.org"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/sa.org"))))
+(defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/windows.org"))))
 (defalias 'freelancer (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/freelancer.org"))))
 (defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life.org"))))
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
@@ -217,7 +218,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
-  (setq filter-name-list '(".git" ".svn" "*~" "#*#" "*.elc" "*.pyc" "worklog.org"))
+  (setq filter-name-list '(".git" "*.jar" ".svn" "*~" "#*#" "*.elc" "*.pyc" "worklog.org"))
   (setq grep-find-command "find .")
   (dolist (filter-file-name filter-name-list)
     (setq grep-find-command

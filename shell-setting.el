@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:36>
+;; Updated: Time-stamp: <2014-11-11 08:42:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq shell-file-name "/bin/bash")
@@ -156,9 +156,9 @@ If arg is given, only open a shell for one directory.
 
 ;; --8<-------------------------- separator ------------------------>8--
 ;;eshell
-(global-set-key (kbd "<C-f9>") 'eshell-toggle)
 ;; quickly switch to eshell, and do buffer toggle things
 (load-file (concat EMACS_VENDOR "/eshell-toggle/eshell-toggle.el"))
+(global-set-key (kbd "<C-f9>") 'eshell-toggle)
 (autoload 'eshell-toggle "eshell-toggle"
   "Toggles between the *eshell* buffer and whatever buffer you are editing."
   t)
