@@ -1,0 +1,1 @@
+nc -v -w 3 -z localhost $1

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-01-10 15:20:03>
+;; Updated: Time-stamp: <2014-11-14 10:18:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -394,9 +394,9 @@ Open windows explorer in the current directory"
   (interactive)
   (cond
    ((eq system-type 'gnu/linux)
-    (shell-command-to-string (concat "nautilus " default-directory)))
+    (shell-command-to-string (format "nautilus \"%s\"" (file-truename default-directory))))
    ((eq system-type 'darwin)
-    (shell-command-to-string (concat "open " default-directory)))
+    (shell-command-to-string (format "open \"%s\"" (file-truename default-directory))))
    ((eq system-type 'windows-nt)
     (w32-shell-execute "open" "explorer"
                        (concat "/e,/select,"
@@ -686,8 +686,8 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
 (defun ramfs-flush()
   (interactive)
   (rsync-dir
-   "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data/"
-   "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data.disk")
+   "~/Dropbox/private_data/emacs_stuff/org_data/"
+   "~/Dropbox/private_data/emacs_stuff/org_data.disk")
   )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-nsplit-line (n)

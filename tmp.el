@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-11 00:06:52>
+;; Updated: Time-stamp: <2015-01-14 16:07:33>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -361,7 +361,7 @@
 ;; (require 'nnir)
 ;; (setq nnir-search-engine 'namazu)
 ;; (setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
-;; (setq nnir-namazu-remove-prefix (expand-file-name "~/backup/essential/Dropbox/private_data/gnus_data/Mail"))
+;; (setq nnir-namazu-remove-prefix (expand-file-name "~/Dropbox/private_data/gnus_data/Mail"))
 ;; (setq nnir-mail-backend gnus-select-method)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun nuke-unmodified-buffers (&optional list)
@@ -1710,7 +1710,7 @@ Insert if ARG."
  (question)
  (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
  (org-export-as-freemind)
- (shell-command "~/backup/essential/Dropbox/private_data/backup_small/update-blog.sh")
+ (shell-command "~/Dropbox/private_data/backup_small/update-blog.sh")
  )
  )
 (add-hook 'org-mode-hook
@@ -1814,8 +1814,8 @@ Insert if ARG."
  )
  )
 ;; --8<-------------------------- separator ------------------------>8--
-(setq nnrss-use-local t
- nnrss-directory (concat DENNY_CONF "/../emacs_stuff/rss/"))
+;;(setq nnrss-use-local t
+;; nnrss-directory "~/emacs_stuff/rss/")
 ;;(setq gnus-select-method '(nnml ""))
 ;;(setq gnus-select-method nil)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -1823,7 +1823,7 @@ Insert if ARG."
  "Run shell script to get mail"
  (interactive)
  (progn
-   (shell-command "~/backup/essential/Dropbox/private_data/backup_small/fetch_mail/fetch_mail.sh")
+   (shell-command "~/Dropbox/private_data/backup_small/fetch_mail/fetch_mail.sh")
  ))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-$" 'flyspell-word)
@@ -1849,7 +1849,7 @@ Insert if ARG."
     (let ((filename (file-name-sans-extension
                      (shell-command-to-string "ls -1 *.org"))))
     (find-file (format "%s.org" filename))
-    (org-export-as-latex 3)
+    (org-latex-export-as-latex 3)
     (shell-command (format "pdflatex ./%s.tex" filename))
     )
     )

@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-11 00:57:26>
+;; Updated: Time-stamp: <2014-11-13 07:17:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -24,7 +24,7 @@
 (setq bbdb-north-american-phone-numbers-p nil)
 (setq bbdb-default-label-list '("Mobile" "Office" "Other"))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/bbdb/bbdb-picture.el"))
+(load-file (concat EMACS_VENDOR "/bbdb-picture/bbdb-picture.el"))
 (setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard")) ;; TODO
@@ -182,14 +182,13 @@ which will be replaced by the actual name"
     (perform-replace marker (nth 0 name-mail-entry) nil nil nil)
     (message-send-and-exit)))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (bbdb-get-mail-aliases): Return a list of mail aliases used in the BBDB.
-;; TODO
-;; (defun get-net-list-by-mail-alias(mail-alias)
-;;   "Get email address list by mail alias"
-;;   (let ((target (cons bbdb-define-all-aliases-field mail-alias)) records)
-;;     (setq records (bbdb-search (bbdb-records) nil nil nil target))
-;;     (mapcar '(lambda (record) (car (bbdb-record-net record))) records)
-;;     ))
+;; (bbdb-get-mail-aliases) : Return a list of mail aliases used in the BBDB.
+(defun get-net-list-by-mail-alias(mail-alias)
+  "Get email address list by mail alias"
+  (let ((target (cons bbdb-define-all-aliases-field mail-alias)) records)
+    (setq records (bbdb-search (bbdb-records) nil nil nil target))
+    (mapcar '(lambda (record) (car (bbdb-record-net record))) records)
+    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Don't provide bbdb update hint, while in VM, MH, RMAIL, or GNUS
 (setq bbdb-use-pop-up nil)
@@ -201,8 +200,7 @@ which will be replaced by the actual name"
       (regexp-opt '("filebat.mark@gmail.com" "denny.zhang@oscgc.com" "denny.zhang001@gmail.com")))
 (setq bbdb-complete-name-allow-cycling t)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/jd-el/")) TODO
-;;(require 'google-maps) ;; TODO
+(require 'google-maps)
 (defun show-bbdb-loaction ()
   "put all my contacts stored into BBDB on a Google Maps' map"
   (interactive)

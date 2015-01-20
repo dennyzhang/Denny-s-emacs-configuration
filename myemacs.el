@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-11 15:12:04>
+;; Updated: Time-stamp: <2014-12-07 18:02:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/Dropbox/emacs_vendor/")
 (defconst DENNY_CONF "~/Dropbox/private_data/emacs_stuff/")
@@ -19,25 +19,25 @@
          (load-file
 	  (expand-file-name emacs-file (concat DENNY_CONF "/emacs_conf"))))
       '(
-;;        "bbdb-setting.el" TODO
+        "bbdb-setting.el"
         "fundamental-setting.el" ;; suspicous
         "clean-appearance-setting.el"
         "buffer-setting.el"
         "essentialpackage-setting.el"
         "org-setting.el"
-;;        "gnus-setting.el" TODO
+        "gnus-setting.el"
         "web-setting.el"
         "dired-setting.el"
         "handyfunction-setting.el"
         "regexp-setting.el"
         "magic-setting.el"
         "otherpackage-setting.el"
-;;        "programming-setting.el" ;; TODO
+        "programming-setting.el"
         "facing-setting.el"
         "calendar-setting.el"
 
         ;;"flymake-setting.el" ;; TODO denny
-        ;;"largeessentialpackage-setting.el"
+        "largeessentialpackage-setting.el"
 
         "ledger-setting.el"
         "online-search/online-search-setting.el"
@@ -90,9 +90,9 @@
 
 ;; loading sensitive configurations
 ;;(load-file (concat DENNY_CONF "/emacs_conf/secrets.el.gpg"))
-
+;;(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-(unless (server-running-p) (server-start)) ;; TODO denny
+(unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

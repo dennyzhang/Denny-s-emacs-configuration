@@ -3,21 +3,21 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:36>
+;; Updated: Time-stamp: <2014-11-14 10:18:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set environment variables for different OS
 (if (string= "darwin" system-type)
     (progn
       (setenv "LEDGER" "/usr/local/bin/ledger")
-      (setenv "LEDGER_FILE" "~/backup/essential/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
+      (setenv "LEDGER_FILE" "~/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
       (setenv "EMACS_BIN" "/usr/local/bin/emacs")
       )
   )
 (if (string= "gnu/linux" system-type)
     (progn
       (setenv "LEDGER" "/usr/bin/ledger")
-      (setenv "LEDGER_FILE" "~/backup/essential/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
+      (setenv "LEDGER_FILE" "~/Dropbox/private_data/emacs_stuff/bank/filebat.ledger")
       (setenv "EMACS_BIN" "/usr/local/bin/emacs")
       )
   )

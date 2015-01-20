@@ -3,16 +3,16 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-10 22:55:55>
+;; Updated: Time-stamp: <2014-12-07 17:59:50>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
 (require 'http-post-simple)
 (load-file (concat EMACS_VENDOR "org-publish/org-publish.el")
-;;(require 'org-publish) ;; TODO
+;; (require 'org-publish) ;; TODO
 (setq org-export-html-validation-link "")
-(add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote"))
+;; (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote")) ;; TODO
 (setq org-export-default-language "cn")
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)

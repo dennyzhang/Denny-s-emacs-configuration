@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-11 15:18:30>
+;; Updated: Time-stamp: <2014-11-21 00:00:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -18,6 +18,9 @@ Return a list of installed packages or nil for every skipped package."
        ))
    packages))
 ;; --8<-------------------------- separator ------------------------>8--
+;; activate installed packages
+(package-initialize)
+
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
@@ -33,10 +36,8 @@ Return a list of installed packages or nil for every skipped package."
                           'company 'hide-region 'color-moccur 'cursor-chg 'loccur 
                           'cal-china-x 'boxquote 'whitespace 'highlight-symbol
                           'bm 'frame-cmds 'frame-fns 'color-theme 'hide-comnt 
-                          'dired+ 'screenshot 'openwith
+                          'dired+ 'screenshot 'openwith 'erlang 'google-maps
+                          'swift-mode
                           )
-
-;; activate installed packages
-(package-initialize)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: packages.el ends here

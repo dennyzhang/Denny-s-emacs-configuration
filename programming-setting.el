@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-10 22:19:00>
+;; Updated: Time-stamp: <2014-11-13 07:14:31>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -118,14 +118,11 @@
              '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; C# programming
-(load-file (concat EMACS_VENDOR "csharp/csharp-mode.el")
+(load-file (concat EMACS_VENDOR "csharp/csharp-mode.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; php programming
-(add-to-list 'load-path (concat EMACS_VENDOR "/php-mode-1.5.0/"))
+(add-to-list 'load-path (concat EMACS_VENDOR "/php-mode/"))
 (require 'php-mode)
-;; debug php
-(add-to-list 'load-path (concat EMACS_VENDOR "/geben-0.26"))
-(autoload 'geben "geben" "PHP Debugger on Emacs" t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ruby programming
 (add-to-list 'load-path (concat EMACS_VENDOR "/ruby-mode"))
@@ -222,7 +219,7 @@
 ;; erlang
 ;; TODO, enhance as a more dedicated way
 ;; add the location of the elisp files to the load-path
-(add-to-list 'load-path (concat EMACS_VENDOR "/erlang-emacs/"))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/erlang-emacs/"))
 ;; set the location of the man page hierarchy
 (setq erlang-root-dir "/usr/lib/erlang")
 ;; add the home of the erlang binaries to the exec-path

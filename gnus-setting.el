@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-10 23:29:35>
+;; Updated: Time-stamp: <2014-11-14 10:17:27>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -35,7 +35,7 @@
 ;; '(nnimap "126"
 ;; (nnimap-address "imap.126.com")
 ;; (nnimap-server-port 143)
-;; (nnimap-authinfo-file "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/filebat.authinfo")
+;; (nnimap-authinfo-file "~/Dropbox/private_data/emacs_stuff/emacs_data/filebat.authinfo")
 ;; ;;(nnimap-authinfo-file (concat DENNY_CONF "emacs_data/filebat.authinfo"))
 ;; ))
 ;; (setq gnus-secondary-select-methods
@@ -43,7 +43,7 @@
 ;; (nnimap "gmail"
 ;; (nnimap-address "imap.gmail.com")
 ;; (nnimap-server-port 993)
-;; (nnimap-authinfo-file "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/filebat.authinfo")
+;; (nnimap-authinfo-file "~/Dropbox/private_data/emacs_stuff/emacs_data/filebat.authinfo")
 ;; ;;(nnimap-authinfo-file (concat DENNY_CONF "emacs_data/filebat.authinfo"))
 ;; (nnimap-stream ssl))
 ;; ))
@@ -383,7 +383,7 @@ then send mails by send-groupmail-by-mailbuffer."
   )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; search content of gnus mails
-;; (cd ~/backup/essential/Dropbox/private_data/gnus_data/Mail && swish-e -i . -f ../index.swish -e -v 2)
+;; (cd ~/Dropbox/private_data/gnus_data/Mail && swish-e -i . -f ../index.swish -e -v 2)
 (require 'nnir)
 (setq nnir-search-engine 'swish-e)
 (setq nnir-swish-e-index-files

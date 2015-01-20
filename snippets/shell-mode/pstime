@@ -1,0 +1,1 @@
+ps -o lstart= -p $1

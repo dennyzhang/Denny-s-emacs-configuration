@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-10 21:24:55>
+;; Updated: Time-stamp: <2014-12-13 08:13:55>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -91,8 +91,7 @@
 (setq user-mail-address "filebat.mark@gmail.com")
 (load-file (concat DENNY_CONF "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))  ;; TODO
-;; (load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el")) ;; TODO
+(load-file (concat DENNY_CONF "/emacs_conf/org-publish/wordpress-post.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
@@ -150,7 +149,7 @@
 (org-defkey org-mode-map (kbd "M-p i") 'my-insert-time)
 (org-defkey org-mode-map "\C-c<" 'recent-jump-jump-backward)
 (org-defkey org-mode-map "\C-c>" 'recent-jump-jump-forward)
-;; (org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
+;;(org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
 (defun my-org-meta-return(&optional arg)
   (interactive "P")
   (if (org-in-item-p)

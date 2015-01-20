@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-05-24 12:11:01>
+;; Updated: Time-stamp: <2014-12-02 00:37:27>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -51,7 +51,10 @@ Website: http://www.dennyzhang.com/")
           (setq signature-string
                 (buffer-substring-no-properties (point-min) (point-max))))
         (setq cowsay-file (get-random-cowsay ".*.txt"))
-        (format "%s\n%s" signature-string (org-get-file-contents cowsay-file))
+        (format "%s\n%s" signature-string 
+                (with-temp-buffer
+                  (insert-file-contents cowsay-file)
+                  (buffer-string)))
         )
       )
     ))
