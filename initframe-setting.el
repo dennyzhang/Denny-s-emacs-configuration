@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
 ;; File: initframe-setting.el --- org-mode export css
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny(denny.zhang001@gmail.com)
+;;
+;; Copyright 2015, DennyZhang.com
+;;
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:42>
+;; Updated: Time-stamp: <2015-01-20 15:57:28>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq initial-frame-alist '((top . 100) (left . 100)))

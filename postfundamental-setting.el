@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
 ;; File: postfundamental-setting.el --- fundamental setting as the last step, for all emacs configurations
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny(denny.zhang001@gmail.com)
+;;
+;; Copyright 2015, DennyZhang.com
+;;
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:37>
+;; Updated: Time-stamp: <2015-01-20 15:57:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)

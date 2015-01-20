@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny(denny.zhang001@gmail.com)
+;;
+;; Copyright 2015, DennyZhang.com
+;;
 ;; File: magic-setting.el
 ;; Created: 2008-10-01
-;; Updated: Time-stamp: <2013-09-09 14:01:40>
+;; Updated: Time-stamp: <2015-01-20 15:57:26>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -112,4 +115,4 @@ File suffix is used to determine what program to run."
         )
       )))
 ;; --8<-------------------------- separator ------------------------>8--
-;; File: handyfunction-setting.el ends here
+;; File: magic-setting.el ends here
