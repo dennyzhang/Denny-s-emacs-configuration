@@ -2,8 +2,9 @@
 ;; File: bbdb-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-13 07:17:13>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:00:41>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))

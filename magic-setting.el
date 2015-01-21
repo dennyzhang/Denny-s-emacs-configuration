@@ -2,11 +2,11 @@
 ;;
 ;; Author: Denny(denny.zhang001@gmail.com)
 ;;
-;; Copyright 2015, DennyZhang.com
+;; Copyright 2015, http://DennyZhang.com
 ;;
 ;; File: magic-setting.el
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2015-01-20 15:57:26>
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:02:17>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.

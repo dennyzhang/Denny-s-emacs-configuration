@@ -2,8 +2,9 @@
 ;; File: essentialpackage-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-11 00:05:52>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:03:51>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))

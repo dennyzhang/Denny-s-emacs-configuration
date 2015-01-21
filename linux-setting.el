@@ -2,8 +2,9 @@
 ;; File: linux-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-10 22:52:55>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:03:50>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")

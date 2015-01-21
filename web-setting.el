@@ -2,8 +2,9 @@
 ;; File: web-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-11-12 21:22:13>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:03:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link

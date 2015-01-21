@@ -2,8 +2,9 @@
 ;; File: dired-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2014-02-25 21:04:15>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:03:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Dired reuse directory buffer

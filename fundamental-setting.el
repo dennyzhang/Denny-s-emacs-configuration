@@ -2,8 +2,9 @@
 ;; File: fundamental-setting.el -- most important setting, excluding third party packages
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
-;; Created: 2008-10-01
-;; Updated: Time-stamp: <2015-01-20 10:36:33>
+;; Copyright 2015, http://DennyZhang.com
+;; Created:2008-10-01
+;; Updated: Time-stamp: <2015-01-21 11:03:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
