@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2015-03-29 16:43:55>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
@@ -148,41 +148,46 @@
 (defun my-open-file (filename)
   (interactive)
   (find-file filename))
+
+;; technical
+(defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/linux.org"))))
+(defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
+(defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/cloud.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/devops.org"))))
+(defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
+(defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
+(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/language.org"))))
+(defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/windows.org"))))
+(defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/sa.org"))))
+
+;; life
+(defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/life.org"))))
+(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
+(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contacts.org"))))
+(defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/wealth.org"))))
+
+;; work
+(defalias 'osc (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work/osc.org"))))
+
+;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
 (defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_CONF "/bank/filebat.ledger"))))
 (defalias 'filebat (lambda() (interactive) (my-open-file (concat DENNY_CONF "/filebat.txt"))))
-(defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wealth.org"))))
-(defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/cloud.org"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
-(defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/sa.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/devops.org"))))
-(defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/windows.org"))))
-(defalias 'freelancer (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/freelancer.org"))))
-(defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life.org"))))
-(defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/linux.org"))))
-(defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/windows.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/motto.org"))))
-(defalias 'us (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/us.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work.org"))))
-(defalias 'osc (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/osc.org"))))
 (defalias 'manage (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/manage.org"))))
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
-(defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/openstack.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
-(defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/ios.org"))))
-(defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/web.org"))))
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
-(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contacts.org"))))
 (defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
-(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/language.org"))))
 (defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/question.org"))))
 (defalias 'topic (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/topic.org"))))
 ;; --8<-------------------------- separator ------------------------>8--

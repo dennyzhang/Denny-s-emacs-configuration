@@ -5,13 +5,16 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2014-06-15 18:40:38>
+## Updated: Time-stamp: <2015-02-28 08:59:16>
 ##-------------------------------------------------------------------
 . utility.sh
-function log()
-{
+function log() {
     local msg=\${1?}
     echo -ne \`date +['%Y-%m-%d %H:%M:%S']\`" \$msg\n"
+
+    if [ -n "$LOG_FILE" ]; then
+        echo -ne \`date +['%Y-%m-%d %H:%M:%S']`" $msg\n" >> $LOG_FILE
+    fi
 }
 
 function ensure_variable_isset() {

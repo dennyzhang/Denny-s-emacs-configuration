@@ -5,7 +5,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:52>
+;; Updated: Time-stamp: <2015-03-29 16:42:14>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -18,7 +18,7 @@
          "** %?")
         ("l" "learn" entry (file "learn.org")
          "** %?")
-        ("e" "English" entry (file+headline "english.org" "每日英文")
+        ("e" "English" entry (file+headline "life/english.org" "每日英文")
          "** %?")
 
         ("c" "Communicate" entry (file+headline "current.org" "Communicate")

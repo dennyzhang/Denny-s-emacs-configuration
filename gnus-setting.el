@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2015-02-22 18:20:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -86,7 +86,7 @@
        ((string= from-mail "markfilebat@126.com")
         (setq message-sendmail-extra-arguments '("-a" "126")
               user-mail-address from-mail))
-       ((string= from-mail "denny.zyang@totvs.com")
+       ((string= from-mail "denny.zhang@totvs.com")
         (setq message-sendmail-extra-arguments '("-a" "exchange")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
@@ -245,22 +245,15 @@
 ;;　category pop3 mails
 (setq nnmail-split-methods
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*\\|From:.*admin@42qu.com.*")
+        ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*249950670@qq.com.*\\|From:.*denny.zhang@totvs.com.*\\|From:.*denny.zhang001@gmail.com")
+        ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*\\|From:.*@.*openstack.org.*\\|Reply-To:.*launchpad.*")
+
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
-        ("shopping" "From:.*yihaodian.com.*\\|From:.*mail.alipay.com.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
-        ("totvs-test" "From:.*test@texoit.com.*")
         ("totvs-nagios" "From:.*nagios@fluig-id-cdn-01.fluigidentity.com.*")
-        ("totvs-healthcheck" "Subject:.*Health Check Of Fluig Servers Has Failed.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
-        ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*filebat.mark@gmail.com.*\\|From:.*denny@unitedstack.com.*")
-        ("unitedstack_zabbix" "Subject:.*Ustack-Jenkins.*Auto.*")
-        ("openstack-ask" "From:.*ask.openstack.org.*\\|Subject:.*Ask OpenStack.*")
-        ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*\\|From:.*@.*openstack.org.*\\|Reply-To:.*launchpad.*")
         ("job" "From:.*@indeed.com.*\\|From:.*@.*monster.com\\|From:.*@cybercoders.com")
-        ("work" "From:.*@unitedstack.com.*")
-        ("emacs-group" "To:.*help-gnu-emacs@gnu.org.*\\|To:.*emacs-orgmode@gnu.org.*")
-        ("report" "Subject:.*UOS 每日测试报告.*")
         ))
 
 ;; category mails by bbdb group
