@@ -5,7 +5,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-03-29 16:42:14>
+;; Updated: Time-stamp: <2015-05-06 11:06:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -14,7 +14,7 @@
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
         ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("s" "Shopping" entry (file+headline "current.org" "Shopping list")
+        ("s" "Shopping" entry (file+headline "life/life.org" "Shopping list")
          "** %?")
         ("l" "learn" entry (file "learn.org")
          "** %?")
@@ -29,12 +29,15 @@
          "** %?")
         ("t" "Talk" entry (file+headline "org_share/linux.org" "Questions I'm expecting discussion")
           (function capture-talk-template))
-        ("d" "Diary" table-line (file+headline "org_share/linux.org"
+        ("d" "Diary" entry (file+headline "life/contacts.org"
                                                "Daily Journal -- 工作日志")
-         "|%<%Y-%m-%d>| %? |\n" :table-line-pos "I+1")
+         "** %<%Y-%m-%d>: %?")
+
+        ("h" "health" entry (file+headline "life/life.org" "Family Health")
+         "** %<%Y-%m-%d>: %?")
 
         ("p" "Period" table-line
-         (file+headline "contacts.org" "秀秀--周期")
+         (file+headline "life/contacts.org" "秀秀--周期")
          "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
         ;;("r" "Read" entry (file+headline "life.org" "Book -- 阅读") "** TODO %?\n")
 

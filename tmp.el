@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:45>
+;; Updated: Time-stamp: <2015-10-19 13:53:18>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -362,7 +362,7 @@
 ;; (require 'nnir)
 ;; (setq nnir-search-engine 'namazu)
 ;; (setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
-;; (setq nnir-namazu-remove-prefix (expand-file-name "~/Dropbox/private_data/gnus_data/Mail"))
+;; (setq nnir-namazu-remove-prefix (expand-file-name (concat SHARE_DIR "private_data/gnus_data/Mail"))
 ;; (setq nnir-mail-backend gnus-select-method)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun nuke-unmodified-buffers (&optional list)
@@ -1711,7 +1711,7 @@ Insert if ARG."
  (question)
  (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
  (org-export-as-freemind)
- (shell-command "~/Dropbox/private_data/backup_small/update-blog.sh")
+ (shell-command (concat SHARE_DIR "private_data/backup_small/update-blog.sh"))
  )
  )
 (add-hook 'org-mode-hook
@@ -1824,7 +1824,7 @@ Insert if ARG."
  "Run shell script to get mail"
  (interactive)
  (progn
-   (shell-command "~/Dropbox/private_data/backup_small/fetch_mail/fetch_mail.sh")
+   (shell-command (concat SHARE_DIR "private_data/backup_small/fetch_mail/fetch_mail.sh"))
  ))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-$" 'flyspell-word)
@@ -1855,23 +1855,6 @@ Insert if ARG."
     )
     )
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; display-time-world
-(setq display-time-world-list
-      '(
-        ("America/Chicago" "Houston")
-        ;;("America/Los_Angeles" "Seattle")
-        ("America/New_York" "Boston")
-        ("Asia/Shanghai" "Changsha")
-        ))
-
-(global-set-key [M-f4]
-                #'(lambda ()
-                    (interactive)
-                    (display-time-world)
-                    (other-window 1)
-                    (enlarge-window 3)
-                    ))
 
 (defun update-r-period()
   (interactive)

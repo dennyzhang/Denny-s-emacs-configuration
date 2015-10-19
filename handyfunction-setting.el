@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2015-10-19 13:47:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -687,8 +687,8 @@ are in the sub-pattern of PATTERN given by SUB-INDEX."
 (defun ramfs-flush()
   (interactive)
   (rsync-dir
-   "~/Dropbox/private_data/emacs_stuff/org_data/"
-   "~/Dropbox/private_data/emacs_stuff/org_data.disk")
+   (concat SHARE_DIR "private_data/emacs_stuff/org_data/")
+   (concat SHARE_DIR "private_data/emacs_stuff/org_data.disk"))
   )
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-nsplit-line (n)

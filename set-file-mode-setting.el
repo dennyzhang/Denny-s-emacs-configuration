@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:46>
+;; Updated: Time-stamp: <2015-07-23 15:57:09>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
@@ -43,8 +43,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/ledger"))
-(require 'ledger-mode)
-(add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
+;; (require 'ledger-mode)
+;; (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.erb$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.cpp$" . (c++-mode 1)))

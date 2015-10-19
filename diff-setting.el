@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2012-04-22
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2015-04-09 21:50:01>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -22,14 +22,15 @@
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
-(require 'magit)
-(eval-after-load 'magit
-  '(progn
-     (autoload 'mo-git-blame-file "mo-git-blame" nil t)
-     (autoload 'mo-git-blame-current "mo-git-blame" nil t)
-     (setq magit-diff-options "-w") ;; when comparing, ignore all white space
-     ))
+;;(add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
+;;(require 'magit)
+;;(eval-after-load 'magit
+;;  '(progn
+;;     (autoload 'mo-git-blame-file "mo-git-blame" nil t)
+;;     (autoload 'mo-git-blame-current "mo-git-blame" nil t)
+;;     (setq magit-diff-options "-w") ;; when comparing, ignore all white space
+;;     ))
+
 ;; set face coloring
 (eval-after-load 'magit
   '(progn
@@ -54,11 +55,12 @@
 (defun git-commit-changes ()
   (start-process "*git commit*" nil "git" "commit" "-a" "-m" "changes"))
 
+;; TODO
 ;; when diff-mode, set buffers readonly
-(add-hook 'diff-mode-hook (lambda () (view-mode)))
-(define-key view-mode-map "j" 'ido-dired)
-(define-key view-mode-map "n" 'scroll-up-command)
-(define-key view-mode-map "p" 'scroll-down-command)
+;;(add-hook 'diff-mode-hook (lambda () (view-mode)))
+;;(define-key view-mode-map "j" 'ido-dired)
+;;(define-key view-mode-map "n" 'scroll-up-command)
+;;(define-key view-mode-map "p" 'scroll-down-command)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ediff-sequent-lines ()
   "Compare two sequent lines in the same buffer, by calling ediff-regions-internal"

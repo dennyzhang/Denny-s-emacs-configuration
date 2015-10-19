@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-03-29 16:41:16>
+;; Updated: Time-stamp: <2015-05-08 15:12:29>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -15,7 +15,6 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list
-                              (concat DENNY_CONF "/org_data/org_share/freelancer.org")
                               (concat DENNY_CONF "/org_data/current.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))

@@ -1,1 +1,0 @@
-sudo killall -9 dropbox ; echo 100000 | sudo tee /proc/sys/fs/inotify/max_user_watches; (nohup ~/.dropbox-dist/dropbox & ); sudo chmod 777 nohup.out

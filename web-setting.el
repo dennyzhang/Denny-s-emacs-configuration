@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:45>
+;; Updated: Time-stamp: <2015-10-19 13:51:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -179,10 +179,10 @@ create a new window and browse the webpage"
         ;; --8<------------------ search engine ------------------------>8--
 
         ;; --8<------------------ ebook ------------------------>8--
+        ("book-itebooksinfo" . [simple-query "it-ebooks.info" "it-ebooks.info/" ""])
         ("book-itebooks" . [simple-query "it-ebooks-search.info" "it-ebooks-search.info/search?q=" ""])
         ("book-kickass" . [simple-query "kickass.to" "kickass.to/usearch/" ""])
         ("book-shupeng" . [simple-query "www.shupeng.com" "www.shupeng.com/search/" ""])
-        ("book-coay" . [simple-query "www.coay.com" "www.coay.com/search.php?key=" ""])
         ("book-51cto" . [simple-query "down.51cto.com" "down.51cto.com/search.php?q=" ""])
         ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
         ("book-greenebookshop" . [simple-query "www.greenebookshop.com" "www.greenebookshop.com/" ""])
@@ -216,7 +216,6 @@ create a new window and browse the webpage"
 
         ;; --8<------------------ personal ------------------------>8--
         ("matoushan" . "www.matoushan.co.cc")
-        ("rdaccount" . "file:///home/denny/backup/essential/Dropbox/private_data/backup_large/rd-accounting/code/flex/bin-debug/index.html")
         ;; --8<------------------ personal ------------------------>8--
 
         ;; --8<------------------ misc ------------------------>8--

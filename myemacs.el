@@ -4,10 +4,11 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:50>
+;; Updated: Time-stamp: <2015-10-19 13:50:20>
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "~/Dropbox/emacs_vendor/")
-(defconst DENNY_CONF "~/Dropbox/private_data/emacs_stuff/")
+(defconst EMACS_VENDOR "~/backup/emacs_vendor/")
+(defconst SHARE_DIR "/Users/mac/baidu/百度云同步盘/")
+(defconst DENNY_CONF "/Users/mac/baidu/百度云同步盘/private_data/emacs_stuff/")
 
 ;; Load 3rd packages
 (load-file (concat DENNY_CONF "/emacs_conf/packages.el"))
@@ -91,9 +92,9 @@
 
 ;; loading sensitive configurations
 ;;(load-file (concat DENNY_CONF "/emacs_conf/secrets.el.gpg"))
-;;(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
+(load-file (concat DENNY_CONF "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-(unless (server-running-p) (server-start))
+;;(unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

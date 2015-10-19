@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:50>
+;; Updated: Time-stamp: <2015-10-19 13:48:04>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -306,7 +306,7 @@
 (setq emms-org-file (concat DENNY_CONF "/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
   #'(lambda () (interactive) (update-music-to-org-file emms-org-file)))
-;; (update-music-to-org-file "~/Dropbox/private_data/emacs_stuff/org_data/org_share/music.org")
+;; (update-music-to-org-file (concat SHARE_DIR "private_data/emacs_stuff/org_data/org_share/music.org"))
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))
          (last-played (emms-track-get track 'last-played))

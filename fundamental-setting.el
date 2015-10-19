@@ -4,8 +4,9 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-03-29 16:43:55>
+;; Updated: Time-stamp: <2015-10-19 13:46:01>
 ;; --8<-------------------------- separator ------------------------>8--
+(eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
 (set-language-environment 'utf-8)
 ;;support copy/paste among emacs and other programs
@@ -151,19 +152,22 @@
 
 ;; technical
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/linux.org"))))
+(defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/cloud.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/devops.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat SHARE_DIR "/private_data/project/devops_consultant/devops-knowledgebase/denny.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
 (defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
+(defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/blog.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/language.org"))))
 (defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/windows.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/sa.org"))))
+(defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/chef.org"))))
 
 ;; life
 (defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/life.org"))))
-(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/password.org.gpg"))))
-(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/contacts.org"))))
+(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/password.org.gpg"))))
+(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/contacts.org"))))
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/wealth.org"))))
 
 ;; work
@@ -181,6 +185,7 @@
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
+(defalias 'english (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/english.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
@@ -203,9 +208,9 @@
              ;; If the file path doesn't exist, create it, including any parent directories.
              (or (file-exists-p (file-name-directory buffer-file-name))
                  (make-directory (file-name-directory buffer-file-name) t))
-             ;; ;; Remove trailing whitespace  ;; TODO
+             ;; ;; Remove trailing whitespace ;; TODO
              ;; (unless (member mode-name readonly-mode-list)
-             ;;   (delete-trailing-whitespace))
+             ;; (delete-trailing-whitespace))
              ;; Auto update timestamp for some specific files
              (unless (member (file-name-extension (buffer-name)) '("org"))
                (time-stamp))
@@ -237,7 +242,7 @@
           (concat grep-find-command " -type f -print0 | xargs -0 grep -inH -e "))
          (t
           (concat grep-find-command " -type f -print0 | xargs -0 -e grep -inH -e "))
-          ))
+         ))
   )
 
 (global-set-key [(super .)] 'my-occur)
@@ -499,7 +504,7 @@ starting on the same line at which another match ended is ignored."
 (defun current-buffer-name-extension ()
   (let ((buffer-fname (buffer-file-name)))
     (if (null buffer-fname) "" (file-name-extension buffer-fname)
-    )))
+        )))
 
 (defun current-mode-str ()
   (cond
@@ -530,5 +535,24 @@ starting on the same line at which another match ended is ignored."
     )
   )
 (setq case-fold-search t) ;; search case insensitive
+;; --8<-------------------------- separator ------------------------>8--
+;; display-time-world for different timezone
+(setq display-time-world-time-format "%R %Z %A")
+(setq display-time-world-list
+      '(
+        ("Asia/Shanghai" "China")
+        ("America/Fortaleza" "Brazil")
+        ("America/New_York" "Boston")
+        ("America/Chicago" "Houston")
+        ("America/Dawson" "CA")
+        ))
+
+(global-set-key [M-f4]
+                #'(lambda ()
+                    (interactive)
+                    (display-time-world)
+                    (other-window 1)
+                    (enlarge-window 3)
+                    ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: fundamental-setting.el ends here

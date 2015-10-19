@@ -4,13 +4,13 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:48>
+;; Updated: Time-stamp: <2015-06-17 00:25:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
 (require 'http-post-simple)
-(load-file (concat EMACS_VENDOR "org-publish/org-publish.el")
+(load-file (concat EMACS_VENDOR "org-publish/org-publish.el"))
 ;; (require 'org-publish) ;; TODO
 (setq org-export-html-validation-link "")
 ;; (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote")) ;; TODO
@@ -41,11 +41,11 @@
         ("publish" :components ("org-share" "org-index"))
         ))
 
-(defun org-publish-org-to-website (plist filename pub-dir)
-  "Publish an org file to HTML.
-See `org-publish-org-to' to the list of arguments."
-  (org-publish-with-aux-preprocess-maybe
-   (org-publish-org-to "website" plist filename pub-dir)))
+;; (defun org-publish-org-to-website (plist filename pub-dir)
+;;   "Publish an org file to HTML.
+;; See `org-publish-org-to' to the list of arguments."
+;;   (org-publish-with-aux-preprocess-maybe
+;;    (org-publish-org-to "website" plist filename pub-dir)))
 
 (defun get-top-entry-title ()
   (org-back-to-heading t)
@@ -58,91 +58,92 @@ See `org-publish-org-to' to the list of arguments."
   (setq top-entry-title (replace-regexp-in-string "\\]" ")" top-entry-title))
   )
 
-(defun org-export-as-website (arg &optional hidden ext-plist
-                                  to-buffer body-only pub-dir not-generate-sitemap)
-  (interactive "P")
-  (let* ((src-org-file buffer-file-name)
-         (dst-org-file (format "%s.index" (file-name-sans-extension src-org-file)))
-         (org-tag '())
-         src-shortname export-buffer export-file
-         org-tag top-entry-link start-pos end-pos
-         keyword-list
-         category
-         top-entry-pos (top-entry-pos-list '())
-         top-entry-title (top-entry-title-list '()))
-    ;; caculate top entries
-    (goto-char 0)
-    (while (search-forward-regexp "^* " nil t)
-      (setq top-entry-pos (- (point) 2))
-      ;; obtain titles of top entries
-      (setq top-entry-title (get-top-entry-title))
-      (setq org-tag (org-get-tags))
-      (if (member BlOG-TAG org-tag)
-          (progn
-            (unless (null top-entry-title)
-              (setq start-pos top-entry-pos)
-              (org-forward-same-level 1)
-              (setq end-pos (point))
-              (add-to-list 'top-entry-pos-list (cons start-pos end-pos))
-              (setq top-entry-title-list (cons top-entry-title top-entry-title-list))
-              )))
-      (goto-char (+ 1 top-entry-pos))
-      )
+;; (defun org-export-as-website (arg &optional hidden ext-plist
+;;                                   to-buffer body-only pub-dir not-generate-sitemap)
+;;   (interactive "P")
+;;   (let* ((src-org-file buffer-file-name)
+;;          (dst-org-file (format "%s.index" (file-name-sans-extension src-org-file)))
+;;          (org-tag '())
+;;          src-shortname export-buffer export-file
+;;          org-tag top-entry-link start-pos end-pos
+;;          keyword-list
+;;          category
+;;          top-entry-pos (top-entry-pos-list '())
+;;          top-entry-title (top-entry-title-list '()))
+;;     ;; caculate top entries
+;;     (goto-char 0)
+;;     (while (search-forward-regexp "^* " nil t)
+;;       (setq top-entry-pos (- (point) 2))
+;;       ;; obtain titles of top entries
+;;       (setq top-entry-title (get-top-entry-title))
+;;       (setq org-tag (org-get-tags))
+;;       (if (member BlOG-TAG org-tag)
+;;           (progn
+;;             (unless (null top-entry-title)
+;;               (setq start-pos top-entry-pos)
+;;               (org-forward-same-level 1)
+;;               (setq end-pos (point))
+;;               (add-to-list 'top-entry-pos-list (cons start-pos end-pos))
+;;               (setq top-entry-title-list (cons top-entry-title top-entry-title-list))
+;;               )))
+;;       (goto-char (+ 1 top-entry-pos))
+;;       )
 
-    ;; generate a separate page for each top entry
-    (let (start-end-pos)
-      (dolist (top-entry-title top-entry-title-list)
-        (setq start-end-pos (pop top-entry-pos-list))
-        (setq start-pos (car start-end-pos))
-        (setq end-pos (cdr start-end-pos))
-        ;; mark region
-        (transient-mark-mode t)
-        (goto-char start-pos)
-        (setq category (car (delete BlOG-TAG (org-get-tags))))
-        (setq keyword-list (org-entry-get nil "type"))
-        (if (null keyword-list) (setq keyword-list ""))
-        (set-mark (point))
-        (goto-char end-pos)
-        ;; export html
-        (setq export-buffer (format "%s-%s-%s_%s.html"
-                                    (file-name-sans-extension (file-name-nondirectory buffer-file-name))
-                                    (md5 top-entry-title)
-                                    category
-                                    keyword-list
-                                    ))
-        (save-excursion
-          (org-export-as-html
-           arg hidden ext-plist export-buffer body-only pub-dir)
-          (setq export-file (format "%s/%s" pub-dir export-buffer))
-          (write-file export-file nil)
-          (kill-buffer export-buffer)
-          )
-        ;; (org-export-as-html arg hidden ext-plist to-buffer body-only pub-dir)
-        (if (fboundp 'deactivate-mark) (deactivate-mark))
-        ))
-    (unless not-generate-sitemap
-      (save-excursion
-        (find-file dst-org-file)
-        (setq export-buffer (format "%s.html" (file-name-sans-extension (file-name-nondirectory dst-org-file))))
-        (erase-buffer)
-        (setq src-shortname (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-        (insert (format "-*- mode:org; fill-column:90; coding:utf-8; -*-
-#+LINK_HOME: index.html
-#+LINK_UP: %s.html
-" src-shortname))
-        (setq top-entry-title-list (nreverse top-entry-title-list))
-        (dolist (top-entry-title top-entry-title-list)
-          (setq top-entry-link (format "%s-%s.org" src-shortname (md5 top-entry-title)))
-          (insert (format "* [[file:%s][%s]]\n" top-entry-link top-entry-title)))
-        (save-buffer 0)
-        (org-export-as-html arg hidden ext-plist export-buffer body-only pub-dir)
-        (setq export-file (format "%s/%s" pub-dir export-buffer))
-        (write-file export-file nil)
-        (kill-buffer export-buffer)
-        (delete-file dst-org-file)
-        ))
-    ))
+;;     ;; generate a separate page for each top entry
+;;     (let (start-end-pos)
+;;       (dolist (top-entry-title top-entry-title-list)
+;;         (setq start-end-pos (pop top-entry-pos-list))
+;;         (setq start-pos (car start-end-pos))
+;;         (setq end-pos (cdr start-end-pos))
+;;         ;; mark region
+;;         (transient-mark-mode t)
+;;         (goto-char start-pos)
+;;         (setq category (car (delete BlOG-TAG (org-get-tags))))
+;;         (setq keyword-list (org-entry-get nil "type"))
+;;         (if (null keyword-list) (setq keyword-list ""))
+;;         (set-mark (point))
+;;         (goto-char end-pos)
+;;         ;; export html
+;;         (setq export-buffer (format "%s-%s-%s_%s.html"
+;;                                     (file-name-sans-extension (file-name-nondirectory buffer-file-name))
+;;                                     (md5 top-entry-title)
+;;                                     category
+;;                                     keyword-list
+;;                                     ))
+;;         (save-excursion
+;;           (org-export-as-html
+;;            arg hidden ext-plist export-buffer body-only pub-dir)
+;;           (setq export-file (format "%s/%s" pub-dir export-buffer))
+;;           (write-file export-file nil)
+;;           (kill-buffer export-buffer)
+;;           )
+;;         (if (fboundp 'deactivate-mark) (deactivate-mark))
+;;         ))
+;;     (unless not-generate-sitemap
+;;       (save-excursion
+;;         (find-file dst-org-file)
+;;         (setq export-buffer (format "%s.html" (file-name-sans-extension (file-name-nondirectory dst-org-file))))
+;;         (erase-buffer)
+;;         (setq src-shortname (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+;;         (insert (format "-*- mode:org; fill-column:90; coding:utf-8; -*-
+;; #+LINK_HOME: index.html
+;; #+LINK_UP: %s.html
+;; " src-shortname))
+;;         (setq top-entry-title-list (nreverse top-entry-title-list))
+;;         (dolist (top-entry-title top-entry-title-list)
+;;           (setq top-entry-link (format "%s-%s.org" src-shortname (md5 top-entry-title)))
+;;           (insert (format "* [[file:%s][%s]]\n" top-entry-link top-entry-title)))
+;;         (save-buffer 0)
+;;         (org-export-as-html arg hidden ext-plist export-buffer body-only pub-dir)
+;;         (setq export-file (format "%s/%s" pub-dir export-buffer))
+;;         (write-file export-file nil)
+;;         (kill-buffer export-buffer)
+;;         (delete-file dst-org-file)
+;;         ))
+;;     ))
+
 (org-defkey org-mode-map (kbd "C-c v") 'beautify-web-quotation)
+
 (defun beautify-web-quotation ()
   (interactive)
   (when (string= mode-name "Org")
@@ -215,14 +216,12 @@ See `org-publish-org-to' to the list of arguments."
     (goto-char (point-min))
     ;; add digest for wordpress
     (goto-char (point-min))
-    (while (search-forward-regexp "</ul>
-</div>
-</div>
+    (while (search-forward-regexp "</div>
+
+<ul class=\"org-ul\">
 " nil t)
-      (replace-match "</ul>
-</div>
-</div>
-<!--more-->
+      (replace-match "<!--more-->
+<ul class=\"org-ul\">
 "))
     ;; insert tailing whitespace line
     (goto-char (point-min))
@@ -279,10 +278,10 @@ See `org-publish-org-to' to the list of arguments."
               (setq content-str (buffer-substring-no-properties (point-min) (point-max)))
               (goto-char (point-min))
               (setq description-str "")
-              (if (search-forward-regexp "<hr/>" nil t)
+              (if (search-forward-regexp "<hr  />" nil t)
                   (progn
                     (setq meta-start (point))
-                    (when (search-forward-regexp "<hr/>" nil t)
+                    (when (search-forward-regexp "<hr  />" nil t)
                       (setq meta-end (point))
                       (setq description-str (buffer-substring-no-properties meta-start meta-end))
 
@@ -308,7 +307,7 @@ See `org-publish-org-to' to the list of arguments."
                      (cons "authorName" "dennyzhang.com")
                      (cons "description" (modify_description description-str)) ;; digest
                      (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list)) ;; tag
-                     (cons "wp_slug" post-slug)
+                     (cons "wp_slug" post-slug) ;; uri
                      (cons "categories" (list category)) ;; category
                      (cons "mt_text_more" (modify_content content-str)) ;; Read more
                      ))
@@ -344,19 +343,21 @@ See `org-publish-org-to' to the list of arguments."
     ;; update link
     ;;(setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
     (setq ret (replace-regexp-in-string "<p class=\"author\".*" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"date\".*" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"validation\".*" "" ret))    
 
-    ;; update time description
-    (setq ret (replace-regexp-in-string "<p class=\"date\">Time.*"
+    (setq ret (replace-regexp-in-string "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
                                         (format-time-string
-                                         "<p class=\"author\" align=\"right\">By <a href='http://www.dennyzhang.com'>Denny</a> %D</p>"
-                                                            (current-time))
-                                        ret))
+                                         "<p class=\"author\" align=\"right\">By <a href='http://www.dennyzhang.com'>Denny</a> %D</p>" (current-time)) ret))
     ;; remove title from content
-    (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n\n\n<br/>\n" "" ret))
+    (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n.*\n.*\n.*\n.*\n" "" ret))
     ;; remove DONE decorator
     (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
     (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
     ;; remove hr
+    ;; add post link
+    (setq ret (format "Post Permanent Link: <a href=\"http://www.dennyzhang.com/%s/\">http://www.dennyzhang.com/%s/</a>
+%s" post-slug post-slug ret))
     ;;(setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )
   )
@@ -378,7 +379,8 @@ See `org-publish-org-to' to the list of arguments."
     ;; delete old file, if it exists
     (if (file-exists-p current-exported-filename)
         (delete-file current-exported-filename))
-    (org-export-as-html 3)
+    ;;(org-export-as-html 3)
+    (org-html-export-to-html)
     (rename-file (format "%s.html" short-filename) current-exported-filename)
     (wash-html-for-wordpress-internal current-exported-filename)
     (setq current-post-meta (assoc current-md5 list-post-meta))
@@ -435,58 +437,59 @@ See `org-publish-org-to' to the list of arguments."
   )
 
 ;; --8<-------------------------- separator ------------------------>8--
-(defun xml-rpc-value-to-xml-list (value)
-  "Return XML representation of VALUE properly formatted for use with the \
-functions in xml.el."
-  (cond
-                                        ; ((not value)
-                                        ; nil)
-   ((xml-rpc-value-booleanp value)
-    `((value nil (boolean nil ,(xml-rpc-boolean-to-string value)))))
-   ;; might be a vector
-   ((vectorp value)
-    (xml-rpc-value-to-xml-list (append value nil)))
-   ((listp value)
-    (let ((result nil)
-          (xmlval nil))
-      (if (xml-rpc-value-structp value)
-          ;; Value is a struct
-          (progn
-            (while
-                (progn
-                  (when (and (symbolp (caar value)) (string= (caar value) :struct))
-                    (setq value (cons (cdar value) (cdr value))))
-                  (setq xmlval `((member nil (name nil ,(caar value))
-                                         ,(car (xml-rpc-value-to-xml-list
-                                                (cdar value)))))
-                        result (if t (append result xmlval) (car xmlval))
-                        value (cdr value))))
-            `((value nil ,(append '(struct nil) result))))
-        ;; Value is an array
-        (while (setq xmlval (xml-rpc-value-to-xml-list (car value))
-                     result (if result (append result xmlval)
-                              xmlval)
-                     value (cdr value)))
-        `((value nil (array nil ,(append '(data nil) result)))))))
-   ;; Value is a scalar
-   ((xml-rpc-value-intp value)
-    `((value nil (int nil ,(int-to-string value)))))
-   ;; Value is a Date ...
-   ((xml-rpc-value-datep value)
-    `((value nil (dateTime.iso8601 nil ,value))))
-   ;; Value is a String
-   ((xml-rpc-value-stringp value)
-    (let ((charset-list (find-charset-string value)))
-      (if (or xml-rpc-allow-unicode-string
-              (and (eq 1 (length charset-list))
-                   (eq 'ascii (car charset-list)))
-              (not xml-rpc-base64-encode-unicode))
-          `((value nil (string nil ,value))) ;;TODO: temporarily hack here
-        `((value nil (base64 nil ,(base64-encode-string
-                                   (encode-coding-string value 'utf-8))))))))
-   ((xml-rpc-value-doublep value)
-    `((value nil (double nil ,(number-to-string value)))))
-   (t
-    `((value nil (base64 nil ,(base64-encode-string value)))))))
+;; TODO
+;; (defun xml-rpc-value-to-xml-list (value)
+;;   "Return XML representation of VALUE properly formatted for use with the \
+;; functions in xml.el."
+;;   (cond
+;;                                         ; ((not value)
+;;                                         ; nil)
+;;    ((xml-rpc-value-booleanp value)
+;;     `((value nil (boolean nil ,(xml-rpc-boolean-to-string value)))))
+;;    ;; might be a vector
+;;    ((vectorp value)
+;;     (xml-rpc-value-to-xml-list (append value nil)))
+;;    ((listp value)
+;;     (let ((result nil)
+;;           (xmlval nil))
+;;       (if (xml-rpc-value-structp value)
+;;           ;; Value is a struct
+;;           (progn
+;;             (while
+;;                 (progn
+;;                   (when (and (symbolp (caar value)) (string= (caar value) :struct))
+;;                     (setq value (cons (cdar value) (cdr value))))
+;;                   (setq xmlval `((member nil (name nil ,(caar value))
+;;                                          ,(car (xml-rpc-value-to-xml-list
+;;                                                 (cdar value)))))
+;;                         result (if t (append result xmlval) (car xmlval))
+;;                         value (cdr value))))
+;;             `((value nil ,(append '(struct nil) result))))
+;;         ;; Value is an array
+;;         (while (setq xmlval (xml-rpc-value-to-xml-list (car value))
+;;                      result (if result (append result xmlval)
+;;                               xmlval)
+;;                      value (cdr value)))
+;;         `((value nil (array nil ,(append '(data nil) result)))))))
+;;    ;; Value is a scalar
+;;    ((xml-rpc-value-intp value)
+;;     `((value nil (int nil ,(int-to-string value)))))
+;;    ;; Value is a Date ...
+;;    ((xml-rpc-value-datep value)
+;;     `((value nil (dateTime.iso8601 nil ,value))))
+;;    ;; Value is a String
+;;    ((xml-rpc-value-stringp value)
+;;     (let ((charset-list (find-charset-string value)))
+;;       (if (or xml-rpc-allow-unicode-string
+;;               (and (eq 1 (length charset-list))
+;;                    (eq 'ascii (car charset-list)))
+;;               (not xml-rpc-base64-encode-unicode))
+;;           `((value nil (string nil ,value))) ;;TODO: temporarily hack here
+;;         `((value nil (base64 nil ,(base64-encode-string
+;;                                    (encode-coding-string value 'utf-8))))))))
+;;    ((xml-rpc-value-doublep value)
+;;     `((value nil (double nil ,(number-to-string value)))))
+;;    (t
+;;     `((value nil (base64 nil ,(base64-encode-string value)))))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-publish-to-wordpress.el ends here
