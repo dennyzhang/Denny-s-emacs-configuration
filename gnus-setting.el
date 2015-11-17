@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-10-19 13:50:32>
+;; Updated: Time-stamp: <2015-11-06 20:07:05>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -88,6 +88,9 @@
               user-mail-address from-mail))
        ((string= from-mail "denny.zhang@totvs.com")
         (setq message-sendmail-extra-arguments '("-a" "totvs")
+              user-mail-address from-mail))
+       ((string= from-mail "dennyzhang@jingantech.com")
+        (setq message-sendmail-extra-arguments '("-a" "jingantech")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
         (setq message-sendmail-extra-arguments '("-a" "gmail")

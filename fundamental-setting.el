@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-10-19 13:46:01>
+;; Updated: Time-stamp: <2015-11-08 21:10:18>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -155,7 +155,7 @@
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/cloud.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat SHARE_DIR "/private_data/project/devops_consultant/devops-knowledgebase/denny.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat SHARE_DIR "/private_data/project/devops_consultant/devops-knowledgebase-doc/denny.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
 (defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
 (defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/blog.org"))))
