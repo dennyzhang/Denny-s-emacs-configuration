@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-11-06 20:07:05>
+;; Updated: Time-stamp: <2015-12-12 10:49:42>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -411,13 +411,13 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-novice-user nil) ;; no confirmation is required
 ;; --8<-------------------------- separator ------------------------>8--
-(setq working-email-postfix "@oscgc.com")
+(setq working-email-postfix "@jingantech.com")
 (defun check-from-mail ()
   "Check whether I am sending from company's email adress, when coping with work stuff"
   (interactive)
   (save-excursion
     (let ((working-mail working-email-postfix)
-          (confirm-msg "Are you sure sending from filebat.mark@gmail.com for working emails? Press C-g to stop. ")
+          (confirm-msg "Are you sure sending from your personal email account for working emails? Press C-g to stop. ")
           )
       (goto-char (point-min))
       (when (search-forward-regexp (regexp-quote working-mail) nil t)
