@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-11-08 21:10:18>
+;; Updated: Time-stamp: <2016-01-10 17:14:06>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -155,7 +155,7 @@
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/cloud.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat SHARE_DIR "/private_data/project/devops_consultant/devops-knowledgebase-doc/denny.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/devops.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
 (defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
 (defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/blog.org"))))
@@ -186,6 +186,7 @@
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
 (defalias 'english (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/english.org"))))
+(defalias 'book (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/book.org"))))
 (defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
