@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-05-08 15:12:29>
+;; Updated: Time-stamp: <2016-02-04 22:50:57>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -22,7 +22,7 @@
 ;; log the time of the things I have done
 (setq-default org-log-done t)
 ;; write diary in org-mode
-(setq org-agenda-diary-file (concat DENNY_CONF "/org_data/org_share/diary.org"))
+(setq org-agenda-diary-file (concat DENNY_CONF "/org_data/life/diary.org"))
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)

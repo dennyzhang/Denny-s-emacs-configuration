@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2015-03-29 16:42:53>
+;; Copyright © 2010-2011 Time-stamp: <2016-02-04 22:52:15>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -86,7 +86,7 @@ Boston天气:%s
                                 ;;"project.org"
                                 "career.org"
                                 "wish.org"
-                                "work.org"
+                                "work/work.org"
                                 "current.org"
                                 "algorithm.org"
                                 "org_share/music.org"
@@ -95,8 +95,8 @@ Boston天气:%s
                                 "learn.org"
                                 "top.org"
                                 "often.org"
-                                "org_share/diary.org"
-                                "org_share/question.org"
+                                "life/diary.org"
+                                "life/question.org"
                                 ))
 ;; update daily at 01:00am
 ;; (run-at-time "01:00am" 86400 'org-export-for-mobile)

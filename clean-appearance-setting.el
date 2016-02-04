@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2016-02-04 22:51:04>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-face-background 'modeline "#5f9ea0") ;; set color of modeline ;; TODO denny
@@ -55,7 +55,7 @@
     (set-frame-parameter nil 'alpha (cons transparency-new transparency-new))
     ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq initial-buffer-choice (concat DENNY_CONF "/org_data/org_share/question.org"))
+(setq initial-buffer-choice (concat DENNY_CONF "/org_data/life/question.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun add-custom-global-font-locking ()
   "Hilight some keywords globally."
