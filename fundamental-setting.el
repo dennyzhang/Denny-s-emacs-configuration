@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-02-04 22:52:20>
+;; Updated: Time-stamp: <2016-02-05 20:39:16>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -162,6 +162,8 @@
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/language.org"))))
 (defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/windows.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/sa.org"))))
+(defalias 'db (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/db.org"))))
+(defalias 'idea (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/idea.org"))))
 (defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/chef.org"))))
 
 ;; life
@@ -180,20 +182,18 @@
 (defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/motto.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/work/work.org"))))
+(defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work/work.org"))))
 (defalias 'manage (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/manage.org"))))
 (defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
 (defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
 (defalias 'english (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/english.org"))))
 (defalias 'book (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/book.org"))))
-(defalias 'wish (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/wish.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
 (defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'communication (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/communication.org"))))
 (defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/question.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
