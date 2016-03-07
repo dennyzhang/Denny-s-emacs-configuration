@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-02-05 20:39:16>
+;; Updated: Time-stamp: <2016-02-26 14:12:48>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -168,6 +168,7 @@
 
 ;; life
 (defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/life.org"))))
+(defalias 'health (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/password.org.gpg"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/contacts.org"))))
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/wealth.org"))))

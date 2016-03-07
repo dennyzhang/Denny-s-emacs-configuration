@@ -4,11 +4,11 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-02-04 22:49:54>
+;; Updated: Time-stamp: <2016-03-07 20:01:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
-Email: denny.zhang001@gmail.com
+Email: denny@dennyzhang.com
 Website: http://www.dennyzhang.com/")
 (defun get-mail-signature ()
   (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))

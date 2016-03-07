@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:00:41>
+;; Updated: Time-stamp: <2016-03-05 17:23:07>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -28,10 +28,11 @@
 (load-file (concat EMACS_VENDOR "/bbdb-picture/bbdb-picture.el"))
 (setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard")) ;; TODO
-;;(require 'vcard) ;; TODO
-;;(bbdb-vcard-export "~/exported-vcards/" t t)
-;; (require 'bbdb-vcard) TODO
+(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
+(require 'vcard)
+(require 'bbdb-vcard)
+;;(bbdb-vcard-export "~/exported-vcards/" t t) ;; TODO
+ 
 (defun update-bbdb-picture-to-vcard(&optional vcard-dir)
   "update bbdb picture as a photo property of vcard files"
   (interactive)
