@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:50>
+;; Updated: Time-stamp: <2016-03-08 16:16:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq mac-command-modifier 'meta) 
@@ -57,7 +57,8 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-foreground 'default "#996633")
-(setq shell-file-name "/bin/bash")
+(setq shell-file-name "/bin/zsh")
+;; (setq shell-file-name "/bin/bash")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; configure remote parameters for tramp
 (require 'tramp-sh) ;; TODO
