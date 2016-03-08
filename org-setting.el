@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-02-04 22:50:57>
+;; Updated: Time-stamp: <2016-03-08 14:49:14>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -368,5 +368,12 @@
   (org-mime-htmlize nil)
   (message-send)
   )
+;; --8<-------------------------- separator ------------------------>8--
+;; use org-bullets-mode for utf8 symbols as org bullets
+(require 'org-bullets)
+;; make available "org-bullet-face" such that I can control the font size individually
+(setq org-bullets-face-name (quote org-bullet-face))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(setq org-bullets-bullet-list '("✣" "✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✤" "✥"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

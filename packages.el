@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:47>
+;; Updated: Time-stamp: <2016-03-08 14:23:26>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -22,8 +22,11 @@ Return a list of installed packages or nil for every skipped package."
 ;; activate installed packages
 (package-initialize)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
+                          ("gnu" . "http://elpa.gnu.org/packages/")
+                          ("melpa" . "http://melpa.milkbox.net/packages/")
+                          ("org" . "http://orgmode.org/elpa/")
+                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; make sure to have downloaded archive description.
 ;; Or use package-archive-contents as suggested by Nicolas Dudebout

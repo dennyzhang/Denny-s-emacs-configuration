@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 10:22:05>
+;; Updated: Time-stamp: <2016-03-08 14:50:41>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -563,22 +563,6 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (setq history-delete-duplicates t)
 (setq use-dialog-box nil)
-;; --8<-------------------------- separator ------------------------>8--
-(defun svn-my-diff ()
- "For current svn directory, automatically generate command of 'svn diff -r A:B''"
- (interactive)
- (let (revision
- (revision-cmd "svn info | grep '^Revision:' | awk -F' ' '{print $2}'")
- (svn-url-cmd "svn info | grep '^URL:' | awk -F' ' '{print $2}'")
- svn-url)
- (setq revision (shell-command-to-string revision-cmd))
- (setq revision (substring revision 0 (- (length revision) 1)))
- (setq revision (parse-integer revision))
- (setq svn-url (shell-command-to-string svn-url-cmd))
- (setq svn-url (substring svn-url 0 (- (length svn-url) 1)))
- (insert (format "svn diff -r %d:%d %s" (- revision 1) revision
- svn-url))
- ))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil) ;; TODO, suspicious configuration
 ;; --8<-------------------------- separator ------------------------>8--
@@ -1875,4 +1859,5 @@ Insert if ARG."
         ))
     )
   )
+;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here
