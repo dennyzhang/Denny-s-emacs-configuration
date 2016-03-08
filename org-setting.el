@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 14:49:14>
+;; Updated: Time-stamp: <2016-03-08 15:21:41>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -29,13 +29,13 @@
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    'turn-on-font-lock
-	    ;;(setq word-wrap 1)
-            ;; (make-local-variable 'highlight-changes-mode)
-            ;; (highlight-changes-mode 0)
-            ;; (make-local-variable 'highlight-tail-mode)
-            ;; (highlight-tail-mode 0)
+	    (setq word-wrap 1)
+            ;;(make-local-variable 'highlight-changes-mode)
+            ;;(highlight-changes-mode 0)
+            ;;(make-local-variable 'highlight-tail-mode)
+            ;;(highlight-tail-mode 0)
 	    (setq truncate-lines t)
-            (iimage-mode 't)
+            ;;(iimage-mode 't)
             ))
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)

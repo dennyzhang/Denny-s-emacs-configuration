@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-02-26 14:12:48>
+;; Updated: Time-stamp: <2016-03-08 15:49:07>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -105,7 +105,6 @@
                           (iconify-or-deiconify-frame))))))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [f1] 'describe-function) ;;elisp help
-(global-set-key [f6] 'calc);;calc
 (global-set-key [C-f12] 'comment-or-uncomment-region);comment region
 (global-set-key [f12] 'c-indent-line-or-region)
 (setq outline-minor-mode-prefix (kbd "C-o"))

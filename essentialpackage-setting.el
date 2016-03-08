@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2016-03-08 15:49:01>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -279,17 +279,17 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
     (unless (member mode-name prohibit-mode-list)
       (highlight-changes-mode 0)
       (global-highlight-changes-mode 'passive);;record changes in passive way
-      (local-set-key [(control c) (control c)] 'highlight-changes-mode);;toggle visibility
       (local-set-key [(control c) (control p)] 'highlight-changes-previous-change)
       (local-set-key [(control c) (control n)] 'highlight-changes-next-change)
       (set-face-foreground 'highlight-changes nil)
       ;; set highlight-changes's background color slightly different with the editor's background color(DarkSlateGray)
-      (set-face-background 'highlight-changes "#3F2F4F4F4F4F")
+      (set-face-background 'highlight-changes "#382f2f")
       (set-face-foreground 'highlight-changes-delete nil)
-      (set-face-background 'highlight-changes-delete "#686897")
+      (set-face-background 'highlight-changes-delete "#916868")
       )
     )
   )
+(global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/hide-lines/hide-lines.el"))
 (require 'hide-lines)

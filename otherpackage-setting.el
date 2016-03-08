@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 10:21:59>
+;; Updated: Time-stamp: <2016-03-08 16:00:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
@@ -134,5 +134,20 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; --8<-------------------------- separator ------------------------>8--
+;; git-gutter indicats whether a line has been inserted, modified or deleted
+(add-to-list 'load-path (concat EMACS_VENDOR "/emacs-git-gutter/"))
+(require 'git-gutter)
+;; (global-git-gutter-mode +1)
+(global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
+(custom-set-variables '(git-gutter:update-interval 2))
+;; (custom-set-variables
+;;  '(git-gutter:window-width 2)
+;;  '(git-gutter:modified-sign "☁")
+;;  '(git-gutter:added-sign "☀")
+;;  '(git-gutter:deleted-sign "☂"))
+(add-hook 'ruby-mode-hook 'git-gutter-mode)
+(add-hook 'python-mode-hook 'git-gutter-mode)
+(add-hook 'shell-mode-hook 'git-gutter-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here
