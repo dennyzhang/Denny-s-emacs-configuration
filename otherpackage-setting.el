@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-07 22:21:38>
+;; Updated: Time-stamp: <2016-03-08 10:21:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
@@ -124,5 +124,15 @@
         next-line))
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+;; --8<-------------------------- separator ------------------------>8--
+;; On top of Ido, smex provides a convenient interface to your recently
+;; and most frequently used commands.
+(load-file (concat EMACS_VENDOR "/smex/smex.el"))
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here
