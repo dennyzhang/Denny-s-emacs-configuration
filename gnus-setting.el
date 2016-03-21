@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-07 18:55:57>
+;; Updated: Time-stamp: <2016-03-21 12:11:59>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -88,9 +88,6 @@
               user-mail-address from-mail))
        ((string= from-mail "denny.zhang@totvs.com")
         (setq message-sendmail-extra-arguments '("-a" "totvs")
-              user-mail-address from-mail))
-       ((string= from-mail "dennyzhang@jingantech.com")
-        (setq message-sendmail-extra-arguments '("-a" "jingantech")
               user-mail-address from-mail))
        ((string= from-mail "filebat.mark@gmail.com")
         (setq message-sendmail-extra-arguments '("-a" "gmail")
@@ -414,7 +411,7 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-novice-user nil) ;; no confirmation is required
 ;; --8<-------------------------- separator ------------------------>8--
-(setq working-email-postfix "@jingantech.com")
+(setq working-email-postfix "@dennyzhang.com")
 (defun check-from-mail ()
   "Check whether I am sending from company's email adress, when coping with work stuff"
   (interactive)

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 16:01:05>
+;; Updated: Time-stamp: <2016-03-09 17:19:44>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1859,5 +1859,20 @@ Insert if ARG."
         ))
     )
   )
+;; --8<-------------------------- separator ------------------------>8--
+;; ;; git-gutter indicats whether a line has been inserted, modified or deleted
+;; (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-git-gutter/"))
+;; (require 'git-gutter)
+;; ;; (global-git-gutter-mode +1)
+;; (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
+;; (custom-set-variables '(git-gutter:update-interval 2))
+;; ;; (custom-set-variables
+;; ;;  '(git-gutter:window-width 2)
+;; ;;  '(git-gutter:modified-sign "☁")
+;; ;;  '(git-gutter:added-sign "☀")
+;; ;;  '(git-gutter:deleted-sign "☂"))
+;; (add-hook 'ruby-mode-hook 'git-gutter-mode)
+;; (add-hook 'python-mode-hook 'git-gutter-mode)
+;; (add-hook 'shell-mode-hook 'git-gutter-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: tmp.el ends here
