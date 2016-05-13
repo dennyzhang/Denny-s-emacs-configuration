@@ -1,19 +1,23 @@
 #!/bin/bash -e
 ##-------------------------------------------------------------------
+## @copyright 2016 DennyZhang.com
+## Licensed under MIT 
+##   https://raw.githubusercontent.com/DennyZhang/devops_public/master/LICENSE
+##
 ## File : hello
-## Author : Denny <denny.zhang001@gmail.com>
+## Author : Denny <denny@dennyzhang.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2015-08-15 17:39:26>
+## Updated: Time-stamp: <2016-04-26 23:21:52>
 ##-------------------------------------------------------------------
-. utility.sh
 function log() {
     local msg=\$*
-    echo -ne \`date +['%Y-%m-%d %H:%M:%S']\`" \$msg\n"
+    date_timestamp=\$(date +['%Y-%m-%d %H:%M:%S'])
+    echo -ne "\$date_timestamp \$msg\n"
 
     if [ -n "$LOG_FILE" ]; then
-        echo -ne \`date +['%Y-%m-%d %H:%M:%S']`" $msg\n" >> $LOG_FILE
+        echo -ne "\$date_timestamp $msg\n" >> "\$LOG_FILE"
     fi
 }
 

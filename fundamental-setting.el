@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 15:49:07>
+;; Updated: Time-stamp: <2016-05-09 14:29:11>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -154,19 +154,19 @@
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/cloud.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/devops.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/devops.org"))))
+(defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/chef.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
 (defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
 (defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/blog.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/language.org"))))
-(defalias 'windows (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/windows.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/sa.org"))))
 (defalias 'db (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/db.org"))))
 (defalias 'idea (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/idea.org"))))
-(defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/chef.org"))))
 
 ;; life
 (defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/life.org"))))
+(defalias 'kids (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/kids.org"))))
 (defalias 'health (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/password.org.gpg"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/contacts.org"))))

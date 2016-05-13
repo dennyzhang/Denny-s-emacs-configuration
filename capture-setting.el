@@ -5,7 +5,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-05-06 11:06:46>
+;; Updated: Time-stamp: <2016-03-23 14:27:56>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -29,8 +29,7 @@
          "** %?")
         ("t" "Talk" entry (file+headline "org_share/linux.org" "Questions I'm expecting discussion")
           (function capture-talk-template))
-        ("d" "Diary" entry (file+headline "life/contacts.org"
-                                               "Daily Journal -- 工作日志")
+        ("d" "Diary" entry (file+headline "life/diary.org" "2016")
          "** %<%Y-%m-%d>: %?")
 
         ("h" "health" entry (file+headline "life/life.org" "Family Health")
