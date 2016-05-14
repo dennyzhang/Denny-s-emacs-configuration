@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
@@ -61,7 +61,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for php mode
 ;; a standalone check file, leverage "php -l" and php_codesniffer
-(setq my-php-check-file (concat DENNY_CONF "emacs_data/php_lint.sh"))
+(setq my-php-check-file (concat DENNY_EMACS "emacs_data/php_lint.sh"))
 (defun flymake-php-init ()
   "Use php and phpcs to check the syntax and code compliance of the current file."
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -291,7 +291,7 @@
 (add-to-list 'flymake-allowed-file-name-masks '("\\.java$" flymake-java-init))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; python mode
-(setq my-python-check-file (concat DENNY_CONF "emacs_data/python_lint.py"))
+(setq my-python-check-file (concat DENNY_EMACS "emacs_data/python_lint.py"))
 (defun flymake-python-init ()
   "Use python and pythoncs to check the syntax and code compliance of the current file."
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -317,7 +317,7 @@
                      ("\\(.*\\) at \\(.*\\) line \\(.*\\)." 2 3 nil 1)
                      ))))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq my-erlang-check-file (concat DENNY_CONF "emacs_data/erlang_lint.erl"))
+(setq my-erlang-check-file (concat DENNY_EMACS "emacs_data/erlang_lint.erl"))
 (defun flymake-erlang-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace))

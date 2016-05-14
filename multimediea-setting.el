@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-10-19 13:48:04>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -64,14 +64,14 @@
 (require 'emms-source-file)
 (require 'emms-source-playlist)
 (require 'emms-player-simple)
-(setq emms-directory (concat DENNY_CONF "../emms/"))
+(setq emms-directory (concat DENNY_EMACS "../emms/"))
 ;; set directory to look for media files.
 (setq emms-source-file-default-directory "~/backup/music/")
 ;; use faster finding facility if you have GNU find
 (setq emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq emms-browser-default-covers
-      (list (concat DENNY_CONF "org-background.png") nil nil))
+      (list (concat DENNY_EMACS "org-background.png") nil nil))
 ;; let compilation tracks be displayed together
 (setq emms-browser-get-track-field-function
       'emms-browser-get-track-field-use-directory-name)
@@ -303,10 +303,10 @@
    (kill-buffer old-buffer)
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq emms-org-file (concat DENNY_CONF "/org_data/org_share/music.org"))
+(setq emms-org-file (concat DENNY_EMACS "/emacs_data/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
   #'(lambda () (interactive) (update-music-to-org-file emms-org-file)))
-;; (update-music-to-org-file (concat SHARE_DIR "private_data/emacs_stuff/org_data/org_share/music.org"))
+;; (update-music-to-org-file (concat SHARE_DIR "private_data/emacs_stuff/emacs_data/org_data/org_share/music.org"))
 (defun update-music-to-org-file (org-file)
   (let* ((track (get-text-property (point) 'emms-track))
          (last-played (emms-track-get track 'last-played))

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-09 17:19:44>
+;; Updated: Time-stamp: <2016-05-14 14:38:15>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -575,7 +575,7 @@
 ;; ("\\\\$" (0 font-lock-warning-face))
 ;; ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq mail-personal-alias-file (concat DENNY_CONF "emacs_data/filebat.mailrc"))
+(setq mail-personal-alias-file (concat DENNY_EMACS "emacs_data/filebat.mailrc"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Display string in large, friendly, letters
 (setq initial-scratch-message
@@ -648,7 +648,7 @@ Insert if ARG."
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
 ;; (require 'yasnippet-bundle)
-;; (yas/load-directory (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
+;; (yas/load-directory (expand-file-name "snippets/" (concat DENNY_EMACS "emacs_conf")))
 ;; (yas/initialize)
 ;; (defun yas/new-snippet (&optional choose-instead-of-guess)
 ;; (interactive "P")
@@ -1852,7 +1852,7 @@ Insert if ARG."
             (org-narrow-to-subtree)
             (write-region (point-min) (point-max) rawfile)
               (shell-command (format "cd %s/../backup_small/life/sophia_period; ./sophia_period.sh %s %s "
-                                     DENNY_CONF rawfile pngfile))
+                                     DENNY_EMACS rawfile pngfile))
               (message (format "check picture of %s" pngfile))
             )
           )

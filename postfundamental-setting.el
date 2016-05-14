@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:47>
+;; Updated: Time-stamp: <2016-05-14 14:38:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -15,7 +15,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;diary
 (global-set-key [f4] 'calendar)
-(setq diary-file (concat DENNY_CONF "emacs_data/filebat.diary"))
+(setq diary-file (concat DENNY_EMACS "emacs_data/filebat.diary"))
 (display-time)
 (require 'appt)
 (add-hook 'diary-hook 'appt-make-list)

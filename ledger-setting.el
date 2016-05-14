@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:50>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
@@ -19,7 +19,7 @@ statement for insertion to sqlite db"
       (set-buffer (get-buffer-create output-buffername))
       (erase-buffer)
       ;; find all accounts from ledger file
-      (find-file (concat DENNY_CONF "/bank/filebat.ledger"))
+      (find-file (concat DENNY_EMACS "/bank/filebat.ledger"))
       (ledger-find-accounts)
       ;; set output buffer
       (delete-other-windows) ;; bury other window
@@ -62,7 +62,7 @@ statement for insertion to sqlite db"
  If record-date is given, just obtain transactions of the specific day.
  Otherwise, obtain transactions of all days in the ledger buffer
  "
-  (let ((ledger-buffer (concat DENNY_CONF "/bank/filebat.ledger"))
+  (let ((ledger-buffer (concat DENNY_EMACS "/bank/filebat.ledger"))
         date-list match-regexp
         start-point end-point
         fromaccountname toaccountname amount recorddate memo
@@ -177,7 +177,7 @@ statement for insertion to sqlite db"
   "Parse transactions from ledger file, and generate http rest call for rdaccount webserver"
   (interactive)
   (let ((output-buffername "*ledger http*")
-        (ledger-buffer (concat DENNY_CONF "/bank/filebat.ledger"))
+        (ledger-buffer (concat DENNY_EMACS "/bank/filebat.ledger"))
         http-request-str
         transaction-list
         (username "denny") (password ledger-rdaccount-pwd)

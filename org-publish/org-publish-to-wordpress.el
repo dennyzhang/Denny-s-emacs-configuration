@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-06-17 00:25:48>
+;; Updated: Time-stamp: <2016-05-14 14:37:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -21,7 +21,7 @@
 (setq org-publish-project-alist
       '(
         ("org-share"
-         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/" ;; Remove hard code
+         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/" ;; Remove hard code
          :publishing-directory "~/org_publish/publish_html/"
          :base-extension "org"
          :recursive t
@@ -30,7 +30,7 @@
          :auto-preamble t
          )
         ("org-index"
-         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/org_data/org_share/" ;; Remove hard code
+         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/" ;; Remove hard code
          :publishing-directory "~/org_publish/publish_html/"
          :base-extension "index"
          :recursive t

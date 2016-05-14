@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-04-09 21:52:26>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -89,7 +89,7 @@
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
 ;;(add-to-list 'load-path "~/Downloads/yasnippet-0.6.1c/")
 (require 'yasnippet)
-(setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_CONF "emacs_conf")))
+(setq yas-snippet-dirs (expand-file-name "snippets/" (concat DENNY_EMACS "emacs_conf")))
 ;;(yas--initialize)
 (yas-load-directory yas-snippet-dirs nil)
 (yas-global-mode 1)

@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 09:44:27>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -72,7 +72,7 @@
 (setq isearch-allow-scroll t)
 (setq-default ispell-program-name "aspell")
 (setq ispell-personal-dictionary
-      (concat DENNY_CONF "emacs_data/filebat.ispell_english"))
+      (concat DENNY_EMACS "emacs_data/filebat.ispell_english"))
 ;;(setq-default show-trailing-whitespace 't)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
@@ -150,51 +150,51 @@
   (find-file filename))
 
 ;; technical
-(defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/linux.org"))))
-(defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/emacs.org"))))
-(defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/openstack.org"))))
-(defalias 'aws (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/aws.org"))))
-(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/devops.org"))))
-(defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/chef.org"))))
-(defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/ios.org"))))
-(defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/web.org"))))
-(defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/blog.org"))))
-(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/language.org"))))
-(defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/sa.org"))))
-(defalias 'db (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/technical/db.org"))))
-(defalias 'idea (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/idea.org"))))
+(defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/linux.org"))))
+(defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/emacs.org"))))
+(defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/openstack.org"))))
+(defalias 'aws (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/aws.org"))))
+(defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/devops.org"))))
+(defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/chef.org"))))
+(defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/ios.org"))))
+(defalias 'web (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/web.org"))))
+(defalias 'blog (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/blog.org"))))
+(defalias 'language (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/language.org"))))
+(defalias 'sa (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/sa.org"))))
+(defalias 'db (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/db.org"))))
+(defalias 'idea (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/idea.org"))))
 
 ;; life
-(defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/life.org"))))
-(defalias 'kids (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/kids.org"))))
-(defalias 'health (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/health.org"))))
-(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/password.org.gpg"))))
-(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/contacts.org"))))
-(defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/wealth.org"))))
+(defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/life.org"))))
+(defalias 'kids (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/kids.org"))))
+(defalias 'health (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/health.org"))))
+(defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/password.org.gpg"))))
+(defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/contacts.org"))))
+(defalias 'wealth (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/wealth.org"))))
 
 ;; work
-(defalias 'osc (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work/osc.org"))))
+(defalias 'osc (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/work/osc.org"))))
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
-(defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_CONF "/bank/filebat.ledger"))))
-(defalias 'filebat (lambda() (interactive) (my-open-file (concat DENNY_CONF "/filebat.txt"))))
-(defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/org_share/skill.org"))))
-(defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/motto.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/work/work.org"))))
-(defalias 'manage (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/manage.org"))))
-(defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/often.org"))))
-(defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/project.org"))))
-(defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/current.org"))))
-(defalias 'english (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/english.org"))))
-(defalias 'book (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/book.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/learn.org"))))
-(defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/diary.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/career.org"))))
-(defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_CONF "/org_data/life/question.org"))))
+(defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/bank/filebat.ledger"))))
+(defalias 'filebat (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/filebat.txt"))))
+(defalias 'skill (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/org_share/skill.org"))))
+(defalias 'motto (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/motto.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/career.org"))))
+(defalias 'work (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/work/work.org"))))
+(defalias 'manage (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/manage.org"))))
+(defalias 'often (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/often.org"))))
+(defalias 'project (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/project.org"))))
+(defalias 'current (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/current.org"))))
+(defalias 'english (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/english.org"))))
+(defalias 'book (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/book.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/career.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/career.org"))))
+(defalias 'learn (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/learn.org"))))
+(defalias 'mydiary (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/diary.org"))))
+(defalias 'career (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/career.org"))))
+(defalias 'question (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/question.org"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;highlight lines that are longer than 80
 (dolist (hook programming-hook-list)
@@ -223,8 +223,8 @@
 (global-set-key [(control -)] 'text-scale-decrease)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set alias for eshell
-(setq eshell-aliases-file (concat DENNY_CONF "emacs_data/filebat.alias"))
-(setq bookmark-default-file (concat DENNY_CONF "emacs_data/filebat.bmk"))
+(setq eshell-aliases-file (concat DENNY_EMACS "emacs_data/filebat.alias"))
+(setq bookmark-default-file (concat DENNY_EMACS "emacs_data/filebat.bmk"))
 (setq bookmark-save-flag 1) ;;save bookmark whether we change it
 (setq-default line-spacing 0.15);; set line spacing
 (setq frame-title-format "%* - %p - Keep your mind running, Denny! - %b - %f")

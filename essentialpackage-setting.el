@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 15:49:01>
+;; Updated: Time-stamp: <2016-05-14 14:38:16>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -49,7 +49,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (global-set-key [(control x)(control r)] 'recentf-open-files-compl)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;remember where you were in a file
-(setq save-place-file (concat DENNY_CONF "emacs_data/filebat.saveplace"))
+(setq save-place-file (concat DENNY_EMACS "emacs_data/filebat.saveplace"))
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
 ;; ;; --8<-------------------------- separator ------------------------>8--
@@ -199,7 +199,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (toggle-cursor-type-when-idle 1) ; On when idle
 (setq curchg-default-cursor-color "green")
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(setq abbrev-file-name (concat DENNY_CONF "emacs_data/filebat.abbrev"))
+(setq abbrev-file-name (concat DENNY_EMACS "emacs_data/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
 (quietly-read-abbrev-file) ;; reads the abbreviations file on startup
 ;;(setq abbrev-mode 1) ;; always enable abbrev

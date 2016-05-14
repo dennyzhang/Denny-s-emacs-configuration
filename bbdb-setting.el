@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-05 17:23:07>
+;; Updated: Time-stamp: <2016-05-14 14:38:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -17,7 +17,7 @@
 (setq bbdb-default-country "中国");;Default country for emacs
 (add-hook 'message-setup-hook 'bbdb-define-all-aliases)
 (bbdb-initialize 'message)
-(setq bbdb-file (concat DENNY_CONF "emacs_data/filebat.bbdb"))
+(setq bbdb-file (concat DENNY_EMACS "emacs_data/filebat.bbdb"))
 (setq bbdb-hashtable-size 200003)
 (setq bbdb-send-mail-style 'compose-mail)
 (setq bbdb-completion-type nil)
@@ -26,7 +26,7 @@
 (setq bbdb-default-label-list '("Mobile" "Office" "Other"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/bbdb-picture/bbdb-picture.el"))
-(setq bbdb-picture-path (concat DENNY_CONF "/bbdb_picture/"))
+(setq bbdb-picture-path (concat DENNY_EMACS "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
 (require 'vcard)
