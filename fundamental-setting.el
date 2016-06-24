@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-06-24 10:54:42>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -153,7 +153,7 @@
 (defalias 'linux (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/linux.org"))))
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/openstack.org"))))
-(defalias 'aws (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/aws.org"))))
+(defalias 'cloud (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/cloud.org"))))
 (defalias 'devops (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/devops.org"))))
 (defalias 'chef (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/chef.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/technical/ios.org"))))
