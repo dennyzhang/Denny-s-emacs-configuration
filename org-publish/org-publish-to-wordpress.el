@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:37:15>
+;; Updated: Time-stamp: <2016-06-26 07:53:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -356,7 +356,7 @@
     (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
     ;; remove hr
     ;; add post link
-    (setq ret (format "Post Permanent Link: <a href=\"http://www.dennyzhang.com/%s/\">http://www.dennyzhang.com/%s/</a>
+    (setq ret (format "Permanent Link: <a href=\"http://dennyzhang.com/%s/\">http://www.dennyzhang.com/%s</a>
 %s" post-slug post-slug ret))
     ;;(setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )

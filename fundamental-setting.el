@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-06-24 10:54:42>
+;; Updated: Time-stamp: <2016-06-25 17:50:10>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -174,6 +174,7 @@
 
 ;; work
 (defalias 'osc (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/work/osc.org"))))
+(defalias 'weeklydemo (lambda() (interactive) (my-open-file "/Users/mac/baidu/百度云同步盘/private_data/project/devops_consultant/consultant_code/devops_effort/denny/DevOpsWeeklyDemo.org")))
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
