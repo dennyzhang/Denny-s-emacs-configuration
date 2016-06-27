@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-06-26 07:53:46>
+;; Updated: Time-stamp: <2016-06-26 13:40:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -18,6 +18,15 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)
 ;; --8<-------------------------- separator ------------------------>8--
+(setq blog-tail "Like our blog posts? Discuss with us on <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a>, Wechat Or NewsLetter.
+<div class='figure'>
+
+<img src='http://www.dennyzhang.com/wp-content/uploads/denny/denny_wechat.png' alt='denny_wechat.png' />
+
+</div>
+[mc4wp_form]
+</div>")
+
 (setq org-publish-project-alist
       '(
         ("org-share"
@@ -346,9 +355,9 @@
     (setq ret (replace-regexp-in-string "<p class=\"date\".*" "" ret))
     (setq ret (replace-regexp-in-string "<p class=\"validation\".*" "" ret))    
 
-    (setq ret (replace-regexp-in-string "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
-                                        (format-time-string
-                                         "<p class=\"author\" align=\"right\">By <a href='http://www.dennyzhang.com'>Denny</a> %D</p>" (current-time)) ret))
+    (setq ret (replace-regexp-in-string 
+               "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
+               blog-tail ret))
     ;; remove title from content
     (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n.*\n.*\n.*\n.*\n" "" ret))
     ;; remove DONE decorator
@@ -356,7 +365,7 @@
     (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
     ;; remove hr
     ;; add post link
-    (setq ret (format "Permanent Link: <a href=\"http://dennyzhang.com/%s/\">http://www.dennyzhang.com/%s</a>
+    (setq ret (format "Permanent Link: <a href=\"http://www.dennyzhang.com/%s/\">http://dennyzhang.com/%s</a>
 %s" post-slug post-slug ret))
     ;;(setq ret (replace-regexp-in-string "<hr/>" "" ret))
     )
