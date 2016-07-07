@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-06-26 13:40:55>
+;; Updated: Time-stamp: <2016-07-07 09:14:53>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -303,11 +303,14 @@
                     )
                 )
               (setq
-               post-id (nth (position post-meta list-post-meta) list-post-id)
-
                post-meta (cdr post-meta)
+
+               post-id (car post-meta)
+               post-meta (cdr post-meta)
+
                post-title (car post-meta)
                post-meta (cdr post-meta)
+
                post-slug (car post-meta)
                post-meta (cdr post-meta)
 
@@ -325,7 +328,7 @@
                                    wordpress-username wordpress-pwd
                                    post-struct t)
               ;; update seo
-              (update-post-seo (number-to-string post-id) post-meta)
+              (update-post-seo post-id post-meta)
               )
           (add-to-list 'not-tracked-org-post title-md5))
         (kill-buffer)))
@@ -399,7 +402,7 @@
           (update-wordpress-blog current-exported-dir)
           ;;(setq list-post-meta old-list-post-meta)
           (setq url-string (format "http://www.dennyzhang.com/%s"
-                                   (cadr (cdr current-post-meta))
+                                   (cadr (cdr (cdr current-post-meta)))
                                    ))
           (kill-new url-string)
           (message url-string)
