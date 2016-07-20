@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:15>
+;; Updated: Time-stamp: <2016-07-21 07:33:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1808,7 +1808,7 @@ Insert if ARG."
  "Run shell script to get mail"
  (interactive)
  (progn
-   (shell-command (concat SHARE_DIR "private_data/backup_small/fetch_mail/fetch_mail.sh"))
+   (shell-command (concat SHARE_DIR "private_data/emacs_stuff/backup_small/fetch_mail/fetch_mail.sh"))
  ))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-$" 'flyspell-word)
