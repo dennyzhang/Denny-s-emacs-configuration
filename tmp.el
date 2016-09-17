@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-07-21 07:33:40>
+;; Updated: Time-stamp: <2016-08-30 22:39:09>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -631,10 +631,10 @@ Insert if ARG."
 (url-handler-mode 1) ; Allow to open URL
 ;;(ffap-bindings) ; Use ffap
 ;; (setq message-confirm-send t)
+;; (setq compilation-auto-jump-to-first-error t)
 (setq mm-inline-large-images 'resize)
 (setq org-email-link-description-format "Email %c (%d): %.30s")
 (setq read-mail-command 'gnus)
-(setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 (setq safe-local-variable-values '((encoding . utf-8)))

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-08 14:23:26>
+;; Updated: Time-stamp: <2016-07-31 18:27:49>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -41,7 +41,7 @@ Return a list of installed packages or nil for every skipped package."
                           'cal-china-x 'boxquote 'whitespace 'highlight-symbol
                           'bm 'frame-cmds 'frame-fns 'color-theme 'hide-comnt 
                           'dired+ 'screenshot 'openwith 'erlang 'google-maps
-                          'swift-mode
+                          'swift-mode 'htmlize
                           )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: packages.el ends here

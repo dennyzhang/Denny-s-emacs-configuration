@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-07-07 09:14:53>
+;; Updated: Time-stamp: <2016-09-13 21:19:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -18,14 +18,10 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq blog-tail "Like our blog posts? Discuss with us on <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a>, Wechat Or NewsLetter.
-<div class='figure'>
+(setq blog-tail "Like our blog posts? Discuss with us on <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a>, <a href='https://twitter.com/dennyzhang001'>Twitter</a> Or NewsLetter.
 
-<img src='http://www.dennyzhang.com/wp-content/uploads/denny/denny_wechat.png' alt='denny_wechat.png' />
-
-</div>
-[mc4wp_form]
-</div>")
+[mc4wp_form id='3792']
+")
 
 (setq org-publish-project-alist
       '(
@@ -208,6 +204,7 @@
                     "pre {width: 600px;
  overflow: auto;
  }"
+                    ".underline { text-decoration: underline; } "
                     "h3 {padding-top: 0.5em; font-size:1.2em; line-height:150%;} "))
     (while (search-forward-regexp "<div id=\"content\">" nil t)
       (replace-match "<div>"))

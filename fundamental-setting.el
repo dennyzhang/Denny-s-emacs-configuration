@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-07-01 16:23:44>
+;; Updated: Time-stamp: <2016-08-30 22:28:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -166,7 +166,6 @@
 
 ;; life
 (defalias 'life (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/life.org"))))
-(defalias 'kids (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/kids.org"))))
 (defalias 'health (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/password.org.gpg"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/emacs_data/org_data/life/contacts.org"))))
@@ -284,17 +283,17 @@
     (setq command-args (concat grep-find-command "\"" search-keyword "\""))
     (grep command-args)))
 
-;; TODO, enhance by sync or async query, instead of stub sleep
-;; show how many matches, when grep-find
-(defadvice grep-find (after show-grep())
-  (let ((sleep_interval 2))
-    (set-buffer "*grep*")
-    (sleep-for sleep_interval)
-    (message
-     "%d matches found"
-     (- (count-lines (point-min) (point-max)) 6))
-    ))
-(ad-activate 'grep-find)
+;; ;; TODO, enhance by sync or async query, instead of stub sleep
+;; ;; show how many matches, when grep-find
+;; (defadvice grep-find (after show-grep())
+;;   (let ((sleep_interval 2))
+;;     (set-buffer "*grep*")
+;;     (sleep-for sleep_interval)
+;;     (message
+;;      "%d matches found"
+;;      (- (count-lines (point-min) (point-max)) 6))
+;;     ))
+;; (ad-activate 'grep-find)
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "C-c .") 'my-find-file-in-parent-dir)
 (defun my-find-file-in-parent-dir ()

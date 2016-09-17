@@ -1,7 +1,7 @@
 ;;; online-search.el --- Online dictionary or intelligent api search engine for developers
 ;; -*- mode: EMACS-LISP; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:40>
+;; Copyright © 2010-2011 Time-stamp: <2016-07-22 14:17:08>
 ;;; ================================================================
 
 ;;; online-search.el --- Emacs interface to the Online Search
@@ -90,7 +90,7 @@
         ;; online dictionary, using 金山词霸
         (setq online-search-configuration
               (make-online-search-struct
-               :search-engine-url-format "http://www.iciba.com/"
+               :search-engine-url-format "http://dict.youdao.com/w/eng/"
                ;; :search-engine-url-format "http://fanyi.baidu.com/#auto2auto|"
                :start-anchor-str ""
                :end-anchor-str "更多网络释义")

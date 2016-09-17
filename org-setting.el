@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:15>
+;; Updated: Time-stamp: <2016-07-26 12:13:21>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -313,8 +313,8 @@
       )))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
-(setq copylog-monitor-orgfiles '("current.org" "wish.org" "top.org"))
-(setq copylog-dest-orgfile (concat DENNY_EMACS "/emacs_data/org_data/work/worklog.org"))
+(setq copylog-monitor-orgfiles '("current.org" "top.org"))
+(setq copylog-dest-orgfile (concat DENNY_EMACS "/emacs_data/org_data/life/diary.org"))
 (defadvice org-kill-line (after kill-region activate)
   (if (member (buffer-name) copylog-monitor-orgfiles)
       (unless (null (string-match "^\*+ DONE" (org-no-properties (car kill-ring))))
@@ -324,8 +324,12 @@
               (find-file copylog-dest-orgfile))
           (set-buffer (get-file-buffer copylog-dest-orgfile))
           (goto-char (point-max))
-          (insert "\n")
-          (yank)
+          (setq my-string (org-no-properties (car kill-ring)))
+          (if (listp my-string) (setq my-string (car my-string)))
+          (setq entry (replace-regexp-in-string "\* DONE"
+                                                (concat "\*\* " (format-time-string "%Y-%m-%d:" (current-time)))
+                                                my-string))
+          (insert (concat "\n" entry))
           (write-file copylog-dest-orgfile)
           (switch-to-buffer old-buffer))
         )
