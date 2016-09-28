@@ -4,11 +4,8 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-03-09 17:19:37>
+;; Updated: Time-stamp: <2016-09-27 21:14:27>
 ;;
-;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/keywiz/keywiz.el"))
-;;(load-file (concat EMACS_VENDOR "/regex-tool/regex-tool.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(appt-activate)
 (setq appt-display-format 'window)
@@ -20,14 +17,11 @@
 (load-file (concat EMACS_VENDOR "/find-recursive/find-recursive.el"))
 (require 'find-recursive)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/log4j-mode/log4j-mode.el"))
+;; (load-file (concat EMACS_VENDOR "/log4j-mode/log4j-mode.el")) ;; TODO
 (require 'log4j-mode)
 (add-to-list 'auto-mode-alist '("\\.log" . log4j-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/dupwords/dupwords.el"))
-;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/sl/sl.el"))
-;;(require 'sl)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/anything/"))
 (require 'anything-config)
@@ -113,7 +107,7 @@
 ;; (load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
 ;; keyfreq measures how many time you execute commands.
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/keyfreq/keyfreq.el"))
+;; (load-file (concat EMACS_VENDOR "/keyfreq/keyfreq.el")) ;; TODO
 (require 'keyfreq)
 (setq keyfreq-excluded-commands
       '(self-insert-command
@@ -127,7 +121,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; On top of Ido, smex provides a convenient interface to your recently
 ;; and most frequently used commands.
-(load-file (concat EMACS_VENDOR "/smex/smex.el"))
+;; (load-file (concat EMACS_VENDOR "/smex/smex.el")) ;; TODO
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)

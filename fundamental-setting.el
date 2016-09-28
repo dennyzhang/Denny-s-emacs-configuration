@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-08-30 22:28:38>
+;; Updated: Time-stamp: <2016-09-19 15:58:01>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -218,7 +218,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "C-SPC") 'nil);;set control+space to nill
 (global-set-key (kbd "C-M-SPC") 'set-mark-command);;set Ctrl+Alt+space to set-mark
-(global-set-key [(meta p)(c)] 'count-lines-region)
+(global-set-key [(meta p)(c)] 'count-words-region)
 (global-set-key [(control = )] 'text-scale-increase);;zoom out/in font
 (global-set-key [(control -)] 'text-scale-decrease)
 ;; --8<-------------------------- separator ------------------------>8--

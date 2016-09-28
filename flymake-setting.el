@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-09-27 21:06:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
 ;; Display flymake error msg in minibuffer after delay
-(load-file (concat EMACS_VENDOR "/flymake-cursor/flymake-cursor.el"))
+;; (load-file (concat EMACS_VENDOR "/flymake-cursor/flymake-cursor.el")) ;; TODO
 ;; Change the default colors
 (set-face-background 'flymake-errline "red4")
 (set-face-background 'flymake-warnline "dark slate blue")
@@ -39,7 +39,7 @@
 (define-key global-map (kbd "C-c n") 'flymake-goto-next-error)
 
 ;; show errors and warnings of flymake with different fringe bitmaps
-(load-file (concat EMACS_VENDOR "/fringe-helper/fringe-helper.el"))
+;; (load-file (concat EMACS_VENDOR "/fringe-helper/fringe-helper.el")) ;; TODO
 
 (defvar flymake-fringe-overlays nil)
 (make-variable-buffer-local 'flymake-fringe-overlays)

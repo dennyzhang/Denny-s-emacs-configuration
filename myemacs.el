@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:14>
+;; Updated: Time-stamp: <2016-09-27 22:14:00>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/backup/emacs_vendor/")
 (defconst SHARE_DIR "/Users/mac/baidu/百度云同步盘/")
@@ -40,8 +40,6 @@
 
         ;;"flymake-setting.el" ;; TODO denny
         "largeessentialpackage-setting.el"
-
-        "ledger-setting.el"
         "online-search/online-search-setting.el"
         "insertion-setting.el"
         "set-os-environment-setting.el"

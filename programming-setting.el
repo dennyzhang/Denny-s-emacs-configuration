@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:47>
+;; Updated: Time-stamp: <2016-09-27 21:15:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -112,14 +112,8 @@
     ))
 ;;(global-set-key "\M-." 'etags-select-find-tag)
 ;; --8<-------------------------- separator ------------------------>8--
-;; vb programming
-(load-file (concat EMACS_VENDOR "visual-basic/visual-basic-mode.el"))
-(autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
-(add-to-list 'auto-mode-alist
-             '("\\.\\(frm\\|bas\\|cls\\|rvb\\)$" . visual-basic-mode))
-;; --8<-------------------------- separator ------------------------>8--
 ;; C# programming
-(load-file (concat EMACS_VENDOR "csharp/csharp-mode.el"))
+;; (load-file (concat EMACS_VENDOR "csharp/csharp-mode.el")) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;; php programming
 (add-to-list 'load-path (concat EMACS_VENDOR "/php-mode/"))

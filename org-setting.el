@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-07-26 12:13:21>
+;; Updated: Time-stamp: <2016-09-27 22:29:37>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -216,7 +216,6 @@
   )
 
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/graphviz-dot-mode/graphviz-dot-mode.el"))
 (require 'graphviz-dot-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-directory (concat DENNY_EMACS "/emacs_data/org_data/"))
@@ -324,12 +323,14 @@
               (find-file copylog-dest-orgfile))
           (set-buffer (get-file-buffer copylog-dest-orgfile))
           (goto-char (point-max))
+          (defvar my-string)
+          (defvar my-entry)
           (setq my-string (org-no-properties (car kill-ring)))
           (if (listp my-string) (setq my-string (car my-string)))
-          (setq entry (replace-regexp-in-string "\* DONE"
+          (setq my-entry (replace-regexp-in-string "\* DONE"
                                                 (concat "\*\* " (format-time-string "%Y-%m-%d:" (current-time)))
                                                 my-string))
-          (insert (concat "\n" entry))
+          (insert (concat "\n" my-entry))
           (write-file copylog-dest-orgfile)
           (switch-to-buffer old-buffer))
         )

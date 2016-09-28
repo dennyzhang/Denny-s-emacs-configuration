@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:51>
+;; Updated: Time-stamp: <2016-09-27 20:54:10>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq thumbs-conversion-program "d:/cygwin/bin/convert.exe")
@@ -52,13 +52,5 @@
          (cursor-color . "Orchid")
          )
        default-frame-alist))
-;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/maxframe/maxframe.el"))
-;; ;;(setq mf-max-width 1440) ;; Pixel width of main monitor.
-;; ;;(setq mf-max-height 900) ;; Pixel width of main monitor.
-;; (setq mf-offset-y 15)
-;; (global-set-key [f11] 'maximize-frame)
-;; (global-set-key [C-f11] 'restore-frame)
-;; (require 'maxframe)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: cygwin-setting.el ends here

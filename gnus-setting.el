@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-09-27 07:26:32>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -253,6 +253,7 @@
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*\\|From:.*admin@42qu.com.*")
         ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*249950670@qq.com.*\\|From:.*denny.zhang@totvs.com.*\\|From:.*denny.zhang001@gmail.com")
         ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*\\|From:.*@.*openstack.org.*\\|Reply-To:.*launchpad.*")
+        ("mail-list" "Subject:.*ubuntu-security-announce.*\\|From:.*hi@wanqu.co.*\\|From:.*blog@flux7.com.*\\|From:.*noreply@activebuilding.com.*\\|Subject:.*Lisp-cn.*\\|Subject:.*Devops Weekly.*\\|From:.*emacs-devel-request@gnu.org.*")
 
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")

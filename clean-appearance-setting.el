@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-09-27 20:53:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-face-background 'modeline "#5f9ea0") ;; set color of modeline ;; TODO denny
@@ -78,7 +78,7 @@
     "^Ispell process killed$")
   "filter formatted message string to remove noisy messages")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el"))
+;; (load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el")); TODO
 (require 'newcomment nil t)
 (require 'hide-comnt)
 (global-set-key [(meta p)(t)] 'hide/show-comments-toggle)

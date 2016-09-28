@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-07-31 18:27:49>
+;; Updated: Time-stamp: <2016-09-27 21:32:25>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -40,8 +40,13 @@ Return a list of installed packages or nil for every skipped package."
                           'company 'hide-region 'color-moccur 'cursor-chg 'loccur 
                           'cal-china-x 'boxquote 'whitespace 'highlight-symbol
                           'bm 'frame-cmds 'frame-fns 'color-theme 'hide-comnt 
-                          'dired+ 'screenshot 'openwith 'erlang 'google-maps
-                          'swift-mode 'htmlize
+                          'dired+ 'openwith 'erlang 'google-maps 'swift-mode 'htmlize
+                          'winpoint 'rect-mark 'ansi 'sr-speedbar 'minimap
+                          'flymake-cursor 'fringe-helper 'ascii 'command-frequency
+                          'sr-speedbar 'keywiz 'log4j-mode 'sl 'keyfreq 
+                          'smex 'csharp-mode 'actionscript-mode 'crontab-mode
+                          'systemtap-mode 'go-mode 'puppet-mode 'multi-term 'second-sel
+                          'journal 'tea-time
                           )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: packages.el ends here

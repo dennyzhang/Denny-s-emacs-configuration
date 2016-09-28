@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-09-27 21:36:10>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -61,8 +61,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       uniquify-ignore-buffers-re "^\\*")
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
-;;(load-file (concat EMACS_VENDOR "/frame/frame-fns.el"))
-;;(load-file (concat EMACS_VENDOR "/frame/frame-cmds.el"))
 (require 'frame-fns)
 (require 'frame-cmds)
 (global-set-key [(control up)] 'move-frame-up)
@@ -72,7 +70,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
 (if window-system
     (progn
-      ;;(load-file (concat EMACS_VENDOR "/bm/bm-1.34.el"))
       (require 'bm)
       (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
       ;; make bookmarks persistent as default
@@ -101,14 +98,13 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       (global-set-key (kbd "<S-f2>") 'bm-previous)
       ))
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/highlight-symbol/highlight-symbol.el"))
 (require 'highlight-symbol)
 (global-set-key (kbd "<C-f5>") 'highlight-symbol-at-point)
 (global-set-key (kbd "<f5>") 'highlight-symbol-next)
 (global-set-key (kbd "<S-f5>") 'highlight-symbol-prev)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;; rect-mark
-(load-file (concat EMACS_VENDOR "/rect-mark/rect-mark.el"))
+;; (load-file (concat EMACS_VENDOR "/rect-mark/rect-mark.el")) ;; TODO
 ;; Support for marking a rectangle of text with highlighting.
 ;;(define-key ctl-x-map "r\C-M-\ " 'rm-set-mark)
 ;;(define-key ctl-x-map [?r ?\C-\ ] 'rm-set-mark)
@@ -128,28 +124,23 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (autoload 'rm-mouse-drag-region "rect-mark"
   "Drag out a rectangular region with the mouse." t)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/whitespace/whitespace.el"))
 (require 'whitespace)
 (setq whitespace-display-mappings
       '((space-mark ?\ [?.])
         (newline-mark ?\n [?$ ?\n])
         (tab-mark ?\t [?\\ ?\t])))
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/boxquote/boxquote.el"))
 (require 'boxquote)
 (setq boxquote-top-and-tail "-----------")
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-x.el"))
 (require 'cal-china-x)
 ;; TODO
 ;; show lunar calendar
-;;(load-file (concat EMACS_VENDOR "/calendar-localization/cal-china-plus.el"))
 ;;(add-hook 'diary-nongregorian-listing-hook 'diary-chinese-list-entries)
 ;;(add-hook 'diary-nongregorian-marking-hook 'diary-chinese-mark-entries)
 ;;highlights all the days that are holidays
 (setq calendar-mark-holidays-flag 't)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/loccur/loccur.el"))
 (require 'loccur)
 ;; defines shortcut for loccur of the current word
 (define-key global-map [(control meta o)] 'loccur-current)
@@ -193,7 +184,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; (loccur (format "^[^ ]" whitespace-count)))
 ;; ))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/cursor-change/cursor-chg.el"))
 (require 'cursor-chg)
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
 (toggle-cursor-type-when-idle 1) ; On when idle
@@ -205,10 +195,8 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;;(setq abbrev-mode 1) ;; always enable abbrev
 (setq default-abbrev-mode 1)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/color-moccur/color-moccur.el"))
 (require 'color-moccur)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/hide-region/hide-region.el"))
 (require 'hide-region)
 (defun hide-region-settings ()
   "Settings for `hide-region'."
@@ -255,13 +243,12 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (setq highlight-tail-posterior-type 'const)
 (highlight-tail-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/rainbow-mode/rainbow-mode.el"))
 (require 'rainbow-mode)
 (dolist (hook programming-hook-list)
   (add-hook hook #'(lambda () (rainbow-mode 1 ))))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
-;;(load-file (concat EMACS_VENDOR "/proced/proced.el"))
+;; (load-file (concat EMACS_VENDOR "/proced/proced.el"))
 ;;(require 'proced) ;; TODO denny
 (setq proced-sort "pmem")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -291,7 +278,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
   )
 (global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/hide-lines/hide-lines.el"))
 (require 'hide-lines)
 (load-file (concat EMACS_VENDOR "/hide-lines/hidesearch.el"))
 (require 'hidesearch)
@@ -302,7 +288,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (require 'cn-weather)
 (setq cn-weather-city "上海")
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/kill-ring-search/kill-ring-search.el"))
 (require 'kill-ring-search)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/elscreen/elscreen-1.4.6/elscreen.el"))
@@ -349,10 +334,9 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
    (t (fold-dwim-toggle))
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el"))
+;; (load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el")) ;; TODO
 ;; (setq sr-speedbar-skip-other-window-p t)
 ;; (setq speedbar-show-unknown-files t)
-;; (load-file (concat EMACS_VENDOR "/minimap/minimap.el"))
 ;; ;; (setq 'outline-view-change-hook nil) ;; TODO
 ;; ;; when pressing prefix of C-u, we will use speedbar, instead of minimap
 ;; (defun my-file-toogle (use-speedbar-p)
@@ -370,7 +354,6 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (global-set-key (kbd "C-c <") 'recent-jump-jump-backward)
 (global-set-key (kbd "C-c >") 'recent-jump-jump-forward)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/goto-last-change/goto-last-change.el"))
 (require 'goto-last-change)
 (global-set-key "\C-x\C-\\" 'goto-last-change)
 (autoload 'goto-last-change

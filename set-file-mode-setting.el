@@ -4,10 +4,10 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-07-23 15:57:09>
+;; Updated: Time-stamp: <2016-09-27 21:26:06>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el"))
+;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
 ;; (add-to-list 'auto-mode-alist '("\\.as$" . actionscript-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("^filebat.txt$" . (company-mode 1))) ;; TODO doesn't work
@@ -34,11 +34,11 @@
          ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; crontab
-(load-file (concat EMACS_VENDOR "crontab-mode/crontab-mode.el"))
+;; (load-file (concat EMACS_VENDOR "crontab-mode/crontab-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.cron$" .crontab-mode))
 (add-to-list 'auto-mode-alist '("\\.tab$" .crontab-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "systemtap-mode/systemtap-mode.el"))
+;; (load-file (concat EMACS_VENDOR "systemtap-mode/systemtap-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.stp$" . systemtap-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
@@ -50,12 +50,10 @@
 (add-to-list 'auto-mode-alist '("\\.cpp$" . (c++-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.h$" . (c++-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "google-go/go-mode.el"))
-;;(load-file (concat EMACS_VENDOR "google-go/go-mode-load.el"))
-;;(require 'go-mode-load)
+;; (load-file (concat EMACS_VENDOR "google-go/go-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el"))
+;; (load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("^rholog.txt$" . (log4j-mode 1)))

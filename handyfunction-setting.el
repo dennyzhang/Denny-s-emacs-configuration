@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:37:16>
+;; Updated: Time-stamp: <2016-09-27 22:29:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)

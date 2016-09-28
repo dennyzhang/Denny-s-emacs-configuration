@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:17>
+;; Updated: Time-stamp: <2016-09-27 22:29:38>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -70,7 +70,7 @@
           (save-buffer)
           (kill-buffer)
           )))
-    (set-buffer old-buffer) ;; restore buffer
+     (set-buffer old-buffer) ;; restore buffer
     ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; override built-in bbdb function to support search in the field of mail-alias

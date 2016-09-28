@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-08-30 22:39:09>
+;; Updated: Time-stamp: <2016-09-27 21:31:30>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -66,7 +66,7 @@
 ;;(setq tex-output-extension ".pdf")
 ;;(setq tex-dvi-view-command "start \"acrobat\" *")
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/second-sel/second-sel.el"))
+;; (load-file (concat EMACS_VENDOR "/second-sel/second-sel.el")) ;; TODO
 ;; (require 'second-sel)
 ;; (global-set-key [(control meta ?y)] 'secondary-dwim)
 ;; (define-key esc-map "y" 'yank-pop-commands)
@@ -93,10 +93,9 @@
 ;; (setq max-mini-window-height 1) ;;Maximum height for resizing mini-windows.
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-wiki-2.72/"))
-;; (load-file (concat EMACS_VENDOR "/journal/journal.el"))
+;; (load-file (concat EMACS_VENDOR "/journal/journal.el")) ;; TODO
 ;; (require 'journal)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/ansi/ansi.el"))
 ;; (require 'ansi)
 ;; ;; Color text
 ;; (with-ansi
@@ -164,7 +163,7 @@
 ;; (require 'languide)
 ;; (versor-setup)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/tea-time/tea-time.el"))
+;; (load-file (concat EMACS_VENDOR "/tea-time/tea-time.el")) ;; TODO
 ;; (require 'tea-time)
 ;; ;;(setq tea-time-sound "path-to-sound-file")
 ;; (define-key global-map "\C-ct" 'tea-time)
@@ -352,7 +351,7 @@
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el"))
+;;(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el")) ;; TODO
 (require 'screenshot)
 (setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -1719,7 +1718,7 @@ Insert if ARG."
 (set-face-foreground 'function-name "YellowGreen")
 (setq font-lock-function-name-face 'function-name)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el"))
+;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el")) ;; TODO
 ;; (openwith-mode t)
 ;; ;; ask for confirmation before invoke external program
 ;; (setq openwith-confirm-invocation t)

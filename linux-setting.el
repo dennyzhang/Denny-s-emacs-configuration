@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-05-14 14:38:16>
+;; Updated: Time-stamp: <2016-09-27 21:36:52>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -79,7 +79,6 @@
 ;;(df-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;;Usage:M-x ascii-on RET
-;; (load-file (concat EMACS_VENDOR "/ascii/ascii.el"))
 ;; (require 'ascii)
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.R$" . R-mode))
@@ -182,8 +181,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (if (eq system-type 'gnu/linux)
     (progn
-      (add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro"))
-      (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el"))
+      ;; (add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro")) ;; TODO
+      ;; (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el")) ;; TODO
       (pomodoro)
       (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
       (setq pomodoro-set-number 4) ;; Number of sets until a long break

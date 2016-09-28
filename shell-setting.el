@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-06-20 10:36:19>
+;; Updated: Time-stamp: <2016-09-27 21:27:03>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq shell-file-name "/bin/zsh")
@@ -305,7 +305,7 @@ From Patrick Anderson via the wiki."
 (setq tramp-verbose 3)
 (setq password-cache-expiry 60)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/multi-term/multi-term.el"))
+;; (load-file (concat EMACS_VENDOR "/multi-term/multi-term.el")) ;; TODO
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
