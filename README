@@ -1,10 +1,5 @@
--*- mode:org; fill-column:90; coding:utf-8; -*-
-* Denny's emacs configuration: Denny's .emacs init scripts and elisp repository
-- Perfect matching my personal daily life!
-  (If not, I will definitely train it, or rebuild some pices of wheels.)
-- Configuration is organized in separate modules with minimum dependency.
-- Compatible for both linux, linux console with no windows, windows, cygwin, etc.
+*Emacs made me realize anything can be changed by a programmer.*
 
-Denny Zhang(张巍)
-Email: denny.zhang001.com
-Blog: http://www.dennyzhang.com/
+Discuss with Denny in [LinkedIn](https://www.linkedin.com/in/dennyzhang001) or [Blog](https://www.dennyzhang.com).
+
+Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).
