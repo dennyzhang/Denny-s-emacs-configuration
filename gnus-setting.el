@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 22:15:37>
+;; Updated: Time-stamp: <2017-09-08 23:02:20>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -36,7 +36,7 @@
 ;; '(nnimap "126"
 ;; (nnimap-address "imap.126.com")
 ;; (nnimap-server-port 143)
-;; (nnimap-authinfo-file (concat SHARE_DIR "/private_data/emacs_stuff/../emacs_data/filebat.authinfo"))
+;; (nnimap-authinfo-file (concat DENNY_DATA "/filebat.authinfo"))
 ;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
 ;; ))
 ;; (setq gnus-secondary-select-methods
@@ -61,7 +61,7 @@
 ;; (forward-line -3)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
-(setq my-msmtp-config-file (concat "'" DENNY_EMACS "../emacs_data/filebat.msmtprc" "'"))
+(setq my-msmtp-config-file (concat "'" EMACS_DATA "/filebat.msmtprc" "'"))
 ;; (setq sendmail-program (concat "msmtp -C " my-msmtp-config-file)) ;;TODO, enhance
 (setq message-signature-file (concat EMACS_DATA "/filebat.signature"))
 (setq sendmail-program "msmtp")
