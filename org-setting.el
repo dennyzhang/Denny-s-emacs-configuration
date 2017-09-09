@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-07-20 11:18:17>
+;; Updated: Time-stamp: <2017-09-08 21:17:24>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -15,14 +15,14 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list
-                              (concat DENNY_EMACS "/emacs_data/org_data/current.org")
+                              (concat DENNY_EMACS "/../emacs_data/org_data/current.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; log the time of the things I have done
 (setq-default org-log-done t)
 ;; write diary in org-mode
-(setq org-agenda-diary-file (concat DENNY_EMACS "/emacs_data/org_data/life/diary.org"))
+(setq org-agenda-diary-file (concat DENNY_EMACS "/../emacs_data/org_data/life/diary.org"))
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
@@ -89,18 +89,18 @@
 ;; set css for html export in org-mode
 (setq user-full-name "Denny Zhang")
 (setq user-mail-address "filebat.mark@gmail.com")
-(load-file (concat DENNY_EMACS "/emacs_conf/org-css-setting.el"))
+(load-file (concat DENNY_EMACS "/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
-;;(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-devops-post.el")) ;; TODO
+(load-file (concat DENNY_EMACS "/org-publish/org-publish-to-wordpress.el"))
+;;(load-file (concat DENNY_EMACS "/org-publish/wordpress-devops-post.el")) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
 (setq org-mobile-directory (concat DENNY_EMACS "../../Apps/MobileOrg"))
-(setq org-mobile-files (list (concat DENNY_EMACS "/emacs_data/org_data/tomobile.org")))
-(setq org-directory (concat DENNY_EMACS "/emacs_data/org_data/"))
+(setq org-mobile-files (list (concat DENNY_EMACS "/../emacs_data/org_data/tomobile.org")))
+(setq org-directory (concat DENNY_EMACS "/../emacs_data/org_data/"))
 ;; pulling from MobileOrg
-(setq org-mobile-inbox-for-pull (concat DENNY_EMACS "../emacs_stuff/emacs_data/org_data/frommobile.org"))
+(setq org-mobile-inbox-for-pull (concat DENNY_EMACS "../emacs_stuff/../../emacs_data/org_data/frommobile.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
@@ -219,7 +219,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'graphviz-dot-mode)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq org-directory (concat DENNY_EMACS "/emacs_data/org_data/"))
+(setq org-directory (concat DENNY_EMACS "/../../emacs_data/org_data/"))
 (setq org-default-notes-file "current.org")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; auto add "TODO " for top task
@@ -268,7 +268,7 @@
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'org-contacts)
-;; (add-to-list 'org-contacts-files (concat DENNY_EMACS "/emacs_data/org_data/contacts.org"))
+;; (add-to-list 'org-contacts-files (concat DENNY_EMACS "/../../emacs_data/org_data/contacts.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-export-with-tasks 'done
       org-export-creator-info nil)
@@ -314,7 +314,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
 (setq copylog-monitor-orgfiles '("current.org" "top.org"))
-(setq copylog-dest-orgfile (concat DENNY_EMACS "/emacs_data/org_data/life/diary.org"))
+(setq copylog-dest-orgfile (concat DENNY_EMACS "/../../emacs_data/org_data/life/diary.org"))
 (defadvice org-kill-line (after kill-region activate)
   (if (member (buffer-name) copylog-monitor-orgfiles)
       (unless (null (string-match "^\*+ DONE" (org-no-properties (car kill-ring))))

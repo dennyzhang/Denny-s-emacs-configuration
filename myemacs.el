@@ -4,14 +4,14 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-07-20 11:18:17>
+;; Updated: Time-stamp: <2017-09-08 21:14:12>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "/Users/mac/Dropbox/private_data/emacs_vendor/")
 (defconst SHARE_DIR "/Users/mac/Dropbox/")
-(defconst DENNY_EMACS "/Users/mac/Dropbox/private_data/emacs_stuff/")
+(defconst DENNY_EMACS "/Users/mac/Dropbox/private_data/Denny-s-emacs-configuration/")
 
 ;; Load 3rd packages
-(load-file (concat DENNY_EMACS "/emacs_conf/packages.el"))
+(load-file (concat DENNY_EMACS "/packages.el"))
 (require 'ox-html)
 
 (setq emacs-load-start-time (current-time))
@@ -20,7 +20,7 @@
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (mapc #'(lambda(emacs-file)
          (load-file
-	  (expand-file-name emacs-file (concat DENNY_EMACS "/emacs_conf"))))
+	  (expand-file-name emacs-file DENNY_EMACS)))
       '(
         "bbdb-setting.el"
         "fundamental-setting.el" ;; suspicous
@@ -56,7 +56,7 @@
  ((eq system-type 'darwin)
   (mapc #'(lambda(emacs-file)
          (load-file
-	  (expand-file-name emacs-file (concat DENNY_EMACS "/emacs_conf"))))
+          (expand-file-name emacs-file DENNY_EMACS)))
         '(
           "diff-setting.el"
           "web-setting.el"
@@ -69,7 +69,7 @@
  ((eq system-type 'gnu/linux)
   (mapc #'(lambda(emacs-file)
          (load-file
-	  (expand-file-name emacs-file (concat DENNY_EMACS "/emacs_conf"))))
+          (expand-file-name emacs-file DENNY_EMACS)))
         '(
           "diff-setting.el"
           "linux-setting.el"
@@ -78,22 +78,22 @@
           "voice-setting.el"
           "interoperation-setting.el")))
  ((eq system-type 'windows-nt)
-  (load-file (concat DENNY_EMACS "/emacs_conf/windowsonly-setting.el")))
+  (load-file (concat DENNY_EMACS "/windowsonly-setting.el")))
  ((eq system-type 'cygwin)
-  (load-file (concat DENNY_EMACS "/emacs_conf/cygwin-setting.el"))))
+  (load-file (concat DENNY_EMACS "/cygwin-setting.el"))))
 (mapc #'(lambda(emacs-file)
          (load-file
-	  (expand-file-name emacs-file (concat DENNY_EMACS "/emacs_conf"))))
+          (expand-file-name emacs-file DENNY_EMACS)))
       '("postfundamental-setting.el"
         "passwd.el"
         "tmp.el"
         ))
 
 ;; loading sensitive configurations
-;;(load-file (concat DENNY_EMACS "/emacs_conf/secrets.el.gpg"))
-(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
+;;(load-file (concat DENNY_EMACS "/secrets.el.gpg"))
+(load-file (concat DENNY_EMACS "/org-publish/org-publish-to-wordpress.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(unless (server-running-p) (server-start))
+;;(Unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."

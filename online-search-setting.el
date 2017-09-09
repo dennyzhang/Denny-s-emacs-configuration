@@ -5,13 +5,13 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-07-20 11:18:17>
+;; Updated: Time-stamp: <2017-09-08 21:11:19>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
 (setq browse-url-default-browser "/usr/bin/chromium-browser")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/emacs_conf/online-search/online-search.el"))
+(load-file (concat DENNY_EMACS "/online-search/online-search.el"))
 (global-set-key [(control c) (s)] 'online-search)
 ;; If current environment is windows, w3m may be probably not available.
 ;; In this case downgrade from w3m mode to plaintext mode.

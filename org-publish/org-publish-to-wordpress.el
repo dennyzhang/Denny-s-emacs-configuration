@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-06 19:04:56>
+;; Updated: Time-stamp: <2017-09-08 21:11:21>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -281,7 +281,7 @@ the plist used as a communication channel."
 (defun devops-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-devops-post.el"))
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-devops-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
@@ -290,7 +290,7 @@ the plist used as a communication channel."
 (defun tax-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-tax-post.el"))
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-tax-post.el"))
     (setq blog-tail "<hr/>Check our <a href='http://www.usashui.com/popular/'>popular</a> posts?
 
 [mc4wp_form id='52']

@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2016-11-07 17:55:23>
+;; Copyright © 2010-2011 Time-stamp: <2017-09-08 21:16:14>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -9,7 +9,7 @@
 ;;
 
 ;;(load-file (concat EMACS_VENDOR "/emacs-aggregation/emacs-aggregation.el"))
-(load-file (concat DENNY_EMACS "/emacs_conf/emacs-aggregation/emacs-aggregation.el"))
+(load-file (concat DENNY_EMACS "/emacs-aggregation/emacs-aggregation.el"))
 (setq report-subject (format "Emacs Daily Journal from %s" system-name))
 ;; (setq recipient-mail "filebat.mark@gmail.com filebat.mark@gmail.com sophiazhang8709@126.com")
 (setq recipient-mail "249950670@qq.com")
@@ -78,9 +78,9 @@ Boston天气:%s
 
 ;;(aggregation-timer)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/emacs_conf/emacs-aggregation/mobilize-orgfile.el"))
+(load-file (concat DENNY_EMACS "/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")
-(setq mobile-export-src-dir (concat DENNY_EMACS "emacs_data/org_data"))
+(setq mobile-export-src-dir (concat DENNY_EMACS "../emacs_data/org_data"))
 (setq mobile-export-publish-dir (concat DENNY_EMACS "mobile_export"))
 (setq mobile-export-file-list '("contacts.org"
                                 "career.org"
