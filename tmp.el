@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:31:30>
+;; Updated: Time-stamp: <2016-09-29 12:44:51>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1839,25 +1839,25 @@ Insert if ARG."
     )
   )
 
-(defun update-r-period()
-  (interactive)
-  (let ((rawfile "/tmp/raw.txt")
-        (pngfile "/tmp/sophia.png"))
-    (contact)
-    (save-excursion
-      (save-restriction
-        (when (re-search-forward "^* 秀秀--" nil t)
-          (progn
-            (org-narrow-to-subtree)
-            (write-region (point-min) (point-max) rawfile)
-              (shell-command (format "cd %s/../backup_small/life/sophia_period; ./sophia_period.sh %s %s "
-                                     DENNY_EMACS rawfile pngfile))
-              (message (format "check picture of %s" pngfile))
-            )
-          )
-        ))
-    )
-  )
+;; (defun update-r-period()
+;;   (interactive)
+;;   (let ((rawfile "/tmp/raw.txt")
+;;         (pngfile "/tmp/sophia.png"))
+;;     (contact)
+;;     (save-excursion
+;;       (save-restriction
+;;         (when (re-search-forward "^* 秀秀--" nil t)
+;;           (progn
+;;             (org-narrow-to-subtree)
+;;             (write-region (point-min) (point-max) rawfile)
+;;               (shell-command (format "cd %s/../backup_small/life/sophia_period; ./sophia_period.sh %s %s "
+;;                                      DENNY_EMACS rawfile pngfile))
+;;               (message (format "check picture of %s" pngfile))
+;;             )
+;;           )
+;;         ))
+;;     )
+;;   )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;; git-gutter indicats whether a line has been inserted, modified or deleted
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-git-gutter/"))

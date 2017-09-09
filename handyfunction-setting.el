@@ -2,9 +2,9 @@
 ;; File: handyfunction-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 22:29:38>
+;; Updated: Time-stamp: <2017-07-20 11:18:18>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -342,7 +342,7 @@ BEG and END (region to sort)."
       ))
   ;; untabify, indent-region, etc
   (unless (region-active-p) (mark-whole-buffer))
-  (unless (member mode-name '("Org"))
+  (unless (member mode-name '("Org" "Ruby"))
     (untabify (region-beginning) (region-end))
     (indent-region (region-beginning) (region-end)))
   (narrow-to-region (region-beginning) (region-end))
@@ -466,7 +466,7 @@ and also with certain buffer excluded from the candidates"
  # File : handyfunction-setting.el
  "
   (interactive)
-  (unless (member mode-name readonly-mode-list)
+  (unless (member mode-name '("Image[jpeg]" "Image[gif]" "YAML"))
     (save-excursion
       (save-restriction
         (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "

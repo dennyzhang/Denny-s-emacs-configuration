@@ -2,16 +2,17 @@
 ;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 22:14:00>
+;; Updated: Time-stamp: <2017-07-20 11:18:17>
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "~/backup/emacs_vendor/")
-(defconst SHARE_DIR "/Users/mac/baidu/百度云同步盘/")
-(defconst DENNY_EMACS "/Users/mac/baidu/百度云同步盘/private_data/emacs_stuff/")
+(defconst EMACS_VENDOR "/Users/mac/Dropbox/private_data/emacs_vendor/")
+(defconst SHARE_DIR "/Users/mac/Dropbox/")
+(defconst DENNY_EMACS "/Users/mac/Dropbox/private_data/emacs_stuff/")
 
 ;; Load 3rd packages
 (load-file (concat DENNY_EMACS "/emacs_conf/packages.el"))
+(require 'ox-html)
 
 (setq emacs-load-start-time (current-time))
 (when (< emacs-major-version 22)

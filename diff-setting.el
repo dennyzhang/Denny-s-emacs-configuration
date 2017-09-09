@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(denny.zhang001@gmail.com)
 ;;
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2012-04-22
-;; Updated: Time-stamp: <2015-04-09 21:50:01>
+;; Updated: Time-stamp: <2017-07-20 11:18:19>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)

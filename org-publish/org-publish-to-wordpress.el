@@ -2,9 +2,9 @@
 ;; File: org-publish-to-wordpress.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-25 14:58:03>
+;; Updated: Time-stamp: <2017-09-06 19:04:56>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; don't export the useless html validation link
@@ -16,53 +16,174 @@
 ;; (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote")) ;; TODO
 (setq org-export-default-language "cn")
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'weblogger)
+;; TODO: workaround: org-mode support text coloring
+;; https://www.mail-archive.com/emacs-orgmode@gnu.org/msg29988.html
+(org-add-link-type
+ "color" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     (format "<span style=\"background-color:#f9f2f4;color:%s;\">%s</span>" path desc))
+    ((eq format 'latex)
+     (format "{\\color{%s}%s}" path desc)))))
+
+(org-add-link-type
+ "github" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     (format "<script async defer src=\"https://buttons.github.io/buttons.js\"></script><a class=\"github-button\" href=\"https://github.com/%s\" data-show-count=\"true\" aria-label=\"%s on GitHub\">%s</a>" path desc desc)))))
+
+;; Sample usage
+;; [[blog-image:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
+(org-add-link-type
+ "blog-image" nil
+ (lambda (alt_text img_url format)
+   (cond
+    ((eq format 'html)
+     (replace-regexp-in-string
+      "alt=\".*\"" (format "alt=\"%s\"" alt_text)
+      (format "<a href=\"my_blog_url_here\">%s</a>" img_url)
+      ))
+    ))
+ )
+
 ;; --8<-------------------------- separator ------------------------>8--
-(setq blog-tail "<hr/>Like our <a href='http://www.dennyzhang.com'>blog</a> posts? Discuss with us on <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a>, <a href='https://twitter.com/dennyzhang001'>Twitter</a> Or <a href='http://eepurl.com/cahUNT'>NewsLetter</a>.
+(require 'weblogger)
 
-[mc4wp_form id='3792']
-")
-
-;; change footnotes format
+;; --8<-------------------------- separator ------------------------>8--
+;; Change footnotes format
 (setq org-html-footnotes-section "<div id=\"footnotes\">
 <p class=\"footnotes\">%s: </p>
-<div id=\"text-footnotes\">
+<div id=\"text-footnotes\" style=\"font-size:14px\">
 %s
 </div>
 </div>")
-
+;; Remove html sup
+(setq org-html-footnote-format "%s")
 (setq org-footnote-section "Footnotes:")
 
-(setq org-publish-project-alist
-      '(
-        ("org-share"
-         ;; Remove hard code
-         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/"
-         :publishing-directory "~/org_publish/publish_html/"
-         :base-extension "org"
-         :recursive t
-         :publishing-function org-publish-org-to-website
-         :headline-levels 4
-         :auto-preamble t
-         )
-        ("org-index"
-         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/" ;; Remove hard code
-         :publishing-directory "~/org_publish/publish_html/"
-         :base-extension "index"
-         :recursive t
-         :publishing-function org-publish-org-to-html
-         :headline-levels 4
-         :auto-preamble t
-         )
-        ("publish" :components ("org-share" "org-index"))
-        ))
+;; Hacky way to modify source code directly
+;; From: 1 www.gnu.org/software/bash/manual/bashref.html#The-Set-Builtin
+;; To: [1] www.gnu.org/software/bash/manual/bashref.html#The-Set-Builtin
+(defun org-html--anchor (&optional id desc attributes)
+  "Format a HTML anchor."
+  (let* ((name (and org-html-allow-name-attribute-in-anchors id))
+         (attributes (concat (and id (format " id=\"%s\"" id))
+                             (and name (format " name=\"%s\"" name))
+                             attributes)))
+    (format "<a%s>[%s]</a>" attributes (or desc ""))))
 
-;; (defun org-publish-org-to-website (plist filename pub-dir)
-;; "Publish an org file to HTML.
-;; See `org-publish-org-to' to the list of arguments."
-;; (org-publish-with-aux-preprocess-maybe
-;; (org-publish-org-to "website" plist filename pub-dir)))
+(defun org-html-paragraph (paragraph contents info)
+  "Transcode a PARAGRAPH element from Org to HTML.
+CONTENTS is the contents of the paragraph, as a string. INFO is
+the plist used as a communication channel."
+  (let* ((parent (org-export-get-parent paragraph))
+         (parent-type (org-element-type parent))
+         (style '((footnote-definition " class=\"footpara\"")))
+         (extra (or (cadr (assoc parent-type style)) "")))
+    (cond
+     ((and (eq (org-element-type parent) 'item)
+           (= (org-element-property :begin paragraph)
+              (org-element-property :contents-begin parent)))
+      ;; Leading paragraph in a list item have no tags.
+      contents)
+     ((org-html-standalone-image-p paragraph info)
+      ;; Standalone image.
+      (let ((caption
+             (let ((raw (org-export-data
+                         (org-export-get-caption paragraph) info))
+                   (org-html-standalone-image-predicate
+                    'org-html--has-caption-p))
+               (if (not (org-string-nw-p raw)) raw
+                 (concat
+                  "<span class=\"figure-number\">"
+                  (format (org-html--translate "Figure %d:" info)
+                          (org-export-get-ordinal
+                           (org-element-map paragraph 'link
+                             'identity info t)
+                           info nil 'org-html-standalone-image-p))
+                  "</span> " raw))))
+            (label (org-element-property :name paragraph)))
+        (org-html--wrap-image contents info caption label)))
+     ;; Regular paragraph.
+     ;; (t (format "<p%s>\n%s</p>" extra contents)))))
+     (t (format "\n%s" contents)))))
+;; --8<-------------------------- separator ------------------------>8--
+;; Whether current article is a page or a normal blog post
+(defun article_type_by_fname(filename)
+  (if (string-match ".*-Page_.*" filename)
+      "PAGE" "POST"))
 
+(defun modify_description (str blog-uri)
+  ;; modify description before sending to worpress
+  (let ((ret str))
+    ;; remove hr
+    (setq ret (replace-regexp-in-string "<hr/>" "" ret))
+    ;; add http link for image
+    (setq ret (replace-regexp-in-string
+               "my_blog_url_here"
+               (format "https://www.dennyzhang.com/%s" blog-uri) ret))
+    ))
+
+(defun modify_content (str blog-uri blog-type)
+  ;; modify content before sending to worpress
+  (let ((ret str))
+    ;; remove PROPERTIES
+    (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
+    ;; update link
+    (setq ret (replace-regexp-in-string "<p class=\"author\".*" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"date\".*" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"validation\".*" "" ret))
+
+    ;; remove title from content
+    (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n.*\n.*\n.*\n.*\n" "" ret))
+    ;; remove DONE decorator
+    (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
+    (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
+    ;; remove empty h3 at the bottom
+    (setq ret (replace-regexp-in-string "<h3 id=\"sec-[0-9]+-[0-9]+\"></h3>" "" ret))
+    ;; remove unnecessary content
+    (setq ret (replace-regexp-in-string "<p class=\"author\".*</p>" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"date\".*</p>" "" ret))
+    (setq ret (replace-regexp-in-string "<p class=\"validation\".*</p>" "" ret))
+
+    ;; add blog tail
+
+    (if (string= blog-type "POST")
+        (setq my-blog-tail blog-tail)
+      (setq my-blog-tail ""))
+
+    ;; TODO: better way
+    (setq ret (replace-regexp-in-string
+               "</div>\n</div></div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
+               my-blog-tail ret))
+
+    (setq ret (replace-regexp-in-string
+               "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
+               my-blog-tail ret))
+
+    (when (string= blog-type "POST")
+      ;; add post link
+      (setq ret (format "%sOriginal URL: <a href=\"%s/%s/\">%s/%s</a><br/><br/>%s"
+                        ret mywordpress-server-url blog-uri
+                        (replace-regexp-in-string "www." "" mywordpress-server-url)
+                        blog-uri 
+                        "Connect with Denny In <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a> Or <a href='http://eepurl.com/cahUNT'>MailList</a>"
+                        ))
+      )
+    (setq ret (replace-regexp-in-string
+               "my_blog_url_here"
+               (format "%s/%s" mywordpress-server-url blog-uri) ret))
+    ;; insert css
+    ;; https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
+    (format "%s<link rel='stylesheet' type='text/css' href='%s/wp-content/uploads/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">"
+            ret
+            mywordpress-server-url)
+    )
+  )
+
+;; --8<-------------------------- separator ------------------------>8--
 (defun get-top-entry-title ()
   (org-back-to-heading t)
   (setq top-entry-title
@@ -73,90 +194,6 @@
   (setq top-entry-title (replace-regexp-in-string "\\[" "(" top-entry-title))
   (setq top-entry-title (replace-regexp-in-string "\\]" ")" top-entry-title))
   )
-
-;; (defun org-export-as-website (arg &optional hidden ext-plist
-;; to-buffer body-only pub-dir not-generate-sitemap)
-;; (interactive "P")
-;; (let* ((src-org-file buffer-file-name)
-;; (dst-org-file (format "%s.index" (file-name-sans-extension src-org-file)))
-;; (org-tag '())
-;; src-shortname export-buffer export-file
-;; org-tag top-entry-link start-pos end-pos
-;; keyword-list
-;; category
-;; top-entry-pos (top-entry-pos-list '())
-;; top-entry-title (top-entry-title-list '()))
-;; ;; caculate top entries
-;; (goto-char 0)
-;; (while (search-forward-regexp "^* " nil t)
-;; (setq top-entry-pos (- (point) 2))
-;; ;; obtain titles of top entries
-;; (setq top-entry-title (get-top-entry-title))
-;; (setq org-tag (org-get-tags))
-;; (if (member BlOG-TAG org-tag)
-;; (progn
-;; (unless (null top-entry-title)
-;; (setq start-pos top-entry-pos)
-;; (org-forward-same-level 1)
-;; (setq end-pos (point))
-;; (add-to-list 'top-entry-pos-list (cons start-pos end-pos))
-;; (setq top-entry-title-list (cons top-entry-title top-entry-title-list))
-;; )))
-;; (goto-char (+ 1 top-entry-pos))
-;; )
-
-;; ;; generate a separate page for each top entry
-;; (let (start-end-pos)
-;; (dolist (top-entry-title top-entry-title-list)
-;; (setq start-end-pos (pop top-entry-pos-list))
-;; (setq start-pos (car start-end-pos))
-;; (setq end-pos (cdr start-end-pos))
-;; ;; mark region
-;; (transient-mark-mode t)
-;; (goto-char start-pos)
-;; (setq category (car (delete BlOG-TAG (org-get-tags))))
-;; (setq keyword-list (org-entry-get nil "type"))
-;; (if (null keyword-list) (setq keyword-list ""))
-;; (set-mark (point))
-;; (goto-char end-pos)
-;; ;; export html
-;; (setq export-buffer (format "%s-%s-%s_%s.html"
-;; (file-name-sans-extension (file-name-nondirectory buffer-file-name))
-;; (md5 top-entry-title)
-;; category
-;; keyword-list
-;; ))
-;; (save-excursion
-;; (org-export-as-html
-;; arg hidden ext-plist export-buffer body-only pub-dir)
-;; (setq export-file (format "%s/%s" pub-dir export-buffer))
-;; (write-file export-file nil)
-;; (kill-buffer export-buffer)
-;; )
-;; (if (fboundp 'deactivate-mark) (deactivate-mark))
-;; ))
-;; (unless not-generate-sitemap
-;; (save-excursion
-;; (find-file dst-org-file)
-;; (setq export-buffer (format "%s.html" (file-name-sans-extension (file-name-nondirectory dst-org-file))))
-;; (erase-buffer)
-;; (setq src-shortname (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-;; (insert (format "-*- mode:org; fill-column:90; coding:utf-8; -*-
-;; #+LINK_HOME: index.html
-;; #+LINK_UP: %s.html
-;; " src-shortname))
-;; (setq top-entry-title-list (nreverse top-entry-title-list))
-;; (dolist (top-entry-title top-entry-title-list)
-;; (setq top-entry-link (format "%s-%s.org" src-shortname (md5 top-entry-title)))
-;; (insert (format "* [[file:%s][%s]]\n" top-entry-link top-entry-title)))
-;; (save-buffer 0)
-;; (org-export-as-html arg hidden ext-plist export-buffer body-only pub-dir)
-;; (setq export-file (format "%s/%s" pub-dir export-buffer))
-;; (write-file export-file nil)
-;; (kill-buffer export-buffer)
-;; (delete-file dst-org-file)
-;; ))
-;; ))
 
 (org-defkey org-mode-map (kbd "C-c v") 'beautify-web-quotation)
 
@@ -181,20 +218,134 @@
       )
     ))
 ;; --8<-------------------------- separator ------------------------>8--
-(defun wash-html-for-wordpress (&optional html-dir)
-  "Wash html files for a better appearance in wordpress:
- - remove section, which includes head section and css styles, etc
- - replace <div id = \"content\"> to <div>
-"
-  (interactive)
-  (let (html-files)
-    (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
-    (setq html-files (directory-files html-dir t ".html$"))
-    (dolist (html-file html-files)
-      (wash-html-for-wordpress-internal html-file)
-      )
+(setq org-publish-project-alist
+      '(
+        ("org-share"
+         ;; Remove hard code
+         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/"
+         :publishing-directory "~/org_publish/publish_html/"
+         :base-extension "org"
+         :recursive t
+         :publishing-function org-publish-org-to-website
+         :headline-levels 4
+         :auto-preamble t
+         )
+        ("org-index"
+         :base-directory "~/backup/essential/Dropbox/private_data/emacs_stuff/emacs_data/org_data/org_share/" ;; Remove hard code
+         :publishing-directory "~/org_publish/publish_html/"
+         :base-extension "index"
+         :recursive t
+         :publishing-function org-publish-org-to-html
+         :headline-levels 4
+         :auto-preamble t
+         )
+        ("publish" :components ("org-share" "org-index"))
+        ))
+;; --8<-------------------------- separator ------------------------>8--
+
+(defun update-post-seo (post-id post-title post-meta)
+  (let* ((meta-description (car post-meta))
+         (post-meta (cdr post-meta))
+         (meta-keywords (car post-meta))
+         field-list
+         )
+
+    ;; Yoast SEO
+    ;; get first keyword as Yoast focus word
+    (setq focus-keyword (car (split-string meta-keywords " ")))
+    ;; update seo of title
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_title"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") post-title))
+    ;; TODO report exceptions or update failed
+    (http-post-simple mywordpress-updatemeta-url field-list)
+
+    ;; update seo of description
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_metadesc"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") meta-description))
+    (http-post-simple mywordpress-updatemeta-url field-list)
+
+    ;; focus keyword
+    (setq field-list '())
+    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
+    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_focuskw"))
+    (add-to-list 'field-list (list (make-symbol "meta_value") focus-keyword))
+    (http-post-simple mywordpress-updatemeta-url field-list)
+
     )
   )
+;; --8<-------------------------- separator ------------------------>8--
+(defun devops-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-devops-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun tax-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-tax-post.el"))
+    (setq blog-tail "<hr/>Check our <a href='http://www.usashui.com/popular/'>popular</a> posts?
+
+[mc4wp_form id='52']
+")
+    (update-wordpress-current-entry)
+    )
+  )
+(defun update-wordpress-current-entry ()
+  ;;(interactive)
+  (let* ((current-top-entry-title (get-top-entry-title))
+         (current-md5 (md5 current-top-entry-title))
+         (old-buffer (current-buffer))
+         (current-exported-dir (file-name-directory (buffer-file-name)))
+         (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
+         (org-tag (org-get-tags))
+         (category (car (delete BlOG-TAG org-tag)))
+         (current-exported-filename
+          (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
+         current-post-meta
+         ;;(old-list-post-meta list-post-meta)
+         url-string)
+    ;; delete old file, if it exists
+    (if (file-exists-p current-exported-filename)
+        (delete-file current-exported-filename))
+    (save-excursion
+      ;; remove anything after separator
+      (org-show-subtree)
+      (setq separator
+            "\*\* ---------------------------------------------------------------------")
+      (goto-char (point-max))
+      (if (search-backward-regexp separator nil t)
+          (progn
+            (move-beginning-of-line nil)
+            (narrow-to-region (point-min) (point))))
+      ;;(org-export-as-html 3)
+      (org-html-export-to-html)
+      )
+    (rename-file (format "%s.html" short-filename) current-exported-filename)
+    (wash-html-for-wordpress-internal current-exported-filename)
+    (setq current-post (assoc current-md5 list-post-meta))
+    (setq blog-uri (cadr (cdr (cdr current-post))))
+    (if current-post
+        (progn
+          (update-wordpress-blog-internal current-exported-filename)
+          (setq url-string (format "%s/%s" mywordpress-server-url blog-uri))
+          (kill-new url-string)
+          (message url-string)
+          (delete-file current-exported-filename)
+          )
+      (message "No related blog entry for %s" current-top-entry-title))
+    (save-excursion
+      (switch-to-buffer old-buffer)
+      ;;(widen)
+      )
+    ))
 
 (defun wash-html-for-wordpress-internal (html-file &optional insert-prefix-str)
   (interactive)
@@ -211,15 +362,6 @@
         )
       )
     (goto-char (point-min))
-    ;; insert css
-    (insert "<link rel='stylesheet' type='text/css' href='http://www.dennyzhang.com/wp-content/uploads/org.css'>\n")
-    (insert (format "<style type=\"text/css\"> %s %s %s </style> "
-                    "table .left, table .right { float:none; } "
-                    "pre {width: 600px;
- overflow: auto;
- }"
-                    ".underline { text-decoration: underline; } "
-                    "h3 {padding-top: 0.5em; font-size:1.2em; line-height:150%;} "))
     (while (search-forward-regexp "<div id=\"content\">" nil t)
       (replace-match "<div>"))
     (goto-char (point-min))
@@ -256,14 +398,13 @@
     (write-file html-file nil)
     (kill-buffer)
     ))
-
 ;; --8<-------------------------- separator ------------------------>8--
-(defun update-wordpress-blog (&optional html-dir)
+(defun update-wordpress-blog-internal (html-file)
   (interactive)
-  (let ((wordpress-server-url (concat mywordpress-server-url "/xmlrpc.php"))
+  (let ((wordpress-server-url (concat mywordpress-server-url "/xmlrpc_denny.php"))
         (wordpress-username mywordpress-username)
         (wordpress-pwd mywordpress-pwd)
-        html-files short-filename
+        short-filename
         title-md5 post-meta
         meta-start meta-end
         (category "")
@@ -277,11 +418,8 @@
     ;; (make-local-variable 'org-export-with-toc)
     ;; (setq org-export-with-toc nil)
 
-    (unless html-dir (setq html-dir "~/org_publish/publish_html/"))
-    (wash-html-for-wordpress html-dir)
-    (setq html-files (directory-files html-dir t ".*-.*-.*_.*.html$"))
     (setq not-tracked-org-post '())
-    (dolist (html-file html-files)
+    (progn
       (setq short-filename (file-name-sans-extension (file-name-nondirectory html-file)))
       (progn
         (find-file html-file)
@@ -292,8 +430,8 @@
               (match-string 3 short-filename)
               keyword-list
               (match-string 4 short-filename))
-        (setq post-meta (assoc title-md5 list-post-meta))
-        (if post-meta
+        (setq current-post (assoc title-md5 list-post-meta))
+        (if current-post
             ;; If related blog is found, update wordpress
             (progn
               (setq content-str
@@ -317,235 +455,38 @@
                 )
 
               (setq
-               post-meta (cdr post-meta)
+               current-post (cdr current-post)
 
-               post-id (car post-meta)
-               post-meta (cdr post-meta)
+               post-id (car current-post)
+               current-post (cdr current-post)
 
-               post-title (car post-meta)
-               post-meta (cdr post-meta)
+               post-title (car current-post)
+               current-post (cdr current-post)
 
-               post-slug (car post-meta)
-               post-meta (cdr post-meta)
+               blog-uri (car current-post)
+               current-post (cdr current-post))
 
-               post-struct
-               (list (cons "title" post-title)
-                     (cons "authorName" "dennyzhang.com")
-                     (cons "description" (modify_description description-str)) ;; digest
-                     (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list)) ;; tag
-                     (cons "wp_slug" post-slug) ;; uri
-                     (cons "categories" (list category)) ;; category
-                     (cons "mt_text_more" (modify_content content-str post-slug)) ;; Read more
-                     ))
-              ;; update post
+              (setq post-struct
+                    (list (cons "wp_slug" blog-uri) ;; uri
+                          (cons "title" post-title)
+                          (cons "authorName" "dennyzhang.com")
+                          (cons "description" (modify_description description-str blog-uri)) ;; digest
+                          (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list)) ;; tag
+                          (cons "categories" (list category)) ;; category
+                          (cons "mt_text_more" 
+                                (modify_content content-str blog-uri 
+                                                (article_type_by_fname html-file))) ;; Read more
+                          ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id
                                    wordpress-username wordpress-pwd
                                    post-struct t)
               ;; update seo
-              (update-post-seo post-id post-meta)
+              (update-post-seo post-id post-title current-post)
               )
           (add-to-list 'not-tracked-org-post title-md5))
         (kill-buffer)))
     (if not-tracked-org-post
         (message (format "count of new posts:%d." (length not-tracked-org-post))))
-    ;;(shell-command (format "rm -rf %s/*" html-dir))
     ))
-
-(defun modify_description (str)
-  ;; modify description before sending to worpress
-  (let ((ret str))
-    ;; remove hr
-    (setq ret (replace-regexp-in-string "<hr/>" "" ret))
-    )
-  )
-
-(defun modify_content (str post-slug)
-  ;; modify content before sending to worpress
-  (let ((ret str)
-
-        )
-    ;; remove PROPERTIES
-    (setq ret (replace-regexp-in-string "<p>:PROPERTIES:\n.*\n:END:\n</p>" "" ret))
-    ;; update link
-    ;;(setq ret (replace-regexp-in-string "Author: dennyzhang.com" "Author: <a href='http://www.dennyzhang.com'>dennyzhang.com</a>" ret))
-    (setq ret (replace-regexp-in-string "<p class=\"author\".*" "" ret))
-    (setq ret (replace-regexp-in-string "<p class=\"date\".*" "" ret))
-    (setq ret (replace-regexp-in-string "<p class=\"validation\".*" "" ret))
-
-    ;; remove title from content
-    (setq ret (replace-regexp-in-string "<h1 class=\"title\">.*</h1>\n.*\n.*\n.*\n.*\n" "" ret))
-    ;; remove DONE decorator
-    (setq ret (replace-regexp-in-string "<span class=\"done DONE\"> DONE</span> " "" ret))
-    (setq ret (replace-regexp-in-string "<p> <span class=\"timestamp-wrapper\"><span class=\"timestamp-kwd\">CLOSED.*\n</p>" "" ret))
-    ;; remove empty h3 at the bottom
-    (setq ret (replace-regexp-in-string "<h3 id=\"sec-[0-9]+-[0-9]+\"></h3>" "" ret))
-    ;; remove unnecessary content
-    (setq ret (replace-regexp-in-string "<p class=\"author\".*</p>" "" ret))
-    (setq ret (replace-regexp-in-string "<p class=\"date\".*</p>" "" ret))
-    (setq ret (replace-regexp-in-string "<p class=\"validation\".*</p>" "" ret))
-
-    ;; add blog tail
-    ;; TODO: better way
-    (setq ret (replace-regexp-in-string
-               "</div>\n</div></div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
-               blog-tail ret))
-
-    (setq ret (replace-regexp-in-string
-               "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
-               blog-tail ret))
-    ;; add post link
-    (setq ret (format "Permanent Link: <a href=\"http://www.dennyzhang.com/%s/\">http://dennyzhang.com/%s</a>
-%s" post-slug post-slug ret))
-    )
-  )
-
-(defun update-wordpress-current-entry ()
-  (interactive)
-  (let* ((current-top-entry-title (get-top-entry-title))
-         (current-md5 (md5 current-top-entry-title))
-         (old-buffer (current-buffer))
-         (current-exported-dir (file-name-directory (buffer-file-name)))
-         (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
-         (org-tag (org-get-tags))
-         (category (car (delete BlOG-TAG org-tag)))
-         (current-exported-filename
-          (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
-         current-post-meta
-         ;;(old-list-post-meta list-post-meta)
-         url-string)
-    ;; delete old file, if it exists
-    (if (file-exists-p current-exported-filename)
-        (delete-file current-exported-filename))
-    (save-excursion
-      ;; remove anything after separator
-      (org-show-subtree)
-      (setq separator
-            "\*\* ---------------------------------------------------------------------")
-      (goto-char (point-max))
-      (if (search-backward-regexp separator nil t)
-          (progn 
-            (move-beginning-of-line nil)
-            (narrow-to-region (point-min) (point))))
-      ;;(org-export-as-html 3)
-      (org-html-export-to-html)
-      )
-    (rename-file (format "%s.html" short-filename) current-exported-filename)
-    (wash-html-for-wordpress-internal current-exported-filename)
-    (setq current-post-meta (assoc current-md5 list-post-meta))
-    (if current-post-meta
-        (progn
-          ;;(setq list-post-meta (list current-post-meta))
-          (update-wordpress-blog current-exported-dir)
-          ;;(setq list-post-meta old-list-post-meta)
-          (setq url-string (format "http://www.dennyzhang.com/%s"
-                                   (cadr (cdr (cdr current-post-meta)))
-                                   ))
-          (kill-new url-string)
-          (message url-string)
-          (delete-file current-exported-filename)
-          )
-      (message "No related blog entry for %s" current-top-entry-title))
-    (save-excursion
-      (switch-to-buffer old-buffer)
-      (widen)
-      )
-    ))
-
-(defun update-post-seo (post-id post-meta)
-  (let* ((meta-title (car post-meta))
-         (post-meta (cdr post-meta))
-
-         (meta-description (car post-meta))
-         (post-meta (cdr post-meta))
-
-         (meta-keywords (car post-meta))
-         (post-meta (cdr post-meta))
-
-         field-list
-         )
-
-    ;; Yoast SEO
-    ;; get first keyword as Yoast focus word
-    (setq focus-keyword (car (split-string meta-keywords " ")))
-    ;; update seo of title
-    (setq field-list '())
-    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
-    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_title"))
-    (add-to-list 'field-list (list (make-symbol "meta_value") meta-title))
-    ;; TODO report exceptions or update failed
-    (http-post-simple mywordpress-updatemeta-url field-list)
-
-    ;; update seo of description
-    (setq field-list '())
-    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
-    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_metadesc"))
-    (add-to-list 'field-list (list (make-symbol "meta_value") meta-description))
-    (http-post-simple mywordpress-updatemeta-url field-list)
-
-    ;; focus keyword
-    (setq field-list '())
-    (add-to-list 'field-list (list (make-symbol "post_id") post-id))
-    (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_focuskw"))
-    (add-to-list 'field-list (list (make-symbol "meta_value") focus-keyword))
-    (http-post-simple mywordpress-updatemeta-url field-list)
-
-    )
-  )
-
-;; --8<-------------------------- separator ------------------------>8--
-;; TODO
-;; (defun xml-rpc-value-to-xml-list (value)
-;; "Return XML representation of VALUE properly formatted for use with the \
-;; functions in xml.el."
-;; (cond
-;; ; ((not value)
-;; ; nil)
-;; ((xml-rpc-value-booleanp value)
-;; `((value nil (boolean nil ,(xml-rpc-boolean-to-string value)))))
-;; ;; might be a vector
-;; ((vectorp value)
-;; (xml-rpc-value-to-xml-list (append value nil)))
-;; ((listp value)
-;; (let ((result nil)
-;; (xmlval nil))
-;; (if (xml-rpc-value-structp value)
-;; ;; Value is a struct
-;; (progn
-;; (while
-;; (progn
-;; (when (and (symbolp (caar value)) (string= (caar value) :struct))
-;; (setq value (cons (cdar value) (cdr value))))
-;; (setq xmlval `((member nil (name nil ,(caar value))
-;; ,(car (xml-rpc-value-to-xml-list
-;; (cdar value)))))
-;; result (if t (append result xmlval) (car xmlval))
-;; value (cdr value))))
-;; `((value nil ,(append '(struct nil) result))))
-;; ;; Value is an array
-;; (while (setq xmlval (xml-rpc-value-to-xml-list (car value))
-;; result (if result (append result xmlval)
-;; xmlval)
-;; value (cdr value)))
-;; `((value nil (array nil ,(append '(data nil) result)))))))
-;; ;; Value is a scalar
-;; ((xml-rpc-value-intp value)
-;; `((value nil (int nil ,(int-to-string value)))))
-;; ;; Value is a Date ...
-;; ((xml-rpc-value-datep value)
-;; `((value nil (dateTime.iso8601 nil ,value))))
-;; ;; Value is a String
-;; ((xml-rpc-value-stringp value)
-;; (let ((charset-list (find-charset-string value)))
-;; (if (or xml-rpc-allow-unicode-string
-;; (and (eq 1 (length charset-list))
-;; (eq 'ascii (car charset-list)))
-;; (not xml-rpc-base64-encode-unicode))
-;; `((value nil (string nil ,value))) ;;TODO: temporarily hack here
-;; `((value nil (base64 nil ,(base64-encode-string
-;; (encode-coding-string value 'utf-8))))))))
-;; ((xml-rpc-value-doublep value)
-;; `((value nil (double nil ,(number-to-string value)))))
-;; (t
-;; `((value nil (base64 nil ,(base64-encode-string value)))))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-publish-to-wordpress.el ends here

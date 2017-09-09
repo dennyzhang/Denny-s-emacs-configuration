@@ -2,9 +2,9 @@
 ;; File: programming-setting.el --- utilities for developers
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:15:39>
+;; Updated: Time-stamp: <2017-07-20 11:18:16>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色

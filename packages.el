@@ -2,9 +2,9 @@
 ;; File: packages.el --- Maintain 3rd packages by ELPA
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:32:25>
+;; Updated: Time-stamp: <2017-07-20 11:18:16>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -44,7 +44,7 @@ Return a list of installed packages or nil for every skipped package."
                           'winpoint 'rect-mark 'ansi 'sr-speedbar 'minimap
                           'flymake-cursor 'fringe-helper 'ascii 'command-frequency
                           'sr-speedbar 'keywiz 'log4j-mode 'sl 'keyfreq 
-                          'smex 'csharp-mode 'actionscript-mode 'crontab-mode
+                          'csharp-mode 'actionscript-mode 'crontab-mode
                           'systemtap-mode 'go-mode 'puppet-mode 'multi-term 'second-sel
                           'journal 'tea-time
                           )

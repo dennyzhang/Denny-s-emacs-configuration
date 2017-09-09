@@ -2,9 +2,9 @@
 ;; File: essentialpackage-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:36:10>
+;; Updated: Time-stamp: <2017-07-20 11:18:19>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -257,26 +257,30 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;;(keep-buffers-erase-on-kill nil)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'hilit-chg)
-(add-hook 'find-file-hook 'enable-highlight-changes-mode)
+;; TODO: disable this
+;;(add-hook 'find-file-hook 'enable-highlight-changes-mode)
 (defun enable-highlight-changes-mode ()
   "Enable highlight-changes-mode, with several modes excluded"
-  (let ((prohibit-mode-list '("Org" "Erlang" "DocView")))
+  (let ((prohibit-mode-list '("Org" "Erlang" "DocView" (sgml-xml-mode "XHTML" "HTML"))))
     (make-local-variable 'highlight-changes-mode)
-    (highlight-changes-mode 0) ;; first disable highlight-changes-mode
-    (unless (member mode-name prohibit-mode-list)
-      (highlight-changes-mode 0)
-      (global-highlight-changes-mode 'passive);;record changes in passive way
-      (local-set-key [(control c) (control p)] 'highlight-changes-previous-change)
-      (local-set-key [(control c) (control n)] 'highlight-changes-next-change)
-      (set-face-foreground 'highlight-changes nil)
-      ;; set highlight-changes's background color slightly different with the editor's background color(DarkSlateGray)
-      (set-face-background 'highlight-changes "#382f2f")
-      (set-face-foreground 'highlight-changes-delete nil)
-      (set-face-background 'highlight-changes-delete "#916868")
+    (if (member mode-name prohibit-mode-list)
+        (highlight-changes-mode 0)
+      (progn
+        (highlight-changes-mode 0)
+        (global-highlight-changes-mode 'passive);;record changes in passive way
+        (local-set-key [(control c) (control p)] 'highlight-changes-previous-change)
+        (local-set-key [(control c) (control n)] 'highlight-changes-next-change)
+        (set-face-foreground 'highlight-changes nil)
+        ;; set highlight-changes's background color slightly different with the editor's background color(DarkSlateGray)
+        (set-face-background 'highlight-changes "#382f2f")
+        (set-face-foreground 'highlight-changes-delete nil)
+        (set-face-background 'highlight-changes-delete "#916868")
+        )
       )
     )
   )
-(global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
+
+;; (global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'hide-lines)
 (load-file (concat EMACS_VENDOR "/hide-lines/hidesearch.el"))
@@ -363,4 +367,5 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
   (unless (eq last-command 'goto-last-change-with-auto-marks)
     (split-window-vertically)))
 ;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat EMACS_VENDOR "/yaml-mode/yaml-mode.el"))
 ;; File: essentialpackage-setting.el ends here

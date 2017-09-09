@@ -2,9 +2,9 @@
 ;; File: otherpackage-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:14:27>
+;; Updated: Time-stamp: <2017-07-20 11:18:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(appt-activate)
@@ -122,11 +122,11 @@
 ;; On top of Ido, smex provides a convenient interface to your recently
 ;; and most frequently used commands.
 ;; (load-file (concat EMACS_VENDOR "/smex/smex.el")) ;; TODO
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; (require 'smex)
+;; (smex-initialize)
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; ;; This is your old M-x.
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: otherpackage-setting.el ends here

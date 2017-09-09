@@ -2,6 +2,7 @@
 *.gpg
 *.el~
 .DS_Store
-passwd.el
 org-background.png
-*wordpress-post.el
+wordpress-devops-post.el
+org-publish
+passwd.el

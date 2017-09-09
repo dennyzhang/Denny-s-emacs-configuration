@@ -2,14 +2,15 @@
 ;; File: signature-motto.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 22:57:00>
+;; Updated: Time-stamp: <2017-07-26 17:10:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
 Email: contact@dennyzhang.com
-Website: http://www.dennyzhang.com/")
+Website: https://www.dennyzhang.com
+LinkedIn: https://linkedin.com/in/dennyzhang001")
 (defun get-mail-signature ()
   (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))
 (defun get-short-mail-signature ()

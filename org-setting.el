@@ -2,9 +2,9 @@
 ;; File: org-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 22:29:37>
+;; Updated: Time-stamp: <2017-07-20 11:18:17>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -91,7 +91,8 @@
 (setq user-mail-address "filebat.mark@gmail.com")
 (load-file (concat DENNY_EMACS "/emacs_conf/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-post.el"))
+(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/org-publish-to-wordpress.el"))
+;;(load-file (concat DENNY_EMACS "/emacs_conf/org-publish/wordpress-devops-post.el")) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)

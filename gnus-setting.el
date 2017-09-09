@@ -2,9 +2,9 @@
 ;; File: gnus-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 07:26:32>
+;; Updated: Time-stamp: <2017-07-20 11:18:18>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -253,14 +253,15 @@
       '(("mail.junk" "From:.*editors.Chinese@dowjones.com.*\\|Subject:.*糯米网.*\\|Subject:.*《华尔街日报》中文网.*\\|Subject:.*Rent the Runway.*\\|Subject:.*去哪儿网.*\\|From:.*admin@42qu.com.*")
         ("myself" "From:.*filebat.mark@gmail.com.*\\|From:.*249950670@qq.com.*\\|From:.*denny.zhang@totvs.com.*\\|From:.*denny.zhang001@gmail.com")
         ("openstack-community" "From:.*OpenStack Infra.*\\|Subject:.*OpenStack.*Digest.*\\|From:.*@.*openstack.org.*\\|Reply-To:.*launchpad.*")
-        ("mail-list" "Subject:.*ubuntu-security-announce.*\\|From:.*hi@wanqu.co.*\\|From:.*blog@flux7.com.*\\|From:.*noreply@activebuilding.com.*\\|Subject:.*Lisp-cn.*\\|Subject:.*Devops Weekly.*\\|From:.*emacs-devel-request@gnu.org.*")
-
+        ("tickets" "From:.*do-not-reply@trello.com.*")
+        ("mail-list" "Subject:.*ubuntu-security-announce.*\\|From:.*hi@wanqu.co.*\\|From:.*blog@flux7.com.*\\|From:.*noreply@activebuilding.com.*\\|Subject:.*Lisp-cn.*\\|Subject:.*Devops Weekly.*\\|From:.*emacs-devel-request@gnu.org.*\\|From:.*support@guestblogging.com.*\\|Subject:.*Devops Weekly .*\\|From:.*seriousbloggersonly.com.*\\|From:.*contact@nerdfitness.com.*\\|From:.*brian@backlinko.com.*\\|From:.*mathias.lafeldt@gmail.com.*\\|From:.*newsletter@lifehack.org.*\\|From:.*evan@stridenyc.com.*\\|From:.*nate.winn@hpe.com.*\\|From:.*noreply.+feedproxy@google.com.*\\|From:.*questions@smartblogger.com.*\\|From:.*donotreply@wordpress.com.*\\|From:.*contact@nerdfitness.com.*\\|From:.*mikestelzner@socialmediaexaminer.com.*\\|From:.*dev@arkency.com.*\\|From:.*noreply@postmaster.scoop.it.*\\|From:.*glamd@abv.bg.*")
         ;; put mail receipt in mail.receipt
         ("mail.receipt" "Content-Type:.*report-type=disposition-notification.*")
         ("Daily_Journal" "Subject:.*Emacs Daily Journal.*")
         ("totvs-nagios" "From:.*nagios@fluig-id-cdn-01.fluigidentity.com.*")
         ("SNS" "Subject:.*LinkedIn.*\\|From:.*@.*monster.com.*")
         ("job" "From:.*@indeed.com.*\\|From:.*@.*monster.com\\|From:.*@cybercoders.com")
+        ("vps-alert" "Subject:.*Linode Alert.*")
         ))
 
 ;; category mails by bbdb group

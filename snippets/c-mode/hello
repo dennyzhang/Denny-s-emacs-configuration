@@ -1,14 +1,14 @@
 //-------------------------------------------------------------------
-// @copyright 2016 DennyZhang.com
+// @copyright 2017 DennyZhang.com
 // Licensed under MIT 
-//   https://raw.githubusercontent.com/DennyZhang/devops_public/master/LICENSE
+//   https://www.dennyzhang.com/wp-content/mit_license.txt
 //
 // File : hello
-// Author : Denny <denny@dennyzhang.com>
+// Author : Denny <contact@dennyzhang.com>
 // Description :
 // --
 // Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-// Updated: Time-stamp: <2016-04-20 12:03:22>
+// Updated: Time-stamp: <2017-09-07 21:34:30>
 //-------------------------------------------------------------------
 #include<stdio.h>
 using namespace std;

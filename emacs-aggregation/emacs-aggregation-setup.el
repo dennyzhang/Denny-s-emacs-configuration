@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2016-07-26 12:13:09>
+;; Copyright © 2010-2011 Time-stamp: <2016-11-07 17:55:23>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -83,7 +83,6 @@ Boston天气:%s
 (setq mobile-export-src-dir (concat DENNY_EMACS "emacs_data/org_data"))
 (setq mobile-export-publish-dir (concat DENNY_EMACS "mobile_export"))
 (setq mobile-export-file-list '("contacts.org"
-                                ;;"project.org"
                                 "career.org"
                                 "work/work.org"
                                 "current.org"

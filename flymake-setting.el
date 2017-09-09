@@ -2,9 +2,9 @@
 ;; File: flymake-setting.el
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
-;; Copyright 2015, http://DennyZhang.com
+;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2016-09-27 21:06:51>
+;; Updated: Time-stamp: <2017-07-20 11:18:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
