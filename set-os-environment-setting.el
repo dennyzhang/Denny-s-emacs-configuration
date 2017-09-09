@@ -3,7 +3,7 @@
 ;;
 ;; Author: Denny Zhang(filebat.mark@gmail.com);; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 21:17:34>
+;; Updated: Time-stamp: <2017-09-08 22:15:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set environment variables for different OS
@@ -22,7 +22,7 @@
       )
   )
 ;; --8<-------------------------- separator ------------------------>8--
-;;(setq exec-path (append exec-path '(concat DENNY_EMACS "../emacs_data/"))) ;;Change binary path
+;;(setq exec-path (append exec-path '(concat EMACS_DATA "/"))) ;;Change binary path
 (setenv "LC_ALL" "en_US.UTF-8")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: set-os-environment-setting.el ends here

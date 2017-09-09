@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 21:16:33>
+;; Updated: Time-stamp: <2017-09-08 22:15:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -72,7 +72,7 @@
 (setq isearch-allow-scroll t)
 (setq-default ispell-program-name "aspell")
 (setq ispell-personal-dictionary
-      (concat DENNY_EMACS "../emacs_data/filebat.ispell_english"))
+      (concat EMACS_DATA "/filebat.ispell_english"))
 ;;(setq-default show-trailing-whitespace 't)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(global-auto-revert-mode t) ;; auto-refresh all buffers, when files change on disk
@@ -236,8 +236,8 @@
 (global-set-key [(control -)] 'text-scale-decrease)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set alias for eshell
-(setq eshell-aliases-file (concat DENNY_EMACS "../emacs_data/filebat.alias"))
-(setq bookmark-default-file (concat DENNY_EMACS "../emacs_data/filebat.bmk"))
+(setq eshell-aliases-file (concat EMACS_DATA "/filebat.alias"))
+(setq bookmark-default-file (concat EMACS_DATA "/filebat.bmk"))
 (setq bookmark-save-flag 1) ;;save bookmark whether we change it
 (setq-default line-spacing 0.15);; set line spacing
 (setq frame-title-format "%* - %p - Keep your mind running, Denny! - %b - %f")

@@ -4,11 +4,11 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 21:16:50>
+;; Updated: Time-stamp: <2017-09-08 22:15:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
-(setq gnus-startup-file (concat DENNY_EMACS "../emacs_data/filebat.newsrc")
+(setq gnus-startup-file (concat EMACS_DATA "/filebat.newsrc")
       gnus-home-directory (concat mail-parent-directory-var "Mail")
       gnus-default-directory (concat mail-parent-directory-var "Mail")
       gnus-article-save-directory (concat mail-parent-directory-var "Mail/save")
@@ -37,7 +37,7 @@
 ;; (nnimap-address "imap.126.com")
 ;; (nnimap-server-port 143)
 ;; (nnimap-authinfo-file (concat SHARE_DIR "/private_data/emacs_stuff/../emacs_data/filebat.authinfo"))
-;; ;;(nnimap-authinfo-file (concat DENNY_EMACS "../emacs_data/filebat.authinfo"))
+;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
 ;; ))
 ;; (setq gnus-secondary-select-methods
 ;; '((nnml "") ;; set mail reader
@@ -45,7 +45,7 @@
 ;; (nnimap-address "imap.gmail.com")
 ;; (nnimap-server-port 993)
 ;; (nnimap-authinfo-file (concat SHARE_DIR "private_data/emacs_stuff/../emacs_data/filebat.authinfo"))
-;; ;;(nnimap-authinfo-file (concat DENNY_EMACS "../emacs_data/filebat.authinfo"))
+;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
 ;; (nnimap-stream ssl))
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
@@ -63,7 +63,7 @@
 ;; setup multiple smtp account with the help of msmtp
 (setq my-msmtp-config-file (concat "'" DENNY_EMACS "../emacs_data/filebat.msmtprc" "'"))
 ;; (setq sendmail-program (concat "msmtp -C " my-msmtp-config-file)) ;;TODO, enhance
-(setq message-signature-file (concat DENNY_EMACS "../emacs_data/filebat.signature"))
+(setq message-signature-file (concat EMACS_DATA "/filebat.signature"))
 (setq sendmail-program "msmtp")
 (setq message-sendmail-envelope-from 'header)
 (setq send-mail-function 'mailclient-send-it)
