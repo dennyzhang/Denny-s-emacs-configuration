@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:02:20>
+;; Updated: Time-stamp: <2017-09-08 23:03:35>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -44,7 +44,6 @@
 ;; (nnimap "gmail"
 ;; (nnimap-address "imap.gmail.com")
 ;; (nnimap-server-port 993)
-;; (nnimap-authinfo-file (concat SHARE_DIR "private_data/emacs_stuff/../emacs_data/filebat.authinfo"))
 ;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
 ;; (nnimap-stream ssl))
 ;; ))

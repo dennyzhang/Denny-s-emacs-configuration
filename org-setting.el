@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:01:08>
+;; Updated: Time-stamp: <2017-09-08 23:04:16>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -96,11 +96,11 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;TODO: need to be enhanced
 (require 'org-mobile)
-(setq org-mobile-directory (concat DENNY_EMACS "../../Apps/MobileOrg"))
-(setq org-mobile-files (list (concat EMACS_DATA "/org_data/tomobile.org")))
+;; (setq org-mobile-directory (concat DENNY_EMACS "../../Apps/MobileOrg"))
+;; (setq org-mobile-files (list (concat EMACS_DATA "/org_data/tomobile.org")))
 (setq org-directory (concat EMACS_DATA "/org_data/"))
 ;; pulling from MobileOrg
-(setq org-mobile-inbox-for-pull (concat DENNY_EMACS "../emacs_stuff/../../emacs_data/org_data/frommobile.org"))
+(setq org-mobile-inbox-for-pull (concat EMACS_DATA "org_data/frommobile.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
