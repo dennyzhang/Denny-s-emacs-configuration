@@ -4,13 +4,14 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:01:14>
+;; Updated: Time-stamp: <2017-09-11 23:51:27>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
 Email: contact@dennyzhang.com
 Website: https://www.dennyzhang.com
-LinkedIn: https://linkedin.com/in/dennyzhang001")
+LinkedIn: https://linkedin.com/in/dennyzhang001
+GitHub: https://github.com/DennyZhang")
 (defun get-mail-signature ()
   (format "%s\n\n%s" common-tail-signature (generate-mail-signature)))
 (defun get-short-mail-signature ()
@@ -23,7 +24,7 @@ LinkedIn: https://linkedin.com/in/dennyzhang001")
         (save-excursion
           (goto-char (point-min))
           (if (search-forward-regexp
-               "From: .*\\(@shopex.cn\\|@qq.com\\|@163.com\\|@126.com\\)"
+               "From: .*\\(@qq.com\\|@163.com\\|@126.com\\)"
                nil t )
               (setq signature-string (get-motto))
             ;; only English motto

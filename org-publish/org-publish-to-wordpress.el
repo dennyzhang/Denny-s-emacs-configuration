@@ -4,9 +4,11 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 21:11:21>
+;; Updated: Time-stamp: <2017-09-09 15:51:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
+(setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
+(setq denny-github-url "https://github.com/DennyZhang")
 ;; don't export the useless html validation link
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
 (require 'http-post-simple)
@@ -32,21 +34,54 @@
  (lambda (path desc format)
    (cond
     ((eq format 'html)
-     (format "<script async defer src=\"https://buttons.github.io/buttons.js\"></script><a class=\"github-button\" href=\"https://github.com/%s\" data-show-count=\"true\" aria-label=\"%s on GitHub\">%s</a>" path desc desc)))))
+     (format "<script async defer src=\"https://buttons.github.io/buttons.js\"></script><a class=\"github-button\" href=\"https://github.com/%s\" data-show-count=\"true\" aria-label=\"%s on GitHub\" target=\"_blank\" rel=\"nofollow\">%s</a>" path desc desc)))))
 
-;; Sample usage
-;; [[blog-image:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
+;; [[image-blog:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
 (org-add-link-type
- "blog-image" nil
+ "image-blog" nil
  (lambda (alt_text img_url format)
    (cond
     ((eq format 'html)
      (replace-regexp-in-string
       "alt=\".*\"" (format "alt=\"%s\"" alt_text)
       (format "<a href=\"my_blog_url_here\">%s</a>" img_url)
-      ))
-    ))
- )
+      )))))
+
+;; [[image-linkedin:LinkedIn Code Check][https://www.dennyzhang.com/wp-content/uploads/denny/linkedin_codecheck.png]]
+(org-add-link-type
+ "image-linkedin" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>"
+             denny-linkedin-url
+             (replace-regexp-in-string
+              "alt=\".*\"" (format "alt=\"%s\"" path)
+              desc))))))
+
+;; [[image-github:LinkedIn Code Check][https://www.dennyzhang.com/wp-content/uploads/denny/github_codecheck.png]]
+(org-add-link-type
+ "image-github" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>"
+             denny-github-url
+             (replace-regexp-in-string
+              "alt=\".*\"" (format "alt=\"%s\"" path)
+              desc))))))
+
+;; [[url-external:LinkedIn Code Check][https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712]]
+(org-add-link-type
+ "url-external" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     ;; <a href="https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712">https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712</a>
+     ;; https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712
+     (setq url (replace-regexp-in-string "<a href=\"" "" desc))
+     (setq url (replace-regexp-in-string "\".*" "" url))
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>" url path)))))
 
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)

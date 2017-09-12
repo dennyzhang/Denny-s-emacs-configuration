@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:04:16>
+;; Updated: Time-stamp: <2017-09-11 16:55:27>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -12,6 +12,7 @@
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/org-mode/contrib/lisp"))
 (require 'org)
 (require 'org-install)
+(require 'ox-md)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list

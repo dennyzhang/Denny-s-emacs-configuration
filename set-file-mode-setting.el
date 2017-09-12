@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-08-30 12:51:31>
+;; Updated: Time-stamp: <2017-09-11 16:44:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -24,7 +24,7 @@
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode));;rhtml
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'auto-mode-alist '("\\.md$" . org-mode))
+(add-to-list 'auto-mode-alist '("\\-Env-In-DO.md$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.mxml$" . nxml-mode))
 (setq nxml-mode-hook

@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:00:56>
+;; Updated: Time-stamp: <2017-09-12 17:15:17>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -167,8 +167,15 @@
 (defalias 'golang (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/golang.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/sa.org"))))
 (defalias 'db (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/db.org"))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; blog
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
+(setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
+(defalias 'linkedin (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
+(defalias 'github (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-github-repos/README.org"))))
+(defalias 'sell (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/developer-technical-selling/README.org"))))
+(defalias 'free (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/developer-free-saas/README.md"))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defalias 'us (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/us.org"))))
 (defalias 'house (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/house.org"))))
 (defalias 'stock (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/stock.org"))))
