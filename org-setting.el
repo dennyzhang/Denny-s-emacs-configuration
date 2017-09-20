@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-11 16:55:27>
+;; Updated: Time-stamp: <2017-09-14 22:22:22>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -12,7 +12,19 @@
 ;; (add-to-list 'load-path (concat EMACS_VENDOR "/org-mode/contrib/lisp"))
 (require 'org)
 (require 'org-install)
+;; --8<-------------------------- separator ------------------------>8--
 (require 'ox-md)
+(defadvice org-md-export-to-markdown (after org-export-to-file activate)
+  (if (file-exists-p "./README.md")
+      (with-current-buffer (find-file"README.md")
+        (progn
+          (goto-char 0)
+          (while (search-forward "[]" nil t)
+            (replace-match ""))
+          (save-buffer)
+          (kill-buffer)     
+          ))))
+;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list

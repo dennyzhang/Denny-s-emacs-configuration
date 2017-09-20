@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-07-20 11:18:18>
+;; Updated: Time-stamp: <2017-09-20 11:21:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-insert-time()
@@ -66,11 +66,11 @@
                   (cond
                    ((and (string= "Org" mode-name) (org-current-level))
                     (insert (make-string (org-current-level) ?*) " "
-                            (format "%s --8<-------------------------- separator ------------------------>8--\n"
+                            (format "%s --8<-------------------------- separator ------------------------>8-- :noexport:\n"
                                     (get-separator))))
                    (t
                     (insert
-                     (format "%s --8<-------------------------- separator ------------------------>8--\n"
+                     (format "%s --8<-------------------------- separator ------------------------>8-- :noexport:\n"
                              (get-separator)))))))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun insert-unicode-drawing-box ()

@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-12 17:15:17>
+;; Updated: Time-stamp: <2017-09-18 12:06:23>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -153,6 +153,7 @@
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/emacs.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/cloud.org"))))
+(defalias 'security (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/security.org"))))
 (defalias 'ai (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/ai.org"))))
 (defalias 'devops (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/devops.org"))))
 (defalias 'ai (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/ai.org"))))
@@ -172,8 +173,10 @@
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
 (setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
+(defalias 'blogging (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-it-blog/README.org"))))
 (defalias 'github (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-github-repos/README.org"))))
 (defalias 'sell (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/developer-technical-selling/README.org"))))
+(defalias 'slack (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-slack-group/README.org"))))
 (defalias 'free (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/developer-free-saas/README.md"))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defalias 'us (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/us.org"))))

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-09 15:51:44>
+;; Updated: Time-stamp: <2017-09-19 21:43:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -59,19 +59,18 @@
               "alt=\".*\"" (format "alt=\"%s\"" path)
               desc))))))
 
-;; [[image-github:LinkedIn Code Check][https://www.dennyzhang.com/wp-content/uploads/denny/github_codecheck.png]]
+;; [[image-github:https://github.com/DennyZhang/monitor-docker-slack][https://www.dennyzhang.com/wp-content/uploads/denny/github_codecheck.png]]
 (org-add-link-type
  "image-github" nil
  (lambda (path desc format)
    (cond
     ((eq format 'html)
      (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>"
-             denny-github-url
-             (replace-regexp-in-string
-              "alt=\".*\"" (format "alt=\"%s\"" path)
-              desc))))))
+             path desc)))))
 
-;; [[url-external:LinkedIn Code Check][https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712]]
+;; [[url-external:https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712][LinkedIn Code Check]]
+;; path:
+;; desc:
 (org-add-link-type
  "url-external" nil
  (lambda (path desc format)
@@ -79,9 +78,9 @@
     ((eq format 'html)
      ;; <a href="https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712">https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712</a>
      ;; https://www.linkedin.com/feed/update/urn:li:activity:6282693138029043712
-     (setq url (replace-regexp-in-string "<a href=\"" "" desc))
+     (setq url (replace-regexp-in-string "<a href=\"" "" path))
      (setq url (replace-regexp-in-string "\".*" "" url))
-     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>" url path)))))
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\">%s</a>" url desc)))))
 
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)
