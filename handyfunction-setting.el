@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:03:09>
+;; Updated: Time-stamp: <2017-09-26 10:50:38>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -466,7 +466,7 @@ and also with certain buffer excluded from the candidates"
  # File : handyfunction-setting.el
  "
   (interactive)
-  (unless (member mode-name '("Image[jpeg]" "Image[gif]" "YAML"))
+  (if (member mode-name '("Python" "Emacs-Lisp"))
     (save-excursion
       (save-restriction
         (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "

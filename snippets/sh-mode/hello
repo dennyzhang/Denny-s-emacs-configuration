@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash -e
 ##-------------------------------------------------------------------
 ## @copyright 2017 DennyZhang.com
 ## Licensed under MIT 
@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-09-07 21:34:29>
+## Updated: Time-stamp: <2017-10-04 14:36:17>
 ##-------------------------------------------------------------------
 function log() {
     local msg=\$*
