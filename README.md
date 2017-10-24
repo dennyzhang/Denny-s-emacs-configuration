@@ -1,5 +1,5 @@
 # Basic Intro
-<a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png" /></a>
+<a href="https://github.com/DennyZhang?tab=followers"><img align="right" width="200" height="183" src="https://raw.githubusercontent.com/USDevOps/mywechat-slack-group/master/images/fork_github.png"/></a>
 
 [![Build Status](https://travis-ci.org/DennyZhang/Denny-s-emacs-configuration.svg?branch=master)](https://travis-ci.org/DennyZhang/Denny-s-emacs-configuration) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
