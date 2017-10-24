@@ -1,16 +1,18 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 ##-------------------------------------------------------------------
 ## @copyright 2017 DennyZhang.com
 ## Licensed under MIT 
 ##   https://www.dennyzhang.com/wp-content/mit_license.txt
 ##
-## File : hello
+## File: hello
 ## Author : Denny <contact@dennyzhang.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-10-04 14:36:17>
+## Updated: Time-stamp: <2017-10-09 17:40:55>
 ##-------------------------------------------------------------------
+set -e
+
 function log() {
     local msg=\$*
     date_timestamp=\$(date +['%Y-%m-%d %H:%M:%S'])
@@ -74,4 +76,4 @@ function request_url_get() {
 
 $0
 
-## File : hello ends
+## File: hello ends

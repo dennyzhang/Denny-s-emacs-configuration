@@ -4,16 +4,16 @@
 ## Licensed under MIT
 ##   https://www.dennyzhang.com/wp-content/mit_license.txt
 ##
-## File : hello
+## File: hello
 ## Author : Denny <contact@dennyzhang.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-10-04 14:36:25>
+## Updated: Time-stamp: <2017-10-09 17:12:39>
 ##-------------------------------------------------------------------
 def test():
     print("hello, world")
 
 if __name__ == '__main__':
     test()
-## File : hello ends
+## File: hello ends

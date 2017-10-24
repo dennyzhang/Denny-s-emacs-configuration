@@ -4,12 +4,12 @@
 ## Licensed under MIT 
 ##   https://www.dennyzhang.com/wp-content/mit_license.txt
 ##
-## File : hello
+## File: hello
 ## Author : Denny <contact@dennyzhang.com>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-09-07 21:34:29>
+## Updated: Time-stamp: <2017-10-09 17:12:47>
 ##-------------------------------------------------------------------
 puts "hello, world"
-## File : hello ends
+## File: hello ends

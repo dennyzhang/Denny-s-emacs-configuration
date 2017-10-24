@@ -3,12 +3,12 @@
 // Licensed under MIT 
 //   https://www.dennyzhang.com/wp-content/mit_license.txt
 //
-// File : hello
+// File: hello
 // Author : Denny <contact@dennyzhang.com>
 // Description :
 // --
 // Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-// Updated: Time-stamp: <2017-09-07 21:34:30>
+// Updated: Time-stamp: <2017-10-09 17:13:16>
 //-------------------------------------------------------------------
 #include<stdio.h>
 using namespace std;
@@ -17,4 +17,4 @@ int main(int argc, char *argv[]) {
      $0
      return 0;
 }
-// File : hello ends
+// File: hello ends
