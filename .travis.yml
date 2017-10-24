@@ -7,5 +7,6 @@ before_script:
   - gem install awesome_bot
 
 script:
-  # https://github.com/dkhamsing/awesome_bot
-  - awesome_bot README.md --allow-dupe --allow-redirect
+  # https://github.com/tiimgreen/github-cheat-sheet/blob/master/.travis.yml
+  - wl=https://www.linkedin.com/in/dennyzhang001
+  - awesome_bot README.md --allow-dupe --allow-redirect --white-list $wl
