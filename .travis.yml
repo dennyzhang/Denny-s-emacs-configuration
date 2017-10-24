@@ -1,0 +1,11 @@
+language: ruby
+
+rvm:
+  - 2.2
+
+before_script:
+  - gem install awesome_bot
+
+script:
+  # https://github.com/dkhamsing/awesome_bot
+  - awesome_bot README.md --allow-dupe --allow-redirect
