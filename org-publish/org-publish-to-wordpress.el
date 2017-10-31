@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-19 21:43:57>
+;; Updated: Time-stamp: <2017-10-30 22:01:06>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -203,7 +203,7 @@ the plist used as a communication channel."
                         ret mywordpress-server-url blog-uri
                         (replace-regexp-in-string "www." "" mywordpress-server-url)
                         blog-uri 
-                        "Connect with Denny In <a href='https://www.linkedin.com/in/dennyzhang001'>LinkedIn</a> Or <a href='http://eepurl.com/cahUNT'>MailList</a>"
+                        "Connect with Denny In <a href='https://goo.gl/ozDDyL'>Slack</a> Or <a href='http://eepurl.com/cahUNT'>MailList</a>"
                         ))
       )
     (setq ret (replace-regexp-in-string
@@ -211,9 +211,8 @@ the plist used as a communication channel."
                (format "%s/%s" mywordpress-server-url blog-uri) ret))
     ;; insert css
     ;; https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
-    (format "%s<link rel='stylesheet' type='text/css' href='%s/wp-content/uploads/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">"
-            ret
-            mywordpress-server-url)
+    ;; (format "%s<link rel='stylesheet' type='text/css' href='https://www.dennyzhang.com/wp-content/uploads/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">" ret)
+    (format "%s<link rel='stylesheet' type='text/css' href='https://cdn.dennyzhang.com/css/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">" ret)    
     )
   )
 
