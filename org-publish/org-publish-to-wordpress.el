@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-10-30 22:01:06>
+;; Updated: Time-stamp: <2017-11-05 13:13:01>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -35,6 +35,13 @@
    (cond
     ((eq format 'html)
      (format "<script async defer src=\"https://buttons.github.io/buttons.js\"></script><a class=\"github-button\" href=\"https://github.com/%s\" data-show-count=\"true\" aria-label=\"%s on GitHub\" target=\"_blank\" rel=\"nofollow\">%s</a>" path desc desc)))))
+
+(org-add-link-type
+ "slack" nil
+ (lambda (path desc format)
+   (cond
+    ((eq format 'html)
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://slack.dennyzhang.com:3000/badge.svg\" alt=\"%s\"/></a>" "http://slack.dennyzhang.com:3000" "slack")))))
 
 ;; [[image-blog:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
 (org-add-link-type
