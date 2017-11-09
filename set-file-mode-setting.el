@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: set-file-mode-setting.el
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-11 16:44:44>
+;; Updated: Time-stamp: <2017-11-09 00:11:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO

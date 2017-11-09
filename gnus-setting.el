@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: gnus-setting.el
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 23:03:35>
+;; Updated: Time-stamp: <2017-11-09 00:11:19>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")

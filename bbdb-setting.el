@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: bbdb-setting.el
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-08 22:15:40>
+;; Updated: Time-stamp: <2017-11-09 00:11:03>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))

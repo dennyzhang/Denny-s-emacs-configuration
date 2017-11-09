@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-publish-to-wordpress.el
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-05 13:13:01>
+;; Updated: Time-stamp: <2017-11-09 00:11:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")

@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: signature-motto.el
 ;;
-;; Author: Denny Zhang(filebat.mark@gmail.com)
+;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-09-11 23:51:27>
+;; Updated: Time-stamp: <2017-11-09 00:11:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
