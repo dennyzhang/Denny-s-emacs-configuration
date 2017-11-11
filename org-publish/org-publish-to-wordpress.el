@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-11-10 17:55:00>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -210,7 +210,7 @@ the plist used as a communication channel."
                         ret mywordpress-server-url blog-uri
                         (replace-regexp-in-string "www." "" mywordpress-server-url)
                         blog-uri 
-                        "Connect with Denny In <a href='https://goo.gl/ozDDyL'>Slack</a> Or <a href='http://eepurl.com/cahUNT'>MailList</a>"
+                        POST-TAIL
                         ))
       )
     (setq ret (replace-regexp-in-string
@@ -322,6 +322,15 @@ the plist used as a communication channel."
   (interactive)
   (progn
     (load-file (concat DENNY_EMACS "/org-publish/wordpress-devops-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun brain-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-brain-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
@@ -521,7 +530,8 @@ the plist used as a communication channel."
                                    wordpress-username wordpress-pwd
                                    post-struct t)
               ;; update seo
-              (update-post-seo post-id post-title current-post)
+              (unless (string= mywordpress-updatemeta-url "")
+                (update-post-seo post-id post-title current-post))
               )
           (add-to-list 'not-tracked-org-post title-md5))
         (kill-buffer)))

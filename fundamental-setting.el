@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-10-31 23:54:00>
+;; Updated: Time-stamp: <2017-11-09 00:12:45>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -171,6 +171,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; blog
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
+(defalias 'brain (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/brain.org"))))
 (setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
 (defalias 'blogging (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-it-blog/README.org"))))
