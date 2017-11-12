@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-10 17:55:00>
+;; Updated: Time-stamp: <2017-11-12 10:28:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -41,7 +41,7 @@
  (lambda (path desc format)
    (cond
     ((eq format 'html)
-     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://slack.dennyzhang.com:3000/badge.svg\" alt=\"%s\"/></a>" "http://slack.dennyzhang.com:3000" "slack")))))
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "http://slack.dennyzhang.com" "slack")))))
 
 ;; [[image-blog:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
 (org-add-link-type
@@ -164,7 +164,7 @@ the plist used as a communication channel."
     ;; add http link for image
     (setq ret (replace-regexp-in-string
                "my_blog_url_here"
-               (format "https://www.dennyzhang.com/%s" blog-uri) ret))
+               (format "%s/%s" mywordpress-server-url blog-uri) ret))
     ))
 
 (defun modify_content (str blog-uri blog-type)
