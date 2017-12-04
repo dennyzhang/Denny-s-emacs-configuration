@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: packages.el --- Maintain 3rd packages by ELPA
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-12-01 14:37:22>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -33,7 +33,8 @@ Return a list of installed packages or nil for every skipped package."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'iedit 'magit 'weblogger 'emms 'jabber 'screenshot 
+(ensure-package-installed 'iedit 'magit 'weblogger 'emms 'jabber 'screenshot
+                          'org-mime 'org-bullets
                           'yasnippet 'http-post-simple 'graphviz-dot-mode
                           'goto-last-change 'fold-dwim 'anything 'elscreen
                           'kill-ring-search 'hide-lines 'rainbow-mode 'highlight-tail

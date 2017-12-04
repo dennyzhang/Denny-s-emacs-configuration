@@ -1,11 +1,11 @@
 %%%-------------------------------------------------------------------
 %%% @copyright 2013 UnitedStack Co,.Ltd
 %%% File: gen_server
-%%% Author : denny <contact@dennyzhang.com>
+%%% Author : Denny <https://www.dennyzhang.com/contact>
 %%% Description :
 %%% --
 %%% Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-%%% Updated: Time-stamp: <2017-10-09 17:13:26>
+%%% Updated: Time-stamp: <2017-11-13 11:17:47>
 %%%-------------------------------------------------------------------
 -module(${2:$(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))}).
 -compile(export_all).

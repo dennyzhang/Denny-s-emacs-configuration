@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: calendar-setting.el -- calendar and event reminders
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:19>
+;; Updated: Time-stamp: <2017-11-13 11:17:03>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)

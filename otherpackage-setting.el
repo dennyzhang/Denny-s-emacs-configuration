@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: otherpackage-setting.el
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-11-13 11:17:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(appt-activate)
@@ -108,16 +108,16 @@
 ;; keyfreq measures how many time you execute commands.
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/keyfreq/keyfreq.el")) ;; TODO
-(require 'keyfreq)
-(setq keyfreq-excluded-commands
-      '(self-insert-command
-        abort-recursive-edit
-        forward-char
-        backward-char
-        previous-line
-        next-line))
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (require 'keyfreq)
+;; (setq keyfreq-excluded-commands
+;;       '(self-insert-command
+;;         abort-recursive-edit
+;;         forward-char
+;;         backward-char
+;;         previous-line
+;;         next-line))
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; On top of Ido, smex provides a convenient interface to your recently
 ;; and most frequently used commands.

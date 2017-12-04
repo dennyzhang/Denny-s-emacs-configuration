@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-publish-to-wordpress.el
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-12 10:28:57>
+;; Updated: Time-stamp: <2017-11-25 10:29:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -331,6 +331,15 @@ the plist used as a communication channel."
   (interactive)
   (progn
     (load-file (concat DENNY_EMACS "/org-publish/wordpress-brain-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun cheatsheet-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-cheatsheet-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )

@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-setting.el
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-11-13 11:17:02>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))

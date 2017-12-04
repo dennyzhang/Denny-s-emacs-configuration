@@ -1,9 +1,9 @@
 ;; -*- coding: utf-8 -*-
 ;; File: set-os-environment-setting.el --- Set os related environment parameters
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com);; Copyright 2015, https://DennyZhang.com
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact);; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:17>
+;; Updated: Time-stamp: <2017-11-13 11:17:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set environment variables for different OS

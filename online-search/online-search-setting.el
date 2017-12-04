@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: online-search-setting.el --- search internet for online dictionary, api reference, or search local index
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-11-13 11:17:02>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m

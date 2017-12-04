@@ -5,11 +5,11 @@
 ##   https://www.dennyzhang.com/wp-content/mit_license.txt
 ##
 ## File: hello
-## Author : Denny <contact@dennyzhang.com>
+## Author : Denny <https://www.dennyzhang.com/contact>
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-10-09 17:40:55>
+## Updated: Time-stamp: <2017-11-13 11:18:05>
 ##-------------------------------------------------------------------
 set -e
 

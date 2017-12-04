@@ -1,10 +1,10 @@
 ;; -*- coding: utf-8 -*-
 ;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
-;; Author: Denny Zhang(contact@dennyzhang.com)
+;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:18>
+;; Updated: Time-stamp: <2017-12-01 14:34:19>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "/Users/mac/Dropbox/private_data/emacs_vendor/")
 (defconst EMACS_DATA "/Users/mac/Dropbox/private_data/emacs_data")
@@ -62,7 +62,7 @@
           "diff-setting.el"
           "web-setting.el"
           "linux-setting.el"
-          "multimediea-setting.el"
+          ;; "multimediea-setting.el"
           "shell-setting.el"
           "voice-setting.el"
           "mac-setting.el"
@@ -74,7 +74,7 @@
         '(
           "diff-setting.el"
           "linux-setting.el"
-          "multimediea-setting.el"
+          ;; "multimediea-setting.el"
           "shell-setting.el"
           "voice-setting.el"
           "interoperation-setting.el")))
