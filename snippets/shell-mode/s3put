@@ -1,0 +1,1 @@
+s3cmd put "$1" s3://cdn.dennyzhang.com/images/blog/$1

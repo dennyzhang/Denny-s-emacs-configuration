@@ -1,0 +1,5 @@
+import inspect
+def lineno():
+    return inspect.currentframe().f_back.f_lineno
+
+print("[L: %s] " % (lineno()))
