@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2017-12-07 15:54:05>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -17,16 +17,6 @@
          (cursor-color . "Orchid")
          )
        default-frame-alist))
-
-;; TODO denny
-;; (create-fontset-from-fontset-spec
-;; "-unknown-Ubuntu Mono-normal-normal-normal-*-18-*-*-*-m-0-fontset-startup")
-
-;; (setq default-frame-alist
-;; (append
-;; '(
-;; (font . "fontset-startup"))
-;; default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))

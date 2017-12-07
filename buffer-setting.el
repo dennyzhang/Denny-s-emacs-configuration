@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2017-12-07 15:53:54>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun next-user-buffer ()
@@ -50,7 +50,7 @@ Emacs buffers are those whose name starts with *."
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Remember buffer positions per-window, not per buffer
 ;; (load-file (concat EMACS_VENDOR "/winpoint/winpoint.el")); TODO
-(winpoint-mode t)
+;; (winpoint-mode t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p k: kill all other buffers except current buffer
 ;; TODO: more elegant way to do this
