@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-25 10:29:44>
+;; Updated: Time-stamp: <2017-12-10 09:09:05>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -41,7 +41,7 @@
  (lambda (path desc format)
    (cond
     ((eq format 'html)
-     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "http://slack.dennyzhang.com" "slack")))))
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://www.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://www.dennyzhang.com/slack_group" "slack")))))
 
 ;; [[image-blog:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]
 (org-add-link-type
