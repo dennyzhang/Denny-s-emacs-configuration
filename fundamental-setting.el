@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-25 10:28:07>
+;; Updated: Time-stamp: <2018-01-05 12:15:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -192,7 +192,6 @@
 ;; life
 (defalias 'idea (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/idea.org"))))
 (defalias 'life (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/life.org"))))
-(defalias 'bayarea (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/bayarea.org"))))
 (defalias 'health (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/password.org.gpg"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/contacts.org"))))
@@ -215,10 +214,8 @@
 (defalias 'often (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/often.org"))))
 (defalias 'current (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/current.org"))))
 (defalias 'english (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/english.org"))))
-(defalias 'book (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/book.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/career.org"))))
-(defalias 'career (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/career.org"))))
-(defalias 'learn (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/learn.org"))))
+(defalias 'learn (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/learn.org"))))
 (defalias 'mydiary (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/diary.org"))))
 (defalias 'career (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/career.org"))))
 (defalias 'question (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/question.org"))))

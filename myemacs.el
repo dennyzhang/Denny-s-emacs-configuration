@@ -6,10 +6,10 @@
 ;; Created:2008-10-01
 ;; Updated: Time-stamp: <2017-12-01 14:34:19>
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "/Users/mac/Dropbox/private_data/emacs_vendor/")
-(defconst EMACS_DATA "/Users/mac/Dropbox/private_data/emacs_data")
-(defconst SHARE_DIR "/Users/mac/Dropbox/")
-(defconst DENNY_EMACS "/Users/mac/Dropbox/private_data/Denny-s-emacs-configuration/")
+(defconst EMACS_VENDOR "/Users/DennyZhang/Dropbox/private_data/emacs_vendor/")
+(defconst EMACS_DATA "/Users/DennyZhang/Dropbox/private_data/emacs_data")
+(defconst SHARE_DIR "/Users/DennyZhang/Dropbox/")
+(defconst DENNY_EMACS "/Users/DennyZhang/Dropbox/private_data/Denny-s-emacs-configuration/")
 
 ;; Load 3rd packages
 (load-file (concat DENNY_EMACS "/packages.el"))
