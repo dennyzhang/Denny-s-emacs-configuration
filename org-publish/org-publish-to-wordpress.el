@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-12-10 09:13:49>
+;; Updated: Time-stamp: <2018-01-26 12:15:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -41,7 +41,7 @@
  (lambda (path desc format)
    (cond
     ((eq format 'html)
-     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "http://slack.dennyzhang.com" "slack")
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://slack.dennyzhang.com" "slack")
      ;; (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://www.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://www.dennyzhang.com/slack_group" "slack")
      ))))
 
