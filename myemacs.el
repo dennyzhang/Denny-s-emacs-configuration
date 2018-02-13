@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-12-01 14:34:19>
+;; Updated: Time-stamp: <2018-02-13 16:59:07>
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "/Users/DennyZhang/Dropbox/private_data/emacs_vendor/")
-(defconst EMACS_DATA "/Users/DennyZhang/Dropbox/private_data/emacs_data")
-(defconst SHARE_DIR "/Users/DennyZhang/Dropbox/")
-(defconst DENNY_EMACS "/Users/DennyZhang/Dropbox/private_data/Denny-s-emacs-configuration/")
+(defconst EMACS_VENDOR "~/Dropbox/private_data/emacs_vendor/")
+(defconst EMACS_DATA "~/Dropbox/private_data/emacs_data")
+(defconst SHARE_DIR "~/Dropbox/")
+(defconst DENNY_EMACS "~/Dropbox/private_data/Denny-s-emacs-configuration/")
 
 ;; Load 3rd packages
 (load-file (concat DENNY_EMACS "/packages.el"))
@@ -24,7 +24,7 @@
 	  (expand-file-name emacs-file DENNY_EMACS)))
       '(
         "bbdb-setting.el"
-        "fundamental-setting.el" ;; suspicous
+        "fundamental-setting.el"
         "clean-appearance-setting.el"
         "buffer-setting.el"
         "essentialpackage-setting.el"
@@ -48,7 +48,6 @@
         "set-file-mode-setting.el"
         "comint-setting.el"
         "rectangle-setting.el"
-        "emacs-aggregation/emacs-aggregation-setup.el"
         "capture-setting.el"
         "sns-setting.el"
         "latex-setting.el"

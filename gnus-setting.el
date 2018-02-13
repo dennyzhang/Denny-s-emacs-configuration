@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-09 00:11:19>
+;; Updated: Time-stamp: <2018-02-13 16:55:17>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -219,18 +219,6 @@
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-message)
 (add-hook 'message-setup-hook 'bbdb-define-all-aliases)
-;; --8<-------------------------- separator ------------------------>8--
-;; 加载随机签名
-(load-file (concat DENNY_EMACS "/signature-motto.el"))
-(setq gnus-posting-styles
-      '(
-        (".*" ; Matches all groups of messages
-         (signature get-mail-signature)) ;; 使用随机签名
-        ((header "from" "sophiazhang8709@126.com\\|bz-zhangchengfeng@163.com\\|06300260051@fudan.edu.cn\\|sophiazhang8709@gmail.com")
-         (signature get-mail-signature))
-        ((header "subject" "[^ ]*")
-         (signature get-short-mail-signature)) ;; use short signature, when replying mail
-        ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; category mails by bbdb group, which is defined by bbdb alias
 (defun category-gnus-mail-by-bbdb-alias()

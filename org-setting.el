@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:02>
+;; Updated: Time-stamp: <2018-02-13 16:58:54>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -38,7 +38,7 @@
 (setq org-agenda-diary-file (concat EMACS_DATA "/org_data/life/diary.org"))
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
+;;(global-set-key "\C-cb" 'org-iswitchb)
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    'turn-on-font-lock
@@ -103,6 +103,21 @@
 (setq user-full-name "Denny Zhang")
 (setq user-mail-address "filebat.mark@gmail.com")
 (load-file (concat DENNY_EMACS "/org-css-setting.el"))
+;; --8<-------------------------- separator ------------------------>8--
+(load-file (concat DENNY_EMACS "/emacs-aggregation/emacs-aggregation-setup.el"))
+;; --8<-------------------------- separator ------------------------>8--
+;; TODO: enable this
+;; 加载随机签名
+;;(load-file (concat DENNY_EMACS "/signature-motto.el"))
+;;(setq gnus-posting-styles
+;;      '(
+;;        (".*" ; Matches all groups of messages
+;;         (signature get-mail-signature)) ;; 使用随机签名
+;;        ((header "from" "sophiazhang8709@126.com\\|bz-zhangchengfeng@163.com\\|06300260051@fudan.edu.cn\\|sophiazhang8709@gmail.com")
+;;         (signature get-mail-signature))
+;;        ((header "subject" "[^ ]*")
+;;         (signature get-short-mail-signature)) ;; use short signature, when replying mail
+;;        ))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_EMACS "/org-publish/org-publish-to-wordpress.el"))
 ;;(load-file (concat DENNY_EMACS "/org-publish/wordpress-devops-post.el")) ;; TODO

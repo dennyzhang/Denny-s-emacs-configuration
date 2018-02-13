@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-01-05 12:15:52>
+;; Updated: Time-stamp: <2018-02-13 16:56:39>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -35,7 +35,7 @@
 ;;Make sure default splitting is vertical splitting
 (set-default 'split-width-threshold 165)
 (set-default 'text-scale-mode-step 1.1);;Set the zoom rate
-(iswitchb-mode 1);;interactive buffer switching
+;;(iswitchb-mode 1);;interactive buffer switching
 (setq undo-limit 1000) ;;Increase number of undo
 (setq kill-do-not-save-duplicates t)
 (blink-cursor-mode 0) ;; prevent cursor blinking
@@ -172,6 +172,7 @@
 ;; blog
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
 (defalias 'brain (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/brain.org"))))
+(defalias 'design (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/design.org"))))
 (defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/cheatsheet.org"))))
 (setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
@@ -199,7 +200,7 @@
 
 ;; work
 (defalias 'osc (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/work/osc.org"))))
-(defalias 'weeklysummary (lambda() (interactive) (my-open-file "/Users/mac/Dropbox/private_data/project/devops_consultant/consultant_code/devops_effort/denny/DevOpsWeeklySummary.org")))
+(defalias 'weeklysummary (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/devops_effort/denny/DevOpsWeeklySummary.org")))
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))

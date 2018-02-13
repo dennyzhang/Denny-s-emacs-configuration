@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:01>
+;; Updated: Time-stamp: <2018-02-13 16:57:10>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -1771,8 +1771,8 @@ Insert if ARG."
  '(
  ("腾讯" . "open -a /Applications/QQ.app")
  ("内部" . "open -a /Applications/RTX.app")
- ("音乐" . "mplayer /Users/mac/backup/music/boyzone--everyday_i_love_you.mp3 &")
- ("文件" . "open /Users/mac/")
+ ("音乐" . "mplayer ~/backup/music/boyzone--everyday_i_love_you.mp3 &")
+ ("文件" . "open ~/")
  ("微博" . "open http://www.weibo.com")
  ("邮箱" . "open http://www.126.com")
  ("淘宝" . "open http://www.taobao.com")
@@ -1788,7 +1788,7 @@ Insert if ARG."
 (if (eq system-type 'darwin)
  (progn
  (load-file (concat EMACS_VENDOR "emacs-xcode-document-viewer/xcode-document-viewer.el"))
- (setq xcdoc:document-path "/Users/mac/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS6.1.iOSLibrary.docset") ;; TODO
+ (setq xcdoc:document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS6.1.iOSLibrary.docset") ;; TODO
  (setq xcdoc:open-w3m-other-buffer t)
  (defun xcdoc:docsetutil-command ()
  (or (executable-find "docsetutil")

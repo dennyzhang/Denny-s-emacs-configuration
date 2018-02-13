@@ -34,7 +34,8 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 (ensure-package-installed 'iedit 'magit 'weblogger 'emms 'jabber 'screenshot
-                          'org-mime 'org-bullets
+                          'org-mime 
+			  ;;'org-bullets
                           'yasnippet 'http-post-simple 'graphviz-dot-mode
                           'goto-last-change 'fold-dwim 'anything 'elscreen
                           'kill-ring-search 'hide-lines 'rainbow-mode 'highlight-tail
