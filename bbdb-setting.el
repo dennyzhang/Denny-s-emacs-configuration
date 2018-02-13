@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:16:48>
+;; Updated: Time-stamp: <2018-02-13 17:26:34>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -31,6 +31,7 @@
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
 (require 'vcard)
 (require 'bbdb-vcard)
+;; TODO: integrate emacs bbdb with google contact
 ;;(bbdb-vcard-export "~/exported-vcards/" t t) ;; TODO
  
 (defun update-bbdb-picture-to-vcard(&optional vcard-dir)
