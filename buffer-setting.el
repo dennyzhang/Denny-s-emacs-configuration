@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-12-07 15:53:54>
+;; Updated: Time-stamp: <2018-02-22 09:00:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun next-user-buffer ()
@@ -48,12 +48,7 @@ Emacs buffers are those whose name starts with *."
 (global-set-key (kbd "<C-S-prior>") 'previous-emacs-buffer) ; Ctrl+Shift+PageUp
 (global-set-key (kbd "<C-S-next>") 'next-emacs-buffer) ; Ctrl+Shift+PageDown
 ;; --8<-------------------------- separator ------------------------>8--
-;; Remember buffer positions per-window, not per buffer
-;; (load-file (concat EMACS_VENDOR "/winpoint/winpoint.el")); TODO
-;; (winpoint-mode t)
-;; --8<-------------------------- separator ------------------------>8--
 ;;alt+p k: kill all other buffers except current buffer
-;; TODO: more elegant way to do this
 (global-set-key [(meta p)(k)] 'kill-other-buffers)
 (defun kill-other-buffers (&optional arg)
   (interactive "P")
