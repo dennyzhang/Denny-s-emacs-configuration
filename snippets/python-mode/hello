@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 ##-------------------------------------------------------------------
 ## @copyright 2017 DennyZhang.com
 ## Licensed under MIT
@@ -9,7 +9,7 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2017-11-13 11:18:03>
+## Updated: Time-stamp: <2018-03-02 18:59:08>
 ##-------------------------------------------------------------------
 def test():
     print("hello, world")
