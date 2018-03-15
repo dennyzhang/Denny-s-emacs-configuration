@@ -7,7 +7,7 @@
 
 File me [tickets](https://github.com/DennyZhang/Denny-s-emacs-configuration/issues) or star [the repo](https://github.com/DennyZhang/Denny-s-emacs-configuration).
 
-**Emacs made me realize anything can be changed by a programmer.**
+**Emacs shapes me to be a better programmer.**
 
 TODO:
 - Due to compatible issue, email signature doesn't work any more: signature-motto.el
