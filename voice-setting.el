@@ -1,11 +1,11 @@
 ;; -*- coding: utf-8 -*-
 ;; File: voice-setting.el --- screen reader, voice commander
 ;;
-;; Author: Denny(denny.zhang001@gmail.com)
+;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2015-01-21 11:03:45>
+;; Updated: Time-stamp: <2018-03-29 09:57:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/festival/festival.el"))

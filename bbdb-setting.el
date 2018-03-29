@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-02-13 17:26:34>
+;; Updated: Time-stamp: <2018-03-29 09:57:52>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))

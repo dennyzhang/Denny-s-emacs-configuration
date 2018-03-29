@@ -1,11 +1,11 @@
 ;; -*- coding: utf-8 -*-
 ;; File: org-css-setting.el --- org-mode export css
 ;;
-;; Author: Denny(denny.zhang001@gmail.com)
+;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-07-20 11:18:17>
+;; Updated: Time-stamp: <2018-03-29 09:57:58>
 ;;
 ;; when hover, show author info automatically
 (setq org-export-html-home/up-format

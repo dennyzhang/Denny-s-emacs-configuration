@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:02>
+;; Updated: Time-stamp: <2018-03-19 00:18:22>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
