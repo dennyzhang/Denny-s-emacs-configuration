@@ -1,0 +1,21 @@
+//-------------------------------------------------------------------
+// @copyright `(format-time-string "%Y" (current-time))` DennyZhang.com
+// Licensed under MIT
+//   https://www.dennyzhang.com/wp-content/mit_license.txt
+//
+// File: `(buffer-name)`
+// Author : Denny <https://www.dennyzhang.com/contact>
+// Description : go run `(buffer-name)`
+// --
+// Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
+// Updated: Time-stamp: <2018-04-07 16:16:20>
+//-------------------------------------------------------------------
+package main
+
+import "fmt"
+func main() {
+	msg := "hello world\n";
+	// print sample message
+	fmt.Print(msg)
+}
+// File: `(buffer-name)` ends

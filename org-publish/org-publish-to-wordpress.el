@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-01-26 12:15:44>
+;; Updated: Time-stamp: <2018-04-14 10:52:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -332,7 +332,16 @@ the plist used as a communication channel."
 (defun brain-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-brain-post.el"))
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-code-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun architect-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat DENNY_EMACS "/org-publish/wordpress-architect-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )

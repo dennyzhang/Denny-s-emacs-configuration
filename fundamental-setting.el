@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-02-13 16:56:39>
+;; Updated: Time-stamp: <2018-04-13 19:08:16>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -165,13 +165,12 @@
 ;; languages
 (defalias 'java (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/java.org"))))
 (defalias 'python (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/python.org"))))
-(defalias 'golang (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/golang.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/sa.org"))))
 (defalias 'db (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/db.org"))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; blog
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
-(defalias 'brain (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/brain.org"))))
+(defalias 'brain (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/code.org"))))
 (defalias 'design (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/design.org"))))
 (defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/cheatsheet.org"))))
 (setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
@@ -204,7 +203,7 @@
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
-(defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/bank/filebat.ledger"))))
+(defalias 'bank (lambda() (interactive) (my-open-file (concat DENNY_EMACS "../emacs_stuff/bank/filebat.ledger"))))
 (defalias 'filebat (lambda() (interactive) (my-open-file (concat DENNY_EMACS "/filebat.txt"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/org_share/skill.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/motto.org"))))

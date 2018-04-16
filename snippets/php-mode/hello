@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------
-// @copyright 2017 DennyZhang.com
+//  @copyright `(format-time-string "%Y" (current-time))` DennyZhang.com
 // Licensed under MIT 
 //   https://www.dennyzhang.com/wp-content/mit_license.txt
 //
@@ -8,7 +8,7 @@
 // Description :
 // --
 // Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-// Updated: Time-stamp: <2017-11-13 11:18:03>
+// Updated: Time-stamp: <2018-04-07 14:37:12>
 //-------------------------------------------------------------------
 #include <iostream>
 using namespace std;
