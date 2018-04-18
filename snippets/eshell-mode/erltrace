@@ -1,0 +1,5 @@
+#name : erlang trace
+# --
+dbg:tracer(),
+dbg:p(all, c),
+dbg:tpl($1, $2, dbg:fun2ms(fun(_) -> exception_trace() end)).

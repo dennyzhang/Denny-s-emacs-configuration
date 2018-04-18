@@ -1,0 +1,2 @@
+`(make-string (org-current-level) ?*)` basic use
+$0

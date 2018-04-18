@@ -1,0 +1,1 @@
+nova boot --image Cirros --flavor m1.tiny --key_name oskey --availability-zone nova:osc-serv-02 --nic net-id=ba3392d4-be40-4e74-9803-d3b4dcc8d5bd cirrros-vm1

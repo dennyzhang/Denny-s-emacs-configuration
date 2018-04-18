@@ -1,0 +1,1 @@
+`(if (equal (shell-command-to-string "uname") "Darwin\n") (print "sudo tcpdump  -vvv -XX -s 0 -f -c 1000 -nn -i en0 'port ") (print "sudo tcpdump  -vvv -XX -s 0 -f -c 1000 -nn -i any 'port "))` $1 '

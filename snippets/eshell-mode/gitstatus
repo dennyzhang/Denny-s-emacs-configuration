@@ -1,0 +1,1 @@
+branch_name=$(git branch | grep "^*" | awk -F' ' '{print \$2}');git log origin/\${branch_name}..HEAD;git status

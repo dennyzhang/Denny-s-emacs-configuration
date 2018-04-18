@@ -1,0 +1,1 @@
+pstree -A -a -p $1

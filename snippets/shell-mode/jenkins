@@ -1,0 +1,3 @@
+ssh -p 4022 jenkins@10.165.4.67
+cd /home/denny/mdmdevops/cookbooks/all-in-one
+KITCHEN_YAML=.kitchen.docker.yml kitchen login

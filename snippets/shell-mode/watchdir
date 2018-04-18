@@ -1,0 +1,1 @@
+cd /var/log/$1 && while str=$(inotifywait -e modify . 2>/dev/null); do logfile=$(echo "$str" | awk -F' ' '{print \$3}'); echo -n "[$logfile] "; tail -1 "$logfile"; done

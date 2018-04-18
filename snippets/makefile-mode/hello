@@ -1,0 +1,6 @@
+all:pythoncheck
+
+pythoncheck:
+`(insert-char #x9)`@for f in \`find . -iname "*.py"\`; do\
+`(insert-char #x9)``(insert-char #x9)`pylint -E $$f;\
+`(insert-char #x9)`done

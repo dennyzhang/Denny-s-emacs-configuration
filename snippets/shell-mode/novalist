@@ -1,0 +1,1 @@
+nova list --fields="name,OS-EXT-SRV-ATTR:host,status,OS-EXT-STS:task_state"

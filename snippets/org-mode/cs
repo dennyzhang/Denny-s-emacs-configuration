@@ -1,0 +1,4 @@
+`(make-string (org-current-level) ?*)` console shot
+#+begin_example
+$0
+#+end_example

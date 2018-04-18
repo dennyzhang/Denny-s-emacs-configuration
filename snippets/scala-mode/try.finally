@@ -1,0 +1,7 @@
+#Author : Jonas Bonèr <jonas@jonasboner.com>
+#name : try { .. } finally { .. }
+# --
+try {
+} finally {
+  $0
+}

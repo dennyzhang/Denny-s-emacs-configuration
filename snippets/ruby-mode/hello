@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+##-------------------------------------------------------------------
+##  @copyright `(format-time-string "%Y" (current-time))` DennyZhang.com
+## Licensed under MIT 
+##   https://www.dennyzhang.com/wp-content/mit_license.txt
+##
+## File: hello
+## Author : Denny <https://www.dennyzhang.com/contact>
+## Description :
+## --
+## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
+## Updated: Time-stamp: <2018-04-07 14:37:11>
+##-------------------------------------------------------------------
+puts "hello, world"
+## File: hello ends

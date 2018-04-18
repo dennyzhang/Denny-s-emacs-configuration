@@ -1,0 +1,1 @@
+`(if (equal (shell-command-to-string "uname") "Darwin\n") (print "sed -i -e ") (print "sed -i "))` $1d $2

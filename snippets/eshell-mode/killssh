@@ -1,0 +1,1 @@
+lsof -i tcp:$1 | grep -i listen | awk -F' ' '{print \$2}' | xargs kill

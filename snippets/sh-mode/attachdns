@@ -1,0 +1,1 @@
+composite -dissolve 50% -gravity southeast -quality 100 ~/Dropbox/private_data/project/devops_consultant/consultant_code/blog/blog_cdn/images/watermark/dns.png "$1" "$1"

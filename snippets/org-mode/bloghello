@@ -1,0 +1,46 @@
+* 9 Key Feedbacks For Prod Envs Maintenance                    :BLOG:General:
+:PROPERTIES:
+:type:   DevOps
+:END:
+---------------------------------------------------------------------
+To break silos and improve availability, DevOps/Ops should be actively collecting useful feedback of prod env maintenance on a regular basis. Enable developers to easily access it and improve feedback loop together as a team effort.
+
+The very first and most important part. *What To Examine, Providing Developers Meaningful Feedback?*
+
+[[blog-image:Continuous Feedback][https://www.dennyzhang.com/wp-content/uploads/denny/continuous_feedback.png]]
+---------------------------------------------------------------------
+
+Update Per Audience Feedback:
+- Thanks for your involvements in [[https://www.linkedin.com/feed/update/urn:li:activity:6282546795075694592][My LinkedIn Discussion]]!
+
+[[blog-image:Get Notifcation: Monitor Your Docker Image Sizing][https://www.dennyzhang.com/wp-content/uploads/denny/linkedin_docker_image.png]]
+---------------------------------------------------------------------
+** 1. Fundamental Monitoring Matters At Both OS And Process Level.
+Apparently we need to measure the usage of 4 key resources: memory, CPU, disk and network. Sometime OS is fine, just your crucial process suffers. To be on top of this, monitor at process level as well.
+- [[https://www.dennyzhang.com/nagois_monitor_process_cpu][Nagios Plugin: Monitor Service CPU]]
+- [[https://www.dennyzhang.com/nagois_monitor_process_fd/][Nagios Plugin: Monitor Process FD]]
+- [[https://www.dennyzhang.com/nagois_monitor_process_memory/][Nagios Plugin: Monitor Service Memory]]
+- [[https://www.dennyzhang.com/nagois_monitor_process_threadcount/][Nagios Plugin: Monitor Process Threadcount]]
+** 9. Simulate Prod Env At Reasonable Cost.
+The last but not the least. If DevOps can simulate prod env quickly, developers can have a safe playyard to do tests or dryrun patches. Some common obstacles to achieve this:
+- Budget concern. We may need to start enough VMs, in order to get a min "prod env".
+- Automate to automate. Not only to automate cluster deployment but also data export and import.
+- Simulate prod env as much as possible. This would the most difficult part. And it varies across projects.
+
+More Reading:
+- [[https://www.dennyzhang.com/generate_data_report/][Generate Common DB Data Report By ELK]]
+** ---------------------------------------------------------------------
+** Linkedin Discussion
+** off-page SEO
+- twitter
+
+- find twitter users to @
+
+- reddit:
+
+- quora:
+
+- v2ex:
+** community discussion
+** similar pages
+

@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+##-------------------------------------------------------------------
+## @copyright 2017 DennyZhang.com
+## Licensed under MIT
+##   https://www.dennyzhang.com/wp-content/mit_license.txt
+##
+## File: hello
+## Author : Denny <https://www.dennyzhang.com/contact>
+## Description :
+## --
+## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
+## Updated: Time-stamp: <2017-11-22 15:01:01>
+##-------------------------------------------------------------------
+set -e
+
+function log() {
+    local msg=\$*
+    date_timestamp=\$(date +['%Y-%m-%d %H:%M:%S'])
+    echo -ne "\$date_timestamp \$msg\n"
+
+    if [ -n "$LOG_FILE" ]; then
+        echo -ne "\$date_timestamp $msg\n" >> "\$LOG_FILE"
+    fi
+}
+
+function ensure_variable_isset() {
+    var=\${1?}
+    message=\${2:-"parameter name should be given"}
+    # TODO support sudo, without source
+    if [ -z "\$var" ]; then
+        echo "Error: Certain variable(\$message) is not set"
+        exit 1
+    fi
+}
+
+function ensure_is_root() {
+    # Make sure only root can run our script
+    if [[ \$EUID -ne 0 ]]; then
+        echo "Error: This script must be run as root." 1>&2
+        exit 1
+    fi
+}
+
+function request_url_post() {
+    url=\${1?}
+    data=\${2?}
+    header=\${3:-""}
+    if [ \`uname\` == "Darwin" ]; then
+        data=\$(echo "\$data" | sed "s/\\'/\\\\\\\\\\"/g")
+    else
+        data=\$(echo "\$data" | sed "s/'/\\\\\\\\\\"/g")
+    fi;
+    if [ "$header" = "" ]; then
+        command="curl -d \\"\$data\\" \\"\$url\\""
+    else
+        command="curl \$header -d \\"\$data\\" \\"\$url\\""
+    fi;
+
+    echo -e "\\n\$command"
+    eval "\$command"
+    if [ \$? -ne 0 ]; then
+        echo "Error: fail to run \$command"; exit -1
+    fi
+}
+
+function request_url_get() {
+    url=\${1?}
+    header=\${2:-""}
+    command="curl \$header \\"\$url\\""
+    echo -e "\\n\$command"
+    eval "\$command"
+    if [ \$? -ne 0 ]; then
+        echo "Error: fail to run \$command"; exit -1
+    fi
+}
+
+$0
+
+## File: hello ends
