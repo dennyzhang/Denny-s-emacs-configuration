@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-04-17 15:42:03>
+;; Updated: Time-stamp: <2018-04-20 18:54:09>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -170,6 +170,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; blog
 (defalias 'blog (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/blog.org"))))
+(defalias 'review (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/review.org"))))
 (defalias 'brain (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/code.org"))))
 (defalias 'design (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/github/system-design-challenge/design.org")))
 (defalias 'golang (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/github/cheatsheet/cheatsheet-golang-A4/golang.org")))
