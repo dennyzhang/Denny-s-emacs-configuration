@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-04-16 11:24:41>
+;; Updated: Time-stamp: <2018-05-01 11:17:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -56,8 +56,14 @@
 (add-to-list 'auto-mode-alist '("\\.cpp$" . (c++-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.h$" . (c++-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "google-go/go-mode.el")) ;; TODO
+;; https://groups.google.com/forum/#!topic/golang-nuts/c176nKcyoDQ
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+(add-hook 'go-mode-hook 
+  (lambda ()
+    (setq-default)
+    (setq tab-width 2)
+    (setq standard-indent 2)
+    (setq indent-tabs-mode nil)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))

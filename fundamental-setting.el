@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-04-20 18:54:09>
+;; Updated: Time-stamp: <2018-05-01 11:24:48>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -150,7 +150,7 @@
 
 ;; technical
 (defalias 'linux (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/linux.org"))))
-(defalias 'emacs (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/emacs.org"))))
+(defalias 'emacs (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/github/cheatsheet/cheatsheet-emacs-A4/README.org")))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/cloud.org"))))
 (defalias 'security (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/technical/security.org"))))
