@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:01>
+;; Updated: Time-stamp: <2018-05-09 10:59:05>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq shell-file-name "/bin/zsh")
@@ -142,10 +142,10 @@ Sample:
           )
       ))
   )
-(global-set-key [f9] 'open-related-shell)
+(global-set-key [f9] 'shell-my)
 ;; f9.: only spawn one shell for files in the same directory
 ;; C-u f9.: shell is spawn by file, instead of by directory
-(defun open-related-shell(&optional arg)
+(defun shell-my(&optional arg)
   "By default, if current file doesn't open a shell, generate one.
 Otherwise, switch to related shell.
 
