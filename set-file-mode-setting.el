@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-05-01 11:17:18>
+;; Updated: Time-stamp: <2018-05-11 16:44:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -61,8 +61,8 @@
 (add-hook 'go-mode-hook 
   (lambda ()
     (setq-default)
-    (setq tab-width 2)
-    (setq standard-indent 2)
+    (setq tab-width 4)
+    (setq standard-indent 4)
     (setq indent-tabs-mode nil)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
