@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-05-06 10:33:34>
+;; Updated: Time-stamp: <2018-06-03 18:14:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
@@ -356,6 +356,9 @@ the plist used as a communication channel."
 
     (goto-char (point-min))
     (while (re-search-forward "’" nil t) (replace-match "'"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "é" nil t) (replace-match "e"))
 
     (goto-char (point-min))
     (while (re-search-forward "“" nil t) (replace-match "\""))
