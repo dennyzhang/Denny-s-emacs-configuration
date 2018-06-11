@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:02>
+;; Updated: Time-stamp: <2018-06-11 14:55:12>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(appt-activate)
@@ -22,102 +22,6 @@
 (add-to-list 'auto-mode-alist '("\\.log" . log4j-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat EMACS_VENDOR "/dupwords/dupwords.el"))
-;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/anything/"))
-(require 'anything-config)
-(require 'anything)
-(setq anything-candidate-number-limit 10000) ;候选数量限制
-(global-set-key (kbd "C-M-x") 'anything)
-(setq anything-sources
-      '(
-        ;; Buffer:
-        anything-c-source-buffers
-        anything-c-source-buffer-not-found
-        anything-c-source-buffers+
-        ;; File:
-        anything-c-source-file-name-history
-        anything-c-source-files-in-current-dir
-        anything-c-source-files-in-current-dir+
-        anything-c-source-file-cache
-        anything-c-source-locate
-        anything-c-source-recentf
-        anything-c-source-ffap-guesser
-        anything-c-source-ffap-line
-        ;; Help:
-        ;;anything-c-source-man-pages ;;TODO: doesn't work, if enabled
-        ;;anything-c-source-info-pages ;;TODO: doesn't work, if enabled
-        ;;anything-c-source-info-elisp ;;TODO: doesn't work, if enabled
-        ;;anything-c-source-info-cl ;;TODO: doesn't work, if enabled
-        ;; Command:
-        anything-c-source-complex-command-history
-        anything-c-source-extended-command-history
-        anything-c-source-emacs-commands
-        ;; Function:
-        anything-c-source-emacs-functions
-        anything-c-source-emacs-functions-with-abbrevs
-        ;; Variable:
-        anything-c-source-emacs-variables
-        ;; Bookmark:
-        anything-c-source-bookmarks
-        anything-c-source-bookmark-set
-        anything-c-source-bookmarks-ssh
-        anything-c-source-bookmarks-su
-        anything-c-source-bookmarks-local
-        ;; Library:
-        anything-c-source-elisp-library-scan
-        ;; Programming:
-        anything-c-source-imenu
-        anything-c-source-ctags
-        anything-c-source-semantic
-        ;;anything-c-source-simple-call-tree-functions-callers ;;TODO: doesn't work, if enabled
-        ;;anything-c-source-simple-call-tree-callers-functions ;;TODO: doesn't work, if enabled
-        anything-c-source-commands-and-options-in-file
-        ;; Color and Face:
-        anything-c-source-customize-face
-        anything-c-source-colors
-        ;; Search Engine:
-        anything-c-source-tracker-search
-        anything-c-source-mac-spotlight
-        ;; Kill ring:
-        anything-c-source-kill-ring
-        ;; Mark ring:
-        ;;anything-c-source-global-mark-ring ;;TODO: doesn't work, if enabled
-        ;; Register:
-        anything-c-source-register
-        ;; Headline Extraction:
-        anything-c-source-fixme
-        anything-c-source-rd-headline
-        anything-c-source-oddmuse-headline
-        anything-c-source-emacs-source-defun
-        anything-c-source-emacs-lisp-expectations
-        anything-c-source-emacs-lisp-toplevels
-        anything-c-source-org-headline
-        anything-c-source-eev-anchor
-        ;; Misc:
-        anything-c-source-evaluation-result
-        anything-c-source-calculation-result
-        anything-c-source-google-suggest
-        anything-c-source-call-source
-        anything-c-source-occur
-        anything-c-source-create
-        anything-c-source-minibuffer-history
-        ;; System:
-        anything-c-source-emacs-process))
-;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/stopwatch/stopwatch.el"))
-;; keyfreq measures how many time you execute commands.
-;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/keyfreq/keyfreq.el")) ;; TODO
-;; (require 'keyfreq)
-;; (setq keyfreq-excluded-commands
-;;       '(self-insert-command
-;;         abort-recursive-edit
-;;         forward-char
-;;         backward-char
-;;         previous-line
-;;         next-line))
-;; (keyfreq-mode 1)
-;; (keyfreq-autosave-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; On top of Ido, smex provides a convenient interface to your recently
 ;; and most frequently used commands.

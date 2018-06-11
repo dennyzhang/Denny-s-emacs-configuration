@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-02-13 16:57:10>
+;; Updated: Time-stamp: <2018-06-11 15:00:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -352,8 +352,8 @@
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el")) ;; TODO
-(require 'screenshot)
-(setq screenshot-default-scheme "local")
+;; (require 'screenshot)
+;; (setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Specifies whether the desktop should be loaded if locked.
 ;;(setq desktop-load-locked-desktop t)
@@ -1782,20 +1782,6 @@ Insert if ARG."
  (if command
  (shell-command command)
  ))
- )
-;; --8<-------------------------- separator ------------------------>8--
-;; ios programming
-(if (eq system-type 'darwin)
- (progn
- (load-file (concat EMACS_VENDOR "emacs-xcode-document-viewer/xcode-document-viewer.el"))
- (setq xcdoc:document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS6.1.iOSLibrary.docset") ;; TODO
- (setq xcdoc:open-w3m-other-buffer t)
- (defun xcdoc:docsetutil-command ()
- (or (executable-find "docsetutil")
- (and (file-executable-p "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil") "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
- (error "docsetutil command is not found. Perhaps you dont have Xcode man.")))
-
- )
  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq nnrss-use-local t

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-06-11 14:51:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (set-face-background 'modeline "#5f9ea0") ;; set color of modeline ;; TODO denny
@@ -79,9 +79,9 @@
   "filter formatted message string to remove noisy messages")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/hide-comnt/hide-comnt.el")); TODO
-(require 'newcomment nil t)
-(require 'hide-comnt)
-(global-set-key [(meta p)(t)] 'hide/show-comments-toggle)
+;; (require 'newcomment nil t)
+;;(require 'hide-comnt)
+;; (global-set-key [(meta p)(t)] 'hide/show-comments-toggle)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun toggle-outline()
   (interactive)

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-06-11 14:52:46>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -61,12 +61,12 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       uniquify-ignore-buffers-re "^\\*")
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
-(require 'frame-fns)
-(require 'frame-cmds)
-(global-set-key [(control up)] 'move-frame-up)
-(global-set-key [(control down)] 'move-frame-down)
-(global-set-key [(control left)] 'move-frame-left)
-(global-set-key [(control right)] 'move-frame-right)
+;;(require 'frame-fns)
+;; (require 'frame-cmds)
+;; (global-set-key [(control up)] 'move-frame-up)
+;; (global-set-key [(control down)] 'move-frame-down)
+;; (global-set-key [(control left)] 'move-frame-left)
+;; (global-set-key [(control right)] 'move-frame-right)
 ;; ;; ;; --8<-------------------------- separator ------------------------>8--
 (if window-system
     (progn
@@ -184,10 +184,10 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; (loccur (format "^[^ ]" whitespace-count)))
 ;; ))
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'cursor-chg)
-(change-cursor-mode 1) ; On for overwrite/read-only/input mode
-(toggle-cursor-type-when-idle 1) ; On when idle
-(setq curchg-default-cursor-color "green")
+;; (require 'cursor-chg)
+;; (change-cursor-mode 1) ; On for overwrite/read-only/input mode
+;; (toggle-cursor-type-when-idle 1) ; On when idle
+;; (setq curchg-default-cursor-color "green")
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (setq abbrev-file-name (concat EMACS_DATA "/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
@@ -197,14 +197,14 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (require 'color-moccur)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(require 'hide-region)
-(defun hide-region-settings ()
-  "Settings for `hide-region'."
-  (setq hide-region-before-string "[======================该区域已")
-  (setq hide-region-after-string "被折叠======================]\n"))
-(eval-after-load 'hide-region '(hide-region-settings))
-(global-set-key (kbd "C-x M-r") 'hide-region-hide)
-(global-set-key (kbd "C-x M-R") 'hide-region-unhide)
+;; (require 'hide-region)
+;; (defun hide-region-settings ()
+;;   "Settings for `hide-region'."
+;;   (setq hide-region-before-string "[======================该区域已")
+;;   (setq hide-region-after-string "被折叠======================]\n"))
+;; (eval-after-load 'hide-region '(hide-region-settings))
+;; (global-set-key (kbd "C-x M-r") 'hide-region-hide)
+;; (global-set-key (kbd "C-x M-R") 'hide-region-unhide)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (require 'ido)
 (ido-mode t)

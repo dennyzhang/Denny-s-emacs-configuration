@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-12-07 15:54:05>
+;; Updated: Time-stamp: <2018-06-11 14:59:01>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -81,7 +81,7 @@
 (setq yas-snippet-dirs (expand-file-name "snippets/" DENNY_EMACS))
 ;;(yas--initialize)
 (yas-load-directory yas-snippet-dirs nil)
-(yas-global-mode 1)
+;; (yas-global-mode 1) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'desktop)
 ;; save a bunch of variables to the desktop file
