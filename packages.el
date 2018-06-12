@@ -70,7 +70,7 @@ Return a list of installed packages or nil for every skipped package."
                           'systemtap-mode 'go-mode 'puppet-mode 'multi-term
 			  ;; 'second-sel
                           ;; 'journal
-                          'org-bullets
+                          ;; 'org-bullets
 			  'tea-time
                           )
 ;; --8<-------------------------- separator ------------------------>8--
