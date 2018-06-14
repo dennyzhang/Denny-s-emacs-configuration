@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-05-01 11:24:48>
+;; Updated: Time-stamp: <2018-06-14 10:08:01>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -175,7 +175,7 @@
 (defalias 'design (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/github/system-design-challenge/design.org")))
 (defalias 'golang (lambda() (interactive) (my-open-file "~/Dropbox/private_data/project/devops_consultant/consultant_code/github/cheatsheet/cheatsheet-golang-A4/golang.org")))
 (defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/blog/cheatsheet.org"))))
-(setq GITHUB_DIR (concat EMACS_DATA "/../project/devops_consultant/consultant_code/github"))
+(setq GITHUB_DIR "~/Google Drive/github")
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
 (defalias 'blogging (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-it-blog/README.org"))))
 (defalias 'github (lambda() (interactive) (my-open-file (concat GITHUB_DIR "/knowledgebase/maintain-github-repos/README.org"))))
