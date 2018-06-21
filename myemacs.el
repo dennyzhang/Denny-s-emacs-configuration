@@ -4,12 +4,13 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-17 11:50:04>
+;; Updated: Time-stamp: <2018-06-21 07:10:48>
 ;; --8<-------------------------- separator ------------------------>8--
 (defconst EMACS_VENDOR "~/Dropbox/private_data/emacs_vendor/")
 (defconst EMACS_DATA "~/Dropbox/private_data/emacs_data")
 (defconst SHARE_DIR "~/Dropbox/")
 (defconst DENNY_EMACS "~/Dropbox/private_data/Denny-s-emacs-configuration/")
+(defconst GITHUB_DIR "~/Google Drive/github")
 
 ;; Load 3rd packages
 (load-file (concat DENNY_EMACS "/packages.el"))
