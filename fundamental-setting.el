@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-21 07:13:12>
+;; Updated: Time-stamp: <2018-06-22 21:28:58>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -194,7 +194,7 @@
 (defalias 'idea (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/idea.org"))))
 (defalias 'life (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/life.org"))))
 (defalias 'health (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/health.org"))))
-(defalias 'password (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/password.org.gpg"))))
+(defalias 'password (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/password.org"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/contacts.org"))))
 (defalias 'wealth (lambda() (interactive) (my-open-file (concat EMACS_DATA "/org_data/life/wealth.org"))))
 
