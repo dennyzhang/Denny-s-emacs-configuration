@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-22 21:28:58>
+;; Updated: Time-stamp: <2018-06-23 23:51:54>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
