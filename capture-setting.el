@@ -5,14 +5,13 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-12-21 13:42:39>
+;; Updated: Time-stamp: <2018-06-24 23:40:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
-        ("f" "Film" entry (file+headline "life.org" "Film -- 电影") "** TODO %?\n")
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
         ("s" "Shopping" entry (file+headline "life/life.org" "Shopping list")
          "** %?")
@@ -34,11 +33,6 @@
 
         ("h" "health" entry (file+headline "life/life.org" "Family Health")
          "** %<%Y-%m-%d>: %?")
-
-        ("p" "Period" table-line
-         (file+headline "life/contacts.org" "秀秀--周期")
-         "| |%<%Y-%m-%d>|\n" :table-line-pos "I+1")
-        ;;("r" "Read" entry (file+headline "life.org" "Book -- 阅读") "** TODO %?\n")
 
         ("j" "Job" entry (file+headline "top.org"
                                                "Continuous progress -- for job hunting")
