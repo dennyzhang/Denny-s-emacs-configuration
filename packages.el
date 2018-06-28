@@ -33,7 +33,8 @@ Return a list of installed packages or nil for every skipped package."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'iedit 'magit 'weblogger 'emms 'jabber
+(ensure-package-installed ;; 'iedit
+                          'magit 'weblogger 'emms 'jabber
 			  ;;'screenshot
                           'org-mime 
 			  ;;'org-bullets
