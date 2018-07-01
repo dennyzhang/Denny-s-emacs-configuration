@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-27 14:11:51>
+;; Updated: Time-stamp: <2018-06-28 00:06:53>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat EMACS_VENDOR "/org-7.8/contrib/lisp"))
@@ -28,14 +28,14 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; set org-agenda-files
 (dolist (org-agenda-file-var (list
-                              (concat EMACS_DATA "/org_data/current.org")
+                              (concat SHARE_DIR "/org_data/current.org")
                               ))
   (add-to-list 'org-agenda-files org-agenda-file-var))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; log the time of the things I have done
 (setq-default org-log-done t)
 ;; write diary in org-mode
-(setq org-agenda-diary-file (concat EMACS_DATA "/org_data/life/diary.org"))
+(setq org-agenda-diary-file (concat SHARE_DIR "/org_data/life/diary.org"))
 (global-set-key "\C-cl" 'org-store-link) ;; define global keys
 (global-set-key "\C-ca" 'org-agenda)
 ;;(global-set-key "\C-cb" 'org-iswitchb)
@@ -125,10 +125,10 @@
 ;;TODO: need to be enhanced
 (require 'org-mobile)
 ;; (setq org-mobile-directory (concat DENNY_EMACS "../../Apps/MobileOrg"))
-;; (setq org-mobile-files (list (concat EMACS_DATA "/org_data/tomobile.org")))
-(setq org-directory (concat EMACS_DATA "/org_data/"))
+;; (setq org-mobile-files (list (concat SHARE_DIR "/org_data/tomobile.org")))
+(setq org-directory (concat SHARE_DIR "/org_data/"))
 ;; pulling from MobileOrg
-(setq org-mobile-inbox-for-pull (concat EMACS_DATA "org_data/frommobile.org"))
+(setq org-mobile-inbox-for-pull (concat SHARE_DIR "/org_data/frommobile.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; active Babel languages
 ;; (org-babel-do-load-languages ;; TODO
@@ -247,7 +247,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'graphviz-dot-mode)
 ;; --8<-------------------------- separator ------------------------>8--
-(setq org-directory (concat EMACS_DATA "/org_data/"))
+(setq org-directory (concat SHARE_DIR "/org_data/"))
 (setq org-default-notes-file "current.org")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; auto add "TODO " for top task
@@ -296,7 +296,7 @@
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'org-contacts)
-;; (add-to-list 'org-contacts-files (concat EMACS_DATA "/org_data/contacts.org"))
+;; (add-to-list 'org-contacts-files (concat SHARE_DIR "/org_data/contacts.org"))
 ;; --8<-------------------------- separator ------------------------>8--
 (setq org-export-with-tasks 'done
       org-export-creator-info nil)
@@ -342,7 +342,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Automatically copy DONE tasks in copylog-monitor-orgfiles to copylog-dest-orgfile
 (setq copylog-monitor-orgfiles '("current.org" "top.org"))
-(setq copylog-dest-orgfile (concat EMACS_DATA "/org_data/life/diary.org"))
+(setq copylog-dest-orgfile (concat SHARE_DIR "/org_data/life/diary.org"))
 (defadvice org-kill-line (after kill-region activate)
   (if (member (buffer-name) copylog-monitor-orgfiles)
       (unless (null (string-match "^\*+ DONE" (org-no-properties (car kill-ring))))

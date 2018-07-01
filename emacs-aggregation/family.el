@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2017-09-08 22:15:39>
+;; Copyright © 2010-2011 Time-stamp: <2018-06-28 00:07:04>
 ;;; ================================================================
 
 ;;; File: family.el --- Setup for emacs-aggregation.el
@@ -56,7 +56,8 @@ Boston天气:%s
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat DENNY_EMACS "/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")
-(setq mobile-export-src-dir (concat EMACS_DATA "/org_data"))
+
+(setq mobile-export-src-dir (concat SHARE_DIR "/org_data"))
 (setq mobile-export-publish-dir (concat DENNY_EMACS "mobile_export"))
 (setq mobile-export-file-list '("current.org"
                                 "contacts.org"

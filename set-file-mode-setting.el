@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-05-11 16:44:48>
+;; Updated: Time-stamp: <2018-07-01 01:01:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -81,8 +81,6 @@
 (add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun hide-trailing-whitespace (mode-hook)
   (add-hook mode-hook (lambda ()

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-06-28 00:07:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;emms
@@ -303,7 +303,7 @@
    (kill-buffer old-buffer)
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq emms-org-file (concat EMACS_DATA "/org_data/org_share/music.org"))
+(setq emms-org-file (concat SHARE_DIR "/org_data/org_share/music.org"))
 (define-key emms-playlist-mode-map (kbd "M-a")
   #'(lambda () (interactive) (update-music-to-org-file emms-org-file)))
 (defun update-music-to-org-file (org-file)

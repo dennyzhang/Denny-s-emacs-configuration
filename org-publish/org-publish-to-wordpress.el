@@ -4,8 +4,16 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-03 18:14:46>
+;; Updated: Time-stamp: <2018-07-01 00:53:43>
 ;;
+;; --8<-------------------------- separator ------------------------>8--
+(setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-6701618470621579',
+    enable_page_level_ads: true
+  });
+</script>")
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
 (setq denny-github-url "https://github.com/DennyZhang")

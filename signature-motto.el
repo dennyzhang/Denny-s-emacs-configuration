@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:01>
+;; Updated: Time-stamp: <2018-06-28 00:06:06>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq common-tail-signature "Denny Zhang(张巍)
@@ -68,7 +68,7 @@ GitHub: https://github.com/DennyZhang")
 
 (defun get-all-motto ()
   (let ((old-agenda-files org-agenda-files) signature-list)
-    (setq org-agenda-files (list (concat EMACS_DATA "/org_data/life/motto.org")))
+    (setq org-agenda-files (list (concat SHARE_DIR "/org_data/life/motto.org")))
     (setq signature-list (org-tags-view-list "Motto"))
     (setq org-agenda-files old-agenda-files)
     (setq signature-list signature-list) ;; TODO more graceful way to return value

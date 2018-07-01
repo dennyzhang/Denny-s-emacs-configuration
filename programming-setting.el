@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:02>
+;; Updated: Time-stamp: <2018-07-01 01:01:28>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -169,10 +169,6 @@
                'erc-mode-hook
                ))
   (add-hook hook 'turn-on-eldoc-mode))
-;; --8<-------------------------- separator ------------------------>8--
-;;Make script files executable automatically
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; http post test
 (load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
