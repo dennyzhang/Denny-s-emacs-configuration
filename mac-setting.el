@@ -4,13 +4,9 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-07-01 21:14:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(setq mac-command-modifier 'meta) 
-(setq mac-control-modifier 'control) 
-(setq mac-option-modifier 'alt)
-
 (setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/usr/local/texlive/2013/bin/universal-darwin/:/opt/local/bin")
 (setq exec-path (append exec-path '("/usr/local/bin" "/opt/local/bin")))
 
@@ -54,18 +50,7 @@ If set/leave chinese-font-size to nil, it will follow english-font-size"
 (qiang-set-font
  '("Consolas" "Monaco" "DejaVu Sans Mono" "Monospace" "Courier New") ":pixelsize=19"
  '("宋体" "新宋体" "Microsoft Yahei" "文泉驿等宽微米黑" "黑体" ))
-
 ;; --8<-------------------------- separator ------------------------>8--
 (set-face-foreground 'default "#996633")
-;;(setq shell-file-name "/bin/zsh")
-(setq shell-file-name "/bin/bash")
-;; --8<-------------------------- separator ------------------------>8--
-;; configure remote parameters for tramp
-(require 'tramp-sh) ;; TODO
-(add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
-(add-to-list 'tramp-remote-process-environment "SSH_ASKPASS=\"\"") ;; unset $SSH_ASKPASS
-(delete "PAGER=\"\"" tramp-remote-process-environment)
-(delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
-(add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: mac-setting.el

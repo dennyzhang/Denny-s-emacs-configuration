@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 01:01:28>
+;; Updated: Time-stamp: <2018-07-01 21:14:57>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -329,5 +329,16 @@
                 (setq indent-tabs-mode nil) ;; don't use tab for python indentation
                 ))
           )
+;; --8<-------------------------- separator ------------------------>8--
+;;(setq shell-file-name "/bin/zsh")
+(setq shell-file-name "/bin/bash")
+;; --8<-------------------------- separator ------------------------>8--
+;; configure remote parameters for tramp
+(require 'tramp-sh) ;; TODO
+(add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
+(add-to-list 'tramp-remote-process-environment "SSH_ASKPASS=\"\"") ;; unset $SSH_ASKPASS
+(delete "PAGER=\"\"" tramp-remote-process-environment)
+(delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
+(add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: programming-setting.el ends here

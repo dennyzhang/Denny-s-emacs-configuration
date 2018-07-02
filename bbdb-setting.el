@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:52>
+;; Updated: Time-stamp: <2018-07-01 21:40:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
@@ -237,6 +237,7 @@ which will be replaced by the actual name"
   (let ((filename "/tmp/vcard.vcf"))
     (shell-command "cd ~/exported-vcards/; rm -rf *")
     (bbdb "" 't)
+
     (bbdb-vcard-export "~/exported-vcards/" t t)
     (shell-command "cd ~/exported-vcards/; rm -rf *-1.vcf")
     (update-bbdb-picture-to-vcard)

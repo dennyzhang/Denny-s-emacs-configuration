@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-07-01 21:57:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
@@ -58,6 +58,20 @@
 (defadvice flymake-delete-own-overlays (after remove-from-fringe activate compile)
   (mapc 'fringe-helper-remove flymake-fringe-overlays)
   (setq flymake-fringe-overlays nil))
+;; --8<-------------------------- separator ------------------------>8--
+;; flymake for golang mode
+;; https://gist.github.com/lstoll/2411499
+(defun flymake-go-init ()
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
+    (list "go" (list "build" "-o" "/dev/null" temp-file))))
+
+(push '(".+\\.go$" flymake-go-init) flymake-proc-allowed-file-name-masks)
+
+(add-hook 'go-mode-hook 'flymake-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for php mode
 ;; a standalone check file, leverage "php -l" and php_codesniffer

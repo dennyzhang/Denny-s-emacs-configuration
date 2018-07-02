@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 20:21:19>
+;; Updated: Time-stamp: <2018-07-01 21:54:56>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -28,8 +28,10 @@
       '(
         "bbdb-setting.el"
         "fundamental-setting.el"
+        "shortcut.el"
         "appearance-setting.el"
         "buffer-setting.el"
+
         "essentialpackage-setting.el"
         "org-setting.el"
         "gnus-setting.el"
@@ -43,7 +45,7 @@
         "facing-setting.el"
         "calendar-setting.el"
 
-        ;;"flymake-setting.el" ;; TODO denny
+        "flymake-setting.el"
         "largeessentialpackage-setting.el"
         "online-search/online-search-setting.el"
         "insertion-setting.el"
@@ -60,7 +62,6 @@
         "web-setting.el"
         "linux-setting.el"
         "shell-setting.el"
-        "voice-setting.el"
         "mac-setting.el"
         "interoperation-setting.el"
         "postfundamental-setting.el"
