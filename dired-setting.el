@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2018-07-01 22:04:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Dired reuse directory buffer
@@ -58,7 +58,7 @@
 (define-key dired-mode-map "\M-c" 'dired-get-size)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; adds a command('T') to dired-mode for creating and unpacking tar files.
-(load-file (concat EMACS_VENDOR "/dired-tar/dired-tar.el"))
+(load-file (concat CONF-EMACS-VENDOR "/dired-tar/dired-tar.el"))
 (custom-set-variables
  ;; no confirmation for recursive operations in dired
  '(dired-recursive-copies (quote always))

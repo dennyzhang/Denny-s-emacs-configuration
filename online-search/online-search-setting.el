@@ -4,13 +4,13 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:02>
+;; Updated: Time-stamp: <2018-07-01 22:10:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
 (setq browse-url-default-browser "/usr/bin/chromium-browser")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/online-search/online-search.el"))
+(load-file (concat CONF-DENNY-EMACS "/online-search/online-search.el"))
 (global-set-key [(control c) (s)] 'online-search)
 ;; If current environment is windows, w3m may be probably not available.
 ;; In this case downgrade from w3m mode to plaintext mode.
@@ -18,7 +18,7 @@
     (setq is-plaintext-enable 't))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; search python document
-(setq pylookup-dir (concat EMACS_VENDOR "/pylookup"))
+(setq pylookup-dir (concat CONF-EMACS-VENDOR "/pylookup"))
 (add-to-list 'load-path pylookup-dir)
 ;; load pylookup when compile time
 (eval-when-compile (require 'pylookup))
@@ -34,7 +34,7 @@
   "Run pylookup-update and create the database at `pylookup-db-file'." t)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;;search c/c++ document
-;; (setq cclookup-dir (concat EMACS_VENDOR "/cclookup"))
+;; (setq cclookup-dir (concat CONF-EMACS-VENDOR "/cclookup"))
 ;; (add-to-list 'load-path cclookup-dir)
 ;; ;; load cclookup when compile time
 ;; (eval-when-compile (require 'cclookup))

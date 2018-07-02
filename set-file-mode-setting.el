@@ -4,13 +4,13 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 01:01:18>
+;; Updated: Time-stamp: <2018-07-01 22:06:55>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
 ;; (add-to-list 'auto-mode-alist '("\\.as$" . actionscript-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/dockerfile-mode/dockerfile-mode.el"))
+(load-file (concat CONF-EMACS-VENDOR "/dockerfile-mode/dockerfile-mode.el"))
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 (add-to-list 'auto-mode-alist '("*dockerfile$'" . dockerfile-mode))
 
@@ -40,15 +40,15 @@
          ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; crontab
-;; (load-file (concat EMACS_VENDOR "crontab-mode/crontab-mode.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "crontab-mode/crontab-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.cron$" .crontab-mode))
 (add-to-list 'auto-mode-alist '("\\.tab$" .crontab-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "systemtap-mode/systemtap-mode.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "systemtap-mode/systemtap-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.stp$" . systemtap-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/ledger"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/ledger"))
 ;; (require 'ledger-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -65,7 +65,7 @@
     (setq standard-indent 4)
     (setq indent-tabs-mode nil)))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("^rholog.txt$" . (log4j-mode 1)))

@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2012-04-22
-;; Updated: Time-stamp: <2018-03-29 09:57:58>
+;; Updated: Time-stamp: <2018-07-01 22:04:18>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -22,7 +22,7 @@
      (set-face-foreground 'diff-added "green4")
      (set-face-foreground 'diff-removed "red3")))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/magit"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/magit"))
 ;;(require 'magit)
 ;;(eval-after-load 'magit
 ;;  '(progn

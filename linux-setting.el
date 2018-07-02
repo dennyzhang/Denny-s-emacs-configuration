@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-27 22:10:47>
+;; Updated: Time-stamp: <2018-07-01 22:10:58>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (create-fontset-from-fontset-spec
 ;; "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-fontset-startup")
@@ -19,8 +19,8 @@
        default-frame-alist))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;gnuplot
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/gnuplot-mode"))
-;;(load-file (concat EMACS_VENDOR "/org-plot/org-plot.el"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/gnuplot-mode"))
+;;(load-file (concat CONF-EMACS-VENDOR "/org-plot/org-plot.el"))
 ;;(require 'gnuplot)
 ;;(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
 ;;(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
@@ -65,7 +65,7 @@
 ;; (sl/set-x-font)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; show file size and free space left in device
-;;(load-file (concat EMACS_VENDOR "/df-mode/df-mode.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/df-mode/df-mode.el"))
 ;;(df-mode 1)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;;Usage:M-x ascii-on RET
@@ -77,10 +77,10 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path "~/Downloads/yasnippet-0.6.1c/")
 (require 'yasnippet)
-(setq yas-snippet-dirs (list (expand-file-name "snippets/" DENNY_EMACS)))
+(setq yas-snippet-dirs (list (expand-file-name "snippets/" CONF-DENNY-EMACS)))
 (if (string= emacs-version "25.1.1")
     (progn 
-      (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet"))
+      (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/yasnippet"))
       (yas/initialize)
       )
     (yas-global-mode 1))
@@ -123,7 +123,7 @@
 ;; (add-to-list 'desktop-clear-preserve-buffers "\\*eshell\\*.*")
 ;; (add-to-list 'desktop-clear-preserve-buffers "\\*shell\\*.*")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/command-frequency/command-frequency.el"))
+(load-file (concat CONF-EMACS-VENDOR "/command-frequency/command-frequency.el"))
 (command-frequency-mode 1)
 (defvar cf-frequence-threshrold 1 "*When generating reports, only show commands over given threshrold")
 (defvar cf-stat-self-insert-command nil "*Non-nil means also statistic `self-insert-command'")
@@ -174,8 +174,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 (if (eq system-type 'gnu/linux)
     (progn
-      ;; (add-to-list 'load-path (concat EMACS_VENDOR "/pomodoro")) ;; TODO
-      ;; (load-file (concat EMACS_VENDOR "/pomodoro/pomodoro.el")) ;; TODO
+      ;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/pomodoro")) ;; TODO
+      ;; (load-file (concat CONF-EMACS-VENDOR "/pomodoro/pomodoro.el")) ;; TODO
       (pomodoro)
       (setq pomodoro-work-time 25) ;; God, I can only focus for quite a short time
       (setq pomodoro-set-number 4) ;; Number of sets until a long break

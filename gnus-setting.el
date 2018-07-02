@@ -4,11 +4,11 @@
 ;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:42>
+;; Updated: Time-stamp: <2018-07-01 22:08:40>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
-(setq gnus-startup-file (concat EMACS_DATA "/filebat.newsrc")
+(setq gnus-startup-file (concat CONF-EMACS-DATA "/filebat.newsrc")
       gnus-home-directory (concat mail-parent-directory-var "Mail")
       gnus-default-directory (concat mail-parent-directory-var "Mail")
       gnus-article-save-directory (concat mail-parent-directory-var "Mail/save")
@@ -37,14 +37,14 @@
 ;; (nnimap-address "imap.126.com")
 ;; (nnimap-server-port 143)
 ;; (nnimap-authinfo-file (concat DENNY_DATA "/filebat.authinfo"))
-;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
+;; ;;(nnimap-authinfo-file (concat CONF-EMACS-DATA "/filebat.authinfo"))
 ;; ))
 ;; (setq gnus-secondary-select-methods
 ;; '((nnml "") ;; set mail reader
 ;; (nnimap "gmail"
 ;; (nnimap-address "imap.gmail.com")
 ;; (nnimap-server-port 993)
-;; ;;(nnimap-authinfo-file (concat EMACS_DATA "/filebat.authinfo"))
+;; ;;(nnimap-authinfo-file (concat CONF-EMACS-DATA "/filebat.authinfo"))
 ;; (nnimap-stream ssl))
 ;; ))
 (setq imap-log t) ;;Debugging IMAP
@@ -60,9 +60,9 @@
 ;; (forward-line -3)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; setup multiple smtp account with the help of msmtp
-(setq my-msmtp-config-file (concat "'" EMACS_DATA "/filebat.msmtprc" "'"))
+(setq my-msmtp-config-file (concat "'" CONF-EMACS-DATA "/filebat.msmtprc" "'"))
 ;; (setq sendmail-program (concat "msmtp -C " my-msmtp-config-file)) ;;TODO, enhance
-(setq message-signature-file (concat EMACS_DATA "/filebat.signature"))
+(setq message-signature-file (concat CONF-EMACS-DATA "/filebat.signature"))
 (setq sendmail-program "msmtp")
 (setq message-sendmail-envelope-from 'header)
 (setq send-mail-function 'mailclient-send-it)
@@ -387,11 +387,11 @@ then send mails by send-groupmail-by-mailbuffer."
 ;; "Timeout for Gnus."
 ;; (with-timeout (30 (message "Gnus timed out.")) ad-do-it))
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/gnus-notify/gnus-desktop-notify.el"))
+;; (load-file (concat CONF-EMACS-VENDOR "/gnus-notify/gnus-desktop-notify.el"))
 ;; (require 'gnus-desktop-notify)
 ;; (gnus-desktop-notify-mode)
 ;; (gnus-demon-add-scanmail)
-;; (load-file (concat EMACS_VENDOR "/gnus-notify/gnus-notify+.el"))
+;; (load-file (concat CONF-EMACS-VENDOR "/gnus-notify/gnus-notify+.el"))
 ;; (require 'gnus-notify+)
 ;; (add-hook 'gnus-summary-exit-hook 'gnus-notify+)
 ;; (add-hook 'gnus-group-catchup-group-hook 'gnus-notify+)

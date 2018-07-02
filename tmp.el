@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-11 15:00:52>
+;; Updated: Time-stamp: <2018-07-01 22:10:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun gb2312_to_utf8 ()
  "convert current buffer from gb2312 to utf8"
@@ -37,7 +37,7 @@
 
 ;; (run-with-idle-timer 300 t 'save-information)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/auctex-11.85-e22.3-msw/site-lisp/tex-site.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/auctex-11.85-e22.3-msw/site-lisp/tex-site.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; C/C++/Java/C# Mode
 ;;(defun my-c-mode-common-hook ()
@@ -57,7 +57,7 @@
 ;; (define-key csharp-mode-map "\t" 'c-tab-indent-or-complete)))
 ;;(add-hook 'csharp-mode-hook 'my-csharp-mode-hook)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/ecb-2.40/"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/ecb-2.40/"))
 ;;(require 'ecb)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq latex-run-command "/cygdrive/d/Program\ Files/MiKTeX\ 2.8/miktex/bin/pdflatex.exe")
@@ -66,7 +66,7 @@
 ;;(setq tex-output-extension ".pdf")
 ;;(setq tex-dvi-view-command "start \"acrobat\" *")
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/second-sel/second-sel.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/second-sel/second-sel.el")) ;; TODO
 ;; (require 'second-sel)
 ;; (global-set-key [(control meta ?y)] 'secondary-dwim)
 ;; (define-key esc-map "y" 'yank-pop-commands)
@@ -80,10 +80,10 @@
 ;; (grep-find nil)
 ;; )
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/extraedit/"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/extraedit/"))
 ;;(require 'extraedit)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/speedbar-0.14beta4"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/speedbar-0.14beta4"))
 ;;(autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
 ;;(autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
 ;;(define-key-after (lookup-key global-map [menu-bar tools])
@@ -92,8 +92,8 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq max-mini-window-height 1) ;;Maximum height for resizing mini-windows.
 ;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-wiki-2.72/"))
-;; (load-file (concat EMACS_VENDOR "/journal/journal.el")) ;; TODO
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/emacs-wiki-2.72/"))
+;; (load-file (concat CONF-EMACS-VENDOR "/journal/journal.el")) ;; TODO
 ;; (require 'journal)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'ansi)
@@ -112,13 +112,13 @@
 ;; (bold "foo")
 ;; (blink "bar"))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/iedit"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/iedit"))
 ;; (require 'iedit)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ruby-electric
 ;;(require 'ruby-electric)
 ;;rails
-;;(setq load-path (cons (concat EMACS_VENDOR "/emacs-rails" load-path)))
+;;(setq load-path (cons (concat CONF-EMACS-VENDOR "/emacs-rails" load-path)))
 ;;(require 'rails)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq gnus-important-group-level nil)
@@ -144,7 +144,7 @@
 ;; (setq display-time-mail-function 'gnus-new-important-mail)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;; Rinari
-;; (add-to-list 'load-path (concat EMACS_VENDOR "rinari"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "rinari"))
 ;; (require 'rinari)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; woman手册查询
@@ -157,13 +157,13 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(define-key minibuffer-local-map " " nil)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/versor/lisp"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/versor/lisp"))
 ;; (add-to-list 'load-path "/home/wei/backup/tmp/emacs-versor/lisp")
 ;; (require 'versor)
 ;; (require 'languide)
 ;; (versor-setup)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/tea-time/tea-time.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/tea-time/tea-time.el")) ;; TODO
 ;; (require 'tea-time)
 ;; ;;(setq tea-time-sound "path-to-sound-file")
 ;; (define-key global-map "\C-ct" 'tea-time)
@@ -351,7 +351,7 @@
 
 (add-to-list 'erc-send-pre-hook 'rgrau-erc-oops)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/screenshot/screenshot.el")) ;; TODO
+;;(load-file (concat CONF-EMACS-VENDOR "/screenshot/screenshot.el")) ;; TODO
 ;; (require 'screenshot)
 ;; (setq screenshot-default-scheme "local")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -361,7 +361,7 @@
 ;; (require 'nnir)
 ;; (setq nnir-search-engine 'namazu)
 ;; (setq nnir-namazu-index-directory (expand-file-name "~/.namazu-mail"))
-;; (setq nnir-namazu-remove-prefix (expand-file-name (concat SHARE_DIR "private_data/gnus_data/Mail"))
+;; (setq nnir-namazu-remove-prefix (expand-file-name (concat CONF-SHARE-DIR "private_data/gnus_data/Mail"))
 ;; (setq nnir-mail-backend gnus-select-method)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun nuke-unmodified-buffers (&optional list)
@@ -496,7 +496,7 @@
 ;; (eval-after-load "ediff"
 ;; `(ediff-face-settings))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/psvn"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/psvn"))
 ;; (require 'psvn)
 ;; (setq svn-status-verbose nil)
 ;; (defsubst svn-status-interprete-state-mode-color (stat)
@@ -574,7 +574,7 @@
 ;; ("\\\\$" (0 font-lock-warning-face))
 ;; ))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq mail-personal-alias-file (concat EMACS_DATA "/filebat.mailrc"))
+(setq mail-personal-alias-file (concat CONF-EMACS-DATA "/filebat.mailrc"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Display string in large, friendly, letters
 (setq initial-scratch-message
@@ -594,7 +594,7 @@
  ".recentf"
  ".recentf~"))
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/unicad/unicad.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/unicad/unicad.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defadvice tramp-maybe-open-connection (before tramp-set-connection-property activate)
  (setenv "LC_ALL" "en_US.UTF-8")
@@ -645,9 +645,9 @@ Insert if ARG."
 ;;(global-subword-mode 1) ;; Easily navigate sillycased words
 
 ;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/yasnippet-bundle"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/yasnippet-bundle"))
 ;; (require 'yasnippet-bundle)
-;; (yas/load-directory (expand-file-name "snippets/" (concat DENNY_EMACS "emacs_conf")))
+;; (yas/load-directory (expand-file-name "snippets/" (concat CONF-DENNY-EMACS "emacs_conf")))
 ;; (yas/initialize)
 ;; (defun yas/new-snippet (&optional choose-instead-of-guess)
 ;; (interactive "P")
@@ -1694,7 +1694,7 @@ Insert if ARG."
  (question)
  (defalias 'org-freemind-write-node 'my-org-freemind-write-node)
  (org-export-as-freemind)
- (shell-command (concat SHARE_DIR "private_data/backup_small/update-blog.sh"))
+ (shell-command (concat CONF-SHARE-DIR "private_data/backup_small/update-blog.sh"))
  )
  )
 (add-hook 'org-mode-hook
@@ -1718,7 +1718,7 @@ Insert if ARG."
 (set-face-foreground 'function-name "YellowGreen")
 (setq font-lock-function-name-face 'function-name)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/openwith/openwith.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/openwith/openwith.el")) ;; TODO
 ;; (openwith-mode t)
 ;; ;; ask for confirmation before invoke external program
 ;; (setq openwith-confirm-invocation t)
@@ -1793,7 +1793,7 @@ Insert if ARG."
  "Run shell script to get mail"
  (interactive)
  (progn
-   (shell-command (concat SHARE_DIR "private_data/emacs_stuff/backup_small/fetch_mail/fetch_mail.sh"))
+   (shell-command (concat CONF-SHARE-DIR "private_data/emacs_stuff/backup_small/fetch_mail/fetch_mail.sh"))
  ))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key "\M-$" 'flyspell-word)
@@ -1837,7 +1837,7 @@ Insert if ARG."
 ;;             (org-narrow-to-subtree)
 ;;             (write-region (point-min) (point-max) rawfile)
 ;;               (shell-command (format "cd %s/../backup_small/life/sophia_period; ./sophia_period.sh %s %s "
-;;                                      DENNY_EMACS rawfile pngfile))
+;;                                      CONF-DENNY-EMACS rawfile pngfile))
 ;;               (message (format "check picture of %s" pngfile))
 ;;             )
 ;;           )
@@ -1846,7 +1846,7 @@ Insert if ARG."
 ;;   )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; ;; git-gutter indicats whether a line has been inserted, modified or deleted
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/emacs-git-gutter/"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/emacs-git-gutter/"))
 ;; (require 'git-gutter)
 ;; ;; (global-git-gutter-mode +1)
 ;; (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)

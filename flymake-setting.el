@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 21:57:39>
+;; Updated: Time-stamp: <2018-07-01 22:08:40>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'flymake)
 ;; Display flymake error msg in minibuffer after delay
-;; (load-file (concat EMACS_VENDOR "/flymake-cursor/flymake-cursor.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/flymake-cursor/flymake-cursor.el")) ;; TODO
 ;; Change the default colors
 (set-face-background 'flymake-errline "red4")
 (set-face-background 'flymake-warnline "dark slate blue")
@@ -39,7 +39,7 @@
 (define-key global-map (kbd "C-c n") 'flymake-goto-next-error)
 
 ;; show errors and warnings of flymake with different fringe bitmaps
-;; (load-file (concat EMACS_VENDOR "/fringe-helper/fringe-helper.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/fringe-helper/fringe-helper.el")) ;; TODO
 
 (defvar flymake-fringe-overlays nil)
 (make-variable-buffer-local 'flymake-fringe-overlays)
@@ -75,7 +75,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;;flymake for php mode
 ;; a standalone check file, leverage "php -l" and php_codesniffer
-(setq my-php-check-file (concat EMACS_DATA "/php_lint.sh"))
+(setq my-php-check-file (concat CONF-EMACS-DATA "/php_lint.sh"))
 (defun flymake-php-init ()
   "Use php and phpcs to check the syntax and code compliance of the current file."
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -225,11 +225,11 @@
                       temp-file
                       (file-name-directory buffer-file-name))))
     (list "rhino" (list (expand-file-name
-                         (concat EMACS_VENDOR "nonelisp-tool/jslint/jslint.js") local-file)))))
+                         (concat CONF-EMACS-VENDOR "nonelisp-tool/jslint/jslint.js") local-file)))))
 
 (defun my-js-hook-function ()
   (set (make-local-variable 'compile-command)
-       (format "rhino %s %s" (concat EMACS_VENDOR "nonelisp-tool/jslint/jslint.js") (buffer-file-name))))
+       (format "rhino %s %s" (concat CONF-EMACS-VENDOR "nonelisp-tool/jslint/jslint.js") (buffer-file-name))))
 
 (setq flymake-allowed-file-name-masks
       (cons '(".+\\.js$"
@@ -305,7 +305,7 @@
 (add-to-list 'flymake-allowed-file-name-masks '("\\.java$" flymake-java-init))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; python mode
-(setq my-python-check-file (concat EMACS_DATA "/python_lint.py"))
+(setq my-python-check-file (concat CONF-EMACS-DATA "/python_lint.py"))
 (defun flymake-python-init ()
   "Use python and pythoncs to check the syntax and code compliance of the current file."
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -331,7 +331,7 @@
                      ("\\(.*\\) at \\(.*\\) line \\(.*\\)." 2 3 nil 1)
                      ))))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq my-erlang-check-file (concat EMACS_DATA "/erlang_lint.erl"))
+(setq my-erlang-check-file (concat CONF-EMACS-DATA "/erlang_lint.erl"))
 (defun flymake-erlang-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace))

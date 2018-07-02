@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-05-09 10:59:05>
+;; Updated: Time-stamp: <2018-07-01 22:06:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq shell-file-name "/bin/zsh")
@@ -159,7 +159,7 @@ If arg is given, only open a shell for one directory.
 ;; --8<-------------------------- separator ------------------------>8--
 ;;eshell
 ;; quickly switch to eshell, and do buffer toggle things
-(load-file (concat EMACS_VENDOR "/eshell-toggle/eshell-toggle.el"))
+(load-file (concat CONF-EMACS-VENDOR "/eshell-toggle/eshell-toggle.el"))
 (global-set-key (kbd "<C-f9>") 'eshell-toggle)
 (autoload 'eshell-toggle "eshell-toggle"
   "Toggles between the *eshell* buffer and whatever buffer you are editing."
@@ -305,7 +305,7 @@ From Patrick Anderson via the wiki."
 (setq tramp-verbose 3)
 (setq password-cache-expiry 60)
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/multi-term/multi-term.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/multi-term/multi-term.el")) ;; TODO
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 

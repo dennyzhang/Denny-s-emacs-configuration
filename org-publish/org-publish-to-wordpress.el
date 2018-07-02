@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 00:53:43>
+;; Updated: Time-stamp: <2018-07-01 22:10:58>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
@@ -18,9 +18,9 @@
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
 (setq denny-github-url "https://github.com/DennyZhang")
 ;; don't export the useless html validation link
-(load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
+(load-file (concat CONF-EMACS-VENDOR "http-post-simple/http-post-simple.el"))
 (require 'http-post-simple)
-(load-file (concat EMACS_VENDOR "org-publish/org-publish.el"))
+(load-file (concat CONF-EMACS-VENDOR "org-publish/org-publish.el"))
 ;; (require 'org-publish) ;; TODO
 (setq org-export-html-validation-link "")
 ;; (add-to-list 'org-export-language-setup '("cn" "Author" "Time" "Table Of Content" "Footnote")) ;; TODO
@@ -331,7 +331,7 @@ the plist used as a communication channel."
 (defun devops-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-devops-post.el"))
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-devops-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
@@ -340,7 +340,7 @@ the plist used as a communication channel."
 (defun brain-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-code-post.el"))
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-code-post.el"))
     (setq blog-tail "<hr/>")
 
     ;; TODO: use list to reduce code duplication
@@ -387,7 +387,7 @@ the plist used as a communication channel."
 (defun architect-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-architect-post.el"))
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-architect-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
@@ -396,7 +396,7 @@ the plist used as a communication channel."
 (defun cheatsheet-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-cheatsheet-post.el"))
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-cheatsheet-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
@@ -405,7 +405,7 @@ the plist used as a communication channel."
 (defun tax-update-wordpress-current-entry ()
   (interactive)
   (progn
-    (load-file (concat DENNY_EMACS "/org-publish/wordpress-tax-post.el"))
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-tax-post.el"))
     (setq blog-tail "<hr/>Check our <a href='http://www.usashui.com/popular/'>popular</a> posts?
 
 [mc4wp_form id='52']

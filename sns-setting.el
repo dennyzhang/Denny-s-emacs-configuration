@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:01>
+;; Updated: Time-stamp: <2018-07-01 22:10:57>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq erc-server-coding-system '(utf-8 . utf-8))
 (setq erc-nick "DennyZhang"
@@ -23,16 +23,16 @@
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
 ;;(erc) ;; auto login ;; TODO add try.. catch
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/jabber"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/jabber"))
 (require 'jabber)
 (setq jabber-account-list
       '(("filebat.mark@gmail.com"
          (:network-server . "talk.google.com")
          (:connection-type . ssl))))
 ;; --8<-------------------------- separator ------------------------>8--
-(setq jabber-avatar-cache-directory (concat DENNY_EMACS
+(setq jabber-avatar-cache-directory (concat CONF-DENNY-EMACS
                                             "/jabber/avatars/")
-      jabber-history-dir (concat DENNY_EMACS "/jabber/history/")
+      jabber-history-dir (concat CONF-DENNY-EMACS "/jabber/history/")
       jabber-use-global-history t
       ;;jabber-history-enabled t
       jabber-backlog-number 40
@@ -53,7 +53,7 @@
    ((t (:inherit variable-pitch :foreground "#adc4e3" :weight
                  bold :height 0.7 :width semi-expanded)))))
 
-(load-file (concat EMACS_VENDOR "/autosmiley/autosmiley.el"))
+(load-file (concat CONF-EMACS-VENDOR "/autosmiley/autosmiley.el"))
 (add-hook 'jabber-chat-mode-hook 'autosmiley-mode)
 
 ;; dynamically set status string

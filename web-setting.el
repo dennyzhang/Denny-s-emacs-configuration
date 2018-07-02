@@ -4,11 +4,11 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:01>
+;; Updated: Time-stamp: <2018-07-01 22:07:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
-;;(load-file (concat EMACS_VENDOR "/org-w3m/org-w3m.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/org-w3m/org-w3m.el"))
 (require 'org-w3m)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Insinuate with BBDB
@@ -17,7 +17,7 @@
   (bbdb-initialize 'w3)
 )
 
-(add-to-list 'load-path (concat EMACS_VENDOR "/emacs-w3m"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/emacs-w3m"))
 (if window-system (require 'w3m-load))
 
 (custom-set-variables
@@ -271,7 +271,7 @@ create a new window and browse the webpage"
 ;; --8<-------------------------- separator ------------------------>8--
 (setq browse-url-generic-program "/usr/bin/firefox")
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/hfyview/hfyview.el"))
+(load-file (concat CONF-EMACS-VENDOR "/hfyview/hfyview.el"))
 (global-set-key [(meta p)(p)] 'my-hfyview-buffer)
 (defun w3m-browse-buffer (&optional buffer)
   "Use w3m browser buffer BUFFER."

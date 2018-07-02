@@ -4,10 +4,10 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 20:21:45>
+;; Updated: Time-stamp: <2018-07-01 22:08:40>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
-;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/color-theme/color-theme.el"))
 (require 'color-theme)
 ;; TODO denny
 (defun plist-to-alist (plist)
@@ -49,7 +49,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (global-set-key [(control x)(control r)] 'recentf-open-files-compl)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;;remember where you were in a file
-(setq save-place-file (concat EMACS_DATA "/filebat.saveplace"))
+(setq save-place-file (concat CONF-EMACS-DATA "/filebat.saveplace"))
 (setq-default save-place t) ;; activate it for all buffers
 (require 'saveplace) ;; get the package
 ;; ;; --8<-------------------------- separator ------------------------>8--
@@ -60,7 +60,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       uniquify-after-kill-buffer-p t
       uniquify-ignore-buffers-re "^\\*")
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/frame"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/frame"))
 ;;(require 'frame-fns)
 ;; (require 'frame-cmds)
 ;; (global-set-key [(control up)] 'move-frame-up)
@@ -71,7 +71,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (if window-system
     (progn
       (require 'bm)
-      (setq bm-repository-file (concat EMACS_VENDOR "/data/out_of_svn/filebat.bm"))
+      (setq bm-repository-file (concat CONF-EMACS-VENDOR "/data/out_of_svn/filebat.bm"))
       ;; make bookmarks persistent as default
       (setq-default bm-buffer-persistence t)
       ;; Loading the repository from file when on start up.
@@ -104,7 +104,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (global-set-key (kbd "<S-f5>") 'highlight-symbol-prev)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;; rect-mark
-;; (load-file (concat EMACS_VENDOR "/rect-mark/rect-mark.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/rect-mark/rect-mark.el")) ;; TODO
 ;; Support for marking a rectangle of text with highlighting.
 ;;(define-key ctl-x-map "r\C-M-\ " 'rm-set-mark)
 ;;(define-key ctl-x-map [?r ?\C-\ ] 'rm-set-mark)
@@ -189,7 +189,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; (toggle-cursor-type-when-idle 1) ; On when idle
 ;; (setq curchg-default-cursor-color "green")
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(setq abbrev-file-name (concat EMACS_DATA "/filebat.abbrev"))
+(setq abbrev-file-name (concat CONF-EMACS-DATA "/filebat.abbrev"))
 (setq save-abbrevs t) ;; save abbrevs when files are saved
 (quietly-read-abbrev-file) ;; reads the abbreviations file on startup
 ;;(setq abbrev-mode 1) ;; always enable abbrev
@@ -217,7 +217,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (setq thumbs-per-line 3)
 (setq thumbs-max-image-number 8)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/company-0.5/"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/company-0.5/"))
 (autoload 'company-mode "company" nil t)
 (setq company-backends '(company-elisp
                          ;;company-ropemacs
@@ -233,7 +233,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
   (add-hook hook 'company-mode))
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;; TODO: use community one
-(load-file (concat EMACS_VENDOR "/highlight-tail/highlight-tail.el"))
+(load-file (concat CONF-EMACS-VENDOR "/highlight-tail/highlight-tail.el"))
 (require 'highlight-tail)
 (setq highlight-tail-colors
       '(("#696969" . 0)
@@ -247,12 +247,12 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (dolist (hook programming-hook-list)
   (add-hook hook #'(lambda () (rainbow-mode 1 ))))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/momentary/momentary.el"))
-;; (load-file (concat EMACS_VENDOR "/proced/proced.el"))
+(load-file (concat CONF-EMACS-VENDOR "/momentary/momentary.el"))
+;; (load-file (concat CONF-EMACS-VENDOR "/proced/proced.el"))
 ;;(require 'proced) ;; TODO denny
 (setq proced-sort "pmem")
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/keep-buffers/keep-buffers.el"));; TODO
+;;(load-file (concat CONF-EMACS-VENDOR "/keep-buffers/keep-buffers.el"));; TODO
 ;;(setq keep-buffers-protected-list '("tmp" "*Messages*" "current.org" "pkm.org"))
 ;;(keep-buffers-erase-on-kill nil)
 ;; --8<-------------------------- separator ------------------------>8--
@@ -283,18 +283,18 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; (global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'hide-lines)
-(load-file (concat EMACS_VENDOR "/hide-lines/hidesearch.el"))
+(load-file (concat CONF-EMACS-VENDOR "/hide-lines/hidesearch.el"))
 (require 'hidesearch)
 (global-set-key (kbd "C-c C-s") 'hidesearch)
 (global-set-key (kbd "C-c C-a") 'show-all-invisible)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/cn-weather/cn-weather.el"))
+(load-file (concat CONF-EMACS-VENDOR "/cn-weather/cn-weather.el"))
 (require 'cn-weather)
 (setq cn-weather-city "上海")
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'kill-ring-search)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/elscreen/elscreen-1.4.6/elscreen.el"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/elscreen/elscreen-1.4.6/elscreen.el"))
 (require 'elscreen)
 (eval-after-load 'elscreen
   '(progn
@@ -319,7 +319,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 (defadvice elscreen-toggle (around elscreen-create-automatically activate)
   (elscreen-create-automatically ad-do-it))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/gse-number-rect/gse-number-rect.el"))
+(load-file (concat CONF-EMACS-VENDOR "/gse-number-rect/gse-number-rect.el"))
 (require 'gse-number-rect)
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'fold-dwim)
@@ -338,7 +338,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
    (t (fold-dwim-toggle))
    ))
 ;; --8<-------------------------- separator ------------------------>8--
-;; (load-file (concat EMACS_VENDOR "/sr-speedbar/sr-speedbar.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "/sr-speedbar/sr-speedbar.el")) ;; TODO
 ;; (setq sr-speedbar-skip-other-window-p t)
 ;; (setq speedbar-show-unknown-files t)
 ;; ;; (setq 'outline-view-change-hook nil) ;; TODO
@@ -351,7 +351,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
 ;; )
 ;; (global-set-key (kbd "<f3>") 'my-file-toogle)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/recent-jump/recent-jump.el"))
+(load-file (concat CONF-EMACS-VENDOR "/recent-jump/recent-jump.el"))
 (require 'recent-jump)
 (setq recent-jump-threshold 8)
 (setq recent-jump-ring-length 20)
@@ -367,5 +367,5 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
   (unless (eq last-command 'goto-last-change-with-auto-marks)
     (split-window-vertically)))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/yaml-mode/yaml-mode.el"))
+(load-file (concat CONF-EMACS-VENDOR "/yaml-mode/yaml-mode.el"))
 ;; File: essentialpackage-setting.el ends here

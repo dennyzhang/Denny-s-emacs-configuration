@@ -5,18 +5,18 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:28>
+;; Updated: Time-stamp: <2018-07-01 22:05:49>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/common"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/ede"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/semantic"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/srecode"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/cogre"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/eieio"))
-;; (add-to-list 'load-path (concat EMACS_VENDOR "/cedet-1.0pre7/contrib"))
-;; (load-file (concat EMACS_VENDOR "/cedet-1.0pre7/common/cedet.el"))
-;; (load-file (concat EMACS_VENDOR "/cedet-1.0pre7/ede/ede.el"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/common"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/ede"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/semantic"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/srecode"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/cogre"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/eieio"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/contrib"))
+;; (load-file (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/common/cedet.el"))
+;; (load-file (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/ede/ede.el"))
 ;; (require 'cedet)
 ;; (require 'ede)
 ;; (require 'srecode)

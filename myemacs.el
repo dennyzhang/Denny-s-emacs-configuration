@@ -4,18 +4,18 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 21:54:56>
+;; Updated: Time-stamp: <2018-07-01 22:11:16>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
-(defconst EMACS_VENDOR "~/Dropbox/private_data/emacs_vendor/")
-(defconst EMACS_DATA "~/Dropbox/private_data/emacs_data")
-(defconst SHARE_DIR "~/Dropbox/")
-(defconst DENNY_EMACS "~/Dropbox/Denny-s-emacs-configuration/")
-(defconst GITHUB_DIR "~/git_code/github")
+(defconst CONF-EMACS-VENDOR "~/Dropbox/private_data/emacs_vendor/")
+(defconst CONF-EMACS-DATA "~/Dropbox/private_data/emacs_data")
+(defconst CONF-SHARE-DIR "~/Dropbox/")
+(defconst CONF-DENNY-EMACS "~/Dropbox/Denny-s-emacs-configuration/")
+(defconst CONF-GITHUB-DIR "~/git_code/github")
 
 ;; Load 3rd packages
-(load-file (concat DENNY_EMACS "/packages.el"))
+(load-file (concat CONF-DENNY-EMACS "/packages.el"))
 (require 'ox-html)
 
 (setq emacs-load-start-time (current-time))
@@ -24,7 +24,7 @@
 ;; ;; --8<-------------------------- separator ------------------------>8--
 (mapc #'(lambda(emacs-file)
          (load-file
-	  (expand-file-name emacs-file DENNY_EMACS)))
+	  (expand-file-name emacs-file CONF-DENNY-EMACS)))
       '(
         "bbdb-setting.el"
         "fundamental-setting.el"
@@ -70,8 +70,8 @@
         ))
 
 ;; loading sensitive configurations
-;;(load-file (concat DENNY_EMACS "/secrets.el.gpg"))
-(load-file (concat DENNY_EMACS "/org-publish/org-publish-to-wordpress.el"))
+;;(load-file (concat CONF-DENNY-EMACS "/secrets.el.gpg"))
+(load-file (concat CONF-DENNY-EMACS "/org-publish/org-publish-to-wordpress.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(Unless (server-running-p) (server-start))
 ;; calculate how long it takes for emacs start

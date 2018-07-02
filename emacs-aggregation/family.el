@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2018-06-28 00:07:04>
+;; Copyright © 2010-2011 Time-stamp: <2018-07-01 22:10:58>
 ;;; ================================================================
 
 ;;; File: family.el --- Setup for emacs-aggregation.el
@@ -8,8 +8,8 @@
 ;;; Author: Denny Zhang <filebat.mark@gmail.com>
 ;;
 
-;;(load-file (concat EMACS_VENDOR "/emacs-aggregation/emacs-aggregation.el"))
-(load-file (concat DENNY_EMACS "/emacs-aggregation/emacs-aggregation.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/emacs-aggregation/emacs-aggregation.el"))
+(load-file (concat CONF-DENNY-EMACS "/emacs-aggregation/emacs-aggregation.el"))
 (setq report-subject "Weekly Family Report -- Denny & Sophia")
 ;; (setq recipient-mail "filebat.mark@gmail.com filebat.mark@gmail.com sophiazhang8709@126.com")
 (setq recipient-mail "249950670@qq.com 362552579@qq.com")
@@ -54,11 +54,11 @@ Boston天气:%s
 
 ;;(aggregation-timer)
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat DENNY_EMACS "/emacs-aggregation/mobilize-orgfile.el"))
+(load-file (concat CONF-DENNY-EMACS "/emacs-aggregation/mobilize-orgfile.el"))
 (setq org-export-html-style "")
 
-(setq mobile-export-src-dir (concat SHARE_DIR "/org_data"))
-(setq mobile-export-publish-dir (concat DENNY_EMACS "mobile_export"))
+(setq mobile-export-src-dir (concat CONF-SHARE-DIR "/org_data"))
+(setq mobile-export-publish-dir (concat CONF-DENNY-EMACS "mobile_export"))
 (setq mobile-export-file-list '("current.org"
                                 "contacts.org"
                                 ))

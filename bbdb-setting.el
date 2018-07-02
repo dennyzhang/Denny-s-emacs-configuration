@@ -4,10 +4,10 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 21:40:59>
+;; Updated: Time-stamp: <2018-07-01 22:10:59>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb/lisp"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/bbdb/lisp"))
 (require 'bbdb)
 (bbdb-initialize)
 (require 'bbdb-com)
@@ -17,7 +17,7 @@
 (setq bbdb-default-country "中国");;Default country for emacs
 (add-hook 'message-setup-hook 'bbdb-define-all-aliases)
 (bbdb-initialize 'message)
-(setq bbdb-file (concat EMACS_DATA "/filebat.bbdb"))
+(setq bbdb-file (concat CONF-EMACS-DATA "/filebat.bbdb"))
 (setq bbdb-hashtable-size 200003)
 (setq bbdb-send-mail-style 'compose-mail)
 (setq bbdb-completion-type nil)
@@ -25,10 +25,10 @@
 (setq bbdb-north-american-phone-numbers-p nil)
 (setq bbdb-default-label-list '("Mobile" "Office" "Other"))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat EMACS_VENDOR "/bbdb-picture/bbdb-picture.el"))
-(setq bbdb-picture-path (concat DENNY_EMACS "/bbdb_picture/"))
+(load-file (concat CONF-EMACS-VENDOR "/bbdb-picture/bbdb-picture.el"))
+(setq bbdb-picture-path (concat CONF-DENNY-EMACS "/bbdb_picture/"))
 (setq bbdb-picture-extension ".jpg")
-(add-to-list 'load-path (concat EMACS_VENDOR "/bbdb-vcard"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/bbdb-vcard"))
 (require 'vcard)
 (require 'bbdb-vcard)
 ;; TODO: integrate emacs bbdb with google contact
@@ -198,7 +198,7 @@ which will be replaced by the actual name"
 ;; don't check legal zip code, when entering an address
 (setq bbdb-check-zip-codes-p nil)
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "/bbdb-to-outlook/bbdb-to-outlook.el"))
 (setq bbdb-user-mail-names
       (regexp-opt '("filebat.mark@gmail.com" "denny.zhang@oscgc.com" "denny.zhang001@gmail.com")))
 (setq bbdb-complete-name-allow-cycling t)

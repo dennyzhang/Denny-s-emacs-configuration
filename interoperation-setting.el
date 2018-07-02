@@ -5,10 +5,10 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:58>
+;; Updated: Time-stamp: <2018-07-01 22:05:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;;(load-file (concat EMACS_VENDOR "top-mode/top-mode.el"))
+;;(load-file (concat CONF-EMACS-VENDOR "top-mode/top-mode.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun lock-screen ()
   "Lock screen using (zone) and xtrlock

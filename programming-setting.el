@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 21:14:57>
+;; Updated: Time-stamp: <2018-07-01 22:06:51>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -95,7 +95,7 @@
 (global-set-key [(control c) (control t)] 'switch-head2source-file)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Get etags file intelligently
-;;(add-to-list 'load-path (concat EMACS_VENDOR "etags-extend/"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "etags-extend/"))
 ;;(require 'etags-select)
 ;;(require 'etags-table)
 ;;(setq etags-table-search-up-depth 10)
@@ -113,14 +113,14 @@
 ;;(global-set-key "\M-." 'etags-select-find-tag)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; C# programming
-;; (load-file (concat EMACS_VENDOR "csharp/csharp-mode.el")) ;; TODO
+;; (load-file (concat CONF-EMACS-VENDOR "csharp/csharp-mode.el")) ;; TODO
 ;; --8<-------------------------- separator ------------------------>8--
 ;; php programming
-(add-to-list 'load-path (concat EMACS_VENDOR "/php-mode/"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/php-mode/"))
 (require 'php-mode)
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ruby programming
-(add-to-list 'load-path (concat EMACS_VENDOR "/ruby-mode"))
+(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/ruby-mode"))
 (require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
@@ -171,7 +171,7 @@
   (add-hook hook 'turn-on-eldoc-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; http post test
-(load-file (concat EMACS_VENDOR "http-post-simple/http-post-simple.el"))
+(load-file (concat CONF-EMACS-VENDOR "http-post-simple/http-post-simple.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "<f8>") 'smart-compile)
 (defun smart-compile()
@@ -210,7 +210,7 @@
 ;; erlang
 ;; TODO, enhance as a more dedicated way
 ;; add the location of the elisp files to the load-path
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/erlang-emacs/"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/erlang-emacs/"))
 ;; set the location of the man page hierarchy
 (setq erlang-root-dir "/usr/lib/erlang")
 ;; add the home of the erlang binaries to the exec-path
@@ -227,7 +227,7 @@
             (imenu-add-to-menubar "imenu")))
 
 ;;;; distel: an add-on to the erlang-mode
-;;(add-to-list 'load-path (concat EMACS_VENDOR "/distel/elisp"))
+;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/distel/elisp"))
 ;;(require 'distel)
 ;;(distel-setup)
 ;;;; A number of the erlang-extended-mode key bindings are useful in the shell too
