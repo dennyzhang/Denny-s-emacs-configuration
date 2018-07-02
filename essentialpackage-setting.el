@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-11 14:52:46>
+;; Updated: Time-stamp: <2018-07-01 20:21:45>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat EMACS_VENDOR "/color-theme/color-theme.el"))
@@ -28,7 +28,7 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
       (setq plist (cddr plist)))
     (nreverse alist)))
 (color-theme-initialize)
-(color-theme-dark-blue)
+(color-theme-dark-blue) ;; TODO: conflict theme
 ;; (color-theme-bharadwaj-slate)
 ;;(load-theme 'light-blue t)
 ;;(load-theme 'tango-dark t)

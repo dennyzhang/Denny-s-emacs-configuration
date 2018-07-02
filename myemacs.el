@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 01:26:48>
+;; Updated: Time-stamp: <2018-07-01 20:21:19>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -28,7 +28,7 @@
       '(
         "bbdb-setting.el"
         "fundamental-setting.el"
-        "clean-appearance-setting.el"
+        "appearance-setting.el"
         "buffer-setting.el"
         "essentialpackage-setting.el"
         "org-setting.el"
@@ -55,40 +55,15 @@
         "capture-setting.el"
         "sns-setting.el"
         "latex-setting.el"
-        ))
-(cond
- ((eq system-type 'darwin)
-  (mapc #'(lambda(emacs-file)
-         (load-file
-          (expand-file-name emacs-file DENNY_EMACS)))
-        '(
-          "diff-setting.el"
-          "web-setting.el"
-          "linux-setting.el"
-          ;; "multimediea-setting.el"
-          "shell-setting.el"
-          "voice-setting.el"
-          "mac-setting.el"
-          "interoperation-setting.el")))
- ((eq system-type 'gnu/linux)
-  (mapc #'(lambda(emacs-file)
-         (load-file
-          (expand-file-name emacs-file DENNY_EMACS)))
-        '(
-          "diff-setting.el"
-          "linux-setting.el"
-          ;; "multimediea-setting.el"
-          "shell-setting.el"
-          "voice-setting.el"
-          "interoperation-setting.el")))
- ((eq system-type 'windows-nt)
-  (load-file (concat DENNY_EMACS "/windowsonly-setting.el")))
- ((eq system-type 'cygwin)
-  (load-file (concat DENNY_EMACS "/cygwin-setting.el"))))
-(mapc #'(lambda(emacs-file)
-         (load-file
-          (expand-file-name emacs-file DENNY_EMACS)))
-      '("postfundamental-setting.el"
+
+        "diff-setting.el"
+        "web-setting.el"
+        "linux-setting.el"
+        "shell-setting.el"
+        "voice-setting.el"
+        "mac-setting.el"
+        "interoperation-setting.el"
+        "postfundamental-setting.el"
         "passwd.el"
         "tmp.el"
         ))
