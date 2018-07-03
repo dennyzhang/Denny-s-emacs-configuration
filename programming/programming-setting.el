@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:06:51>
+;; Updated: Time-stamp: <2018-07-02 22:34:01>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -341,4 +341,5 @@
 (delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
 (add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
+(exec-path-from-shell-initialize)
 ;; File: programming-setting.el ends here

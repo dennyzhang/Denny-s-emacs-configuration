@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:11:19>
+;; Updated: Time-stamp: <2018-07-02 22:36:32>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -13,7 +13,7 @@
 (setq x-select-enable-clipboard t)
 (setq major-mode 'text-mode) ;;Text-mode is default mode
 (setq tab-width 4);;tab take 4 space
-;;force Emacs to indent with spaces, never with TABs
+;;force Emacs to indent with spaces, never with Tabs
 (setq-default indent-tabs-mode nil)
 (global-font-lock-mode t) ;;highlight synatx
 (show-paren-mode t)
