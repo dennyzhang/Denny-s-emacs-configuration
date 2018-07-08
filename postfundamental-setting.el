@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:08:40>
+;; Updated: Time-stamp: <2018-07-08 00:17:54>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -67,9 +67,9 @@
 ;; (encoding . utf-8-emacs-UNIX)
 ;; ))
 ;; --8<-------------------------- separator ------------------------>
-(add-hook 'flyspell-prog-mode-hook
-          #'(lambda ()
-              (define-key flyspell-mode-map [(control ?\.)]
-                'grep-find-with-querystring-quoted)))
+;; (add-hook 'flyspell-prog-mode-hook
+;;           #'(lambda ()
+;;               (define-key flyspell-mode-map [(control ?\.)]
+;;                 'grep-find-with-querystring-quoted)))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: postfundamental-setting.el ends here

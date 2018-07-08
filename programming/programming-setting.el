@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-02 22:34:01>
+;; Updated: Time-stamp: <2018-07-02 23:03:22>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -342,4 +342,13 @@
 (add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 (exec-path-from-shell-initialize)
+
+(mapc #'(lambda(emacs-file)
+         (load-file
+	  (expand-file-name emacs-file CONF-DENNY-EMACS)))
+      '(
+        "programming/golang-setting.el"
+        "programming/shell-setting.el"
+        "programming/python-setting.el"
+))
 ;; File: programming-setting.el ends here

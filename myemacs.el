@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-02 22:34:17>
+;; Updated: Time-stamp: <2018-07-08 00:11:40>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -41,12 +41,11 @@
         "regexp-setting.el"
         "magic-setting.el"
         "otherpackage-setting.el"
+        ;; programming
         "programming/programming-setting.el"
-        "programming/golang-setting.el"
+
         "facing-setting.el"
         "calendar-setting.el"
-
-        "flymake-setting.el"
         "largeessentialpackage-setting.el"
         "online-search/online-search-setting.el"
         "insertion-setting.el"

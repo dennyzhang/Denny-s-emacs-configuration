@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 21:54:01>
+;; Updated: Time-stamp: <2018-07-08 00:14:06>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Make script files executable automatically
@@ -34,12 +34,14 @@
 
 (add-hook 'after-save-hook
           (lambda ()
-            (cond
-             ((string= mode-name "Emacs-Lisp")
-              (save_wordpres_elisp))
-             ((string= mode-name "Go")
-              (save_golang_file))
-             )
+            (if (stringp mode-name)
+                (cond
+                 ((string= mode-name "Emacs-Lisp")
+                  (save_wordpres_elisp))
+                 ((string= mode-name "Go")
+                  (save_golang_file))
+                 )
+              )
             ))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: save-file-hook-setting.el

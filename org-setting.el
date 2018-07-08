@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:10:57>
+;; Updated: Time-stamp: <2018-07-08 10:31:32>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/contrib/lisp"))
@@ -102,7 +102,7 @@
 ;; set css for html export in org-mode
 (setq user-full-name "Denny Zhang")
 (setq user-mail-address "filebat.mark@gmail.com")
-(load-file (concat CONF-DENNY-EMACS "/org-css-setting.el"))
+;; (load-file (concat CONF-DENNY-EMACS "/org-css-setting.el"))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat CONF-DENNY-EMACS "/emacs-aggregation/emacs-aggregation-setup.el"))
 ;; --8<-------------------------- separator ------------------------>8--

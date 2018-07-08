@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:10:58>
+;; Updated: Time-stamp: <2018-07-08 11:23:17>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
@@ -345,40 +345,40 @@ the plist used as a communication channel."
 
     ;; TODO: use list to reduce code duplication
     (goto-char (point-min))
-    (while (re-search-forward "，" nil t) (replace-match ","))
+    (while (re-search-forward "," nil t) (replace-match ","))
 
     (goto-char (point-min))
-    (while (re-search-forward "。" nil t) (replace-match "."))
+    (while (re-search-forward "." nil t) (replace-match "."))
 
     (goto-char (point-min))
-    (while (re-search-forward "；" nil t) (replace-match ";"))
+    (while (re-search-forward ";" nil t) (replace-match ";"))
 
     (goto-char (point-min))
-    (while (re-search-forward "—" nil t) (replace-match "-"))
+    (while (re-search-forward "-" nil t) (replace-match "-"))
 
     (goto-char (point-min))
-    (while (re-search-forward "、" nil t) (replace-match "`"))
+    (while (re-search-forward "`" nil t) (replace-match "`"))
 
     (goto-char (point-min))
-    (while (re-search-forward "‘" nil t) (replace-match "'"))
+    (while (re-search-forward "'" nil t) (replace-match "'"))
 
     (goto-char (point-min))
-    (while (re-search-forward "’" nil t) (replace-match "'"))
+    (while (re-search-forward "'" nil t) (replace-match "'"))
 
     (goto-char (point-min))
-    (while (re-search-forward "é" nil t) (replace-match "e"))
+    (while (re-search-forward "e" nil t) (replace-match "e"))
 
     (goto-char (point-min))
-    (while (re-search-forward "“" nil t) (replace-match "\""))
+    (while (re-search-forward """ nil t) (replace-match "\""))
 
     (goto-char (point-min))
-    (while (re-search-forward "”" nil t) (replace-match "\""))
+    (while (re-search-forward """ nil t) (replace-match "\""))
 
     (goto-char (point-min))
-    (while (re-search-forward "≥" nil t) (replace-match ">="))
+    (while (re-search-forward ">=" nil t) (replace-match ">="))
 
     (goto-char (point-min))
-    (while (re-search-forward "≤" nil t) (replace-match "<="))
+    (while (re-search-forward "<=" nil t) (replace-match "<="))
 
     (update-wordpress-current-entry)
     )
@@ -510,6 +510,19 @@ the plist used as a communication channel."
       (goto-char (point-min))
       (unless (search-forward-regexp insert-prefix-str nil t)
         (insert insert-prefix-str)))
+    ;; remove
+         ;; <div">
+         ;; <div id="outline-container-org82e901b" class="outline-2">
+         ;; <h2 id="org82e901b">Review: Palindrome Problems&#xa0;&#xa0;&#xa0;<span class="tag"><span class="BLOG">BLOG</span>&#xa0;<span class="Review">Review</span></span></h2>
+         ;; <div class="outline-text-2" id="text-org82e901b">
+         ;; <hr />
+    (goto-char (point-min))
+    (when (search-forward-regexp "<div>\n<div id=\"outline-container-org" nil t)
+      (setq start-pos (- (point) (length "<div>\n<div id=\"outline-container-org")))
+      (when (search-forward-regexp "<div class=\"outline-text-2\" id=\"text-org[0-9a-z]+\">\n" nil t)
+        (setq end-pos (point))
+        (delete-region start-pos end-pos)
+        ))
     (write-file html-file nil)
     (kill-buffer)
     ))
