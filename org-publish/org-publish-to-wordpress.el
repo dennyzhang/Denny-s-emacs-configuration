@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-08 11:23:17>
+;; Updated: Time-stamp: <2018-07-08 18:42:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
@@ -369,12 +369,6 @@ the plist used as a communication channel."
     (while (re-search-forward "e" nil t) (replace-match "e"))
 
     (goto-char (point-min))
-    (while (re-search-forward """ nil t) (replace-match "\""))
-
-    (goto-char (point-min))
-    (while (re-search-forward """ nil t) (replace-match "\""))
-
-    (goto-char (point-min))
     (while (re-search-forward ">=" nil t) (replace-match ">="))
 
     (goto-char (point-min))
@@ -414,7 +408,7 @@ the plist used as a communication channel."
     )
   )
 (defun update-wordpress-current-entry ()
-  ;;(interactive)
+  ;; (interactive)
   (let* ((current-top-entry-title (get-top-entry-title))
          (current-md5 (md5 current-top-entry-title))
          (old-buffer (current-buffer))

@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-08 00:17:25>
+;; Updated: Time-stamp: <2018-07-08 12:11:07>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -172,8 +172,8 @@
 (defalias 'review (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/review.org"))))
 (defalias 'brain (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/code.org"))))
 (defalias 'design (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/system-design-challenge/design.org"))))
-(defalias 'emacs (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/cheatsheet-emacs-A4/README.org"))))
-(defalias 'golang (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/cheatsheet-golang-A4/local-kb-emacs-org-mode"))))
+(defalias 'emacs (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/../cheatsheet/cheatsheet-emacs-A4/README.org"))))
+(defalias 'golang (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/../cheatsheet/cheatsheet-golang-A4/local-kb-emacs-org-mode"))))
 (defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/cheatsheet.org"))))
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
 (defalias 'blogging (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/maintain-it-blog/README.org"))))
