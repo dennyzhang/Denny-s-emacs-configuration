@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-08 12:11:07>
+;; Updated: Time-stamp: <2018-07-08 19:05:55>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -112,42 +112,29 @@
 (defvar programming-mode-list (list
                                'c-mode 'c++-mode
                                'emacs-lisp-mode 'lisp-mode
-                               'shel-mode
-                               ;;'ruby-mode
-                               'java-mode
-                               'perl-mode
-                               'php-mode
-                               'sgml-mode
-                               'erlang-mode
+                               'shel-mode 'java-mode
+                               'perl-mode 'php-mode
+                               'sgml-mode 'erlang-mode
                                ))
 (defvar programming-mode-name-list (list
                                     "C/l" "C++/l"
                                     "Emacs-Lisp" "Lisp"
-                                    "Shell"
-                                    "Python"
-                                    ;;"Ruby"
-                                    "Java/l"
-                                    "Perl"
-                                    "PHP"
-                                    '(sgml-xml-mode "XML" "SGML")
+                                    "Shell" "Python"
+                                    "Java/l" "Perl"
+                                    "PHP" '(sgml-xml-mode "XML" "SGML")
                                     "Erlang"
                                     ))
 (defvar programming-hook-list (list
                                'c-mode-hook 'c++-mode-hook
                                'emacs-lisp-mode-hook 'lisp-mode-hook
-                               'shel-mode-hook
-                               'python-mode-hook
-                               ;;'ruby-mode-hook
-                               'java-mode-hook
-                               'perl-mode-hook
-                               'php-mode-hook
-                               'erlang-mode-hook
+                               'shel-mode-hook 'python-mode-hook
+                               'java-mode-hook 'perl-mode-hook
+                               'php-mode-hook 'erlang-mode-hook
                                ))
 ;; --8<-------------------------- separator ------------------------>8--
 (defun my-open-file (filename)
   (interactive)
   (find-file filename))
-
 ;; technical
 (defalias 'linux (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/linux.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/openstack.org"))))
@@ -173,6 +160,7 @@
 (defalias 'brain (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/code.org"))))
 (defalias 'design (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/system-design-challenge/design.org"))))
 (defalias 'emacs (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/../cheatsheet/cheatsheet-emacs-A4/README.org"))))
+(defalias 'docker (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/../cheatsheet/cheatsheet-docker-A4/README.org"))))
 (defalias 'golang (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/../cheatsheet/cheatsheet-golang-A4/local-kb-emacs-org-mode"))))
 (defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/cheatsheet.org"))))
 (defalias 'linkedin (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
@@ -306,18 +294,6 @@
     ;; quote search-keyword with ""
     (setq command-args (concat grep-find-command "\"" search-keyword "\""))
     (grep command-args)))
-
-;; ;; TODO, enhance by sync or async query, instead of stub sleep
-;; ;; show how many matches, when grep-find
-;; (defadvice grep-find (after show-grep())
-;;   (let ((sleep_interval 2))
-;;     (set-buffer "*grep*")
-;;     (sleep-for sleep_interval)
-;;     (message
-;;      "%d matches found"
-;;      (- (count-lines (point-min) (point-max)) 6))
-;;     ))
-;; (ad-activate 'grep-find)
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key (kbd "C-c .") 'my-find-file-in-parent-dir)
 (defun my-find-file-in-parent-dir ()
