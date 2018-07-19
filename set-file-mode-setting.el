@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:06:55>
+;; Updated: Time-stamp: <2018-07-17 16:38:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -19,7 +19,6 @@
 (add-to-list 'auto-mode-alist '("^tmp$" . (company-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (rainbow-mode 1)))
 (add-to-list 'auto-mode-alist '("^tmp$" . (flyspell-mode 1)))
-
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (iimage-mode 1)))
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (enriched-mode 1)))
@@ -29,6 +28,7 @@
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\-Env-In-DO.md$" . org-mode))
+(add-to-list 'auto-mode-alist '("README.md$" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.mxml$" . nxml-mode))
 (setq nxml-mode-hook
