@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-18 13:52:32>
+;; Updated: Time-stamp: <2018-07-23 17:08:41>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -139,12 +139,9 @@
 (defalias 'linux (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/linux.org"))))
 (defalias 'openstack (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/openstack.org"))))
 (defalias 'cloud (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/cloud.org"))))
-(defalias 'security (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/security.org"))))
 (defalias 'ai (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/ai.org"))))
 (defalias 'devops (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/devops.org"))))
 (defalias 'ai (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/ai.org"))))
-(defalias 'docker (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/docker.org"))))
-(defalias 'chef (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/chef.org"))))
 (defalias 'ios (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/ios.org"))))
 (defalias 'web (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/web.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/language.org"))))

@@ -1,0 +1,1 @@
+kubectl logs -l "k8s-app=logging-agent" -n oratos

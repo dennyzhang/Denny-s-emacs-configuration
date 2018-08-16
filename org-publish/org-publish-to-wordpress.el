@@ -4,16 +4,17 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-08 18:49:46>
+;; Updated: Time-stamp: <2018-08-05 23:18:37>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: 'ca-pub-6701618470621579',
-    enable_page_level_ads: true
-  });
-</script>")
+(setq google-adsense "")
+;; (setq google-adsense "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+;; <script>
+;;   (adsbygoogle = window.adsbygoogle || []).push({
+;;     google_ad_client: 'ca-pub-5389711597208884',
+;;     enable_page_level_ads: true
+;;   });
+;; </script>")
 ;; --8<-------------------------- separator ------------------------>8--
 (setq denny-linkedin-url "https://www.linkedin.com/in/dennyzhang001")
 (setq denny-github-url "https://github.com/DennyZhang")
@@ -101,7 +102,6 @@
 
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'weblogger)
-
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Change footnotes format
 (setq org-html-footnotes-section "<div id=\"footnotes\">
@@ -324,7 +324,6 @@ the plist used as a communication channel."
     (add-to-list 'field-list (list (make-symbol "meta_key") "_yoast_wpseo_focuskw"))
     (add-to-list 'field-list (list (make-symbol "meta_value") focus-keyword))
     (http-post-simple mywordpress-updatemeta-url field-list)
-
     )
   )
 ;; --8<-------------------------- separator ------------------------>8--
@@ -351,10 +350,16 @@ the plist used as a communication channel."
     (while (re-search-forward "。" nil t) (replace-match "."))
 
     (goto-char (point-min))
+    (while (re-search-forward "：" nil t) (replace-match ":"))
+
+    (goto-char (point-min))
     (while (re-search-forward "；" nil t) (replace-match ";"))
 
     (goto-char (point-min))
     (while (re-search-forward "—" nil t) (replace-match "-"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "…" nil t) (replace-match "..."))
 
     (goto-char (point-min))
     (while (re-search-forward "、" nil t) (replace-match "`"))
@@ -413,6 +418,14 @@ the plist used as a communication channel."
     (update-wordpress-current-entry)
     )
   )
+(defun get-blog-tag ()
+  (progn
+    (setq str (buffer-substring-no-properties (point-min) (point-max)))
+    (string-match ":PROPERTIES:\n:type: +\\(.*\\)\n:END:"  str)
+    (setq blog-tag (match-string 1 str))
+    )
+  )
+
 (defun update-wordpress-current-entry ()
   ;;(interactive)
   (let* ((current-top-entry-title (get-top-entry-title))
@@ -423,7 +436,8 @@ the plist used as a communication channel."
          (org-tag (org-get-tags))
          (category (car (delete BlOG-TAG org-tag)))
          (current-exported-filename
-          (format "%s-%s-%s_%s.html" short-filename current-md5 category (org-entry-get nil "type")))
+          (format "%s-%s-%s_%s.html" short-filename current-md5 category (get-blog-tag)))
+         ;; (org-entry-get nil "type")
          current-post-meta
          ;;(old-list-post-meta list-post-meta)
          url-string)
@@ -436,13 +450,27 @@ the plist used as a communication channel."
       (setq separator
             "\*\* ---------------------------------------------------------------------")
       (goto-char (point-max))
-      (if (search-backward-regexp separator nil t)
+    ;; org-mode html and markdown incompatible issues
+    (goto-char (point-min))
+    (while (re-search-forward "#\\+BEGIN_HTML" nil t) (replace-match "#+BEGIN_EXPORT html"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "#\\+END_HTML" nil t) (replace-match "#+END_EXPORT"))
+
+    (if (search-backward-regexp separator nil t)
           (progn
             (move-beginning-of-line nil)
             (narrow-to-region (point-min) (point))))
-      ;;(org-export-as-html 3)
       (org-html-export-to-html)
       )
+
+    ;; change back
+    (goto-char (point-min))
+    (while (re-search-forward "#\\+BEGIN_EXPORT html" nil t) (replace-match "#+BEGIN_HTML"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "#\\+END_EXPORT" nil t) (replace-match "#+END_HTML"))
+
     (rename-file (format "%s.html" short-filename) current-exported-filename)
     (wash-html-for-wordpress-internal current-exported-filename)
     (setq current-post (assoc current-md5 list-post-meta))

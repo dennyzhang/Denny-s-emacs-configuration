@@ -1,0 +1,1 @@
+kubectl logs -f syslog-server-$1 -n oratos

@@ -7,6 +7,11 @@ File me [tickets](https://github.com/DennyZhang/Denny-s-emacs-configuration/issu
 
 **Emacs shapes me to be a better programmer.**
 
+#+BEGIN_SRC elisp
+(load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
+(load-file "~/Dropbox/Denny-s-emacs-configuration/mac-setting.el")
+#+END_SRC
+
 Discuss with Denny in [LinkedIn](https://www.linkedin.com/in/dennyzhang001) or [Blog](https://www.dennyzhang.com).
 
 Code is licensed under [MIT License](https://www.dennyzhang.com/wp-content/mit_license.txt).

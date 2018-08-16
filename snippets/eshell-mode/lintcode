@@ -1,0 +1,5 @@
+cp /Users/zdenny/Dropbox/Screenshots/denny_lintcode.png /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_lintcode.png
+convert -resize 770x458 /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_lintcode.png /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_lintcode.png
+(cd /Users/zdenny/git_code/codecommit/blog_cdn/images/brain && git commit -am "update images" && git push origin master)
+
+open /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_lintcode.png
