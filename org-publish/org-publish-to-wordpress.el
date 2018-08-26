@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-05 23:18:37>
+;; Updated: Time-stamp: <2018-08-22 15:59:08>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -300,6 +300,10 @@ the plist used as a communication channel."
          field-list
          )
 
+    ;; If meta-description is not given, use post-title as default value
+    (if (string= meta-description "")
+        (setq meta-description post-title)
+
     ;; Yoast SEO
     ;; get first keyword as Yoast focus word
     (setq focus-keyword (car (split-string meta-keywords " ")))
@@ -325,97 +329,6 @@ the plist used as a communication channel."
     (add-to-list 'field-list (list (make-symbol "meta_value") focus-keyword))
     (http-post-simple mywordpress-updatemeta-url field-list)
     )
-  )
-;; --8<-------------------------- separator ------------------------>8--
-(defun devops-update-wordpress-current-entry ()
-  (interactive)
-  (progn
-    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-devops-post.el"))
-    (setq blog-tail "<hr/>")
-    (update-wordpress-current-entry)
-    )
-  )
-
-(defun brain-update-wordpress-current-entry ()
-  (interactive)
-  (progn
-    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-code-post.el"))
-    (setq blog-tail "<hr/>")
-
-    ;; TODO: use list to reduce code duplication
-    (goto-char (point-min))
-    (while (re-search-forward "，" nil t) (replace-match ","))
-
-    (goto-char (point-min))
-    (while (re-search-forward "。" nil t) (replace-match "."))
-
-    (goto-char (point-min))
-    (while (re-search-forward "：" nil t) (replace-match ":"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "；" nil t) (replace-match ";"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "—" nil t) (replace-match "-"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "…" nil t) (replace-match "..."))
-
-    (goto-char (point-min))
-    (while (re-search-forward "、" nil t) (replace-match "`"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "‘" nil t) (replace-match "'"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "’" nil t) (replace-match "'"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "é" nil t) (replace-match "e"))
-
-    (goto-char (point-min))
-    (while (re-search-forward "“" nil t) (replace-match "\""))
-
-    (goto-char (point-min))
-    (while (re-search-forward "”" nil t) (replace-match "\""))
-
-    (goto-char (point-min))
-    (while (re-search-forward "≥" nil t) (replace-match ">="))
-
-    (goto-char (point-min))
-    (while (re-search-forward "≤" nil t) (replace-match "<="))
-
-    (update-wordpress-current-entry)
-    )
-  )
-
-(defun architect-update-wordpress-current-entry ()
-  (interactive)
-  (progn
-    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-architect-post.el"))
-    (setq blog-tail "<hr/>")
-    (update-wordpress-current-entry)
-    )
-  )
-
-(defun cheatsheet-update-wordpress-current-entry ()
-  (interactive)
-  (progn
-    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-cheatsheet-post.el"))
-    (setq blog-tail "<hr/>")
-    (update-wordpress-current-entry)
-    )
-  )
-
-(defun tax-update-wordpress-current-entry ()
-  (interactive)
-  (progn
-    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-tax-post.el"))
-    (setq blog-tail "<hr/>Check our <a href='http://www.usashui.com/popular/'>popular</a> posts?
-
-[mc4wp_form id='52']
-")
-    (update-wordpress-current-entry)
     )
   )
 (defun get-blog-tag ()
@@ -450,6 +363,7 @@ the plist used as a communication channel."
       (setq separator
             "\*\* ---------------------------------------------------------------------")
       (goto-char (point-max))
+      (wash-for-unicode)
     ;; org-mode html and markdown incompatible issues
     (goto-char (point-min))
     (while (re-search-forward "#\\+BEGIN_HTML" nil t) (replace-match "#+BEGIN_EXPORT html"))
@@ -555,6 +469,55 @@ the plist used as a communication channel."
     (kill-buffer)
     ))
 ;; --8<-------------------------- separator ------------------------>8--
+(defun wash-for-unicode ()
+  (interactive)
+    ;; TODO: use list to reduce code duplication
+    (goto-char (point-min))
+    (while (re-search-forward "​" nil t) (replace-match ""))
+
+    (goto-char (point-min))
+    (while (re-search-forward "，" nil t) (replace-match ","))
+
+    (goto-char (point-min))
+    (while (re-search-forward "。" nil t) (replace-match "."))
+
+    (goto-char (point-min))
+    (while (re-search-forward "：" nil t) (replace-match ":"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "；" nil t) (replace-match ";"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "—" nil t) (replace-match "-"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "…" nil t) (replace-match "..."))
+
+    (goto-char (point-min))
+    (while (re-search-forward "、" nil t) (replace-match "`"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "‘" nil t) (replace-match "'"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "’" nil t) (replace-match "'"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "é" nil t) (replace-match "e"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "“" nil t) (replace-match "\""))
+
+    (goto-char (point-min))
+    (while (re-search-forward "”" nil t) (replace-match "\""))
+
+    (goto-char (point-min))
+    (while (re-search-forward "≥" nil t) (replace-match ">="))
+
+    (goto-char (point-min))
+    (while (re-search-forward "≤" nil t) (replace-match "<="))
+    )
+
 (defun update-wordpress-blog-internal (html-file)
   (interactive)
   (let ((wordpress-server-url (concat mywordpress-server-url "/xmlrpc_denny.php"))
@@ -645,5 +608,51 @@ the plist used as a communication channel."
     (if not-tracked-org-post
         (message (format "count of new posts:%d." (length not-tracked-org-post))))
     ))
+;; --8<-------------------------- separator ------------------------>8--
+(defun devops-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-devops-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun cheatsheet-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-cheatsheet-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+(defun tax-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-tax-post.el"))
+    (setq blog-tail "<hr/>Check our <a href='http://www.usashui.com/popular/'>popular</a> posts?
+
+[mc4wp_form id='52']
+")
+    (update-wordpress-current-entry)
+    )
+  )
+(defun code-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-code-post.el"))
+    (setq blog-tail "<hr/>")
+
+    (update-wordpress-current-entry)
+    )
+  )
+(defun quiz-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-quiz-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-publish-to-wordpress.el ends here

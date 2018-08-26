@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-23 17:08:41>
+;; Updated: Time-stamp: <2018-08-24 19:27:37>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -149,27 +149,8 @@
 (defalias 'java (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/java.org"))))
 (defalias 'sa (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/sa.org"))))
 (defalias 'db (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/db.org"))))
+(defalias 'blog (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog.org"))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; blog
-(defalias 'blog (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/blog.org"))))
-(defalias 'review (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/review.org"))))
-(defalias 'brain (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/code.org"))))
-(defalias 'design (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/system-design-challenge/design.org"))))
-(defalias 'cheatsheet (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/cheatsheet.org"))))
-(defalias 'linkedin (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/linkedin-grow-influence/README.org"))))
-(defalias 'blogging (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/maintain-it-blog/README.org"))))
-(defalias 'github (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/maintain-github-repos/README.org"))))
-(defalias 'sell (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/developer-technical-selling/README.org"))))
-(defalias 'slack (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/knowledgebase/maintain-slack-group/README.org"))))
-(defalias 'free (lambda() (interactive) (my-open-file (concat CONF-GITHUB-DIR "/developer-free-saas/README.md"))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defalias 'house (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/house.org"))))
-(defalias 'stock (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/stock.org"))))
-(defalias 'tax (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/tax.org"))))
-(defalias 'doc (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/doc.org"))))
-(defalias 'monetize (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/monetize.org"))))
-(defalias 'community (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog/community.org"))))
-
 ;; life
 (defalias 'idea (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/idea.org"))))
 (defalias 'life (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/life.org"))))
