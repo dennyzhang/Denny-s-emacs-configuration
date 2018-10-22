@@ -5,32 +5,30 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-06-24 23:40:25>
+;; Updated: Time-stamp: <2018-10-01 17:03:13>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
 (setq org-capture-templates
       '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
+        ("d" "Diary" entry (file+headline "~/Dropbox/git_code/www.dennyzhang.com/life/today-learning/README.org" "Latest")
+         "** [Denny Today] %<%Y-%m-%d>, Palo Alto, CA
+#+BEGIN_EXAMPLE
+%?
+#+END_EXAMPLE
+")
         ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("s" "Shopping" entry (file+headline "life/life.org" "Shopping list")
-         "** %?")
         ("l" "learn" entry (file "life/learn.org")
          "** %?")
         ("e" "English" entry (file+headline "life/english.org" "每日英文")
          "** %?")
-
         ("c" "Communicate" entry (file+headline "current.org" "Communicate")
          "** %?")
         ("i" "Myself postmortem" entry (file+headline "current.org" "iPostmortem")
          "** %<%Y-%m-%d>: %?")
         ("r" "Reading" entry (file+headline "life.org" "Reading -- 阅读")
          "** %?")
-        ("t" "Talk" entry (file+headline "org_share/linux.org" "Questions I'm expecting discussion")
-          (function capture-talk-template))
-        ("d" "Diary" entry (file+headline "life/diary.org" "2017")
-         "** %<%Y-%m-%d>: %?")
-
         ("h" "health" entry (file+headline "life/life.org" "Family Health")
          "** %<%Y-%m-%d>: %?")
 

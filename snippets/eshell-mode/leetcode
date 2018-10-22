@@ -1,4 +1,4 @@
-cp /Users/zdenny/Dropbox/Screenshots/denny_leetcode.png /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_leetcode.png
+cp ~/Dropbox/Screenshots/denny_leetcode.png ~/Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_leetcode.png
 convert -resize 263x459 /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_leetcode.png /Users/zdenny/git_code/codecommit/blog_cdn/images/brain/denny_leetcode.png
 (cd /Users/zdenny/git_code/codecommit/blog_cdn/images/brain && git commit -am "update images" && git push origin master)
 

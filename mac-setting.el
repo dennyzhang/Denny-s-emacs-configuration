@@ -4,10 +4,11 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-15 22:47:49>
+;; Updated: Time-stamp: <2018-09-03 15:38:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-(setenv "PATH" "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/usr/local/texlive/2013/bin/universal-darwin/:/opt/local/bin")
+
+(setenv "PATH" "/usr/local/google-cloud-sdk/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/:/usr/local/texlive/2013/bin/universal-darwin/:/opt/local/bin:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.10.3/bin:/usr/local/opt/go/libexec/bin://usr/local/Cellar/go/1.10.3/libexec/bin:/Library/TeX/texbin")
 (setq exec-path (append exec-path '("/usr/local/bin" "/opt/local/bin")))
 
 (setq split-width-threshold nil)

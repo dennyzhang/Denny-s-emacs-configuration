@@ -4,34 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:08:40>
-;; --8<-------------------------- separator ------------------------>8--
-;;color-theme
-;;(load-file (concat CONF-EMACS-VENDOR "/color-theme/color-theme.el"))
-(require 'color-theme)
-;; TODO denny
-(defun plist-to-alist (plist)
-  "Convert property list PLIST into the equivalent association-list form.
-The alist is returned. This converts from
-
-\(a 1 b 2 c 3)
-
-into
-
-\((a . 1) (b . 2) (c . 3))
-
-The original plist is not modified. See also `destructive-plist-to-alist'."
-
-  (let (alist)
-    (while plist
-      (setq alist (cons (cons (car plist) (cadr plist)) alist))
-      (setq plist (cddr plist)))
-    (nreverse alist)))
-(color-theme-initialize)
-(color-theme-dark-blue) ;; TODO: conflict theme
-;; (color-theme-bharadwaj-slate)
-;;(load-theme 'light-blue t)
-;;(load-theme 'tango-dark t)
+;; Updated: Time-stamp: <2018-09-03 14:18:40>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;show recent files
 (require 'recentf)

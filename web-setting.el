@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:07:08>
+;; Updated: Time-stamp: <2018-08-28 23:27:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -272,7 +272,6 @@ create a new window and browse the webpage"
 (setq browse-url-generic-program "/usr/bin/firefox")
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat CONF-EMACS-VENDOR "/hfyview/hfyview.el"))
-(global-set-key [(meta p)(p)] 'my-hfyview-buffer)
 (defun w3m-browse-buffer (&optional buffer)
   "Use w3m browser buffer BUFFER."
   (interactive "bBuffer to browse use w3m: ")
@@ -299,17 +298,6 @@ create a new window and browse the webpage"
         (w3m-mode)
         (setq w3m-current-title (buffer-name))))))
 
-;; when pressing prefix of C-u, we will use w3m, instead of default web browser
-(defun my-hfyview-buffer (use-w3m-p)
-  (interactive "P")
-  (if (null use-w3m-p)
-      (if (equal mode-name '(sgml-xml-mode "XHTML" "HTML"))
-          (browse-url (buffer-name))
-        (hfyview-buffer))
-    (w3m-browse-buffer)
-    ))
-(setq hfy-meta-tags
-      (format "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=%s\" />" "utf-8"))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'w3m-display-hook 'wash-w3m-buffer) ;; TODO denny
 (defun wash-w3m-buffer(&optional url)

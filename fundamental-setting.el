@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-24 19:27:37>
+;; Updated: Time-stamp: <2018-09-29 16:50:24>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -146,8 +146,6 @@
 (defalias 'web (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/web.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/language.org"))))
 ;; languages
-(defalias 'java (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/java.org"))))
-(defalias 'sa (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/sa.org"))))
 (defalias 'db (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/db.org"))))
 (defalias 'blog (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog.org"))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -157,7 +155,6 @@
 (defalias 'health (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/password.org"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/contacts.org"))))
-(defalias 'wealth (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/wealth.org"))))
 
 ;; work
 (defalias 'osc (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/work/osc.org"))))

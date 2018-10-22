@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-22 15:59:08>
+;; Updated: Time-stamp: <2018-10-11 21:47:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -214,22 +214,21 @@ the plist used as a communication channel."
                "</div>\n</div>\n</div>\n<div id=\"postamble.*\n\n\n\n</div>\n<br/></body>"
                my-blog-tail ret))
 
-    (when (string= blog-type "POST")
-      ;; add post link
-      (setq ret (format "%sOriginal URL: <a href=\"%s/%s/\">%s/%s</a><br/><br/>%s"
-                        ret mywordpress-server-url blog-uri
-                        (replace-regexp-in-string "www." "" mywordpress-server-url)
-                        blog-uri 
-                        POST-TAIL
-                        ))
-      )
+;;     (when (string= blog-type "POST")
+;;       ;; add post link
+;;       (setq ret (format "%sOriginal URL: <a href=\"%s/%s/\">%s/%s</a><br/><br/>%s"
+;;                         ret mywordpress-server-url blog-uri
+;;                         (replace-regexp-in-string "www." "" mywordpress-server-url)
+;;                         blog-uri 
+;;                         POST-TAIL
+;;                         ))
+;;       )
     (setq ret (replace-regexp-in-string
                "my_blog_url_here"
                (format "%s/%s" mywordpress-server-url blog-uri) ret))
     ;; insert css
     ;; https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
-    ;; (format "%s<link rel='stylesheet' type='text/css' href='https://www.dennyzhang.com/wp-content/uploads/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">" ret)
-    (format "%s<link rel='stylesheet' type='text/css' href='https://cdn.dennyzhang.com/css/org.css' media=\"none\" onload=\"if(media!='all')media='all'\">" ret)    
+    (format "%s<link rel='stylesheet' type='text/css' href='%s' media=\"none\" onload=\"if(media!='all')media='all'\">" ret ORG-CSS-FILE)
     )
   )
 
@@ -331,10 +330,11 @@ the plist used as a communication channel."
     )
     )
   )
+
 (defun get-blog-tag ()
   (progn
     (setq str (buffer-substring-no-properties (point-min) (point-max)))
-    (string-match ":PROPERTIES:\n:type: +\\(.*\\)\n:END:"  str)
+    (string-match ":PROPERTIES:\n:type: +\\(.*\\)\n"  str)
     (setq blog-tag (match-string 1 str))
     )
   )
@@ -353,7 +353,7 @@ the plist used as a communication channel."
          ;; (org-entry-get nil "type")
          current-post-meta
          ;;(old-list-post-meta list-post-meta)
-         url-string)
+         )
     ;; delete old file, if it exists
     (if (file-exists-p current-exported-filename)
         (delete-file current-exported-filename))
@@ -389,15 +389,16 @@ the plist used as a communication channel."
     (wash-html-for-wordpress-internal current-exported-filename)
     (setq current-post (assoc current-md5 list-post-meta))
     (setq blog-uri (cadr (cdr (cdr current-post))))
+    (setq url-string (format "%s/%s" mywordpress-server-url blog-uri))
     (if current-post
         (progn
           (update-wordpress-blog-internal current-exported-filename)
-          (setq url-string (format "%s/%s" mywordpress-server-url blog-uri))
           (kill-new url-string)
           (message url-string)
           (delete-file current-exported-filename)
           )
       (message "No related blog entry for %s" current-top-entry-title))
+    (goto-char (point-min))    
     (save-excursion
       (switch-to-buffer old-buffer)
       ;;(widen)
@@ -474,6 +475,9 @@ the plist used as a communication channel."
     ;; TODO: use list to reduce code duplication
     (goto-char (point-min))
     (while (re-search-forward "​" nil t) (replace-match ""))
+
+    (goto-char (point-min))
+    (while (re-search-forward "​–" nil t) (replace-match "-"))
 
     (goto-char (point-min))
     (while (re-search-forward "，" nil t) (replace-match ","))
@@ -609,6 +613,37 @@ the plist used as a communication channel."
         (message (format "count of new posts:%d." (length not-tracked-org-post))))
     ))
 ;; --8<-------------------------- separator ------------------------>8--
+(global-set-key [(meta p)(p)] 'my-publish)
+;; when pressing prefix of C-u, we will use w3m, instead of default web browser
+(defun my-publish ()
+  (interactive)
+  (if (string-match ".*README.org" buffer-file-truename)
+      (save-excursion
+        (goto-char (point-min))
+        (cond ((string-match ".*cheatsheet.dennyzhang.com.*" buffer-file-truename)
+               (progn
+                 (cheatsheet-update-wordpress-current-entry)
+                 (browse-url url-string)))
+              ((string-match ".*challenges-kubernetes.*" buffer-file-truename)
+               (progn
+                 (kubernetes-update-wordpress-current-entry)
+                 (browse-url url-string)) )
+              ((string-match ".*quiz.dennyzhang.com.*" buffer-file-truename)
+               (progn
+                 (quiz-update-wordpress-current-entry)
+                 (browse-url url-string)) )
+              ((string-match ".*www.dennyzhang.com.*" buffer-file-truename)
+               (progn
+                 (devops-update-wordpress-current-entry)
+                 (browse-url url-string)))
+             ((string-match ".*code.dennyzhang.com.*" buffer-file-truename)
+               (progn
+                 (code-update-wordpress-current-entry)
+                 (browse-url url-string)))
+              )
+         ))
+  )
+;; --8<-------------------------- separator ------------------------>8-- :noexport:
 (defun devops-update-wordpress-current-entry ()
   (interactive)
   (progn
@@ -650,6 +685,23 @@ the plist used as a communication channel."
   (interactive)
   (progn
     (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-quiz-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+
+(defun kubernetes-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-kubernetes-post.el"))
+    (setq blog-tail "<hr/>")
+    (update-wordpress-current-entry)
+    )
+  )
+(defun architect-update-wordpress-current-entry ()
+  (interactive)
+  (progn
+    (load-file (concat CONF-DENNY-EMACS "/org-publish/wordpress-architect-post.el"))
     (setq blog-tail "<hr/>")
     (update-wordpress-current-entry)
     )
