@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-20 10:32:56>
+;; Updated: Time-stamp: <2019-07-19 13:37:04>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -46,6 +46,8 @@ Return a list of installed packages or nil for every skipped package."
                           'kill-ring-search 'hide-lines 'rainbow-mode
 			  ;; 'highlight-tail
                           'company
+                          ;; http://melpa.org/#/rust-mode
+                          'rust-mode
 			  ;; 'hide-region
 			  'color-moccur
 			  ;; 'cursor-chg

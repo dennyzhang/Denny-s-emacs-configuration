@@ -6,7 +6,7 @@
 ;;
 ;; File: magic-setting.el
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:58>
+;; Updated: Time-stamp: <2019-01-02 23:07:44>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -63,7 +63,7 @@ These information is probably retrieved from internet. "
         (setq lanuage-postfix-list
               '("*.php" "*.c" "*.c++" "*.cxx" "*.rb" "*.py" "*.go"
                 "*.el" "*.sh" "*.java" "*.pl" "*.erl" "*.cpp" "*.cc" "*.cxx"
-                "*.m" "*.h"
+                "*.m" "*.h" "*.yaml" "*.yml"
                 "*.js" "*.sql" "*.mxml" "*.as")))
     ;; count lines
     (dolist (lanuage-var lanuage-postfix-list)

@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-09-29 16:50:24>
+;; Updated: Time-stamp: <2019-06-17 10:44:54>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -146,13 +146,11 @@
 (defalias 'web (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/web.org"))))
 (defalias 'language (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/language.org"))))
 ;; languages
-(defalias 'db (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/technical/db.org"))))
 (defalias 'blog (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/blog.org"))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; life
 (defalias 'idea (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/idea.org"))))
 (defalias 'life (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/life.org"))))
-(defalias 'health (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/health.org"))))
 (defalias 'password (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/password.org"))))
 (defalias 'contact (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/contacts.org"))))
 
@@ -162,7 +160,7 @@
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
-(defalias 'bank (lambda() (interactive) (my-open-file (concat CONF-DENNY-EMACS "../emacs_stuff/bank/filebat.ledger"))))
+(defalias 'bank (lambda() (interactive) (my-open-file (concat CONF-EMACS-DATA "/filebat.ledger"))))
 (defalias 'filebat (lambda() (interactive) (my-open-file (concat CONF-DENNY-EMACS "/filebat.txt"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/org_share/skill.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/motto.org"))))
@@ -213,7 +211,7 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; set grep-find-command, which ask grep-find to filter out some files specified by filter-name-list
 (let (filter-name-list)
-  (setq filter-name-list '(".git" "*.jar" ".svn" "*~" "#*#" "*.elc" "*.pyc" "worklog.org"))
+  (setq filter-name-list '(".git" "*.jar" ".svn" "*~" "#*#" "*.elc" "*.pyc" "*.tgz" "*.tar" "*.pivotal" "worklog.org"))
   (setq grep-find-command "find .")
   (dolist (filter-file-name filter-name-list)
     (setq grep-find-command

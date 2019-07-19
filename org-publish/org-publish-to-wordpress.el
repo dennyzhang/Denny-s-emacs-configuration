@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-10-11 21:47:48>
+;; Updated: Time-stamp: <2018-12-24 11:34:28>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -50,8 +50,8 @@
  (lambda (path desc format)
    (cond
     ((eq format 'html)
-     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://slack.dennyzhang.com" "slack")
-     ;; (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://www.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://www.dennyzhang.com/slack_group" "slack")
+     (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://www.dennyzhang.com/wp-content/uploads/sns/slack.png\" alt=\"%s\"/></a>" "https://slack.dennyzhang.com" "slack")
+     ;; (format "<a href=\"%s\" target=\"_blank\" rel=\"nofollow\"><img src=\"https://slack.dennyzhang.com/badge.svg\" alt=\"%s\"/></a>" "https://slack.dennyzhang.com" "slack")     
      ))))
 
 ;; [[image-blog:Bash -e Doesn't Exit As I expect][https://www.dennyzhang.com/wp-content/uploads/denny/bash_exit.png]]

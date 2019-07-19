@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-17 16:38:44>
+;; Updated: Time-stamp: <2019-07-19 13:37:24>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -38,6 +38,10 @@
          (set-variable 'nxml-child-indent 2)
          (set-variable 'nxml-attribute-indent 2)
          ))
+;; --8<-------------------------- separator ------------------------>8--
+;; rust
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; crontab
 ;; (load-file (concat CONF-EMACS-VENDOR "crontab-mode/crontab-mode.el")) ;; TODO
