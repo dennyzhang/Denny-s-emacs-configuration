@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-12-24 11:34:28>
+;; Updated: Time-stamp: <2019-09-17 23:29:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -520,6 +520,11 @@ the plist used as a communication channel."
 
     (goto-char (point-min))
     (while (re-search-forward "≤" nil t) (replace-match "<="))
+    (goto-char (point-min))
+    (while (re-search-forward "×" nil t) (replace-match "x"))
+
+    (goto-char (point-min))
+    (while (re-search-forward "∪" nil t) (replace-match "u"))
     )
 
 (defun update-wordpress-blog-internal (html-file)

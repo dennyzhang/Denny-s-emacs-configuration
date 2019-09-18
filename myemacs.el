@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-15 22:48:17>
+;; Updated: Time-stamp: <2019-07-21 22:45:54>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -62,7 +62,7 @@
         "web-setting.el"
         "linux-setting.el"
         "shell-setting.el"
-        ;; "mac-setting.el" ;; TODO this
+        "mac-setting.el"
         "interoperation-setting.el"
         "postfundamental-setting.el"
         "passwd.el"

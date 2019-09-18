@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-07-19 13:37:24>
+;; Updated: Time-stamp: <2019-07-30 10:38:18>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -24,6 +24,8 @@
 ;;(add-to-list 'auto-mode-alist '("filebat.splashscreen" . (enriched-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.groovy$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.gvy$" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.Jenkinsfile$" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode));;rhtml
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 ;; --8<-------------------------- separator ------------------------>8--

@@ -47,7 +47,8 @@ Return a list of installed packages or nil for every skipped package."
 			  ;; 'highlight-tail
                           'company
                           ;; http://melpa.org/#/rust-mode
-                          'rust-mode
+			  ;; TODO enable rust
+                          ;; 'rust-mode
 			  ;; 'hide-region
 			  'color-moccur
 			  ;; 'cursor-chg
