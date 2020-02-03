@@ -2,9 +2,9 @@
 ;; File: calendar-setting.el -- calendar and event reminders
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2017-11-13 11:17:03>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq warning-suppress-types nil)
@@ -62,5 +62,3 @@
 (setq holiday-bahai-holidays nil)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Friends' birthdays are a little sensitive, which will be loaded by a gpg encrypted file
-;; --8<-------------------------- separator ------------------------>8--
-;; File: calendar-setting.el ends here

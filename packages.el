@@ -2,9 +2,9 @@
 ;; File: packages.el --- Maintain 3rd packages by ELPA
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-07-19 13:37:04>
+;; Updated: Time-stamp: <2020-02-03 15:37:43>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.

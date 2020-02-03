@@ -5,7 +5,7 @@
 ;;
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:10:58>
+;; Updated: Time-stamp: <2020-02-03 12:24:45>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ledger-generate-accounts-sql-call()
@@ -271,5 +271,3 @@ statement for insertion to sqlite db"
       (insert "(sleep-for 5)\n"))
     )
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; File: ledger-setting.el ends here

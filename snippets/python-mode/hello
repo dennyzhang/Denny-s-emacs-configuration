@@ -9,11 +9,10 @@
 ## Description :
 ## --
 ## Created : <`(format-time-string "%Y-%m-%d" (current-time))`>
-## Updated: Time-stamp: <2018-04-07 14:37:12>
+## Updated: Time-stamp: <2020-02-03 12:23:41>
 ##-------------------------------------------------------------------
 def test():
     print("hello, world")
 
 if __name__ == '__main__':
     test()
-## File: hello ends

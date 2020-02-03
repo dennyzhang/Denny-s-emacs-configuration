@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2012-04-22
-;; Updated: Time-stamp: <2018-07-01 22:04:18>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; compare vertically in ediff
 (require 'ediff)
@@ -136,5 +136,3 @@
     (beginning-of-line)
     (forward-line)
     (delete-region beg (point))))
-;; --8<-------------------------- separator ------------------------>8--
-;; File: diff-setting.el ends here

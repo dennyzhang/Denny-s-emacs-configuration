@@ -2,11 +2,11 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;;
 ;; File: magic-setting.el
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-01-02 23:07:44>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun show-interest ()
   "Show interesting information for my daily life.
@@ -114,5 +114,3 @@ File suffix is used to determine what program to run."
         (message "No recognized program file suffix for this file.")
         )
       )))
-;; --8<-------------------------- separator ------------------------>8--
-;; File: magic-setting.el ends here

@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:10:58>
+;; Updated: Time-stamp: <2020-02-03 15:37:46>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(setq browse-url-browser-function 'w3m-browse-url) ;; w3m
@@ -49,5 +49,3 @@
   "Lookup SEARCH-TERM in the C++ Reference indexes." t)
 (autoload 'cclookup-update "cclookup"
   "Run cclookup-update and create the database at `cclookup-db-file'." t)
-;; --8<-------------------------- separator ------------------------>8--
-;; File: online-search-setting.el ends here

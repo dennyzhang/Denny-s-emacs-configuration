@@ -2,9 +2,9 @@
 ;; File: bbdb-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:10:59>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/bbdb/lisp"))
@@ -245,5 +245,3 @@ which will be replaced by the actual name"
     (message (format "generate bbdb to vcards: %s" filename))
     )
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; File: bbdb-setting.el ends here

@@ -2,9 +2,9 @@
 ;; File: golang-setting.el --- utilities for developers
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-02 22:44:02>
+;; Updated: Time-stamp: <2020-02-03 15:37:43>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; https://stackoverflow.com/questions/35565945/emacs-auto-complete-for-go-language
@@ -17,6 +17,11 @@
                           ;; enable company mode for autocompletion
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
+
+;; https://godoc.org/golang.org/x/tools/cmd/goimports
+;; (setq gofmt-command "goimports")
+;; (add-hook 'before-save-hook 'gofmt-before-save)
+
 ;; enable flycheck
 (add-hook 'go-mode-hook 'flycheck-mode)
 ;; File: golang-setting.el ends here

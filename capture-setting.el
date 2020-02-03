@@ -3,9 +3,9 @@
 ;; information to knowledgebase of emacs org-mode
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-10-01 17:03:13>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
@@ -74,5 +74,3 @@
             "** webcontent " (make-string 20 32)
             ":noexport:\n#+begin_example\n" content "\n#+end_example"))
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; File: capture-setting.el ends here

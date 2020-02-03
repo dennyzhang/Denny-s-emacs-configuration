@@ -2,9 +2,9 @@
 ;; File: appearance-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-09-24 22:19:16>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
@@ -159,5 +159,3 @@ The original plist is not modified. See also `destructive-plist-to-alist'."
   (interactive)
   (frame-width-increase -5)
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; File: appearance-setting.el ends here

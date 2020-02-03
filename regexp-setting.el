@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2012-04-18
-;; Updated: Time-stamp: <2018-03-29 09:57:57>
+;; Updated: Time-stamp: <2020-02-03 15:37:42>
 ;; --8<-------------------------- separator ------------------------>8--
 (set-default 'case-fold-search t);;Make searches case insensitive
 ;; --8<-------------------------- separator ------------------------>8--

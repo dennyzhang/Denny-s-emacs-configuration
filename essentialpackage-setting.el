@@ -2,9 +2,9 @@
 ;; File: essentialpackage-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-09-03 14:18:40>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;show recent files
 (require 'recentf)
@@ -341,4 +341,3 @@
     (split-window-vertically)))
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat CONF-EMACS-VENDOR "/yaml-mode/yaml-mode.el"))
-;; File: essentialpackage-setting.el ends here

@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2015-10-19 13:50:39>
+;; Copyright © 2010-2011 Time-stamp: <2020-02-03 12:24:13>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation.el --- A plug-in system for information aggregation of daily life
@@ -322,4 +322,3 @@ Typical data includes:
           )
     ))
 (provide 'emacs-aggregation)
-;; File: emacs-aggregation.el ends

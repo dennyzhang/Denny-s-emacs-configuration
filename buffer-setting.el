@@ -2,9 +2,9 @@
 ;; File: buffer-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-02-22 09:00:49>
+;; Updated: Time-stamp: <2020-02-03 15:37:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (defun next-user-buffer ()
@@ -69,5 +69,3 @@ Thus widen each buffer, before emacs exit"
     (widen)
     ))
 (add-hook 'kill-emacs-hook 'widen-all-buffers)
-;; --8<-------------------------- separator ------------------------>8--
-;; File: buffer-setting.el ends here

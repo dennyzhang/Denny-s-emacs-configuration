@@ -2,9 +2,9 @@
 ;; File: gnus-setting.el
 ;;
 ;; Author: Denny Zhang(contact@dennyzhang.com)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:08:40>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -545,5 +545,3 @@ And insert header to mark message as unimportant(X-Priority).
 ;; --8<-------------------------- separator ------------------------>8--
 (setq gnus-delay-default-hour 10) ;; Normally I will reach the office by 10am
 (require 'sendmail)
-;; --8<-------------------------- separator ------------------------>8--
-;; File: gnus-setting.el ends here

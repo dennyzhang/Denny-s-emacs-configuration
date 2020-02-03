@@ -2,9 +2,9 @@
 ;; File: mac-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-08-07 23:52:15>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 

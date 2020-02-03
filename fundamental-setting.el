@@ -2,9 +2,9 @@
 ;; File: fundamental-setting.el -- most important setting, excluding third party packages
 ;;
 ;; Author: DennyZhang(filebat.mark@gmail.com)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-06-17 10:44:54>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -522,5 +522,3 @@ starting on the same line at which another match ended is ignored."
                     (other-window 1)
                     (enlarge-window 3)
                     ))
-;; --8<-------------------------- separator ------------------------>8--
-;; File: fundamental-setting.el ends here

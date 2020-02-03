@@ -2,9 +2,9 @@
 ;; File: myemacs.el --- the entrance point for various emacs configuration files
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-07-21 22:45:54>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -78,5 +78,3 @@
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."
            (time-to-seconds (time-since emacs-load-start-time))))
-;; --8<-------------------------- separator ------------------------>8--
-;; File: myemacs.el ends here

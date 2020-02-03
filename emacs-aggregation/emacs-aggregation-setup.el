@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2018-07-01 22:10:58>
+;; Copyright © 2010-2011 Time-stamp: <2020-02-03 12:24:10>
 ;;; ================================================================
 
 ;;; File: emacs-aggregation-setup.el --- Setup for emacs-aggregation.el
@@ -98,4 +98,3 @@ Boston天气:%s
                                 ))
 ;; update daily at 01:00am
 ;; (run-at-time "01:00am" 86400 'org-export-for-mobile)
-;; File: emacs-aggregation-setup.el ends

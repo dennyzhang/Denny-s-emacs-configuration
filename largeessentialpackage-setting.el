@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:05:49>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/cedet-1.0pre7/common"))
@@ -62,5 +62,3 @@
 ;; (require 'semantic-c nil 'noerror)
 ;; (semantic-add-system-include "d:/work/maui_svn/trunk/src/mgmt/pylib/" 'python-mode)
 ;; (semantic-add-system-include "d:/work/maui_svn/trunk/include/mgmt/cm/" 'c++-mode)
-;; --8<-------------------------- separator ------------------------>8--
-;; File: largeessentialpackage-setting.el ends here

@@ -2,12 +2,12 @@
 ;; File: shell-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:06:58>
+;; Updated: Time-stamp: <2020-02-03 15:37:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
-;;(setq shell-file-name "/bin/zsh")
+;; (setq shell-file-name "/bin/zsh")
 (setq shell-file-name "/bin/bash")
 ;; When killing a file, also kill related shell buffer
 ;;(add-hook 'kill-buffer-hook 'kill-shell-buffer)

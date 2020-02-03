@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2013-09-09 14:01:43>
+;; Copyright © 2010-2011 Time-stamp: <2020-02-03 12:24:59>
 ;;; ================================================================
 
 ;;; File: mobilize-orgfile.el --- A plug-in system for information aggregation of daily life
@@ -75,4 +75,3 @@ Here we also care about these items.
     )
   )
 (provide 'mobilize-orgfile)
-;; File: mobilize-orgfile.el ends

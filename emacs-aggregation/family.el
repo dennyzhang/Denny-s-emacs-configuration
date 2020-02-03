@@ -1,6 +1,6 @@
 ;; -*- mode: EMACS-LISP; coding:utf-8; -*-
 ;;; ================================================================
-;; Copyright © 2010-2011 Time-stamp: <2018-07-01 22:10:58>
+;; Copyright © 2010-2011 Time-stamp: <2020-02-03 12:24:59>
 ;;; ================================================================
 
 ;;; File: family.el --- Setup for emacs-aggregation.el
@@ -62,4 +62,3 @@ Boston天气:%s
 (setq mobile-export-file-list '("current.org"
                                 "contacts.org"
                                 ))
-;; File: family.el ends

@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-03-29 09:57:58>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; hacking latex export for showing Chinese characters
 (add-hook 'org-export-latex-final-hook 'update-orgbeam-latex)
@@ -40,5 +40,3 @@
       ps-font-size 16.0
       ps-print-header nil
       ps-landscape-mode nil)
-;; --8<-------------------------- separator ------------------------>8--
-;; File: latex-setting.el ends here

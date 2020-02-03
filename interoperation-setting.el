@@ -3,9 +3,9 @@
 ;;
 ;; Author: Denny(https://www.dennyzhang.com/contact)
 ;;
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-07-01 22:05:44>
+;; Updated: Time-stamp: <2020-02-03 15:37:47>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(load-file (concat CONF-EMACS-VENDOR "top-mode/top-mode.el"))
@@ -24,5 +24,3 @@ To use this extension, you need install xtrlock in your system."
      #'(lambda (process event)
         (zone-leave-me-alone)))
     (zone)))
-;; --8<-------------------------- separator ------------------------>8--
-;; File: interoperation-setting.el ends here

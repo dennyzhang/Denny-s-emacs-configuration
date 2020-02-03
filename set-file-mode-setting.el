@@ -2,9 +2,9 @@
 ;; File: set-file-mode-setting.el
 ;;
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
-;; Copyright 2015, https://DennyZhang.com
+;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2019-07-30 10:38:18>
+;; Updated: Time-stamp: <2020-02-03 15:37:42>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
