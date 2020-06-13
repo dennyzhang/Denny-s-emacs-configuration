@@ -1,0 +1,1 @@
+find . -name ".git" -prune -o -name "*.jar" -prune -o -name ".svn" -prune -o -name "*~" -prune -o -name "#*#" -prune -o -name "*.pyc" -prune -o -name "*.tgz" -prune -o -name "*.tar" -prune -o -type f -print0 | xargs -0 grep -inH -e "$1"

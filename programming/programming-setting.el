@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:43>
+;; Updated: Time-stamp: <2020-06-05 23:41:48>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;在html和css模式下将#XXXXXX按所代表的颜色着色
@@ -338,8 +338,8 @@
 (add-to-list 'tramp-remote-process-environment "PAGER=\"/bin/cat\"") ;; set $PAGER
 (add-to-list 'tramp-remote-process-environment "SSH_ASKPASS=\"\"") ;; unset $SSH_ASKPASS
 (delete "PAGER=\"\"" tramp-remote-process-environment)
-(delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
-(add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
+;; (delete "LC_ALL=C" tramp-remote-process-environment) ;; unset $LC_ALL
+;; (add-to-list 'tramp-remote-process-environment "LC_ALL=\"\"")
 ;; --8<-------------------------- separator ------------------------>8--
 (exec-path-from-shell-initialize)
 

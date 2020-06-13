@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:42>
+;; Updated: Time-stamp: <2020-06-09 22:53:19>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
@@ -73,9 +73,10 @@
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "puppet-mode/puppet-mode.el")) ;; TODO
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+;; --8<-------------------------- separator ------------------------>8-- :noexport:
+(add-to-list 'auto-mode-alist '("\\.app$" . (conf-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("^rholog.txt$" . (log4j-mode 1)))
-(add-to-list 'auto-mode-alist '("\\.app$" . (conf-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.thrift$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.conf$" . (conf-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.py$" . (python-mode 1)))

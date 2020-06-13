@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2018-08-28 23:27:46>
+;; Updated: Time-stamp: <2020-06-07 23:57:10>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
@@ -165,37 +165,15 @@ create a new window and browse the webpage"
 (require 'webjump)
 (setq webjump-sites
       '(
-        ;; --8<------------------ search engine ------------------------>8--
         ;; search engine
         ("baidu" . [simple-query "www.baidu.com" "www.baidu.com/s?wd=" ""])
-        ("bing" . [simple-query "cn.bing.com" "cn.bing.com/search?q=" ""])
         ("gist" . [simple-query "gist.github.com" "gist.github.com/gists/search?q=" ""])
-        ;;("google" . [simple-query "www.google.com" "203.208.46.146/search?q=" ""])
         ("google" . [simple-query "www.google.com" "www.google.com.hk/search?q=" ""])
         ("duckduckgo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
         ("yahoo" . [simple-query "au.search.yahoo.com" "au.search.yahoo.com/yhs/search?p=" ""])
         ("iciba" . [simple-query "www.iciba.com" "www.iciba.com/" ""])
-        ("wiki" . [simple-query "en.wikipedia.org" "en.wikipedia.org/w/index.php?search=" ""])
-        ;; --8<------------------ search engine ------------------------>8--
 
-        ;; --8<------------------ ebook ------------------------>8--
-        ("book-itebooksinfo" . [simple-query "it-ebooks.info" "it-ebooks.info/" ""])
-        ("book-itebooks" . [simple-query "it-ebooks-search.info" "it-ebooks-search.info/search?q=" ""])
-        ("book-kickass" . [simple-query "kickass.to" "kickass.to/usearch/" ""])
-        ("book-shupeng" . [simple-query "www.shupeng.com" "www.shupeng.com/search/" ""])
-        ("book-51cto" . [simple-query "down.51cto.com" "down.51cto.com/search.php?q=" ""])
-        ("book-wenku" . [simple-query "wenku.baidu.com" "wenku.baidu.com/search?word=" ""])
-        ("book-greenebookshop" . [simple-query "www.greenebookshop.com" "www.greenebookshop.com/" ""])
-        ("book-iask" . [simple-query "ishare.iask.sina.com.cn" "ishare.iask.sina.com.cn/search.php?key=" ""])
-        ("book-douban" . [simple-query "book.douban.com" "book.douban.com/subject_search?cat=1001&search_text=" ""])
-        ("book-yinian" . "www.inien.com/w/#/Index")
-        ("book-ppurl" . [simple-query "www.ppurl.com" "www.ppurl.com/" ""])
-        ;; --8<------------------ ebook ------------------------>8--
-
-        ;; --8<------------------ paper ------------------------>8--
         ("paper-citeseerx" . [simple-query "citeseerx.ist.psu.edu" "citeseerx.ist.psu.edu/search?submit=Search&sort=rel&q=" ""])
-        ;; --8<------------------ paper ------------------------>8--
-
         ("alexa" . [simple-query "www.alexa.com" "www.alexa.com/siteinfo/www." ""])
         ("fanyi" . [simple-query "fanyi.baidu.com" "fanyi.baidu.com/translate#en/zh/" ""])
         ;; --8<------------------ life ------------------------>8--
@@ -203,24 +181,13 @@ create a new window and browse the webpage"
         ("taobao" . [simple-query "www.taobao.com" "s.taobao.com/search?q=" ""])
         ("movie-douban" . [simple-query "movie.douban.com" "movie.douban.com/subject_search?cat=1002&search_text=" ""])
         ("music-douban" . [simple-query "music.douban.com" "music.douban.com/subject_search?cat=1003&search_text=" ""])
-        ;; --8<------------------ life ------------------------>8--
-
-        ;; --8<------------------ emacs ------------------------>8--
         ("emacswiki" . [simple-query "www.emacswiki.org/emacs" "www.google.com/cse?cx=004774160799092323420%3A6-ff2s0o6yi&sa=Search&siteurl=www.emacswiki.org%2Femacs%2F&q=" ""])
-        ;; --8<------------------ emacs ------------------------>8--
 
         ;; --8<------------------ programming ------------------------>8--
         ("linux apps" . "www.appwatch.com/Linux/")
         ("erlang manual" . "www.erlang.org/doc/man/erlang.html")
-        ;; --8<------------------ programming ------------------------>8--
 
-        ;; --8<------------------ personal ------------------------>8--
-        ("matoushan" . "www.matoushan.co.cc")
-        ;; --8<------------------ personal ------------------------>8--
-
-        ;; --8<------------------ misc ------------------------>8--
         ("slideshare" . "www.slideshare.net")
-        ;; --8<------------------ misc ------------------------>8--
         ))
 ;; --8<-------------------------- separator ------------------------>8--
 (global-set-key [(meta j)] 'webjump)

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:43>
+;; Updated: Time-stamp: <2020-06-01 17:34:53>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/contrib/lisp"))
@@ -16,13 +16,13 @@
 (require 'ox-md)
 (defadvice org-md-export-to-markdown (after org-export-to-file activate)
   (if (file-exists-p "./README.md")
-      (with-current-buffer (find-file"README.md")
+      (with-current-buffer (find-file "README.md")
         (progn
           (goto-char 0)
           (while (search-forward "[]" nil t)
             (replace-match ""))
           (save-buffer)
-          (kill-buffer)     
+          (kill-buffer)
           ))))
 ;; --8<-------------------------- separator ------------------------>8--
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -410,5 +410,26 @@
 ;; (setq org-bullets-face-name (quote org-bullet-face))
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; (setq org-bullets-bullet-list '("✣" "✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✤" "✥"))
+;; --8<-------------------------- separator ------------------------>8--
+(defadvice org-md-export-to-markdown (after org-export-to-file activate)
+  (if (file-exists-p "./work.md")
+      (with-current-buffer (find-file "work.md")
+        (progn
+          (goto-char 0)
+          (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (goto-char 0)
+          (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (goto-char 0)
+          (replace-regexp "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (goto-char 0)
+          (replace-regexp "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          )
+          (save-buffer)
+          (kill-buffer)
+          )))
+;; (defadvice org-export-to-file (after insert activate)
+;;   (progn
+;;     (goto-char (point-min))
+;;     (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: org-setting.el ends here

@@ -5,30 +5,36 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:48>
+;; Updated: Time-stamp: <2020-06-11 12:49:33>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'org-capture)
 (define-key global-map "\C-cr" 'org-capture)
+
 (setq org-capture-templates
-      '(("m" "Mail" entry (file "current.org") (function capture-gnus-template))
-        ("d" "Diary" entry (file+headline "~/Dropbox/git_code/www.dennyzhang.com/life/today-learning/README.org" "Latest")
-         "** [Denny Today] %<%Y-%m-%d>, Palo Alto, CA
-#+BEGIN_EXAMPLE
-%?
-#+END_EXAMPLE
-")
-        ("w" "Web" entry (file "current.org") (function capture-w3m-template))
-        ("l" "learn" entry (file "life/learn.org")
-         "** %?")
+      '(
+        ("o" "observation" entry (file+headline "work/learn.org" "Track Observations")
+         "* %<%Y-%m-%d>: %?")
+
+        ("l" "learn" entry (file+headline "work/learn.org" "Track Learning")
+         "* %<%Y-%m-%d>: %?")
+
+;;        ("d" "Diary" entry (file+headline "~/Dropbox/git_code/www.dennyzhang.com/life/today-learning/README.org" "Latest")
+;;         "** [Denny Today] %<%Y-%m-%d>, Palo Alto, CA
+;;#+BEGIN_EXAMPLE
+;;%?
+;;#+END_EXAMPLE
+;;")
+        
+;;        ("w" "Web" entry (file "current.org") (function capture-w3m-template))
+;;         "** %?")
         ("e" "English" entry (file+headline "life/english.org" "每日英文")
          "** %?")
         ("c" "Communicate" entry (file+headline "current.org" "Communicate")
          "** %?")
         ("i" "Myself postmortem" entry (file+headline "current.org" "iPostmortem")
          "** %<%Y-%m-%d>: %?")
-        ("r" "Reading" entry (file+headline "life.org" "Reading -- 阅读")
-         "** %?")
+
         ("h" "health" entry (file+headline "life/life.org" "Family Health")
          "** %<%Y-%m-%d>: %?")
 
