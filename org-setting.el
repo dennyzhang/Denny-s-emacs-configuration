@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-01 17:34:53>
+;; Updated: Time-stamp: <2020-06-13 00:14:49>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/contrib/lisp"))
@@ -416,13 +416,17 @@
       (with-current-buffer (find-file "work.md")
         (progn
           (goto-char 0)
-          (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+            (replace-match ""))
           (goto-char 0)
-          (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+            (replace-match ""))
           (goto-char 0)
-          (replace-regexp "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+            (replace-match ""))
           (goto-char 0)
-          (replace-regexp "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")
+          (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+            (replace-match ""))
           )
           (save-buffer)
           (kill-buffer)
