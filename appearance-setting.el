@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:48>
+;; Updated: Time-stamp: <2023-06-19 15:23:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;color-theme
 ;;(load-file (concat CONF-EMACS-VENDOR "/color-theme/color-theme.el"))
-(require 'color-theme)
+;; (require 'color-theme)
 ;; TODO denny
 (defun plist-to-alist (plist)
   "Convert property list PLIST into the equivalent association-list form.

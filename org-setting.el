@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-13 00:14:49>
+;; Updated: Time-stamp: <2025-08-25 20:52:20>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/lisp"))
 ;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-7.8/contrib/lisp"))
@@ -12,8 +12,8 @@
 ;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/org-mode/contrib/lisp"))
 (require 'org)
 (require 'org-install)
-;; --8<-------------------------- separator ------------------------>8--
 (require 'ox-md)
+;; --8<-------------------------- separator ------------------------>8--
 (defadvice org-md-export-to-markdown (after org-export-to-file activate)
   (if (file-exists-p "./README.md")
       (with-current-buffer (find-file "README.md")
@@ -179,7 +179,7 @@
 (org-defkey org-mode-map (kbd "M-p i") 'my-insert-time)
 (org-defkey org-mode-map "\C-c<" 'recent-jump-jump-backward)
 (org-defkey org-mode-map "\C-c>" 'recent-jump-jump-forward)
-;;(org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
+;; (org-defkey org-mode-map [(meta return)] 'my-org-meta-return)
 (defun my-org-meta-return(&optional arg)
   (interactive "P")
   (if (org-in-item-p)
@@ -412,28 +412,35 @@
 ;; (setq org-bullets-bullet-list '("✣" "✙" "♱" "♰" "☥" "✞" "✟" "✝" "†" "✠" "✚" "✜" "✛" "✢" "✤" "✥"))
 ;; --8<-------------------------- separator ------------------------>8--
 (defadvice org-md-export-to-markdown (after org-export-to-file activate)
-  (if (file-exists-p "./work.md")
-      (with-current-buffer (find-file "work.md")
-        (progn
-          (goto-char 0)
-          (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
-            (replace-match ""))
-          (goto-char 0)
-          (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
-            (replace-match ""))
-          (goto-char 0)
-          (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
-            (replace-match ""))
-          (goto-char 0)
-          (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
-            (replace-match ""))
-          )
-          (save-buffer)
-          (kill-buffer)
-          )))
+  (progn
+    (switch-to-buffer "*Messages*")
+    (goto-char (point-max))
+    (setq outfile (if (re-search-backward "^Wrote \\(.*\.md\\)" nil t) (message (match-string 1))))
+    (with-current-buffer (find-file outfile)
+      (progn
+        (goto-char 0)
+        (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+          (replace-match ""))
+        (goto-char 0)
+        (while (re-search-forward "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+          (replace-match ""))
+        (goto-char 0)
+        (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+          (replace-match ""))
+        (goto-char 0)
+        (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+          (replace-match ""))
+        (goto-char 0)
+        (while (re-search-forward "<colgroup>\n<col  class=\"org-right\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" nil t)
+          (replace-match ""))        
+        )
+      (save-buffer)
+      ;; (kill-buffer)
+      )))
 ;; (defadvice org-export-to-file (after insert activate)
 ;;   (progn
 ;;     (goto-char (point-min))
 ;;     (replace-regexp "<colgroup>\n<col  class=\"org-left\" />\n\n<col  class=\"org-left\" />\n</colgroup>" "")))
 ;; --8<-------------------------- separator ------------------------>8--
+(load-file "~/Dropbox/Denny-s-emacs-configuration/org-ox-hugo-setting.el")
 ;; File: org-setting.el ends here

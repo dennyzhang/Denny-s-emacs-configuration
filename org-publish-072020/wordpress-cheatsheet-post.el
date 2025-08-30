@@ -4,60 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:45>
+;; Updated: Time-stamp: <2020-06-21 15:44:46>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-post-meta
       ;; title-md5, post-id, post-title, blog-uri, meta-description, keywords
       '(
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ("771e6da74a8f5e787073cd8d118XXXX" "5162" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5164" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5166" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5168" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5170" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5172" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5174" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5176" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5178" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5180" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5182" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5184" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5186" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5188" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5190" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
-        ("771e6da74a8f5e787073cd8d118XXXX" "5192" "Cheatsheet: TEST" "cheatsheet-test-A4"
-         "" "Free CheatSheet")
-
         ("771e6da74a8f5e787073cd8d118XXXX" "5194" "Cheatsheet: TEST" "cheatsheet-test-A4"
          "" "Free CheatSheet")
 
@@ -113,7 +65,59 @@
          "" "Free CheatSheet")
 
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ("0d30bd4d2a1dc0ea02587578ba272e71" "5160" "CheatSheet: SQL & MySql" "cheatsheet-mysql-A4"
+        ("45ed5ceed5412a36c7c7fc35c10dba31" "5192" "CheatSheet: Managing Feedback" "cheatsheet-feedback-A4"
+         "Managing Feedback" "Free CheatSheet")
+
+        ("28bfd02d2e12de5814043c0b70c03604" "5190" "CheatSheet: Work From Home" "cheatsheet-wfh-A4"
+         "Work From Home" "Free CheatSheet")
+
+        ("d880fb580eea19a330fcdf6b582a8d7c" "5188" "Python Free CheatSheet" "cheatsheet-python-A4"
+         "Python Free CheatSheet" "python Free CheatSheet")
+
+
+        ("133cb75598a2b24a1f5b13e4d804c02a" "4990" "CheatSheet: Managing Bias" "cheatsheet-bias-A4"
+         "" "Free Bias CheatSheet")
+
+        ("370857f7cc86f3ab9c0dd843ca51dcea" "5186" "CheatSheet: Yum/Dnf/CentOS" "cheatsheet-yum-A4"
+         "" "Free Yum CentOS CheatSheet")
+
+        ("6276423075fc89b12ce4084db1b7da06" "5184" "Cheatsheet: Chef Automation" "cheatsheet-chef-A4"
+         "" "Free CheatSheet")
+
+        ("ba5748fd6ad7dda2b2a881b6df052bb3" "42" "Cheatsheet: Google Chrome" "cheatsheet-chrome-A4"
+         "" "Free Google Chrome CheatSheet")
+
+        ("752fe69ccdea84c6c8863e50bd725d06" "5182" "Cheatsheet: Visual Studio" "cheatsheet-visualstudio-A4"
+         "" "Visual Studio CheatSheet")
+
+        ("1a1781321b14517735f411eb334330c9" "1370" "Cheatsheet: Performance Numbers For Software Engineers" "cheatsheet-performancenumber-A4"
+         "" "Performance Numbers Software Engineer CheatSheet")
+
+        ("7b72bd37f190073fed326f7f6a9da5cd" "5180" "CheatSheet: Common Code Problems & Follow-ups" "cheatsheet-followup-A4"
+         "" "Free LeetCode Lintcode CheatSheet")
+
+        ("5f445c34804aed944211965002c73aab" "5178" "Cheatsheet: Concurrency & Parallel Programming" "cheatsheet-concurrency-A4"
+         "" "Free Concurrency & Parallel Programming CheatSheet")
+
+        ("64324a8cbe3468c0d09cd979184992fa" "5176" "Cheatsheet: IP Virtual Service - IPVS" "cheatsheet-ipvs-A4"
+         "" "Free IP Virtual Service - IPVS CheatSheet")
+
+        ("0fb5b25ffaa0e70588d01a5990861d33" "5162" "Cheatsheet: Linux Internals" "cheatsheet-linuxinternals-A4"
+         "" "SRE DevOps Sysadmin CheatSheet")
+
+        ("015bc5ad9d4df717488bbd800434bf1c" "69" "CheatSheet: Nginx Web Server" "cheatsheet-nginx-A4"
+         "" "Nginx Web Server CheatSheet")
+
+        ("95c35b28a4994e8eb55d926dd7091480" "5166" "Linux Signal CheatSheet" "cheatsheet-signal-A4"
+         "" "Linux Signal Free CheatSheet")
+
+        ("853bfb5e348a291ee7509a5b2e5a9e7c" "5172" "Nano Editor CheatSheet" "cheatsheet-nano-A4"
+         "Nano Cheatsheet" "nano linx Free CheatSheet")
+
+        ("6f0ecb1d97bf9f6368a2c7f3dd38a393" "5170" "Markdown Cheatsheet" "cheatsheet-markdown-A4"
+         "" "Programming Free CheatSheet")
+
+        ("0d30bd4d2a1dc0ea02587578ba272e71" "5248" "CheatSheet: SQL & MySql" "cheatsheet-mysql-A4"
          "" "SQL MySql Free CheatSheet")
 
         ("f85a1bc9e3d124eb83cf5b0fe238e4b7" "5150" "Cheatsheet: Kubernetes E2E Tests" "cheatsheet-k8s-e2e-A4"
@@ -124,6 +128,9 @@
 
         ("327f2926ee75a9d941b0d53065ec3a60" "5156" "CheatSheet: Concourse" "cheatsheet-concourse-A4"
          "" "concourse CI Free CheatSheet")
+
+        ("3ee8eca163df17ed2b40dcf2077ebace" "5160" "Cheatsheet: Gym & Fitness" "cheatsheet-gym-A4"
+         "" "CheatSheet Gym & Fitness")
 
         ("8b0fd2e72f3f9c19759a3efe3e5c6bc8" "5244" "Cheatsheet: DevOps & Software Development Life Cycle" "cheatsheet-DevOps-A4"
          "" "Free CheatSheet")
@@ -146,11 +153,8 @@
         ("fdbcc0d669696dbac24110cd75827007" "4973" "Nagios Cheatsheet" "cheatsheet-nagios-A4"
          "" "Nagios Monitoring Free CheatSheet")
 
-        ("676d3b3efbfc2eda2bed4af4861264d7" "1376" "Cheatsheet: Outlook" "cheatsheet-outlook-A4"
+        ("51da20c775c33289b5b0cadcbf34b6a1" "1376" "Cheatsheet: Outlook" "cheatsheet-outlook-A4"
          "" "Free Outlook CheatSheet")
-
-        ("3ee8eca163df17ed2b40dcf2077ebace" "5248" "Cheatsheet: Gym & Fitness" "cheatsheet-gym-A4"
-         "" "CheatSheet Gym & Fitness")
 
         ("dad4765010e5a4453c205a200551f8af" "4985" "Cheatsheet: Linux Networking" "cheatsheet-networking-A4"
          "" "Networking Free CheatSheet")
@@ -218,9 +222,9 @@
         ("86ccc17575e18a0a3997c628e625cf4b" "5246" "Git Free CheatSheet" "cheatsheet-git-A4"
          "Git Free CheatSheet" "git Free CheatSheet")
 
-        ("b6d83bfcc497d0a2cb964db11416d44d" "5254" "Cheatsheet: Leetcode Common Templates & Common Code Problems"
+        ("6373af0f64a7735c1de6ec1bcc995782" "5254" "Cheatsheet: LeetCode Common Templates & Common Code Problems"
          "cheatsheet-leetcode-A4"
-         "" "CheatSheet Leetcode")
+         "" "CheatSheet LeetCode")
 
         ("280454b8ce7ec3d5e1423e8a3ab55914" "5139" "Bosh Free CheatSheet" "cheatsheet-bosh-A4"
          "Bosh Free CheatSheet" "bosh Free CheatSheet")
@@ -258,9 +262,6 @@
 
         ("0d8c7b24ed7cbd6e8334517babbe2f1d" "1377" "Cheatsheet: Kubernetes Backup" "cheatsheet-k8s-backup-A4"
          "" "Kubernetes Backup Disaster Free CheatSheet")
-
-        ("bfd755d102dc38e46cc65926525ae611" "1370" "Cheatsheet: Linux Distributions" "cheatsheet-linux-distro-A4"
-         "" "Linux Distributions Free CheatSheet")
 
         ("4d975f9f2ecc90ac7cc40d01ac80a308" "1374" "Cheatsheet: Iterm & Iterm2" "cheatsheet-iterm-A4"
          "" "iterm terminal Free CheatSheet")
@@ -310,7 +311,7 @@
         ("ca9e3c9d193ca0a88cd61c2a07e597b3" "59" "Cheatsheet: Kubernetes Cluster API" "cheatsheet-clusterapi-A4"
          "" "Kubernetes Clusterapi Free CheatSheet")
 
-        ("0c52dcbf349c7c8d8e621bdbcb027472" "4971" "Sed Cheatsheet" "cheatsheet-sed-A4"
+        ("225330510849f3479e0d3072ee5875d8" "4971" "Sed & Regexp Cheatsheet" "cheatsheet-sed-A4"
          "" "sed linux Free CheatSheet")
 
         ("c55a99d1d95e859ba16f568a8c78e365" "1378" "CheatSheet: SDN & VMware NSX-T" "cheatsheet-sdn-A4"
@@ -325,7 +326,7 @@
         ("10ac3a850cc327dbd0323f64d0ce4ff0" "12" "ETCD Cheatsheet" "cheatsheet-etcd-A4"
          "" "etcd Free CheatSheet")
 
-        ("b3c9e41e8961b0fba01cdda1be0817a5" "2432" "CheatSheet: Amazon AWS Products" "cheatsheet-aws-A4"
+        ("8db0735bca8cda5f5cf90285cb4ba70d" "2432" "CheatSheet: Amazon AWS" "cheatsheet-aws-A4"
          "" "Amazon AWS Free CheatSheet")
 
         ("d7f2eca7c6ecadb94670d3cf84534d6a" "1373" "ElasticSearch Cheatsheet" "cheatsheet-elasticsearch-A4"
@@ -336,9 +337,6 @@
 
         ("3cc47df2f50da01d5549efceea69b115" "62" "CheatSheet: Container Compliance" "cheatsheet-container-compliance-A4"
          "" "CheatSheet Compliance Docker Container")
-
-        ("d880fb580eea19a330fcdf6b582a8d7c" "4990" "Python Free CheatSheet" "cheatsheet-python-A4"
-         "Python Free CheatSheet" "python Free CheatSheet")
 
         ("2800aa43c8566b16c8ccdeff31de8c34" "43" "Cheatsheet: Driver License Written Test" "cheatsheet-driver-license-A4"
          "" "Driver License Written Test Free CheatSheet")
@@ -382,9 +380,6 @@
         ("c19317ea636aeb65157c95616385f83d" "4961" "Vim Free CheatSheet" "cheatsheet-vim-A4"
          "Vim Cheatsheet" "vim linx Free CheatSheet")
 
-        ("9b748c05c8af88f4102fd392214f0f9d" "69" "CheatSheet: Interview Software Engineer" "cheatsheet-interview-programmer-A4"
-         "" "Free Interview Programmer Software Engineer CheatSheet")
-
         ("1ab47999ab7af37f8221c20fc1a95ed9" "5142" "Tmux/Tmate Free CheatSheet" "cheatsheet-tmux-A4"
          "Tmux/Tmate Free CheatSheet" "tmux tmate Free CheatSheet")
 
@@ -400,7 +395,10 @@
         ("37fe5b586265104b4646adb927817e68" "58" "Slack Cheatsheet" "cheatsheet-slack-A4"
          "" "slack Free CheatSheet")
 
-        ("36efce26a7b3ea49de77314c26e28791" "65" "CheatSheet: System Design For Code Interview" "cheatsheet-systemdesign-A4"
+        ("b33c1fe6f1ce4c2f14f90c05d5c9eeea" "65" "Programming Language Implemenetations" "cheatsheet-language-A4"
+         "Programming Language Implemenetations Cheatsheet" "nano linx Free CheatSheet")
+
+        ("083a43c00561d322bc8df3d1958835ef" "5174" "CheatSheet: System Design For Job Interview" "cheatsheet-systemdesign-A4"
          "" "Free System Design CheatSheet")
 
         ("ac31b28708b3b7a0c4be9a39ebcbd21d" "60" "Tcpdump Cheatsheet" "cheatsheet-tcpdump-A4"
@@ -409,7 +407,7 @@
         ("06735a62ff6445b07c2bb0b7d6984c4e" "47" "Cheatsheet: VMware Govmomi" "cheatsheet-govmomi-A4"
          "" "VMware Govmomi Free CheatSheet")
 
-        ("a1e8adcc78592847cdf2848cc778aaf8" "4975" "Emacs Free CheatSheet" "cheatsheet-emacs-A4"
+        ("a1e8adcc78592847cdf2848cc778aaf8" "5164" "Emacs Free CheatSheet" "cheatsheet-emacs-A4"
          "Emacs Free CheatSheet" "emacs Free CheatSheet")
 
         ("619b71cd3c59044563c51a7ec9dd9f02" "4983" "Cheatsheet Prometheus" "cheatsheet-prometheus-A4"
@@ -429,6 +427,12 @@
 
         ("d8e6e9332e4b654c2fb17075f0f2b1a5" "1365" "Couchbase Cheatsheet" "cheatsheet-couchbase-A4"
          "" "Couchbase Database Free CheatSheet")
+
+        ("ee565fe71594462316f7929e15c3fe6d" "4975" "CheatSheet: Well-Known Papers For IT Industry" "cheatsheet-paper-A4"
+         "" "Free CheatSheet")
+
+        ("58e60c9f8addbf01c47c424dfa06e54e" "5168" "CheatSheet: Behavior Questions For Coder Interview"
+         "cheatsheet-behavior-A4" "" "Free CheatSheet")
 
         ("6707ae4bbb73dfb6b4e51f92957aacf1" "2421" "Cheatsheet: V language" "cheatsheet-v-A4"
          "" "V language Free CheatSheet")
@@ -487,5 +491,3 @@
         (lambda (file) (org-latex-compile file))))
     )
   )
-;; --8<-------------------------- separator ------------------------>8--
-;; File: wordpress-cheatsheet-post.el ends here

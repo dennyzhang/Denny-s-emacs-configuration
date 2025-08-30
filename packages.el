@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:43>
+;; Updated: Time-stamp: <2025-08-25 20:52:28>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
@@ -24,8 +24,8 @@ Return a list of installed packages or nil for every skipped package."
 
 (setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
                           ("gnu" . "http://elpa.gnu.org/packages/")
+                          ("melpa stable" . "https://stable.melpa.org/packages/")
                           ("melpa" . "http://melpa.milkbox.net/packages/")
-                          ("melpa stable" . "http://stable.melpa.org/packages/")
                           ;; ("org" . "http://orgmode.org/elpa/")
                           ("marmalade" . "http://marmalade-repo.org/packages/")))
 
@@ -35,34 +35,36 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 (ensure-package-installed ;; 'iedit
-                           'magit 'weblogger 'emms 'jabber
-			  ;;'screenshot
+                           'magit 'weblogger 'emms
+			  ;;'Screenshot
                           'org-mime 
 			  ;;'org-bullets
                           'yasnippet 'http-post-simple 'graphviz-dot-mode
                           'goto-last-change 'fold-dwim
 			  ;; 'anything
 			  'elscreen
-                          'kill-ring-search 'hide-lines 'rainbow-mode
+                          'kill-ring-search 'rainbow-mode
 			  ;; 'highlight-tail
                           'company
                           ;; http://melpa.org/#/rust-mode
 			  ;; TODO enable rust
                           ;; 'rust-mode
 			  ;; 'hide-region
-			  'color-moccur
+			  ;; 'color-moccur
 			  ;; 'cursor-chg
 			  'loccur 
-                          'cal-china-x 'boxquote 'whitespace 'highlight-symbol
+                          ;; 'cal-china-x
+                          'boxquote 'whitespace 'highlight-symbol
                           'bm
 			  ;; 'frame-cmds
 			  ;; 'frame-fns
-			  'color-theme
+			  ;;'color-theme
 			  ;;'hide-comnt 
                           ;;'dired+
-			  'openwith 'erlang 'google-maps 'swift-mode 'htmlize
+			  ;; 'openwith
+			  'erlang 'google-maps 'swift-mode 'htmlize
                           'popup
-                          'winpoint
+                          ;; 'winpoint
 			  ;;'rect-mark
 			  'ansi 'sr-speedbar 'minimap
                           'flycheck 'flymake-cursor 
@@ -74,11 +76,14 @@ Return a list of installed packages or nil for every skipped package."
 			  'log4j-mode 'sl 'keyfreq 
                           'csharp-mode 'actionscript-mode
 			  ;;'crontab-mode
-                          'systemtap-mode 'go-mode 'puppet-mode 'multi-term
+                          ;; 'systemtap-mode
+			  'go-mode 'puppet-mode
+			  ;;'multi-term
 			  ;; 'second-sel
                           ;; 'journal
                           ;; 'org-bullets
-			  'tea-time
+			  ;; 'tea-time
+                          'ox-hugo
                           )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; File: packages.el ends here

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(contact@dennyzhang.com)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:47>
+;; Updated: Time-stamp: <2023-06-19 15:26:52>
 ;; --8<-------------------------- separator ------------------------>8--
 (require 'gnus)
 (setq mail-parent-directory-var "~/gnus_data/")
@@ -372,10 +372,10 @@ then send mails by send-groupmail-by-mailbuffer."
   )
 ;; --8<-------------------------- separator ------------------------>8--
 ;; search content of gnus mails
-(require 'nnir)
-(setq nnir-search-engine 'swish-e)
-(setq nnir-swish-e-index-files
-      (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
+;; (require 'nnir)
+;; (setq nnir-search-engine 'swish-e)
+;; (setq nnir-swish-e-index-files
+;;      (list (expand-file-name (concat mail-parent-directory-var "index.swish"))))
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (setq display-time-use-mail-icon t) ;;use an icon as mail indicator in modeline
 ;; (setq gnus-demon-timestep 20)

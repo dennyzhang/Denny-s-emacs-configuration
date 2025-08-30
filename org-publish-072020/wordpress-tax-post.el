@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:45>
+;; Updated: Time-stamp: <2020-02-03 15:37:46>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-post-meta
       ;; title-md5, post-id, post-title, post-slug, post-meta, keywords
@@ -72,5 +72,3 @@
       BlOG-TAG "BLOG"
       ORG-CSS-FILE "https://cdn.dennyzhang.com/css/org.css"
       mywordpress-pwd "Mark.filebat2")
-;; --8<-------------------------- separator ------------------------>8--
-;; File: wordpress-tax-post.el ends here

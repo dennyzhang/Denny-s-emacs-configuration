@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:48>
+;; Updated: Time-stamp: <2023-06-19 15:26:33>
 ;; --8<-------------------------- separator ------------------------>8--
 ;;show recent files
 (require 'recentf)
@@ -106,7 +106,7 @@
 (require 'boxquote)
 (setq boxquote-top-and-tail "-----------")
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(require 'cal-china-x)
+;; (require 'cal-china-x)
 ;; TODO
 ;; show lunar calendar
 ;;(add-hook 'diary-nongregorian-listing-hook 'diary-chinese-list-entries)
@@ -168,7 +168,7 @@
 ;;(setq abbrev-mode 1) ;; always enable abbrev
 (setq default-abbrev-mode 1)
 ;; ;; --8<-------------------------- separator ------------------------>8--
-(require 'color-moccur)
+;; (require 'color-moccur)
 ;; ;; --8<-------------------------- separator ------------------------>8--
 ;; (require 'hide-region)
 ;; (defun hide-region-settings ()
@@ -255,11 +255,11 @@
 
 ;; (global-set-key (kbd "<f6>") 'highlight-changes-visible-mode) ;; changes
 ;; --8<-------------------------- separator ------------------------>8--
-(require 'hide-lines)
-(load-file (concat CONF-EMACS-VENDOR "/hide-lines/hidesearch.el"))
-(require 'hidesearch)
-(global-set-key (kbd "C-c C-s") 'hidesearch)
-(global-set-key (kbd "C-c C-a") 'show-all-invisible)
+;; (require 'hide-lines)
+;; (load-file (concat CONF-EMACS-VENDOR "/hide-lines/hidesearch.el"))
+;; (require 'hidesearch)
+;; (global-set-key (kbd "C-c C-s") 'hidesearch)
+;; (global-set-key (kbd "C-c C-a") 'show-all-invisible)
 ;; --8<-------------------------- separator ------------------------>8--
 (load-file (concat CONF-EMACS-VENDOR "/cn-weather/cn-weather.el"))
 (require 'cn-weather)

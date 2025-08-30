@@ -4,13 +4,13 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-09 22:53:19>
+;; Updated: Time-stamp: <2025-08-30 00:27:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file (concat CONF-EMACS-VENDOR "/actionscript/actionscript-mode.el")) ;; TODO
 ;; (add-to-list 'auto-mode-alist '("\\.as$" . actionscript-mode))
 ;; --8<-------------------------- separator ------------------------>8--
-(load-file (concat CONF-EMACS-VENDOR "/dockerfile-mode/dockerfile-mode.el"))
+;; (load-file (concat CONF-EMACS-VENDOR "/dockerfile-mode/dockerfile-mode.el"))
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 (add-to-list 'auto-mode-alist '("*dockerfile$'" . dockerfile-mode))
 
@@ -54,7 +54,7 @@
 (add-to-list 'auto-mode-alist '("\\.stp$" . systemtap-mode))
 ;; --8<-------------------------- separator ------------------------>8--
 ;;ledger
-;;(add-to-list 'load-path (concat CONF-EMACS-VENDOR "/ledger"))
+;; (add-to-list 'load-path (concat CONF-EMACS-VENDOR "/ledger"))
 ;; (require 'ledger-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode))
 ;; --8<-------------------------- separator ------------------------>8--
@@ -76,10 +76,12 @@
 ;; --8<-------------------------- separator ------------------------>8-- :noexport:
 (add-to-list 'auto-mode-alist '("\\.app$" . (conf-mode 1)))
 ;; --8<-------------------------- separator ------------------------>8--
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("^rholog.txt$" . (log4j-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.thrift$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.conf$" . (conf-mode 1)))
-(add-to-list 'auto-mode-alist '("\\.py$" . (python-mode 1)))
+(add-to-list 'auto-mode-alist '("\\.mcconf$" . (python-mode 1)))
+(add-to-list 'auto-mode-alist '("\\.cconf$" . (python-mode 1)))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
@@ -87,7 +89,6 @@
 (add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.hbs.erb$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jst$" . html-mode))
-;; --8<-------------------------- separator ------------------------>8--
 ;; --8<-------------------------- separator ------------------------>8--
 (defun hide-trailing-whitespace (mode-hook)
   (add-hook mode-hook (lambda ()

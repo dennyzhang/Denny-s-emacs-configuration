@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-01 22:38:28>
+;; Updated: Time-stamp: <2025-08-25 09:45:06>
 ;; --8<-------------------------- separator ------------------------>8--
 ;; (load-file "~/Dropbox/Denny-s-emacs-configuration/myemacs.el")
 ;; --8<-------------------------- separator ------------------------>8--
@@ -31,7 +31,6 @@
         "shortcut.el"
         "appearance-setting.el"
         "buffer-setting.el"
-
         "essentialpackage-setting.el"
         "org-setting.el"
         "gnus-setting.el"
@@ -55,7 +54,7 @@
         "comint-setting.el"
         "rectangle-setting.el"
         "capture-setting.el"
-        "sns-setting.el"
+;;        "sns-setting.el"
         "latex-setting.el"
 
         "diff-setting.el"

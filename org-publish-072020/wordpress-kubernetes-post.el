@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:44>
+;; Updated: Time-stamp: <2020-02-03 15:37:46>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq list-post-meta
       ;; title-md5, post-id, post-title, blog-uri, meta-description, keywords
@@ -98,5 +98,3 @@
       POST-TAIL (concat "Connect with Denny In <a href='https://linkedin.com/in/dennyzhang001'>LinkedIn</a> Or <a href='mailto: contact@dennyzhang.com'>Mail</a>" google-adsense)
       ORG-CSS-FILE "https://cdn.dennyzhang.com/css/org-kubernetes.css"
       mywordpress-pwd "sophiaMark678")
-;; --8<-------------------------- separator ------------------------>8--
-;; File: wordpress-kubernetes-post.el ends here

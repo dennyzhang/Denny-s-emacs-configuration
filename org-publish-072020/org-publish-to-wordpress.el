@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:46>
+;; Updated: Time-stamp: <2020-07-25 21:37:25>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -348,12 +348,16 @@ the plist used as a communication channel."
          (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
          (org-tag (org-get-tags))
          (category (car (delete BlOG-TAG org-tag)))
+         ;; don't use inline-css for org-mode export source code
+         (org-html-htmlize-output-type 'css)
+         (my-org-css-file "https://cdn.dennyzhang.com/css/org.css")
          (current-exported-filename
           (format "%s-%s-%s_%s.html" short-filename current-md5 category (get-blog-tag)))
          ;; (org-entry-get nil "type")
          current-post-meta
          ;;(old-list-post-meta list-post-meta)
          )
+    
     ;; delete old file, if it exists
     (if (file-exists-p current-exported-filename)
         (delete-file current-exported-filename))
@@ -507,6 +511,9 @@ the plist used as a communication channel."
     (while (re-search-forward "‘" nil t) (replace-match "'"))
 
     (goto-char (point-min))
+    (while (re-search-forward " " nil t) (replace-match " "))
+
+    (goto-char (point-min))
     (while (re-search-forward "’" nil t) (replace-match "'"))
 
     (goto-char (point-min))
@@ -526,6 +533,9 @@ the plist used as a communication channel."
 
     (goto-char (point-min))
     (while (re-search-forward "≤" nil t) (replace-match "<="))
+
+    (goto-char (point-min))
+    (while (re-search-forward "≠" nil t) (replace-match "!="))
 
     (goto-char (point-min))
     (while (re-search-forward "×" nil t) (replace-match "x"))
@@ -636,10 +646,10 @@ the plist used as a communication channel."
                (progn
                  (cheatsheet-update-wordpress-current-entry)
                  (browse-url url-string)))
-              ((string-match ".*challenges-kubernetes.*" buffer-file-truename)
+              ((string-match ".*architect.dennyzhang.com.*" buffer-file-truename)
                (progn
-                 (kubernetes-update-wordpress-current-entry)
-                 (browse-url url-string)) )
+                 (architect-update-wordpress-current-entry)
+                 (browse-url url-string)))
               ((string-match ".*quiz.dennyzhang.com.*" buffer-file-truename)
                (progn
                  (quiz-update-wordpress-current-entry)

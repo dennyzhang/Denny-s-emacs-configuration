@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:44>
+;; Updated: Time-stamp: <2020-07-25 21:38:53>
 ;; --8<-------------------------- separator ------------------------>8--
 (setq xml-rpc-allow-unicode-string nil)
 
@@ -13,7 +13,6 @@
       mywordpress-username "braindenny"
       BlOG-TAG "BLOG"
       POST-TAIL (concat "Connect with Denny In <a href='https://linkedin.com/in/dennyzhang001'>LinkedIn</a> Or <a href='https://goo.gl/cZ2Pev'>Slack</a>" google-adsense)
-      ORG-CSS-FILE "https://cdn.dennyzhang.com/css/org.css"   
       mywordpress-pwd "sophia123")
 
 (setq list-post-meta

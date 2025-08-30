@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2015, http://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-07 23:57:10>
+;; Updated: Time-stamp: <2023-03-16 15:07:44>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;; When copying in w3m, also copy link in the format of org-mode-link
 ;;(load-file (concat CONF-EMACS-VENDOR "/org-w3m/org-w3m.el"))
-(require 'org-w3m)
+;; (require 'org-w3m)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; Insinuate with BBDB
 (when (featurep 'bbdb)

@@ -4,12 +4,12 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:42>
+;; Updated: Time-stamp: <2020-09-01 13:25:15>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 ;;Make script files executable automatically
-(add-hook 'after-save-hook
-          'executable-make-buffer-file-executable-if-script-p)
+;; (add-hook 'after-save-hook
+;;           'executable-make-buffer-file-executable-if-script-p)
 ;; --8<-------------------------- separator ------------------------>8--
 ;; evaluate file buffer
 ;; https://gist.github.com/psstoev/2287777

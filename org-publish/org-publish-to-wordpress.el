@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-07 16:52:51>
+;; Updated: Time-stamp: <2020-07-25 22:08:39>
 ;;
 ;; --8<-------------------------- separator ------------------------>8--
 (setq google-adsense "")
@@ -177,7 +177,7 @@ the plist used as a communication channel."
                (format "%s/%s" mywordpress-server-url blog-uri) ret))
     ))
 
-(defun modify_content (str blog-uri blog-type)
+(defun modify_content (my-org-css-file str blog-uri blog-type)
   ;; modify content before sending to worpress
   (let ((ret str))
     ;; remove PROPERTIES
@@ -228,7 +228,7 @@ the plist used as a communication channel."
                (format "%s/%s" mywordpress-server-url blog-uri) ret))
     ;; insert css
     ;; https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
-    (format "%s<link rel='stylesheet' type='text/css' href='%s' media=\"none\" onload=\"if(media!='all')media='all'\">" ret ORG-CSS-FILE)
+    (format "%s<link rel='stylesheet' type='text/css' href='%s' media=\"none\" onload=\"if(media!='all')media='all'\">" ret my-org-css-file)
     )
   )
 
@@ -348,6 +348,12 @@ the plist used as a communication channel."
          (short-filename (file-name-sans-extension (file-name-nondirectory (buffer-file-name))))
          (org-tag (org-get-tags))
          (category (car (delete BlOG-TAG org-tag)))
+         ;; org-mode export don't use inline css but customized css
+         ;; https://github.com/gongzhitaao/orgcss
+         (org-html-htmlize-output-type 'css)
+         (my-org-css-file "https://cdn.dennyzhang.com/css/org.css")
+         ;; (my-org-css-file "https://raw.githubusercontent.com/dennyzhang/code.dennyzhang.com/master/org.css")
+         ;; (my-org-css-file "https://github.com/dennyzhang/code.dennyzhang.com/blob/master/org.css")
          (current-exported-filename
           (format "%s-%s-%s_%s.html" short-filename current-md5 category (get-blog-tag)))
          ;; (org-entry-get nil "type")
@@ -392,7 +398,7 @@ the plist used as a communication channel."
     (setq url-string (format "%s/%s" mywordpress-server-url blog-uri))
     (if current-post
         (progn
-          (update-wordpress-blog-internal current-exported-filename)
+          (update-wordpress-blog-internal current-exported-filename my-org-css-file)
           (kill-new url-string)
           (message url-string)
           (delete-file current-exported-filename)
@@ -540,7 +546,7 @@ the plist used as a communication channel."
     (while (re-search-forward "∪" nil t) (replace-match "u"))
     )
 
-(defun update-wordpress-blog-internal (html-file)
+(defun update-wordpress-blog-internal (html-file my-org-css-file)
   (interactive)
   (let ((wordpress-server-url (concat mywordpress-server-url "/xmlrpc_denny.php"))
         (wordpress-username mywordpress-username)
@@ -615,7 +621,7 @@ the plist used as a communication channel."
                           (cons "mt_keywords" (replace-regexp-in-string "_" "," keyword-list)) ;; tag
                           (cons "categories" (list category)) ;; category
                           (cons "mt_text_more" 
-                                (modify_content content-str blog-uri 
+                                (modify_content my-org-css-file content-str blog-uri 
                                                 (article_type_by_fname html-file))) ;; Read more
                           ))
               (xml-rpc-method-call wordpress-server-url 'metaWeblog.editPost post-id

@@ -4,7 +4,7 @@
 ;; Author: Denny Zhang(https://www.dennyzhang.com/contact)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-02-03 15:37:47>
+;; Updated: Time-stamp: <2025-08-25 09:07:26>
 ;; --8<-------------------------- separator ------------------------>8--
 (defun scratch ()
   (interactive)
@@ -466,7 +466,7 @@ and also with certain buffer excluded from the candidates"
  # File : handyfunction-setting.el
  "
   (interactive)
-  (if (member mode-name '("Python" "Emacs-Lisp"))
+  (if (member mode-name '("Emacs-Lisp"))
     (save-excursion
       (save-restriction
         (let ((file-name-regexp (concat "\\(File *\\: \\)\\([^" " " "
@@ -507,7 +507,7 @@ and also with certain buffer excluded from the candidates"
 
 ;; Auto update time-stamp
 (add-hook 'before-save-hook 'time-stamp)
-(setq time-stamp-pattern "Time-stamp: <%04y-%02m-%02d %02H:%02M:%02S>")
+;; (setq time-stamp-pattern "Time-stamp: <%04y-%02m-%02d %02H:%02M:%02S>")
 (setq time-stamp-line-limit 20)
 ;; --8<-------------------------- separator ------------------------>8--
 (defun what-hexadecimal-value ()

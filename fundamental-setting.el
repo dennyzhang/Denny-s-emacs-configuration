@@ -4,7 +4,7 @@
 ;; Author: DennyZhang(filebat.mark@gmail.com)
 ;; Copyright 2020, https://DennyZhang.com
 ;; Created:2008-10-01
-;; Updated: Time-stamp: <2020-06-13 00:03:12>
+;; Updated: Time-stamp: <2020-06-22 08:28:12>
 ;; --8<-------------------------- separator ------------------------>8--
 (eval-when-compile (require 'subr-x))
 (setq debug-on-error t)
@@ -160,7 +160,7 @@
 
 ;;
 (defalias 'tmp (lambda() (interactive) (my-open-file "~/tmp")))
-(defalias 'bank (lambda() (interactive) (my-open-file (concat CONF-EMACS-DATA "/filebat.ledger"))))
+(defalias 'bank (lambda() (interactive) (my-open-file (concat CONF-EMACS-DATA "/bank/filebat.ledger"))))
 (defalias 'filebat (lambda() (interactive) (my-open-file (concat CONF-DENNY-EMACS "/filebat.txt"))))
 (defalias 'skill (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/org_share/skill.org"))))
 (defalias 'motto (lambda() (interactive) (my-open-file (concat CONF-SHARE-DIR "/org_data/life/motto.org"))))
