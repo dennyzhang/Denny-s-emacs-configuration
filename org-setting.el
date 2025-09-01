@@ -144,4 +144,9 @@
  '(org-todo ((t (:weight bold))))
  '(org-warning ((t (:inherit font-lock-warning-face :foreground "LightGoldenrod")))))
 
+(require 'ox-md)
+
+;; Load org-ox
+(load-file (concat CONF-DENNY-EMACS "org-ox-hugo-setting.el"))
+
 (provide 'org-setting)

@@ -32,7 +32,7 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
                         "posts"))
            (file-name (or (org-entry-get nil "EXPORT_FILE_NAME")
                           (file-name-base buffer-file-name)))
-           (url (format "https://quantcodedenny.com/docs/%s/%s/" section file-name))
+           (url (format "https://quantcodedenny.com/%s/%s/" section file-name))
            (md-file (concat (file-name-as-directory base-dir)
                             "org-files/" section "/" file-name ".md")))
       ;; Set buffer-local Hugo base dir
