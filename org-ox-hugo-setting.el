@@ -42,16 +42,16 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
             ;; 1️⃣ Export Org → Markdown
             (org-hugo-export-wim-to-md)
             (message "[ox-hugo] Exported to Markdown in section '%s'" section)
-            ;; 2️⃣ Insert or update Org property :HUGO_URL:
+            ;; 2️⃣ Insert or update Org property URL:
             (save-excursion
               (goto-char (point-min))
-              (if (re-search-forward "^:HUGO_URL:.*$" nil t)
-                  (replace-match (concat ":HUGO_URL: " url))
+              (if (re-search-forward "^URL:.*$" nil t)
+                  (replace-match (concat "URL: " url))
                 ;; Insert under first top-level heading if not exists
                 (goto-char (point-min))
                 (when (my/org-first-heading-p)
                   (forward-line 1)
-                  (insert (concat ":HUGO_URL: " url "\n")))))
+                  (insert (concat "URL: " url "\n")))))
             ;; 3️⃣ Insert/update front matter in Markdown
             (when (file-exists-p md-file)
               (with-temp-buffer
@@ -70,8 +70,9 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
                 (write-region (point-min) (point-max) md-file)))
             ;; 4️⃣ Build Hugo site
             (let ((default-directory base-dir))
-              (shell-command "hugo -d docs"))
-            (message "[hugo] Site built successfully at %s" url))
+              (let ((exit-code (call-process "hugo" nil nil nil "-d" "docs")))
+                (when (/= exit-code 0)
+                  (message "[hugo] Build failed with exit code %d" exit-code)))))
         (error (message "[ox-hugo] Export/build failed: %s" err))))))
 
 ;; Hook: only trigger after saving Org files
