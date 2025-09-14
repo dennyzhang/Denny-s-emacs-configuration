@@ -44,14 +44,15 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
             (message "[ox-hugo] Exported to Markdown in section '%s'" section)
             ;; 2️⃣ Insert or update Org property URL:
             (save-excursion
-              (goto-char (point-min))
-              (if (re-search-forward "^URL:.*$" nil t)
-                  (replace-match (concat "URL: " url))
-                ;; Insert under first top-level heading if not exists
+              (with-silent-modifications
                 (goto-char (point-min))
-                (when (my/org-first-heading-p)
-                  (forward-line 1)
-                  (insert (concat "URL: " url "\n")))))
+                (if (re-search-forward "^URL:.*$" nil t)
+                    (replace-match (concat "URL: " url))
+                  ;; Insert under first top-level heading if not exists
+                  (goto-char (point-min))
+                  (when (my/org-first-heading-p)
+                    (forward-line 1)
+                    (insert (concat "URL: " url "\n"))))))
             ;; 3️⃣ Insert/update front matter in Markdown
             (when (file-exists-p md-file)
               (with-temp-buffer
@@ -61,12 +62,12 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
                 (if (re-search-forward "^---" nil t)
                     (progn
                       (forward-line 1)
-                      (if (re-search-forward "^original_url:.*$" nil t)
-                          (replace-match (concat "original_url: " url))
-                        (insert (concat "original_url: " url "\n"))))
+                      (if (re-search-forward "^URL:.*$" nil t)
+                          (replace-match (concat "URL: " url))
+                        (insert (concat "URL: " url "\n"))))
                   ;; No front matter → add it
                   (goto-char (point-min))
-                  (insert "---\noriginal_url: " url "\n---\n"))
+                  (insert "---\nURL: " url "\n---\n"))
                 (write-region (point-min) (point-max) md-file)))
             ;; 4️⃣ Build Hugo site
             (let ((default-directory base-dir))
