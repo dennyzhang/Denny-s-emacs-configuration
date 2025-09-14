@@ -25,7 +25,10 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
 (defun my/org-auto-export-hugo-build-url ()
   "Auto-export Org buffer to Hugo, build site, and insert URL in Org and Markdown."
   (when (and (derived-mode-p 'org-mode)
-             (string-equal (file-name-extension buffer-file-name) "org"))
+             (string-equal (file-name-extension buffer-file-name) "org")
+             (string-match-p
+              (expand-file-name "~/Dropbox/private_data/part_time/devops_blog/quantcodedenny.com/org-files/")
+              (file-name-directory buffer-file-name)))
     (let* ((base-dir (my/org-hugo-get-base-dir))
            (section (or (org-entry-get nil "EXPORT_HUGO_SECTION")
                         (ignore-errors (org-hugo--parse-keyword-file "EXPORT_HUGO_SECTION"))
