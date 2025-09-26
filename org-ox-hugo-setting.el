@@ -23,7 +23,7 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
        (= (point) (point-min))))
 
 (defun my/org-auto-export-hugo-build-url ()
-  "Auto-export Org buffer to Hugo, build site, and insert URL in Org and Markdown."
+  "Auto-export Org buffer to Hugo, build site, and insert URL for the current org entry and Markdown."
   (when (and (derived-mode-p 'org-mode)
              (string-equal (file-name-extension buffer-file-name) "org")
              (string-match-p
@@ -40,44 +40,55 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
                             "org-files/" section "/" file-name ".md")))
       ;; Set buffer-local Hugo base dir
       (setq-local org-hugo-base-dir base-dir)
+      ;; ---- condition-case starts here ----
       (condition-case err
           (progn
-            ;; 1️⃣ Export Org → Markdown
+            ;; 1) Export Org → Markdown
             (org-hugo-export-wim-to-md)
             (message "[ox-hugo] Exported to Markdown in section '%s'" section)
-            ;; 2️⃣ Insert or update Org property URL:
+
+            ;; 2) Insert/update URL for the *current org entry*:
             (save-excursion
               (with-silent-modifications
-                (goto-char (point-min))
-                (if (re-search-forward "^URL:.*$" nil t)
-                    (replace-match (concat "URL: " url))
-                  ;; Insert under first top-level heading if not exists
+                (org-back-to-heading t)
+                (save-restriction
+                  (org-narrow-to-subtree)
                   (goto-char (point-min))
-                  (when (my/org-first-heading-p)
+                  (cond
+                   ((re-search-forward "^#\\+URL:.*$" nil t)
+                    (replace-match (concat "#+URL: " url) nil nil))
+                   ((re-search-forward "^URL:.*$" nil t)
+                    (replace-match (concat "URL: " url) nil nil))
+                   (t
+                    (goto-char (point-min))
                     (forward-line 1)
-                    (insert (concat "URL: " url "\n"))))))
-            ;; 3️⃣ Insert/update front matter in Markdown
-            (when (file-exists-p md-file)
-              (with-temp-buffer
-                (insert-file-contents md-file)
+                    (insert (concat "URL: " url "\n"))))))))
+
+        ;; 3) Insert/update front matter in Markdown (file-level)
+        (when (file-exists-p md-file)
+          (with-temp-buffer
+            (insert-file-contents md-file)
+            (goto-char (point-min))
+            (if (re-search-forward "^url:.*$" nil t)
+                (replace-match (concat "url: " url) nil nil)
+              (goto-char (point-min))
+              (if (re-search-forward "^---" nil t)
+                  (progn
+                    (forward-line 1)
+                    (insert (concat "url: " url "\n")))
                 (goto-char (point-min))
-                ;; YAML front matter start
-                (if (re-search-forward "^---" nil t)
-                    (progn
-                      (forward-line 1)
-                      (if (re-search-forward "^URL:.*$" nil t)
-                          (replace-match (concat "URL: " url))
-                        (insert (concat "URL: " url "\n"))))
-                  ;; No front matter → add it
-                  (goto-char (point-min))
-                  (insert "---\nURL: " url "\n---\n"))
-                (write-region (point-min) (point-max) md-file)))
-            ;; 4️⃣ Build Hugo site
-            (let ((default-directory base-dir))
-              (let ((exit-code (call-process "hugo" nil nil nil "-d" "docs")))
-                (when (/= exit-code 0)
-                  (message "[hugo] Build failed with exit code %d" exit-code)))))
-        (error (message "[ox-hugo] Export/build failed: %s" err))))))
+                (insert "---\nurl: " url "\n---\n")))
+            (write-region (point-min) (point-max) md-file)))
+
+        ;; 4) Build Hugo site
+        (let ((default-directory base-dir))
+          (let ((exit-code (call-process "hugo" nil nil nil "-d" "docs")))
+            (when (/= exit-code 0)
+              (message "[hugo] Build failed with exit code %d" exit-code))))
+        ;; ---- error handler ----
+        (error
+         (message "[ox-hugo] Export/build failed: %s"
+                  (error-message-string err)))))))
 
 ;; Hook: only trigger after saving Org files
 (add-hook 'after-save-hook 'my/org-auto-export-hugo-build-url)
