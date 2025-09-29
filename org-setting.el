@@ -149,4 +149,6 @@
 ;; Load org-ox
 (load-file (concat CONF-DENNY-EMACS "org-ox-hugo-setting.el"))
 
+;; set shortcut
+(define-key org-mode-map (kbd "M->") 'org-do-demote)
 (provide 'org-setting)

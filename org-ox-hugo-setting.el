@@ -60,8 +60,8 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
                         (goto-char (match-beginning 0)))
                   
                       (save-restriction
-                        (org-narrow-to-subtree) ; <-- ESSENTIAL: Narrows the search area
-                        (goto-char (point-min))
+                        ;; (org-narrow-to-subtree) ; <-- ESSENTIAL: Narrows the search area
+                        ;; (goto-char (point-min))
                         (cond
                          ((re-search-forward "^#\\+URL:.*$" nil t)
                           (replace-match (concat "#+URL: " url) nil nil))
