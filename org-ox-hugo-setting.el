@@ -16,16 +16,6 @@ Try file-level keyword `#+hugo_base_dir:` or fallback to `org-hugo-default-base-
   (or (ignore-errors (org-hugo--parse-keyword-file "hugo_base_dir"))
       org-hugo-default-base-dir))
 
-(defun my/org-get-root-property (property)
-  "Move the point to the root Org entry, retrieve PROPERTY, and restore the point.
-PROPERTY is a string, e.g., \"EXPORT_HUGO_SECTION\"."
-  (save-excursion
-    ;; Move to the very start of the buffer
-      (when (re-search-backward "^\\* " nil t)
-        (goto-char (match-beginning 0)))
-      (org-entry-get nil property)
-      ))
-
 (defun my/org-auto-export-hugo-build-url ()
   "Auto-export Org buffer to Hugo, build site, and insert URL for the root Org entry and Markdown."
   (interactive)
@@ -38,86 +28,91 @@ PROPERTY is a string, e.g., \"EXPORT_HUGO_SECTION\"."
       ;; --- 1. Robustly navigate to root headline for variable extraction ---
       (when (re-search-backward "^\\* " nil t)
         (goto-char (match-beginning 0)))
-      (org-forward-heading-same-level 1 t) ; Move to the first headline
-      
-      (let* ((base-dir (my/org-hugo-get-base-dir))
-             ;; Note: Assuming my/org-get-root-property is defined elsewhere or using standard org-entry-get
-             (section (or (org-entry-get nil "EXPORT_HUGO_SECTION")
-                          (ignore-errors (org-hugo--parse-keyword-file "EXPORT_HUGO_SECTION"))
-                          "posts"))
-             (file-name (or (org-entry-get nil "EXPORT_FILE_NAME")
-                            (file-name-base buffer-file-name)))
-             (url (format "https://quantcodedenny.com/%s/%s/" section file-name))
-             (md-file (concat (file-name-as-directory base-dir)
-                              "org-files/" section "/" file-name ".md")))
 
-        ;; Set buffer-local Hugo base dir (ox-hugo requirement)
-        (setq-local org-hugo-base-dir base-dir)
+      ;; Get properties
+      (let* ((export-file-name (org-entry-get nil "EXPORT_FILE_NAME"))
+             (noexport (org-entry-get nil "noexport")))
+        
+        ;; Skip if no EXPORT_FILE_NAME or if :noexport: property exists
+        (unless (or (not export-file-name)noexport)
 
-        (condition-case err
-            (progn
-              ;; 1) Insert/update URL for the *root Org entry* and SAVE
-              (with-silent-modifications
-                (save-excursion
-                  ;; Re-navigate to root headline after export
-                  (when (re-search-backward "^\\* " nil t)
-                    (goto-char (match-beginning 0)))
-                  (org-forward-heading-same-level 1 t)
+          (let* ((base-dir (my/org-hugo-get-base-dir))
+                 ;; Note: Assuming my/org-get-root-property is defined elsewhere or using standard org-entry-get
+                 (section (or (org-entry-get nil "EXPORT_HUGO_SECTION")
+                              (ignore-errors (org-hugo--parse-keyword-file "EXPORT_HUGO_SECTION"))
+                              "posts"))
+                 (file-name (or (org-entry-get nil "EXPORT_FILE_NAME")
+                                (file-name-base buffer-file-name)))
+                 (url (format "https://quantcodedenny.com/%s/%s/" section file-name))
+                 (md-file (concat (file-name-as-directory base-dir)
+                                  "org-files/" section "/" file-name ".md")))
+
+            ;; Set buffer-local Hugo base dir (ox-hugo requirement)
+            (setq-local org-hugo-base-dir base-dir)
+
+            (condition-case err
+                (progn
+                  ;; 1) Insert/update URL for the *root Org entry* and SAVE
+                  (with-silent-modifications
+                    (save-excursion
+                      ;; Re-navigate to root headline after export
+                      (when (re-search-backward "^\\* " nil t)
+                        (goto-char (match-beginning 0)))
                   
-                  (save-restriction
-                    (org-narrow-to-subtree) ; <-- ESSENTIAL: Narrows the search area
-                    (goto-char (point-min))
-                    
-                    (cond
-                     ((re-search-forward "^#\\+URL:.*$" nil t)
-                      (replace-match (concat "#+URL: " url) nil nil))
-                     ((re-search-forward "^URL:.*$" nil t)
-                      (replace-match (concat "URL: " url) nil nil))
-                     (t
-                      (goto-char (point-min))
-                      (forward-line 1)
-                      (insert (concat "URL: " url "\n"))))
-                    ) ; save-restriction restores full view
-                  
-                  ;; SAVE WITHOUT HOOKS OR PROMPT
-                  (write-region (point-min) (point-max) (buffer-file-name)
-                                nil   ; don't append
-                                nil   ; visit file after write (nil is fine if buffer already visiting)
-                                nil)  ; must be new? NO, nil prevents overwrite prompt
-                  ) ; save-excursion restores cursor
-                ) ; with-silent-modifications resets flag
-
-              ;; 2) Export Org → Markdown (This operation moves the cursor!)
-              (org-hugo-export-wim-to-md t) ;; the t => force overwrite, no confirmation
-              (message "[ox-hugo] Exported to Markdown in section '%s'" section)
-
-              ;; 3) Insert/update front matter in Markdown
-              (when (file-exists-p md-file)
-                (with-temp-buffer
-                  (insert-file-contents md-file)
-                  (goto-char (point-min))
-                  (if (re-search-forward "^url:.*$" nil t)
-                      (replace-match (concat "url: " url) nil nil)
-                    (goto-char (point-min))
-                    (if (re-search-forward "^---" nil t)
-                        (progn
+                      (save-restriction
+                        (org-narrow-to-subtree) ; <-- ESSENTIAL: Narrows the search area
+                        (goto-char (point-min))
+                        (cond
+                         ((re-search-forward "^#\\+URL:.*$" nil t)
+                          (replace-match (concat "#+URL: " url) nil nil))
+                         ((re-search-forward "^URL:.*$" nil t)
+                          (replace-match (concat "URL: " url) nil nil))
+                         (t
+                          (goto-char (point-min))
                           (forward-line 1)
-                          (insert (concat "url: " url "\n")))
-                      (goto-char (point-min))
-                      (insert "---\nurl: " url "\n---\n"))))
-                (write-region (point-min) (point-max) md-file))
-              
-              ;; 4) Build Hugo site
-              (let ((default-directory base-dir))
-                (let ((exit-code (call-process "hugo" nil nil nil "-d" "docs")))
-                  (when (/= exit-code 0)
-                    (message "[hugo] Build failed with exit code %d" exit-code))))
-              )
+                          (insert (concat "URL: " url "\n"))))
+                        ) ; save-restriction restores full view
 
-          ;; ---- error handler ----
-          (error
-           (message "[ox-hugo] Export/build failed: %s"
-                    (error-message-string err))))))))
+                      ;; SAVE WITHOUT HOOKS OR PROMPT
+                      (write-region (point-min) (point-max) (buffer-file-name)
+                                    nil   ; don't append
+                                    nil   ; visit file after write (nil is fine if buffer already visiting)
+                                    nil)  ; must be new? NO, nil prevents overwrite prompt
+                      ) ; save-excursion restores cursor
+                    ) ; with-silent-modifications resets flag
+
+                  ;; 2) Export Org → Markdown (This operation moves the cursor!)
+                  (org-hugo-export-wim-to-md t) ;; the t => force overwrite, no confirmation
+                  (message "[ox-hugo] Exported to Markdown in section '%s'" section)
+
+                  ;; 3) Insert/update front matter in Markdown
+                  (when (file-exists-p md-file)
+                    (with-temp-buffer
+                      (insert-file-contents md-file)
+                      (goto-char (point-min))
+                      (if (re-search-forward "^url:.*$" nil t)
+                          (replace-match (concat "url: " url) nil nil)
+                        (goto-char (point-min))
+                        (if (re-search-forward "^---" nil t)
+                            (progn
+                              (forward-line 1)
+                              (insert (concat "url: " url "\n")))
+                          (goto-char (point-min))
+                          (insert "---\nurl: " url "\n---\n"))))
+                    (write-region (point-min) (point-max) md-file))
+              
+                  ;; 4) Build Hugo site
+                  (let ((default-directory base-dir))
+                    (let ((exit-code (call-process "hugo" nil nil nil "-d" "docs")))
+                      (when (/= exit-code 0)
+                        (message "[hugo] Build failed with exit code %d" exit-code))))
+                  )
+
+              ;; ---- error handler ----
+              (error
+               (message "[ox-hugo] Export/build failed: %s"
+                        (error-message-string err))))
+            ))))))
 
 ;; Hook: only trigger after saving Org files
 (add-hook 'after-save-hook 'my/org-auto-export-hugo-build-url)
